@@ -1,0 +1,364 @@
+databaseChangeLog:
+- changeSet:
+    id: 1708729038902-1
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: CITYID
+            type: INT
+        - column:
+            name: STREET
+            type: VARCHAR(55)
+        - column:
+            name: NUMBER
+            type: VARCHAR(10)
+        - column:
+            name: CEP
+            type: VARCHAR(10)
+        - column:
+            name: USERID
+            type: INT
+        tableName: ADDRESS
+- changeSet:
+    id: 1708729038902-2
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: NAME
+            type: VARCHAR(30)
+        - column:
+            name: STATEID
+            type: VARCHAR(2)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_CITY
+            name: ID
+            type: INT
+        tableName: CITY
+- changeSet:
+    id: 1708729038902-3
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: NAME
+            type: VARCHAR(50)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_OCCUPATIONAREA
+            name: IDOCCUPATION
+            type: INT
+        tableName: OCCUPATIONAREA
+- changeSet:
+    id: 1708729038902-4
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_ORDERS
+            name: ID
+            type: BIGINT
+        - column:
+            name: PRODUCT
+            type: VARCHAR(100)
+        - column:
+            constraints:
+              nullable: false
+            name: PRICE
+            type: DECIMAL(6, 2)
+        tableName: ORDERS
+- changeSet:
+    id: 1708729038902-5
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: USERID
+            type: INT
+        - column:
+            name: DESCRICAO
+            type: VARCHAR(255)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_PROVIDER
+            name: ID
+            type: INT
+        tableName: PROVIDER
+- changeSet:
+    id: 1708729038902-6
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: TITLE
+            type: VARCHAR(255)
+        - column:
+            name: DESCRIPTION
+            type: VARCHAR(255)
+        - column:
+            name: USERID
+            type: INT
+        - column:
+            name: PROVIDERID
+            type: INT
+        - column:
+            name: STARS
+            type: DOUBLE PRECISION
+        tableName: RATING
+- changeSet:
+    id: 1708729038902-7
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: OCCUPATIONAREAID
+            type: INT
+        - column:
+            name: NAME
+            type: VARCHAR(40)
+        tableName: SPECIALITY
+- changeSet:
+    id: 1708729038902-8
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: NAME
+            type: VARCHAR(30)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_STATE
+            name: UF
+            type: VARCHAR(2)
+        tableName: STATE
+- changeSet:
+    id: 1708729038902-9
+    author: kaio (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: NAME
+            type: VARCHAR(120)
+        - column:
+            name: DOCUMENT
+            type: VARCHAR(25)
+        - column:
+            name: EMAIL
+            type: VARCHAR(150)
+        - column:
+            name: PHONENUMBER
+            type: VARCHAR(15)
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_USER
+            name: ID
+            type: INT
+        tableName: USER
+- changeSet:
+    id: 1708729038902-10
+    author: kaio (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: USERID
+        indexName: ADDRESS_IBFK_1_INDEX_E
+        tableName: ADDRESS
+- changeSet:
+    id: 1708729038902-11
+    author: kaio (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: CITYID
+        indexName: ADDRESS_IBFK_2_INDEX_E
+        tableName: ADDRESS
+- changeSet:
+    id: 1708729038902-12
+    author: kaio (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: STATEID
+        indexName: CITY_IBFK_1_INDEX_1
+        tableName: CITY
+- changeSet:
+    id: 1708729038902-13
+    author: kaio (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: USERID
+        indexName: PROVIDER_IBFK_1_INDEX_F
+        tableName: PROVIDER
+- changeSet:
+    id: 1708729038902-14
+    author: kaio (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: USERID
+        indexName: RATING_IBFK_1_INDEX_8
+        tableName: RATING
+- changeSet:
+    id: 1708729038902-15
+    author: kaio (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: PROVIDERID
+        indexName: RATING_IBFK_2_INDEX_8
+        tableName: RATING
+- changeSet:
+    id: 1708729038902-16
+    author: kaio (generated)
+    changes:
+    - createIndex:
+        associatedWith: ''
+        columns:
+        - column:
+            name: OCCUPATIONAREAID
+        indexName: SPECIALITY_IBFK_1_INDEX_E
+        tableName: SPECIALITY
+- changeSet:
+    id: 1708729038902-17
+    author: kaio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: USERID
+        baseTableName: ADDRESS
+        constraintName: ADDRESS_IBFK_1
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: USER
+        validate: true
+- changeSet:
+    id: 1708729038902-18
+    author: kaio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: CITYID
+        baseTableName: ADDRESS
+        constraintName: ADDRESS_IBFK_2
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: CITY
+        validate: true
+- changeSet:
+    id: 1708729038902-19
+    author: kaio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: STATEID
+        baseTableName: CITY
+        constraintName: CITY_IBFK_1
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: UF
+        referencedTableName: STATE
+        validate: true
+- changeSet:
+    id: 1708729038902-20
+    author: kaio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: USERID
+        baseTableName: PROVIDER
+        constraintName: PROVIDER_IBFK_1
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: USER
+        validate: true
+- changeSet:
+    id: 1708729038902-21
+    author: kaio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: USERID
+        baseTableName: RATING
+        constraintName: RATING_IBFK_1
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: USER
+        validate: true
+- changeSet:
+    id: 1708729038902-22
+    author: kaio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: PROVIDERID
+        baseTableName: RATING
+        constraintName: RATING_IBFK_2
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: PROVIDER
+        validate: true
+- changeSet:
+    id: 1708729038902-23
+    author: kaio (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: OCCUPATIONAREAID
+        baseTableName: SPECIALITY
+        constraintName: SPECIALITY_IBFK_1
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: IDOCCUPATION
+        referencedTableName: OCCUPATIONAREA
+        validate: true
+
