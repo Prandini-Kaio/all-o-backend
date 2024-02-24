@@ -62,11 +62,6 @@
 		</dependency>
 
 		<!-- LIQUIBASE 4.26-->
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-			<version>4.26.0</version>
-		</dependency>
 
 
 	</dependencies>
@@ -85,19 +80,7 @@
 					</excludes>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.liquibase</groupId>
-				<artifactId>liquibase-maven-plugin</artifactId>
-				<version>4.25.1</version>
-				<configuration>
-					<driver>org.h2.Driver</driver>
-					<url>jdbc:h2:~/liquibase;DB_CLOSE_ON_EXIT=FALSE</url>
-					<username>sa</username>
-					<password />
-					<changeLogFile>src/main/resources/db/db.changelog-master.yaml</changeLogFile>
-					<outputChangeLogFile>src/main/resources/liquibase-outputChangeLog.yaml</outputChangeLogFile>
-				</configuration>
-			</plugin>
+
 		</plugins>
 	</build>
 

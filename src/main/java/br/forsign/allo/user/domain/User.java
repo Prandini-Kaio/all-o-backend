@@ -5,6 +5,7 @@ import br.forsign.allo.document.domain.Documents;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "USUARIO")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,9 +14,7 @@ public class User {
     @Column(name = "USER_NAME")
     private String name;
     @OneToOne
-    @Column(name = "DOCUMENTS_ID")
     private Documents documents;
     @OneToOne
-    @Column(name = "CONTACTS_ID")
     private Contacts contacts;
 }
