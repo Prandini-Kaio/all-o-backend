@@ -1,9 +1,16 @@
 package br.forsign.allo.contact.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-public class Contacts {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
