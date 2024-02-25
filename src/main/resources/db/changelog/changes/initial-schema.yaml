@@ -1,0 +1,111 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1708824934268-1
+      author: kaio (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_C
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: EMAIL
+                  type: VARCHAR(255)
+              - column:
+                  name: PHONE
+                  type: VARCHAR(255)
+            tableName: CONTACTS
+  - changeSet:
+      id: 1708824934268-2
+      author: kaio (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_D
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: cpf/cnpj
+                  type: VARCHAR(255)
+            tableName: DOCUMENTS
+  - changeSet:
+      id: 1708824934268-3
+      author: kaio (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_2
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: USER_NAME
+                  type: VARCHAR(255)
+              - column:
+                  name: CONTACTS_ID
+                  type: BIGINT
+              - column:
+                  name: DOCUMENTS_ID
+                  type: BIGINT
+            tableName: USUARIO
+  - changeSet:
+      id: 1708824934268-4
+      author: kaio (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: DOCUMENTS_ID
+            constraintName: UK_4MXJDPLY6KF2QY1R2DNHO22RI
+            tableName: USUARIO
+  - changeSet:
+      id: 1708824934268-5
+      author: kaio (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: CONTACTS_ID
+            constraintName: UK_C71842H09W9A2YOKITANM7680
+            tableName: USUARIO
+  - changeSet:
+      id: 1708824934268-6
+      author: kaio (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: DOCUMENTS_ID
+            baseTableName: USUARIO
+            constraintName: FKGK5HAN35XWXBH790FKAV82C4V
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: DOCUMENTS
+            validate: true
+  - changeSet:
+      id: 1708824934268-7
+      author: kaio (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: CONTACTS_ID
+            baseTableName: USUARIO
+            constraintName: FKT4M8DSUKV0G05G7P9RISINO34
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: CONTACTS
+            validate: true
+
