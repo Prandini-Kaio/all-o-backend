@@ -29,9 +29,9 @@ public class UserController {
         return ResponseEntity.ok().body(service.create(inputDTO));
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     @Operation(summary = "Devolve um Usuario pelo ID")
-    private ResponseEntity getById(@RequestBody Long id){
+    private ResponseEntity getById(@PathVariable Long id){
         return ResponseEntity.ok().body(service.getById(id));
     }
 

@@ -15,6 +15,6 @@ public class UserGetter {
     private UserRepository repository;
 
     public User getById(Long id){
-        return repository.getReferenceById(id);
+        return repository.findById(id).orElse(null);
     }
 }
