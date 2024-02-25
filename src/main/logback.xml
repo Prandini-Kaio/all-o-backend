@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Define the console appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Define a custom appender -->
+    <appender name="LGRR_APPENDER" class="br.forsign.allo.logger.LogErrorAppender">
+    </appender>
+
+    <!-- Root logger level and appenders -->
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="CUSTOM_APPENDER" />
+    </root>
+
+</configuration>
