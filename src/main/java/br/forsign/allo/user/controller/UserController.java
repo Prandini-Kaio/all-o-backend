@@ -28,4 +28,17 @@ public class UserController {
     private ResponseEntity createUser(@RequestBody @Validated UserInputDTO inputDTO){
         return ResponseEntity.ok().body(service.create(inputDTO));
     }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Devolve um Usuario pelo ID")
+    private ResponseEntity getById(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.getById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deleta um usuario pelo ID")
+    private ResponseEntity delById(@PathVariable Long id){
+        return ResponseEntity.ok().build();
+    }
+
 }
