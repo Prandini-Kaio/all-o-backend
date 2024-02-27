@@ -1,9 +1,8 @@
 package br.forsign.allo.document;
 
 import br.forsign.allo.common.utils.CpfCnpjUtils;
-import br.forsign.allo.document.service.action.DocumentValidator;
+import br.forsign.allo.user.service.actions.document.DocumentValidator;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**

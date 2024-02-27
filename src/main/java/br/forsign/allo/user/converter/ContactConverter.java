@@ -1,7 +1,7 @@
-package br.forsign.allo.contact.converter;
+package br.forsign.allo.user.converter;
 
-import br.forsign.allo.contact.domain.Contact;
-import br.forsign.allo.contact.model.ContactDTO;
+import br.forsign.allo.user.domain.Contact;
+import br.forsign.allo.user.model.contact.ContactDTO;
 
 public class ContactConverter {
     public static ContactDTO toDTO(Contact contact){

@@ -1,4 +1,4 @@
-package br.forsign.allo.document.service.action;
+package br.forsign.allo.user.service.actions.document;
 
 import br.forsign.allo.common.utils.CpfCnpjUtils;
 import org.springframework.stereotype.Component;
