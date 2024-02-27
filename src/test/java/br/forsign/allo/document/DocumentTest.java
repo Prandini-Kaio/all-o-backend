@@ -15,8 +15,8 @@ public class DocumentTest {
     @Test
     public void testCpfFormatoValido(){
         DocumentValidator validator = new DocumentValidator();
-        String cpf = "700.568.756-65";
-        String cpfS = "70056875664";
+        String cpf = "00000000000";
+        String cpfS = "0000000000";
 
         System.out.println(CpfCnpjUtils.aplicaMascara(cpfS));
         System.out.println(CpfCnpjUtils.removeMascara(cpf));

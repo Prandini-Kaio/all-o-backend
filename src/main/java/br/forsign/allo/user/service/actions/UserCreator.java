@@ -28,8 +28,8 @@ public class UserCreator {
         Contact contact = contactCreator.create(inputDTO.getContact());
 
         user.setName(inputDTO.getName());
-        user.setDocuments(documents);
-        user.setContacts(contact);
+        user.setDocument(documents);
+        user.setContact(contact);
 
         User savedUser = repository.save(user);
 

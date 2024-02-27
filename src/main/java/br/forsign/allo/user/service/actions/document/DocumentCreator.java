@@ -15,7 +15,7 @@ public class DocumentCreator {
 
     public Document create(DocumentsInputDTO inputDTO){
         Document documents = new Document();
-        documents.setCpf_cnpj(inputDTO.getCpfCnpj());
+        documents.setCpfCnpj(inputDTO.getCpfCnpj());
         return repository.save(documents);
     }
 }

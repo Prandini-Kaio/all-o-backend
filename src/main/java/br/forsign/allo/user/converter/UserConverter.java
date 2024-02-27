@@ -9,8 +9,8 @@ public class UserConverter {
         return UserOutputDTO.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .documents(DocumentConverter.toDTO(user.getDocuments()))
-                .contact(ContactConverter.toDTO(user.getContacts()))
+                .documents(DocumentConverter.toDTO(user.getDocument()))
+                .contact(ContactConverter.toDTO(user.getContact()))
                 .build();
     }
 }
