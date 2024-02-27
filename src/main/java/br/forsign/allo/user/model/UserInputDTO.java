@@ -1,9 +1,7 @@
 package br.forsign.allo.user.model;
 
-import br.forsign.allo.contact.model.ContactDTO;
-import br.forsign.allo.contact.model.ContactInputDTO;
-import br.forsign.allo.document.model.DocumentsDTO;
-import br.forsign.allo.document.model.DocumentsInputDTO;
+import br.forsign.allo.user.model.contact.ContactInputDTO;
+import br.forsign.allo.user.model.document.DocumentsInputDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;

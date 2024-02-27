@@ -1,6 +1,6 @@
-package br.forsign.allo.contact.repository;
+package br.forsign.allo.user.repository;
 
-import br.forsign.allo.contact.domain.Contact;
+import br.forsign.allo.user.domain.Contact;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
