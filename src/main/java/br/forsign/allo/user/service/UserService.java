@@ -8,6 +8,7 @@ import br.forsign.allo.user.repository.UserRepository;
 import br.forsign.allo.user.service.actions.UserCreator;
 import br.forsign.allo.user.service.actions.UserDeleter;
 import br.forsign.allo.user.service.actions.UserGetter;
+import br.forsign.allo.user.service.actions.UserUpdater;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,12 +29,16 @@ public class UserService {
     @Resource
     private UserDeleter deleter;
 
+    @Resource
+    private UserUpdater updater;
+
     public List<UserOutputDTO> findAll(){
         List<User> users = repository.findAll();
         return users.stream().map(UserConverter::toUserDTO).toList();
     }
 
     public UserOutputDTO create(UserInputDTO inputDTO){
+
         return UserConverter.toUserDTO(creator.create(inputDTO));
     }
 
@@ -43,5 +48,9 @@ public class UserService {
 
     public void delById(Long id){
        deleter.delById(id);
+    }
+
+    public UserOutputDTO updateById(UserInputDTO inputDTO){
+        return UserConverter.toUserDTO(updater.update(inputDTO));
     }
 }

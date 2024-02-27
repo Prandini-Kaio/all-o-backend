@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 public class DocumentService {
     @Resource
     private DocumentCreator creator;
+  
+    private DocumentValidator validator;
 
     public DocumentsDTO create(DocumentsInputDTO input){
-        return DocumentConverter.toDTO(creator.create(input));
+
+        validator.validaCpfCnpj(input.getCpfCnpj());
     }
 }
