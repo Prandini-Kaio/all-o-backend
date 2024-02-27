@@ -1,19 +1,18 @@
-package br.forsign.allo.document.domain;
+package br.forsign.allo.user.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Documents {
+public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "CPF_CNPJ")
-    private String cpf_cnpj;
+    private String cpfCnpj;
 }

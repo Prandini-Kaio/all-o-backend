@@ -1,11 +1,9 @@
-package br.forsign.allo.contact.service.action;
+package br.forsign.allo.user.service.actions.contact;
 
-import br.forsign.allo.contact.domain.Contact;
-import br.forsign.allo.contact.model.ContactDTO;
-import br.forsign.allo.contact.model.ContactInputDTO;
-import br.forsign.allo.contact.repository.ContactRepository;
+import br.forsign.allo.user.domain.Contact;
+import br.forsign.allo.user.model.contact.ContactInputDTO;
+import br.forsign.allo.user.repository.ContactRepository;
 import jakarta.annotation.Resource;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service

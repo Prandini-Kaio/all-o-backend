@@ -1,4 +1,4 @@
-package br.forsign.allo.contact.model;
+package br.forsign.allo.user.model.contact;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

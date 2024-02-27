@@ -1,4 +1,4 @@
-package br.forsign.allo.document.model;
+package br.forsign.allo.user.model.document;
 
 
 import io.swagger.v3.oas.annotations.media.Schema;
