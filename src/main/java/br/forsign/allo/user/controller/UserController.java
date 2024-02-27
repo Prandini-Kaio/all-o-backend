@@ -41,4 +41,9 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @PutMapping
+    @Operation(summary = "Atualiza um usuario")
+    private ResponseEntity updateById(@RequestBody @Validated UserInputDTO inputDTO){
+        return ResponseEntity.ok().body(service.updateById(inputDTO));
+    }
 }

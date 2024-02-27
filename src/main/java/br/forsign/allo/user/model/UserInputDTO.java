@@ -14,6 +14,7 @@ import lombok.Getter;
 public class UserInputDTO {
     @NotBlank
     @Schema(example = "Matheus Frangote")
+    private Long id;
     private String name;
     private DocumentsInputDTO documents;
     private ContactInputDTO contact;
