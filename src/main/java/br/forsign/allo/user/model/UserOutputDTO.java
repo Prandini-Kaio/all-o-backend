@@ -1,7 +1,7 @@
 package br.forsign.allo.user.model;
 
 import br.forsign.allo.user.model.contact.ContactDTO;
-import br.forsign.allo.user.model.document.DocumentsDTO;
+import br.forsign.allo.user.model.document.DocumentDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +15,5 @@ public class UserOutputDTO {
     private Long id;
     private String name;
     private ContactDTO contact;
-    private DocumentsDTO documents;
+    private DocumentDTO documents;
 }

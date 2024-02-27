@@ -1,12 +1,12 @@
 package br.forsign.allo.user.converter;
 
 import br.forsign.allo.user.domain.Document;
-import br.forsign.allo.user.model.document.DocumentsDTO;
+import br.forsign.allo.user.model.document.DocumentDTO;
 
 public class DocumentConverter {
 
-    public static DocumentsDTO toDTO(Document documents){
-        return new DocumentsDTO(documents.getId(), documents.getCpfCnpj());
+    public static DocumentDTO toDTO(Document documents){
+        return new DocumentDTO(documents.getId(), documents.getCpfCnpj());
     }
 
 
