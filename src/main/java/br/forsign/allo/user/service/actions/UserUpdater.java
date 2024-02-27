@@ -1,16 +1,12 @@
 package br.forsign.allo.user.service.actions;
 
-import br.forsign.allo.contact.domain.Contact;
-import br.forsign.allo.contact.service.action.ContactCreator;
-import br.forsign.allo.document.domain.Documents;
-import br.forsign.allo.document.service.action.DocumentCreator;
 import br.forsign.allo.user.domain.User;
 import br.forsign.allo.user.model.UserInputDTO;
 import br.forsign.allo.user.repository.UserRepository;
+import br.forsign.allo.user.service.actions.contact.ContactCreator;
+import br.forsign.allo.user.service.actions.document.DocumentCreator;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class UserUpdater {
@@ -28,22 +24,17 @@ public class UserUpdater {
         User user = new User();
         user = repository.findById(inputDTO.getId()).orElse(null);
 
-        User newUser = new User();
-
-        newUser.setName(inputDTO.getName());
-        newUser.getContacts().setEmail(inputDTO.getContact().getEmail());
-        newUser.getContacts().setEmail(inputDTO.getContact().getPhone());
-        newUser.getDocuments().setCpf_cnpj(inputDTO.getDocuments().getCpfCnpj());
-
-        repository.save(newUser);
 
 
-//        repository.findById(user.getId()).ifPresent(newUser -> {
-//            newUser.setName(inputDTO.getName());
-//            newUser.setDocuments(documents);
-//            newUser.setContacts(contact);
-//            repository.save(newUser);
-//        });
+
+        user.setName(inputDTO.getName());
+        user.getContact().setEmail(inputDTO.getContact().getEmail());
+        user.getContact().setPhone(inputDTO.getContact().getPhone());
+        user.getDocument().setCpfCnpj(inputDTO.getDocuments().getCpfCnpj());
+
+        repository.save(user);
+
+
     return user;
     }
 }

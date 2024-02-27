@@ -11,7 +11,12 @@ public class DocumentService {
     @Resource
     private DocumentCreator creator;
 
+    @Resource
+    private DocumentValidator validator;
+
     public DocumentsDTO create(DocumentsInputDTO input){
+
+        validator.validaCpfCnpj(input.getCpfCnpj());
         return DocumentConverter.toDTO(creator.create(input));
     }
 }
