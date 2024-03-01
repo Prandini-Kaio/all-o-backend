@@ -15,7 +15,7 @@ public class Provider {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Service service;
+    private Profession service;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Establishment establishment;

@@ -16,11 +16,13 @@ public class OperationHour {
     private Long id;
 
     @Column(name = "OPEN_HOUR")
+     //Exemplo
     LocalTime openHour = LocalTime.now();
 
     //TODO -> esquema de manipulação de horário em actions
     //TODO -> Time gap (Horário de almoço)
 
     @Column(name = "CLOSE_HOUR")
+     //Exemplo
     LocalTime closeHour = LocalTime.now();
 }

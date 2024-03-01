@@ -2,14 +2,12 @@ package br.forsign.allo.provider.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Service {
+public class Profession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

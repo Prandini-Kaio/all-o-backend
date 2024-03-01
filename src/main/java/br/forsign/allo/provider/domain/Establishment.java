@@ -5,11 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Establishment {
@@ -19,5 +17,9 @@ public class Establishment {
 
     @Column(name = "ESTABLISHMENT_NAME")
     private String name;
+
+    //TODO -> Fazer um campo correto de tratamento de endereços.
+    //@Column(name = "ADRESS")
+    //private String adress;
 
 }
