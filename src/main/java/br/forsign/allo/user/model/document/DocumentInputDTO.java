@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class DocumentsInputDTO {
+public class DocumentInputDTO {
     @CpfCnpj(tipoDocumento = TipoDocumento.CPF)
     private String cpfCnpj;
 }
