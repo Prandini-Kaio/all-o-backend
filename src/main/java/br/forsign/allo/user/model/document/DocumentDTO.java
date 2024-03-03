@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentsDTO {
+public class DocumentDTO {
     private Long id;
     private String cpf_cnpj;
 }

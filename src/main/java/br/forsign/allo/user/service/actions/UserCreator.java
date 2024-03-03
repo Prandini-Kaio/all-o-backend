@@ -21,10 +21,10 @@ public class UserCreator {
     private ContactCreator contactCreator;
 
     public User create(UserInputDTO inputDTO){
-        // TODO --> DEVEMOS ADICIONAR UM VALIDATOR, PARA VALIDAR A CRIACAO DO USUARIO ESSE TIPO DE ACAO SE DEVE A SEPARACAO DE FUNCIONALIDADES
+
         User user = new User();
 
-        Document documents = documentCreator.create(inputDTO.getDocuments());
+        Document documents = documentCreator.create(inputDTO.getDocument());
         Contact contact = contactCreator.create(inputDTO.getContact());
 
         user.setName(inputDTO.getName());
