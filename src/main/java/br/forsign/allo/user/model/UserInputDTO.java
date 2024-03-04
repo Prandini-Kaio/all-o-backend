@@ -10,10 +10,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class UserInputDTO {
-    @Schema(example = "Matheus Frangote")
     private Long id;
+    @Schema(example = "Matheus Frangote")
     private String name;
     @Valid
     private DocumentInputDTO document;
+    @Valid
     private ContactInputDTO contact;
 }

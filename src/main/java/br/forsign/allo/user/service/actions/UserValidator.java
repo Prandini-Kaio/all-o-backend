@@ -25,7 +25,7 @@ public class UserValidator {
     private void validarUsuarioExistente(UserInputDTO inputDTO){
         User user = repository.findByDocument_CpfCnpj(inputDTO.getDocument().getCpfCnpj()).orElse(null);
 
-        if(user.getDocument() == null)
+        if(user != null)
             throw new DocumentException(DocumentExceptionMessages.userJaCadastrado(inputDTO.getDocument().getCpfCnpj()));
     }
 }
