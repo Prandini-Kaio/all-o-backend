@@ -24,9 +24,6 @@ public class UserUpdater {
         User user = new User();
         user = repository.findById(inputDTO.getId()).orElse(null);
 
-
-
-
         user.setName(inputDTO.getName());
         user.getContact().setEmail(inputDTO.getContact().getEmail());
         user.getContact().setPhone(inputDTO.getContact().getPhone());
