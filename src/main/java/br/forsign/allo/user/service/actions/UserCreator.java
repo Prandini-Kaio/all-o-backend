@@ -24,7 +24,7 @@ public class UserCreator {
 
         User user = new User();
 
-        Document documents = documentCreator.create(inputDTO.getDocuments());
+        Document documents = documentCreator.create(inputDTO.getDocument());
         Contact contact = contactCreator.create(inputDTO.getContact());
 
         user.setName(inputDTO.getName());
