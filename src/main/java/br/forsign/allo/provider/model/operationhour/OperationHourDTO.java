@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OperationHourDTO {
     private Long id;
-    private String openHour;
-    private String breakTime;
-    private String breakReturn;
-    private String closeHour;
+    private LocalTime openHour;
+    private LocalTime breakTime;
+    private LocalTime breakReturn;
+    private LocalTime closeHour;
 }
