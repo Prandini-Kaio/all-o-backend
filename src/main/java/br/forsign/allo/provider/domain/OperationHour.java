@@ -1,9 +1,12 @@
 package br.forsign.allo.provider.domain;
 
+import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -15,17 +18,25 @@ public class OperationHour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //TODO -> esquema de manipulação de horário em actions
-
     @Column(name = "OPEN_HOUR")
-    private LocalTime openHour;
+    private LocalDateTime openHour;
 
     @Column(name = "BREAK_TIME")
-    private LocalTime breakTime;
+    private LocalDateTime breakTime;
 
     @Column(name = "BREAK_RETURN")
-    private LocalTime breakReturn;
+    private LocalDateTime breakReturn;
 
     @Column(name = "CLOSE_HOUR")
-    private LocalTime closeHour;
+    private LocalDateTime closeHour;
+
+    public OperationHourDTO toOutput(){
+        return new OperationHourDTO(
+                this.id,
+                this.openHour,
+                this.breakTime,
+                this.breakReturn,
+                this.closeHour
+        );
+    }
 }

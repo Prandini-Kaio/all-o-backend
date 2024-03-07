@@ -1,8 +1,6 @@
 package br.forsign.allo.common.utils.annotation;
 
-import br.forsign.allo.common.utils.annotation.validator.CpfCnpjValidator;
 import br.forsign.allo.common.utils.annotation.validator.EmailValidator;
-import br.forsign.allo.user.domain.TipoDocumento;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

@@ -2,14 +2,14 @@ package br.forsign.allo.common.utils.annotation.validator;
 
 import br.forsign.allo.common.utils.annotation.CpfCnpj;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
-import br.forsign.allo.user.domain.TipoDocumento;
+import br.forsign.allo.user.domain.TipoPessoa;
 import br.forsign.allo.user.exceptions.DocumentException;
 import br.forsign.allo.user.exceptions.DocumentExceptionMessages;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 public class CpfCnpjValidator implements ConstraintValidator<CpfCnpj, String> {
-    private TipoDocumento tipoDocumento;
+    private TipoPessoa tipoDocumento;
 
     @Override
     public void initialize(CpfCnpj constraintAnnotation) {
@@ -22,11 +22,11 @@ public class CpfCnpjValidator implements ConstraintValidator<CpfCnpj, String> {
         boolean valid = false;
         String cpfCnpjSMask = CpfCnpjUtils.removeMascara(cpfCnpj);
 
-        if(this.tipoDocumento == TipoDocumento.CPF)
+        if(this.tipoDocumento == TipoPessoa.FISICA)
             valid = CpfCnpjUtils.isCpfValido(cpfCnpjSMask);
-        else if(this.tipoDocumento == TipoDocumento.CNPJ)
+        else if(this.tipoDocumento == TipoPessoa.JURIDICA)
             valid = CpfCnpjUtils.isCnpjValido(cpfCnpjSMask);
-        else if (this.tipoDocumento == TipoDocumento.CPFCNPJ)
+        else if (this.tipoDocumento == TipoPessoa.FISICA_JURIDICA)
             valid = CpfCnpjUtils.isCpfCnpjValido(cpfCnpjSMask);
 
         if(!valid)
