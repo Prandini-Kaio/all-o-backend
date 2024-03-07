@@ -18,14 +18,14 @@ public class OperationHour {
     //TODO -> esquema de manipulação de horário em actions
 
     @Column(name = "OPEN_HOUR")
-    private String openHour;
+    private LocalTime openHour;
 
     @Column(name = "BREAK_TIME")
-    private String breakTime;
+    private LocalTime breakTime;
 
     @Column(name = "BREAK_RETURN")
-    private String breakReturn;
+    private LocalTime breakReturn;
 
     @Column(name = "CLOSE_HOUR")
-    private String closeHour;
+    private LocalTime closeHour;
 }
