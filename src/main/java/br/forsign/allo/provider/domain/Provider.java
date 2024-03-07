@@ -32,4 +32,4 @@ public class Provider {
     @OneToOne(cascade = CascadeType.ALL)
     private OperationHour operationHour;
 
-}
+

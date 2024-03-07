@@ -1,5 +1,6 @@
 package br.forsign.allo.provider.model;
 
+
 import br.forsign.allo.provider.model.establishment.EstablishmentInputDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourInputDTO;
 import br.forsign.allo.provider.model.profession.ProfessionInputDTO;

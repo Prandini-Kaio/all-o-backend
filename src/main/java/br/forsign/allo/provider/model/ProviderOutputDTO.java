@@ -1,5 +1,6 @@
 package br.forsign.allo.provider.model;
 
+
 import br.forsign.allo.provider.model.establishment.EstablishmentDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import br.forsign.allo.provider.model.profession.ProfessionDTO;
@@ -22,4 +23,5 @@ public class ProviderOutputDTO {
     private String tipoPessoa;
     private UserOutputDTO user;
     private OperationHourDTO operationhour;
+
 }
