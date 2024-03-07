@@ -15,7 +15,7 @@ public class Provider {
     private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Profession service;
+    private Profession profession;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Establishment establishment;
@@ -28,9 +28,6 @@ public class Provider {
 
     @OneToOne
     private User usuario;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private RegisterDateTime registerDateTime;
 
     @OneToOne(cascade = CascadeType.ALL)
     private OperationHour operationHour;

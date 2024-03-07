@@ -15,14 +15,17 @@ public class OperationHour {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "OPEN_HOUR")
-     //Exemplo
-    LocalTime openHour = LocalTime.now();
-
     //TODO -> esquema de manipulação de horário em actions
-    //TODO -> Time gap (Horário de almoço)
+
+    @Column(name = "OPEN_HOUR")
+    private String openHour;
+
+    @Column(name = "BREAK_TIME")
+    private String breakTime;
+
+    @Column(name = "BREAK_RETURN")
+    private String breakReturn;
 
     @Column(name = "CLOSE_HOUR")
-     //Exemplo
-    LocalTime closeHour = LocalTime.now();
+    private String closeHour;
 }
