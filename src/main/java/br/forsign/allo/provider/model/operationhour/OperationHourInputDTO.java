@@ -12,14 +12,14 @@ import java.time.LocalTime;
 @Data
 public class OperationHourInputDTO {
     @Schema(example = "7:30")
-    private String openHour;
+    private LocalTime openHour;
 
     @Schema(example = "12:00")
-    private String breakTime;
+    private LocalTime breakTime;
 
     @Schema(example = "14:00")
-    private String breakReturn;
+    private LocalTime breakReturn;
 
     @Schema(example = "20:30")
-    private String closeHour;
+    private LocalTime closeHour;
 }
