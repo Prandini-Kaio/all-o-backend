@@ -2,7 +2,7 @@ package br.forsign.allo.user.service.actions.document;
 
 import br.forsign.allo.user.converter.DocumentConverter;
 import br.forsign.allo.user.model.document.DocumentDTO;
-import br.forsign.allo.user.model.document.DocumentsInputDTO;
+import br.forsign.allo.user.model.document.DocumentInputDTO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +13,8 @@ public class DocumentService {
   
     private DocumentValidator validator;
 
-    public DocumentDTO create(DocumentsInputDTO input){
-        validator.validaCpfCnpj(input.getCpfCnpj());
+    public DocumentDTO create(DocumentInputDTO input){
+        validator.validarDocumentos(input);
         return DocumentConverter.toDTO(creator.create(input));
     }
 }

@@ -15,12 +15,26 @@ public class DocumentTest {
     @Test
     public void testCpfFormatoValido(){
         DocumentValidator validator = new DocumentValidator();
-        String cpf = "00000000000";
-        String cpfS = "0000000000";
+        String cpf = "634.950.660-04";
+        String cpfS = "63495066004";
 
-        System.out.println(CpfCnpjUtils.aplicaMascara(cpfS));
-        System.out.println(CpfCnpjUtils.removeMascara(cpf));
+        Assertions.assertTrue(CpfCnpjUtils.isCpfValido(cpf));
+        Assertions.assertTrue(CpfCnpjUtils.isCpfValido(cpfS));
 
-        Assertions.assertTrue(validator.validaCpfCnpj(cpf));
+        Assertions.assertTrue(CpfCnpjUtils.isCpf(cpf));
+        Assertions.assertTrue(CpfCnpjUtils.isCpf(cpfS));
+    }
+
+    @Test
+    public void testCnpjFormatoValido(){
+        DocumentValidator validator = new DocumentValidator();
+        String cnpj = "11.133.930/0001-30";
+        String cnpjS = "11133930000130";
+
+        Assertions.assertTrue(CpfCnpjUtils.isCnpjValido(cnpj));
+        Assertions.assertTrue(CpfCnpjUtils.isCnpjValido(cnpjS));
+
+        Assertions.assertTrue(CpfCnpjUtils.isCnpj(cnpj));
+        Assertions.assertTrue(CpfCnpjUtils.isCnpj(cnpjS));
     }
 }

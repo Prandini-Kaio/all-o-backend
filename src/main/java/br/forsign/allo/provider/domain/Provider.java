@@ -1,12 +1,16 @@
 package br.forsign.allo.provider.domain;
 
+import br.forsign.allo.user.domain.TipoPessoa;
 import br.forsign.allo.user.domain.User;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
 @Table(name = "PROVEDOR")
-@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Provider {
 
     @Id
@@ -14,22 +18,27 @@ public class Provider {
     @Column(name = "ID")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Profession profession;
+    @Column(name = "NOME")
+    private String name;
+
+    @Column(name = "DESCRICAO")
+    private String description;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Establishment establishment;
+    private Profession profession;
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private ProviderRating providerRating;
 
     @Column(name = "TIPO_PESSOA")
-    private String tipoPessoa;
+    private TipoPessoa tipoPessoa;
 
     @OneToOne
-    private User usuario;
+    private User user;
 
     @OneToOne(cascade = CascadeType.ALL)
     private OperationHour operationHour;
+
+}
 
 
