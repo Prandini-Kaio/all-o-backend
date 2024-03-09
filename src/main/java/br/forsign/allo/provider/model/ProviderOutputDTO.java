@@ -5,6 +5,7 @@ import br.forsign.allo.provider.model.establishment.EstablishmentDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import br.forsign.allo.provider.model.profession.ProfessionDTO;
 import br.forsign.allo.provider.model.providerrating.ProviderRatingDTO;
+import br.forsign.allo.user.domain.TipoPessoa;
 import br.forsign.allo.user.model.UserOutputDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,11 +18,17 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProviderOutputDTO {
     private Long id;
+
+    private String name;
+
+    private String description;
+
     private ProfessionDTO profession;
-    private EstablishmentDTO establishment;
-    private ProviderRatingDTO providerrating;
-    private String tipoPessoa;
+
+    private TipoPessoa tipoPessoa;
+
     private UserOutputDTO user;
-    private OperationHourDTO operationhour;
+
+    private OperationHourDTO operationHour;
 
 }

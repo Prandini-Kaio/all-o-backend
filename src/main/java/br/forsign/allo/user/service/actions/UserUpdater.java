@@ -27,7 +27,7 @@ public class UserUpdater {
         user.setName(inputDTO.getName());
         user.getContact().setEmail(inputDTO.getContact().getEmail());
         user.getContact().setPhone(inputDTO.getContact().getPhone());
-        user.getDocument().setCpfCnpj(inputDTO.getDocuments().getCpfCnpj());
+        user.getDocument().setCpfCnpj(inputDTO.getDocument().getCpfCnpj());
 
         repository.save(user);
 
