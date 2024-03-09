@@ -1,6 +1,5 @@
 package br.forsign.allo.provider.domain;
 
-
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
