@@ -1,4 +1,4 @@
-package br.forsign.allo.user.exceptions;
+package br.forsign.allo.user.exception;
 
 public class DocumentException extends RuntimeException {
     public DocumentException() {

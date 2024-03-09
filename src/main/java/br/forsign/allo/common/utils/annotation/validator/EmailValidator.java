@@ -2,7 +2,7 @@ package br.forsign.allo.common.utils.annotation.validator;
 
 import br.forsign.allo.common.utils.ContatoUtils;
 import br.forsign.allo.common.utils.annotation.Email;
-import br.forsign.allo.user.exceptions.DocumentException;
+import br.forsign.allo.user.exception.DocumentException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
