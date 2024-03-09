@@ -1,6 +1,7 @@
 package br.forsign.allo.provider.controller;
 
 
+
 import br.forsign.allo.provider.model.ProviderInputDTO;
 import br.forsign.allo.provider.model.ProviderOutputDTO;
 import br.forsign.allo.provider.service.ProviderService;
@@ -21,7 +22,7 @@ public class ProviderController {
 
     @Autowired
     private ProviderService service;
-
+  
     @PostMapping
     @Operation(summary = "Cria um prestador.")
     public ResponseEntity<ProviderOutputDTO> create(@RequestBody @Valid ProviderInputDTO inputDTO){

@@ -40,5 +40,3 @@ public class Provider {
     private OperationHour operationHour;
 
 }
-
-
