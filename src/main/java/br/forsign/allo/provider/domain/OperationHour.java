@@ -13,6 +13,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OperationHour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

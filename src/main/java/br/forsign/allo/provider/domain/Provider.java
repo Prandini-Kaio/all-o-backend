@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@Data
 public class Provider {
 
     @Id
@@ -41,5 +41,3 @@ public class Provider {
     private OperationHour operationHour;
 
 }
-
-
