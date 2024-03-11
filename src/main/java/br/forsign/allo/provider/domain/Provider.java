@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
+@Data
 public class Provider {
 
     @Id
@@ -27,9 +27,10 @@ public class Provider {
     @OneToOne(cascade = CascadeType.ALL)
     private Profession profession;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private ProviderRating providerRating;
 
+    @Enumerated
     @Column(name = "TIPO_PESSOA")
     private TipoPessoa tipoPessoa;
 

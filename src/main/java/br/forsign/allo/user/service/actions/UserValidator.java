@@ -1,8 +1,8 @@
 package br.forsign.allo.user.service.actions;
 
 import br.forsign.allo.user.domain.User;
-import br.forsign.allo.user.exceptions.DocumentException;
-import br.forsign.allo.user.exceptions.DocumentExceptionMessages;
+import br.forsign.allo.user.exception.DocumentException;
+import br.forsign.allo.user.exception.DocumentExceptionMessages;
 import br.forsign.allo.user.model.UserInputDTO;
 import br.forsign.allo.user.repository.UserRepository;
 import br.forsign.allo.user.service.actions.document.DocumentValidator;

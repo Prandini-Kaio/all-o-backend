@@ -1,6 +1,5 @@
 package br.forsign.allo.provider.domain;
 
-
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,6 +13,7 @@ import java.time.LocalTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OperationHour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
