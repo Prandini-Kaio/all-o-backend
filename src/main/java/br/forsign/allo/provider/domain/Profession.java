@@ -2,16 +2,12 @@ package br.forsign.allo.provider.domain;
 
 import br.forsign.allo.provider.model.profession.ProfessionInputDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Getter
+@Data
 public class Profession {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
