@@ -1,10 +1,8 @@
 package br.forsign.allo.provider.model;
 
 
-import br.forsign.allo.provider.model.establishment.EstablishmentDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import br.forsign.allo.provider.model.profession.ProfessionDTO;
-import br.forsign.allo.provider.model.providerrating.ProviderRatingDTO;
 import br.forsign.allo.user.domain.TipoPessoa;
 import br.forsign.allo.user.model.UserOutputDTO;
 import lombok.AllArgsConstructor;

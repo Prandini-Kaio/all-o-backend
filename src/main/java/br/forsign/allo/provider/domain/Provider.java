@@ -28,14 +28,11 @@ public class Provider {
     private Profession profession;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private ProviderRating providerRating;
+    private Evaluation evaluation;
 
     @Enumerated
     @Column(name = "TIPO_PESSOA")
     private TipoPessoa tipoPessoa;
-
-    @OneToOne
-    private User user;
 
     @OneToOne(cascade = CascadeType.ALL)
     private OperationHour operationHour;

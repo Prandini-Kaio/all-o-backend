@@ -1,4 +1,4 @@
-package br.forsign.allo.provider.model.providerrating;
+package br.forsign.allo.provider.model.evaluation;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class ProviderRatingInputDTO {
+public class EvaluationInputDTO {
     @Schema(example = "3.5")
     private float total;
 

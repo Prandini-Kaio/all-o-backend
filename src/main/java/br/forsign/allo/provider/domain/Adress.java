@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Establishment {
+public class Adress {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(name = "ESTABLISHMENT_NAME")
+    @Column(name = "ENDERECO")
     private String name;
 
     //TODO -> Fazer um campo correto de tratamento de endereços.

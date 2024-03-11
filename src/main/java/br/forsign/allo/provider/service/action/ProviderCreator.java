@@ -4,7 +4,7 @@ import br.forsign.allo.provider.converter.ProviderConverter;
 import br.forsign.allo.provider.domain.OperationHour;
 import br.forsign.allo.provider.domain.Profession;
 import br.forsign.allo.provider.domain.Provider;
-import br.forsign.allo.provider.domain.ProviderRating;
+import br.forsign.allo.provider.domain.Evaluation;
 import br.forsign.allo.provider.model.ProviderInputDTO;
 import br.forsign.allo.provider.repository.ProviderRepository;
 import br.forsign.allo.user.domain.User;
@@ -26,15 +26,14 @@ public class ProviderCreator {
         User user = userGetter.getById(inputDTO.getUserID());
 
         Profession profession = ProviderConverter.fromProfessionInput(inputDTO.getProfession());
-        ProviderRating providerRating = new ProviderRating();
+        Evaluation evaluation = new Evaluation();
 
         Provider provider = Provider.builder()
-                .user(user)
                 .name(inputDTO.getName())
                 .description(inputDTO.getDescription())
                 .profession(profession)
                 .tipoPessoa(inputDTO.getTipoPessoa())
-                .providerRating(providerRating)
+                .evaluation(evaluation)
                 .operationHour(new OperationHour())
                 .build();
 
