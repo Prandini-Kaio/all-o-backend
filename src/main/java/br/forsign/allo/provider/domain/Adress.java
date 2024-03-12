@@ -17,11 +17,16 @@ public class Adress {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "ENDERECO")
-    private String name;
+    @Column(name = "CEP")
+    private String cep; //TODO -> Fazer um tratamento correto de CEP
 
-    //TODO -> Fazer um campo correto de tratamento de endereços.
-    //@Column(name = "ADRESS")
-    //private String adress;
+    @Column(name = "NOME_RUA")
+    private String streetname;
+
+    @Column(name = "NUMERO")
+    private int number;
+
+    @Column(name = "COMPLEMENTO")
+    private String complement;
 
 }

@@ -16,11 +16,11 @@ public class ProviderValidator {
 
     @Resource
     private UserGetter userGetter;
-
+/*
     public void validarProviderCreate(ProviderInputDTO inputDTO){
-        validarVinculoUsuarioExistente(inputDTO.getUserID());
+        validarVinculoUsuarioExistente(inputDTO.getUserId());
     }
-
+*/
     private void validarVinculoUsuarioExistente(Long userID){
         Optional.ofNullable(userGetter.getById(userID))
                 .orElseThrow(() -> new ProviderException(ProviderExceptionMessages.usuarioNaoCadastrado()));

@@ -1,7 +1,6 @@
 package br.forsign.allo.provider.domain;
 
 import br.forsign.allo.user.domain.TipoPessoa;
-import br.forsign.allo.user.domain.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,11 +20,8 @@ public class Provider {
     @Column(name = "NOME")
     private String name;
 
-    @Column(name = "DESCRICAO")
-    private String description;
-
     @OneToOne(cascade = CascadeType.ALL)
-    private Profession profession;
+    private Profile profile;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Evaluation evaluation;

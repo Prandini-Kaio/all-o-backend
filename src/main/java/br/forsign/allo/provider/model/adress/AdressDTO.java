@@ -9,5 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdressDTO {
     private Long id;
-    private String name;
+    private String cep;
+    private String streetname;
+    private int number;
+    private String complement;
 }

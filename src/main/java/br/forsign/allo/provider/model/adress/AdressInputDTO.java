@@ -9,6 +9,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdressInputDTO {
-    @Schema(example = "Mecanica do Douglao")
-    private String name;
+    private String cep;
+    @Schema(example = "Rua dos Lobos")
+    private String streetname;
+    @Schema(example = "69")
+    private int number;
+    @Schema(example = "Apto. 8")
+    private String complement;
 }

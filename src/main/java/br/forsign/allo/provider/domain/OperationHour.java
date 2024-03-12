@@ -21,16 +21,16 @@ public class OperationHour {
     private Long id;
 
     @Column(name = "OPEN_HOUR")
-    private LocalDateTime openHour;
+    private LocalTime openHour;
 
     @Column(name = "BREAK_TIME")
-    private LocalDateTime breakTime;
+    private LocalTime breakTime;
 
     @Column(name = "BREAK_RETURN")
-    private LocalDateTime breakReturn;
+    private LocalTime breakReturn;
 
     @Column(name = "CLOSE_HOUR")
-    private LocalDateTime closeHour;
+    private LocalTime closeHour;
 
     public OperationHourDTO toOutput(){
         return new OperationHourDTO(

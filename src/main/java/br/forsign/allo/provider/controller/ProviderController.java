@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/provider")
 @Tag(name = "Provedor")
 public class ProviderController {
-
+/*
     @Autowired
     private ProviderService service;
 
@@ -30,5 +30,5 @@ public class ProviderController {
     @Operation(summary = "Cria um prestador.")
     public ResponseEntity<ProviderOutputDTO> create(@RequestBody @Valid ProviderInputDTO inputDTO){
         return ResponseEntity.ok().body(service.create(inputDTO));
-    }
+    }*/
 }

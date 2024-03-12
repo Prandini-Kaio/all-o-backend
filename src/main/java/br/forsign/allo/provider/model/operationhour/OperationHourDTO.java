@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -12,11 +13,11 @@ import java.time.LocalDateTime;
 public class OperationHourDTO {
     private Long id;
 
-    private LocalDateTime openHour;
+    private LocalTime openHour;
 
-    private LocalDateTime breakTime;
+    private LocalTime breakTime;
 
-    private LocalDateTime breakReturn;
+    private LocalTime breakReturn;
 
-    private LocalDateTime closeHour;
+    private LocalTime closeHour;
 }

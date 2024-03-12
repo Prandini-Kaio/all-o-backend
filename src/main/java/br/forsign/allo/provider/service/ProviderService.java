@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProviderService {
+    /*
     @Resource
     private ProviderCreator creator;
 
@@ -29,5 +30,5 @@ public class ProviderService {
 
     public ProviderOutputDTO getByID(Long id) {
         return ProviderConverter.toOutput(getter.getByID(id));
-    }
+    }*/
 }

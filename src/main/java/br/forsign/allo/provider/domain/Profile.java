@@ -1,6 +1,5 @@
 package br.forsign.allo.provider.domain;
 
-import br.forsign.allo.provider.model.profession.ProfessionInputDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,14 +8,21 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Data
-public class Profession {
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRICAO")
     private String description;
+
+    @Column(name = "CERTIFICACAO")
+    private String certification;
+
+    @Column(name = "ESPECIFICACAO")
+    private String specification;
+
+    @Column(name = "EXPERIENCIA")
+    private String experience;
+
 }
