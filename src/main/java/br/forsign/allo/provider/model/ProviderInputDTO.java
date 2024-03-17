@@ -14,12 +14,14 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ProviderInputDTO {
-    @Schema(example = "Douglas Mecanico")
+
     private Long id;
 
     @NotBlank
+    @Schema(example = "Marcinho Mechanics")
     private String name;
 
+    @Schema(example = "Sou um mecanico.")
     private String description;
 
     @NotNull

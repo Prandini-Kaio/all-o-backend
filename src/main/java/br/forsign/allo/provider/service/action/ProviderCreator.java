@@ -26,7 +26,7 @@ public class ProviderCreator {
         User user = userGetter.getById(inputDTO.getUserID());
 
         Profession profession = ProviderConverter.fromProfessionInput(inputDTO.getProfession());
-        ProviderRating providerRating = new ProviderRating();
+        OperationHour operationHour = new OperationHour(inputDTO.getOperationHour());
 
         Provider provider = Provider.builder()
                 .user(user)
@@ -34,8 +34,8 @@ public class ProviderCreator {
                 .description(inputDTO.getDescription())
                 .profession(profession)
                 .tipoPessoa(inputDTO.getTipoPessoa())
-                .providerRating(providerRating)
-                .operationHour(new OperationHour())
+                .providerRating(new ProviderRating())
+                .operationHour(operationHour)
                 .build();
 
         return repository.save(provider);
