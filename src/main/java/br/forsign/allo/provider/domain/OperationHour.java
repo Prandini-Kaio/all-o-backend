@@ -4,6 +4,7 @@ import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourInputDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class OperationHour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
