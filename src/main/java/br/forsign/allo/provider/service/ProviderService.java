@@ -26,10 +26,10 @@ public class ProviderService {
 
     public ProviderOutputDTO create(ProviderInputDTO inputDTO) {
         validator.validarProviderCreate(inputDTO);
-        return ProviderConverter.toOutput(creator.create(inputDTO));
+        return ProviderConverter.toProviderDTO(creator.create(inputDTO));
     }
 
     public Page<ProviderOutputDTO> getByFilter(ProviderFilterDTO filter, Pageable pageable) {
-        return new PageImpl<>(getter.getByFilter(filter, pageable)).map(ProviderConverter::toOutput);
+        return new PageImpl<>(getter.getByFilter(filter, pageable)).map(ProviderConverter::toProviderDTO);
     }
 }

@@ -12,16 +12,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Establishment {
+public class Adress {
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(name = "ESTABLISHMENT_NAME")
-    private String name;
+    @Column(name = "CEP")
+    private String CEP; //TODO -> Fazer um tratamento correto de CEP
 
-    //TODO -> Fazer um campo correto de tratamento de endereços.
-    //@Column(name = "ADRESS")
-    //private String adress;
+    @Column(name = "NOME_RUA")
+    private String streetname;
+
+    @Column(name = "NUMERO")
+    private int number;
+
+    @Column(name = "COMPLEMENTO")
+    private String complement;
 
 }

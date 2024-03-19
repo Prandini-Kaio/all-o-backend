@@ -23,7 +23,7 @@ public class ProviderController {
     private ProviderService service;
 
     @GetMapping
-    @Operation(summary = "Retorna um usuario por um filtro")
+    @Operation(summary = "Retorna um prestador por um filtro")
     public ResponseEntity<Page<ProviderOutputDTO>> getByFilter(@RequestBody @Valid ProviderFilterDTO filter, Pageable pageable){
         return ResponseEntity.ok().body(service.getByFilter(filter, pageable));
     }
