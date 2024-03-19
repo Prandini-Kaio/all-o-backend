@@ -14,7 +14,7 @@ public class AdressCreator {
 
     public Adress create(AdressInputDTO input){
         Adress adress = new Adress();
-        adress.setCep(input.getCep());
+        adress.setCEP(input.getCep());
         adress.setStreetname(input.getStreetname());
         adress.setNumber(input.getNumber());
         adress.setComplement(input.getComplement());

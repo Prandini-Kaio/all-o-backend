@@ -1,6 +1,7 @@
 package br.forsign.allo.provider.domain;
 
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
+import br.forsign.allo.provider.model.operationhour.OperationHourInputDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Optional;
 
 @Entity
 @Data
@@ -31,6 +33,13 @@ public class OperationHour {
 
     @Column(name = "CLOSE_HOUR")
     private LocalTime closeHour;
+
+    public OperationHour(OperationHourInputDTO inputDTO){
+        this.openHour = inputDTO.getOpenHour();
+        this.breakTime = inputDTO.getBreakTime();
+        this.breakReturn = inputDTO.getBreakReturn();
+        this.closeHour = inputDTO.getCloseHour();
+    }
 
     public OperationHourDTO toOutput(){
         return new OperationHourDTO(

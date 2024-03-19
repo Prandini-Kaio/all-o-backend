@@ -18,7 +18,7 @@ public class Adress {
     private Long id;
 
     @Column(name = "CEP")
-    private String cep; //TODO -> Fazer um tratamento correto de CEP
+    private String CEP; //TODO -> Fazer um tratamento correto de CEP
 
     @Column(name = "NOME_RUA")
     private String streetname;
