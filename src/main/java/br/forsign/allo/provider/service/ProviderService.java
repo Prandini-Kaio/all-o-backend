@@ -6,7 +6,9 @@ import br.forsign.allo.provider.model.ProviderFilterDTO;
 import br.forsign.allo.provider.model.ProviderInputDTO;
 import br.forsign.allo.provider.model.ProviderOutputDTO;
 import br.forsign.allo.provider.service.action.ProviderCreator;
+import br.forsign.allo.provider.service.action.ProviderDeleter;
 import br.forsign.allo.provider.service.action.ProviderGetter;
+import br.forsign.allo.provider.service.action.ProviderUpdater;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,6 +24,12 @@ public class ProviderService {
     private ProviderGetter getter;
 
     @Resource
+    private ProviderUpdater updater;
+
+    @Resource
+    private ProviderDeleter deleter;
+
+    @Resource
     private ProviderValidator validator;
 
     public ProviderOutputDTO create(ProviderInputDTO inputDTO) {
@@ -31,5 +39,13 @@ public class ProviderService {
 
     public Page<ProviderOutputDTO> getByFilter(ProviderFilterDTO filter, Pageable pageable) {
         return new PageImpl<>(getter.getByFilter(filter, pageable)).map(ProviderConverter::toProviderDTO);
+    }
+
+    public ProviderOutputDTO updateById(ProviderInputDTO inputDTO){
+        return ProviderConverter.toProviderDTO(updater.update(inputDTO));
+    }
+
+    public void delById(Long id){
+        deleter.delById(id);
     }
 }
