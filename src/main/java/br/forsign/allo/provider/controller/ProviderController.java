@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,5 +33,17 @@ public class ProviderController {
     @Operation(summary = "Cria um prestador.")
     public ResponseEntity<ProviderOutputDTO> create(@RequestBody @Valid ProviderInputDTO inputDTO){
         return ResponseEntity.ok().body(service.create(inputDTO));
+    }
+
+    @PutMapping
+    @Operation(summary = "Atualiza um prestador")
+    public ResponseEntity updateById(@RequestBody @Validated ProviderInputDTO inputDTO){
+        return ResponseEntity.ok().body(service.updateById(inputDTO));
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deleta um prestador pelo ID")
+    public ResponseEntity delById(@PathVariable Long id){
+        return ResponseEntity.ok().build();
     }
 }
