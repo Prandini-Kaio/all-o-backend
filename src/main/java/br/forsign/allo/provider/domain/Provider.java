@@ -24,7 +24,7 @@ public class Provider {
     private Profile profile;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private Evaluation evaluation;
+    private Rating rating;
 
     @Enumerated
     @Column(name = "TIPO_PESSOA")

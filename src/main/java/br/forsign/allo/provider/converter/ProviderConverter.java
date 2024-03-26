@@ -1,12 +1,12 @@
 package br.forsign.allo.provider.converter;
 
-import br.forsign.allo.provider.domain.Evaluation;
+import br.forsign.allo.provider.domain.Rating;
 import br.forsign.allo.provider.domain.OperationHour;
 import br.forsign.allo.provider.domain.Profile;
 import br.forsign.allo.provider.domain.Provider;
 import br.forsign.allo.provider.model.ProviderOutputDTO;
-import br.forsign.allo.provider.model.evaluation.EvaluationDTO;
-import br.forsign.allo.provider.model.evaluation.EvaluationInputDTO;
+import br.forsign.allo.provider.model.rating.RatingDTO;
+import br.forsign.allo.provider.model.rating.RatingInputDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import br.forsign.allo.provider.model.profile.ProfileDTO;
 import br.forsign.allo.provider.model.profile.ProfileInputDTO;
@@ -18,7 +18,7 @@ public class ProviderConverter {
                 .id(provider.getId())
                 .name(provider.getName())
                 .profile(toProfileToOutput(provider.getProfile()))
-                .evaluation(toEvaluationToOutput(provider.getEvaluation()))
+                .rating(toRatingToOutput(provider.getRating()))
                 .tipoPessoa(provider.getTipoPessoa())
                 .operationHour(toOpHourOutput(provider.getOperationHour())).build();
     }
@@ -32,8 +32,8 @@ public class ProviderConverter {
                 profile.getExperience());
     }
 
-    public static EvaluationDTO toEvaluationToOutput(Evaluation evaluation){
-        return new EvaluationDTO(
+    public static RatingDTO toRatingToOutput(Rating evaluation){
+        return new RatingDTO(
                 evaluation.getId(),
                 evaluation.getTotal(),
                 evaluation.getMedia());
@@ -57,8 +57,8 @@ public class ProviderConverter {
                 .build();
     }
 
-    public static Evaluation getEvaluation(EvaluationInputDTO inputDTO){
-        return Evaluation.builder()
+    public static Rating getRating(RatingInputDTO inputDTO){
+        return Rating.builder()
                 .total(inputDTO.getTotal())
                 .media(inputDTO.getMedia())
                 .build();

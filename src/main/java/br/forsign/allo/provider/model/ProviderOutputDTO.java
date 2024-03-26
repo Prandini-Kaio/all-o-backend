@@ -1,11 +1,10 @@
 package br.forsign.allo.provider.model;
 
 
-import br.forsign.allo.provider.model.evaluation.EvaluationDTO;
+import br.forsign.allo.provider.model.rating.RatingDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourDTO;
 import br.forsign.allo.provider.model.profile.ProfileDTO;
 import br.forsign.allo.user.domain.TipoPessoa;
-import br.forsign.allo.user.model.UserOutputDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +21,7 @@ public class ProviderOutputDTO {
 
     private ProfileDTO profile;
 
-    private EvaluationDTO evaluation;
+    private RatingDTO rating;
 
     private TipoPessoa tipoPessoa;
 
