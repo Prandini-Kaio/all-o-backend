@@ -33,7 +33,6 @@ public class ProviderRepositoryCustomImpl implements ProviderCustomRepository {
 
         // Query
         sb.append("SELECT p FROM Provider p ")
-                .append("JOIN p.profession pr ")
                 .append("WHERE 1=1 ");
 
         // Setando os parametros da query
