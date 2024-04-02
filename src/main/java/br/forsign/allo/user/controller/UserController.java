@@ -39,12 +39,14 @@ public class UserController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta um usuario pelo ID")
     public ResponseEntity delById(@PathVariable Long id){
+        this.service.delById(id);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
     @Operation(summary = "Atualiza um usuario")
     public ResponseEntity updateById(@RequestBody @Validated UserInputDTO inputDTO){
+        // TODO -> VALIDAR UPDATE DO USUARIO, ESTA ACEITANDO DOCUMENTOS DUPLICADOS
         return ResponseEntity.ok().body(service.updateById(inputDTO));
     }
 }

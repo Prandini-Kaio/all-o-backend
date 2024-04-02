@@ -51,7 +51,6 @@ public class ProviderRepositoryCustomImpl implements ProviderCustomRepository {
         QueryUtils.safeAddParams(params, "id", filter.getId(), sb, " AND p.id = :id ");
         QueryUtils.safeAddParams(params, "name", filter.getName(), sb, " AND LOWER(p.name) LIKE LOWER(CONCAT('%', :name,'%')) ");
         QueryUtils.safeAddParams(params, "desc",filter.getDescription(), sb, " AND p.description LIKE LOWER(CONCAT('%', :desc,'%')) ");
-        QueryUtils.safeAddParams(params, "profession", filter.getProfession(), sb, " AND pf.name = :profession ");
         QueryUtils.safeAddParams(params, "tipoPessoa", filter.getTipoPessoa(), sb, " AND p.tipoPessoa = :tipoPessoa ");
     }
 }

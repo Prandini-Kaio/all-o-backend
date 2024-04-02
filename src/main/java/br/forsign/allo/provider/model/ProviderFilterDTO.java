@@ -15,13 +15,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class ProviderFilterDTO {
+
     private Long id;
 
     private String name;
 
     private String description;
-
-    private String profession;
 
     private TipoPessoa tipoPessoa;
 
