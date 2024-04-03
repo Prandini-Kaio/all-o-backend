@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class ProviderRepositoryCustomImpl implements ProviderCustomRepository {
 
@@ -33,10 +34,11 @@ public class ProviderRepositoryCustomImpl implements ProviderCustomRepository {
 
         // Query
         sb.append("SELECT p FROM Provider p ")
+                .append(" JOIN p.profile profile ")
                 .append("WHERE 1=1 ");
 
-        // Setando os parametros da query
-        buildParams(params, sb, filter);
+        // Setando os parametros da query, caso o filtro nao seja nulo
+        Optional.ofNullable(filter).ifPresent(f -> buildParams(params, sb, f));
 
         // Criando a query com base no StringBuilder
         Query query = this.entityManager.createQuery(sb.toString());
@@ -49,7 +51,7 @@ public class ProviderRepositoryCustomImpl implements ProviderCustomRepository {
     private void buildParams(Map<String, Object> params, StringBuilder sb, ProviderFilterDTO filter){
         QueryUtils.safeAddParams(params, "id", filter.getId(), sb, " AND p.id = :id ");
         QueryUtils.safeAddParams(params, "name", filter.getName(), sb, " AND LOWER(p.name) LIKE LOWER(CONCAT('%', :name,'%')) ");
-        QueryUtils.safeAddParams(params, "desc",filter.getDescription(), sb, " AND p.description LIKE LOWER(CONCAT('%', :desc,'%')) ");
+        QueryUtils.safeAddParams(params, "desc",filter.getDescription(), sb, " AND profile.description LIKE LOWER(CONCAT('%', :desc,'%')) ");
         QueryUtils.safeAddParams(params, "tipoPessoa", filter.getTipoPessoa(), sb, " AND p.tipoPessoa = :tipoPessoa ");
     }
 }
