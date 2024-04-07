@@ -1,6 +1,7 @@
 package br.forsign.allo.provider.model;
 
 import br.forsign.allo.user.domain.TipoPessoa;
+import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +16,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 public class ProviderFilterDTO {
+
+    @Nullable
     private Long id;
 
+    @Nullable
     private String name;
 
+    @Nullable
     private String description;
 
-    private String profession;
 
+    @Nullable
     private TipoPessoa tipoPessoa;
 
 }

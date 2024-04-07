@@ -6,6 +6,7 @@ import lombok.Data;
 @Entity
 @Table(name = "USUARIO")
 @Data
+@SequenceGenerator(name = "SEQ_USER")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/provider")
 @Tag(name = "Provedor")
@@ -25,7 +27,7 @@ public class ProviderController {
 
     @GetMapping
     @Operation(summary = "Retorna um prestador por um filtro")
-    public ResponseEntity<Page<ProviderOutputDTO>> getByFilter(@RequestBody @Valid ProviderFilterDTO filter, Pageable pageable){
+    public ResponseEntity<Page<ProviderOutputDTO>> getByFilter(@RequestBody ProviderFilterDTO filter, Pageable pageable){
         return ResponseEntity.ok().body(service.getByFilter(filter, pageable));
     }
 
@@ -37,13 +39,15 @@ public class ProviderController {
 
     @PutMapping
     @Operation(summary = "Atualiza um prestador")
-    public ResponseEntity updateById(@RequestBody @Validated ProviderInputDTO inputDTO){
+    public ResponseEntity updateById(@RequestBody @Valid ProviderInputDTO inputDTO){
+        // TODO -> VALIUDAR ALTERACAO DE USUARIO, ESTA ACEITANDO DOCUMENTO JA CADASTRADO
         return ResponseEntity.ok().body(service.updateById(inputDTO));
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta um prestador pelo ID")
     public ResponseEntity delById(@PathVariable Long id){
+        this.service.delById(id);
         return ResponseEntity.ok().build();
     }
 }
