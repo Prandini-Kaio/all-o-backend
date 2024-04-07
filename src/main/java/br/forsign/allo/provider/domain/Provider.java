@@ -10,6 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@SequenceGenerator(name = "SEQ_PROVIDER")
 public class Provider {
 
     @Id
