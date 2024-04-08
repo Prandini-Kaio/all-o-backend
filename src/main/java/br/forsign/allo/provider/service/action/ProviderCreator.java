@@ -21,7 +21,7 @@ public class ProviderCreator {
         Provider provider = Provider.builder()
                 .name(inputDTO.getName())
                 .profile(ProviderConverter.getProfile(inputDTO.getProfile()))
-                .evaluation(ProviderConverter.getEvaluation(inputDTO.getEvaluation()))
+                .rating(ProviderConverter.getRating(inputDTO.getRating()))
                 .tipoPessoa(inputDTO.getTipoPessoa())
                 .operationHour(operationHour)
                 .build();

@@ -20,7 +20,7 @@ public class ProviderUpdater {
         provider.setName(inputDTO.getName());
         provider.setTipoPessoa(inputDTO.getTipoPessoa());
         //Evaluation
-        provider.getEvaluation().setTotal(inputDTO.getEvaluation().getTotal());
+        provider.getRating().setTotal(inputDTO.getRating().getTotal());
         //Profile
         provider.getProfile().setExperience(inputDTO.getProfile().getExperience());
         provider.getProfile().setSpecification(inputDTO.getProfile().getSpecification());
