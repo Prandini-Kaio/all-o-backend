@@ -1,0 +1,134 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1712250088995-1
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: USUARIO
+            constraintName: FK1DCF2U4VGCDH41WIUOS4QIR40
+  - changeSet:
+      id: 1712250088995-2
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROVEDOR
+            constraintName: FK4RRIM6UGKRQR1MUYE53DPOQHN
+  - changeSet:
+      id: 1712250088995-3
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: USUARIO
+            constraintName: FKFKDM8U187OR352CMUPF6FMTML
+  - changeSet:
+      id: 1712250088995-4
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROVEDOR
+            constraintName: FKKRB8OIBC4SWNL54U247YIL9AH
+  - changeSet:
+      id: 1712250088995-5
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROVEDOR
+            constraintName: FKPQBUEEU0X1WEKVGKISUWRXVD3
+  - changeSet:
+      id: 1712250088995-6
+      author: prandini (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_6I3K27JODAW3RRS3KE2DYWOH4
+            tableName: USUARIO
+  - changeSet:
+      id: 1712250088995-7
+      author: prandini (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_CCYEEYE3TG5F97J4LHMP0BGDY
+            tableName: USUARIO
+  - changeSet:
+      id: 1712250088995-8
+      author: prandini (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_E4A82TCGHG4HAUSRKREYAKN5B
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1712250088995-9
+      author: prandini (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_MW5MVCMC20AMS76T2BISOKJIA
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1712250088995-10
+      author: prandini (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_QJ6ALHLAT9CE0QG7DPKWSQ26H
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1712250088995-11
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: ADRESS
+  - changeSet:
+      id: 1712250088995-12
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: CONTACT
+  - changeSet:
+      id: 1712250088995-13
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: DOCUMENT
+  - changeSet:
+      id: 1712250088995-14
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: EVALUATION
+  - changeSet:
+      id: 1712250088995-15
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: OPERATION_HOUR
+  - changeSet:
+      id: 1712250088995-16
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: PROFILE
+  - changeSet:
+      id: 1712250088995-17
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1712250088995-18
+      author: prandini (generated)
+      changes:
+        - dropColumn:
+            columnName: CONTACT_ID
+            tableName: USUARIO
+  - changeSet:
+      id: 1712250088995-19
+      author: prandini (generated)
+      changes:
+        - dropColumn:
+            columnName: DOCUMENT_ID
+            tableName: USUARIO
+  - changeSet:
+      id: 1712250088995-20
+      author: prandini (generated)
+      changes:
+        - dropSequence:
+            sequenceName: SEQ_USER
+
