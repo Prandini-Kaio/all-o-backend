@@ -1,8 +1,7 @@
 package br.forsign.allo.provider.model;
 
 
-import br.forsign.allo.provider.domain.Evaluation;
-import br.forsign.allo.provider.model.evaluation.EvaluationInputDTO;
+import br.forsign.allo.provider.model.rating.RatingInputDTO;
 import br.forsign.allo.provider.model.operationhour.OperationHourInputDTO;
 import br.forsign.allo.provider.model.profile.ProfileInputDTO;
 import br.forsign.allo.user.domain.TipoPessoa;
@@ -24,7 +23,7 @@ public class ProviderInputDTO {
     @NotNull
     private ProfileInputDTO profile;
 
-    private EvaluationInputDTO evaluation;
+    private RatingInputDTO rating;
 
     @NotNull
     private TipoPessoa tipoPessoa;
