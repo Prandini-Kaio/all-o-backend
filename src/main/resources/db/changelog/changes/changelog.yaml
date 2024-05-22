@@ -1,7 +1,4 @@
 databaseChangeLog:
   - include:
-      file: initial-schema.yaml
-      relativeToChangelogFile: true
-  - include:
-      file: dev-3-24.yaml
+      file: dev-5-24.yaml
       relativeToChangelogFile: true
