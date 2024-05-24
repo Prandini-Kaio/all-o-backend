@@ -1,6 +1,6 @@
 package br.forsign.allo.provider.domain;
 
-import br.forsign.allo.domain.Entidade;
+import br.forsign.allo.entidade.domain.Entidade;
 import br.forsign.allo.user.domain.TipoPessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,12 +14,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "PROVEDOR")
-@SequenceGenerator(name = "SEQ_PROVIDER")
-public class Provider extends Entidade {
+@SequenceGenerator(name = "SEQ_PROVEDOR")
+public class Provedor extends Entidade {
+
+    @Column(name = "RAZAO_SOCIAL")
+    private String razaoSocial;
 
     @Enumerated
     private TipoPessoa tipoPessoa;
-    
+
+    private boolean ativo;
+
 }
 
 

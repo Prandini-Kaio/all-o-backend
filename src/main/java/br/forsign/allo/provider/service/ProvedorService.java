@@ -1,14 +1,13 @@
 package br.forsign.allo.provider.service;
 
 
-import br.forsign.allo.provider.converter.ProviderConverter;
-import br.forsign.allo.provider.model.ProvedorFilter;
-import br.forsign.allo.provider.model.ProviderInputDTO;
-import br.forsign.allo.provider.model.ProviderOutputDTO;
-import br.forsign.allo.provider.service.action.ProviderCreator;
-import br.forsign.allo.provider.service.action.ProviderDeleter;
-import br.forsign.allo.provider.service.action.ProviderGetter;
-import br.forsign.allo.provider.service.action.ProviderUpdater;
+import br.forsign.allo.provider.converter.ProvedorConverter;
+import br.forsign.allo.provider.model.ProvedorInput;
+import br.forsign.allo.provider.model.ProvedorOutput;
+import br.forsign.allo.provider.service.action.ProvedorCreator;
+import br.forsign.allo.provider.service.action.ProvedorDeleter;
+import br.forsign.allo.provider.service.action.ProvedorGetter;
+import br.forsign.allo.provider.service.action.ProvedorUpdater;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -16,36 +15,33 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProviderService {
-    @Resource
-    private ProviderCreator creator;
+public class ProvedorService {
 
     @Resource
-    private ProviderGetter getter;
+    private ProvedorCreator creator;
 
     @Resource
-    private ProviderUpdater updater;
+    private ProvedorGetter getter;
 
     @Resource
-    private ProviderDeleter deleter;
+    private ProvedorUpdater updater;
 
     @Resource
-    private ProviderValidator validator;
+    private ProvedorDeleter deleter;
 
-    public ProviderOutputDTO create(ProviderInputDTO inputDTO) {
-        validator.validarProviderCreate(inputDTO);
-        return ProviderConverter.toProviderDTO(creator.create(inputDTO));
+    public ProvedorOutput create(ProvedorInput input) {
+        return ProvedorConverter.toOutput(creator.create(input));
     }
 
-    public Page<ProviderOutputDTO> getByFilter(ProvedorFilter filter, Pageable pageable) {
-        return new PageImpl<>(getter.getByFilter(filter, pageable)).map(ProviderConverter::toProviderDTO);
+    public Page<ProvedorOutput> byRazaoSocial(String razaoSocial, Pageable pageable) {
+        return new PageImpl<>(getter.byFilter(razaoSocial, pageable)).map(ProvedorConverter::toOutput);
     }
 
-    public ProviderOutputDTO updateById(ProviderInputDTO inputDTO){
-        return ProviderConverter.toProviderDTO(updater.update(inputDTO));
+    public ProvedorOutput update(ProvedorInput input){
+        return ProvedorConverter.toOutput(updater.update(input));
     }
 
-    public void delById(Long id){
-        deleter.delById(id);
+    public void delete(Long id){
+        deleter.byId(id);
     }
 }

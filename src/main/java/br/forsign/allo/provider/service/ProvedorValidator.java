@@ -2,19 +2,18 @@ package br.forsign.allo.provider.service;
 
 
 import br.forsign.allo.provider.model.ProvedorInput;
-import br.forsign.allo.user.service.actions.UserGetter;
-import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 @Component
 @CommonsLog
-public class ProviderValidator {
+public class ProvedorValidator {
 
-    @Resource
-    private UserGetter userGetter;
+    public void validarCreate(ProvedorInput inputDTO){
+        log.warn("TODO -> IMPLEMENTAR PROVIDER VALIDATOR");
+    }
 
-    public void validarProviderCreate(ProvedorInput inputDTO){
+    public void validarUpdate() {
         log.warn("TODO -> IMPLEMENTAR PROVIDER VALIDATOR");
     }
 }

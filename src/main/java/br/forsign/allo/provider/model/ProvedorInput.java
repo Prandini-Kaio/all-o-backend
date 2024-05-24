@@ -1,10 +1,7 @@
 package br.forsign.allo.provider.model;
 
 
-import br.forsign.allo.provider.domain.Evaluation;
-import br.forsign.allo.provider.model.evaluation.EvaluationInputDTO;
-import br.forsign.allo.provider.model.operationhour.OperationHourInputDTO;
-import br.forsign.allo.provider.model.profile.ProfileInputDTO;
+import br.forsign.allo.entidade.model.EntidadeInput;
 import br.forsign.allo.user.domain.TipoPessoa;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -14,22 +11,13 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ProviderInputDTO {
-    @Schema(example = "Douglas Mecanico")
-    private Long id;
+public class ProvedorInput extends EntidadeInput{
 
     @NotBlank
-    private String name;
+    @Schema(title = "Razao Social", example = "Douglas Mecanico")
+    private String razaoSocial;
 
     @NotNull
-    private ProfileInputDTO profile;
-
-    private EvaluationInputDTO evaluation;
-
-    @NotNull
+    @Schema(title = "Tipo Pessoa", example = "FISICA", description = "Tipo de pessoa a ser cadastrada no sistema (FISICA/JURIDICA)")
     private TipoPessoa tipoPessoa;
-
-    private OperationHourInputDTO operationHour;
-
-
 }
