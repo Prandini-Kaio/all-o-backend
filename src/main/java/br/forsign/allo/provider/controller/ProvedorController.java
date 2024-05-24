@@ -28,7 +28,7 @@ public class ProvedorController {
             description = "Procura por um prestador com base em informações úteis."
     )
     public ResponseEntity<Page<ProvedorOutput>> getByFilter(
-            @RequestParam(required = false) String razaoSocial,
+            @RequestParam String razaoSocial,
             @PageableDefault(size = 15) Pageable pageable){
         return ResponseEntity.ok().body(service.byRazaoSocial(razaoSocial, pageable));
     }

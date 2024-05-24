@@ -13,6 +13,7 @@ public class ProvedorConverter {
                 .cpfCnpj(provedor.getCpfCnpj())
                 .telefone(provedor.getTelefone())
                 .email(provedor.getEmail())
+                .ativo(provedor.isAtivo())
                 .build();
     }
 }

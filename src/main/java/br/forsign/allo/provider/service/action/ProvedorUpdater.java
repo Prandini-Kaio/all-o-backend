@@ -21,7 +21,7 @@ public class ProvedorUpdater {
     private ProvedorValidator validator;
 
     public Provedor update(ProvedorInput input){
-        validator.validarUpdate();
+        validator.validarUpdate(input);
 
         Provedor provedor = getter.byId(input.getId());
 
