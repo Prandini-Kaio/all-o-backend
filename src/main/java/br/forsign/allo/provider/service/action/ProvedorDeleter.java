@@ -1,6 +1,6 @@
 package br.forsign.allo.provider.service.action;
 
-import br.forsign.allo.provider.repository.ProviderRepository;
+import br.forsign.allo.provider.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 public class ProviderDeleter {
 
     @Resource
-    ProviderRepository repository;
+    private ProvedorRepository repository;
 
-    public void delById(Long id){
+    public void byId(Long id){
         repository.deleteById(id);
     }
 }

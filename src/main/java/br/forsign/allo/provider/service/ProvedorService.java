@@ -2,7 +2,7 @@ package br.forsign.allo.provider.service;
 
 
 import br.forsign.allo.provider.converter.ProviderConverter;
-import br.forsign.allo.provider.model.ProviderFilterDTO;
+import br.forsign.allo.provider.model.ProvedorFilter;
 import br.forsign.allo.provider.model.ProviderInputDTO;
 import br.forsign.allo.provider.model.ProviderOutputDTO;
 import br.forsign.allo.provider.service.action.ProviderCreator;
@@ -37,7 +37,7 @@ public class ProviderService {
         return ProviderConverter.toProviderDTO(creator.create(inputDTO));
     }
 
-    public Page<ProviderOutputDTO> getByFilter(ProviderFilterDTO filter, Pageable pageable) {
+    public Page<ProviderOutputDTO> getByFilter(ProvedorFilter filter, Pageable pageable) {
         return new PageImpl<>(getter.getByFilter(filter, pageable)).map(ProviderConverter::toProviderDTO);
     }
 
