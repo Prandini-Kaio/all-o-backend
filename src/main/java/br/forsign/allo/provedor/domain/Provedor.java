@@ -1,7 +1,7 @@
 package br.forsign.allo.provedor.domain;
 
 import br.forsign.allo.entidade.domain.Entidade;
-import br.forsign.allo.cliente.domain.TipoPessoa;
+import br.forsign.allo.entidade.model.TipoPessoaEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,7 +21,7 @@ public class Provedor extends Entidade {
     private String razaoSocial;
 
     @Enumerated
-    private TipoPessoa tipoPessoa;
+    private TipoPessoaEnum tipoPessoa;
 
     private boolean ativo;
 

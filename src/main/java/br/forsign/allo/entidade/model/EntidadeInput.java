@@ -1,7 +1,6 @@
 package br.forsign.allo.entidade.model;
 
 import br.forsign.allo.common.utils.annotation.CpfCnpj;
-import br.forsign.allo.cliente.domain.TipoPessoa;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
@@ -26,6 +25,6 @@ public class EntidadeInput {
     private String telefone;
 
     @Schema(title = "CPF CNPJ", example = "000.000.000-00")
-    @CpfCnpj(tipoDocumento = TipoPessoa.FISICA_JURIDICA)
+    @CpfCnpj(tipoDocumento = TipoPessoaEnum.FISICA_JURIDICA)
     private String cpfCnpj;
 }

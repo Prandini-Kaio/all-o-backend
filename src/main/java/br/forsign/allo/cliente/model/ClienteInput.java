@@ -1,7 +1,5 @@
 package br.forsign.allo.cliente.model;
 
-import br.forsign.allo.cliente.domain.TipoPessoa;
-import br.forsign.allo.common.utils.annotation.CpfCnpj;
 import br.forsign.allo.entidade.model.EntidadeInput;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

@@ -3,8 +3,6 @@ package br.forsign.allo.cliente.service.actions;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.ClienteRepository;
-import br.forsign.allo.cliente.service.actions.contact.ContactCreator;
-import br.forsign.allo.cliente.service.actions.document.DocumentCreator;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
