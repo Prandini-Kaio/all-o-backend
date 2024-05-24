@@ -5,12 +5,11 @@ package br.forsign.allo.entidade.domain;
  * created 5/22/24
  */
 
-import br.forsign.allo.user.domain.Document;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@MappedSuperclass
 @Data
+@MappedSuperclass
 public class Entidade {
 
     @Id

@@ -1,12 +1,11 @@
-package br.forsign.allo.provider.service.action;
+package br.forsign.allo.provedor.service.action;
 
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
-import br.forsign.allo.provider.domain.Provedor;
-import br.forsign.allo.provider.repository.ProvedorRepository;
+import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;

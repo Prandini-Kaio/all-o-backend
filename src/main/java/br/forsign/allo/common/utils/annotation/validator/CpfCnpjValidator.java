@@ -2,9 +2,9 @@ package br.forsign.allo.common.utils.annotation.validator;
 
 import br.forsign.allo.common.utils.annotation.CpfCnpj;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
-import br.forsign.allo.user.domain.TipoPessoa;
-import br.forsign.allo.user.exception.DocumentException;
-import br.forsign.allo.user.exception.DocumentExceptionMessages;
+import br.forsign.allo.cliente.domain.TipoPessoa;
+import br.forsign.allo.cliente.exception.DocumentException;
+import br.forsign.allo.cliente.exception.DocumentExceptionMessages;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

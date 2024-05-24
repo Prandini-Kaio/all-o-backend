@@ -1,9 +1,9 @@
-package br.forsign.allo.provider.service.action;
+package br.forsign.allo.provedor.service.action;
 
-import br.forsign.allo.provider.domain.Provedor;
-import br.forsign.allo.provider.model.ProvedorInput;
-import br.forsign.allo.provider.repository.ProvedorRepository;
-import br.forsign.allo.provider.service.ProvedorValidator;
+import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.model.ProvedorInput;
+import br.forsign.allo.provedor.repository.ProvedorRepository;
+import br.forsign.allo.provedor.service.ProvedorValidator;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

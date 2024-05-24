@@ -1,7 +1,7 @@
-package br.forsign.allo.provider.model;
+package br.forsign.allo.provedor.model;
 
 
-import br.forsign.allo.user.domain.TipoPessoa;
+import br.forsign.allo.cliente.domain.TipoPessoa;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

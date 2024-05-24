@@ -1,7 +1,7 @@
-package br.forsign.allo.provider.domain;
+package br.forsign.allo.provedor.domain;
 
 import br.forsign.allo.entidade.domain.Entidade;
-import br.forsign.allo.user.domain.TipoPessoa;
+import br.forsign.allo.cliente.domain.TipoPessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

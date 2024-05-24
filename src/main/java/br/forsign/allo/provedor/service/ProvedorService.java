@@ -1,13 +1,13 @@
-package br.forsign.allo.provider.service;
+package br.forsign.allo.provedor.service;
 
 
-import br.forsign.allo.provider.converter.ProvedorConverter;
-import br.forsign.allo.provider.model.ProvedorInput;
-import br.forsign.allo.provider.model.ProvedorOutput;
-import br.forsign.allo.provider.service.action.ProvedorCreator;
-import br.forsign.allo.provider.service.action.ProvedorDeleter;
-import br.forsign.allo.provider.service.action.ProvedorGetter;
-import br.forsign.allo.provider.service.action.ProvedorUpdater;
+import br.forsign.allo.provedor.converter.ProvedorConverter;
+import br.forsign.allo.provedor.model.ProvedorInput;
+import br.forsign.allo.provedor.model.ProvedorOutput;
+import br.forsign.allo.provedor.service.action.ProvedorCreator;
+import br.forsign.allo.provedor.service.action.ProvedorDeleter;
+import br.forsign.allo.provedor.service.action.ProvedorGetter;
+import br.forsign.allo.provedor.service.action.ProvedorUpdater;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

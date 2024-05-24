@@ -1,8 +1,8 @@
-package br.forsign.allo.provider.model;
+package br.forsign.allo.provedor.model;
 
 
 import br.forsign.allo.entidade.model.EntidadeInput;
-import br.forsign.allo.user.domain.TipoPessoa;
+import br.forsign.allo.cliente.domain.TipoPessoa;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
