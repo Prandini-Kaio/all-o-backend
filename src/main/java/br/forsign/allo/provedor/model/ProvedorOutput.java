@@ -1,7 +1,7 @@
 package br.forsign.allo.provedor.model;
 
 
-import br.forsign.allo.cliente.domain.TipoPessoa;
+import br.forsign.allo.entidade.model.TipoPessoaEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class ProvedorOutput {
 
     private String razaoSocial;
 
-    private TipoPessoa tipoPessoa;
+    private TipoPessoaEnum tipoPessoa;
 
     private String cpfCnpj;
 

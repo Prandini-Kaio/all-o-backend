@@ -16,6 +16,8 @@ public class CommonExceptionMessages {
 
     private static final String DOCUMENTO_JA_CADASTRADO = "%s com documento %s já cadastrado.";
 
+    private static final String INPUT_INVALIDO = "O campo \"%s\" com valor \"%s\" inválido.";
+
     public static String naoEncontrado(String nome, Long id){
         return String.format(NAO_ENCONTRADO_ID, nome, id);
     }
@@ -26,5 +28,9 @@ public class CommonExceptionMessages {
 
     public static String documentoJaCadastrado(String nome, String cpfCnpj){
         return String.format(DOCUMENTO_JA_CADASTRADO, nome, cpfCnpj);
+    }
+
+    public static String inputInvalido(String campo, String input){
+        return String.format(INPUT_INVALIDO, campo, input);
     }
 }
