@@ -25,4 +25,6 @@ public class ProvedorOutput {
 
     private String telefone;
 
+    private boolean ativo;
+
 }
