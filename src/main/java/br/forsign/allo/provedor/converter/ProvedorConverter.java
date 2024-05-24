@@ -1,7 +1,7 @@
-package br.forsign.allo.provider.converter;
+package br.forsign.allo.provedor.converter;
 
-import br.forsign.allo.provider.domain.Provedor;
-import br.forsign.allo.provider.model.ProvedorOutput;
+import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.model.ProvedorOutput;
 
 public class ProvedorConverter {
 

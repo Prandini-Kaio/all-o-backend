@@ -1,7 +1,7 @@
-package br.forsign.allo.provider.repository;
+package br.forsign.allo.provedor.repository;
 
 
-import br.forsign.allo.provider.domain.Provedor;
+import br.forsign.allo.provedor.domain.Provedor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,7 +1,7 @@
-package br.forsign.allo.provider.service.action;
+package br.forsign.allo.provedor.service.action;
 
-import br.forsign.allo.provider.domain.Provedor;
-import br.forsign.allo.provider.repository.ProvedorRepository;
+import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 

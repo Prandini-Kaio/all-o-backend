@@ -1,9 +1,9 @@
-package br.forsign.allo.provider.controller;
+package br.forsign.allo.provedor.controller;
 
 
-import br.forsign.allo.provider.model.ProvedorInput;
-import br.forsign.allo.provider.model.ProvedorOutput;
-import br.forsign.allo.provider.service.ProvedorService;
+import br.forsign.allo.provedor.model.ProvedorInput;
+import br.forsign.allo.provedor.model.ProvedorOutput;
+import br.forsign.allo.provedor.service.ProvedorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/provedor")
-@Tag(name = "Provedor", description = "Endpoints relacionados ao prestador de serviços.")
+@Tag(
+        name = "Provedor",
+        description = "Endpoints relacionados ao prestador de serviços.")
 public class ProvedorController {
 
     @Autowired

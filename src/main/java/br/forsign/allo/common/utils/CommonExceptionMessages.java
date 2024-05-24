@@ -14,7 +14,7 @@ public class CommonExceptionMessages {
 
     private static final String NAO_ENCONTRADO_CPFCNPJ = "%s não encontrado(a) com CPF/CNPJ %s.";
 
-    private static final String DOCUMENTO_JA_CADASTRADO = "O documento %s, já se encontra cadastrado em nossa base.";
+    private static final String DOCUMENTO_JA_CADASTRADO = "%s com documento %s já cadastrado.";
 
     public static String naoEncontrado(String nome, Long id){
         return String.format(NAO_ENCONTRADO_ID, nome, id);
@@ -24,7 +24,7 @@ public class CommonExceptionMessages {
         return String.format(NAO_ENCONTRADO_CPFCNPJ, nome, cpfCnpj);
     }
 
-    public static String documentoJaCadastrado(String cpfCnpj){
-        return String.format(DOCUMENTO_JA_CADASTRADO, cpfCnpj);
+    public static String documentoJaCadastrado(String nome, String cpfCnpj){
+        return String.format(DOCUMENTO_JA_CADASTRADO, nome, cpfCnpj);
     }
 }
