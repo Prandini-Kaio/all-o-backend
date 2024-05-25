@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ClienteDeleter {
-    //Authenticator
+
     @Resource
     private ClienteRepository repository;
 

@@ -33,7 +33,7 @@ public class ClienteValidator {
     private void validarDocumentoJaCadastrado(ClienteInput input){
         if(getter.existsByCpf(input.getCpfCnpj())){
             if(getter.byCpf(input.getCpfCnpj()).getId() != input.getId())
-                throw new BusinessException(CommonExceptionMessages.documentoJaCadastrado("Cliente", input.getCpfCnpj()));
+                throw new BusinessException(CommonExceptionMessages.entidadeJaCadastrada("Cliente", input.getCpfCnpj()));
         }
     }
 }

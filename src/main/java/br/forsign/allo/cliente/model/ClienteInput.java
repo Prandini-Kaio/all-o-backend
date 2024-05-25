@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 public class ClienteInput extends EntidadeInput {
 
-    @Schema(example = "Matheus Frangote")
+    @Schema(example = "Matheus Frangote", description = "Nome do cliente.")
     private String nome;
 
 }

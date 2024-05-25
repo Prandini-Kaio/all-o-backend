@@ -6,8 +6,8 @@ import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.ProvedorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
         description = "Endpoints relacionados ao prestador de serviços.")
 public class ProvedorController {
 
-    @Autowired
+    @Resource
     private ProvedorService service;
 
     @GetMapping

@@ -8,12 +8,7 @@ import lombok.*;
 @Entity
 @Table(name = "CLIENTE")
 @EqualsAndHashCode(callSuper = true)
-@SequenceGenerator(name = "SEQ_CLIENTE", sequenceName = "SEQ_CLIENTE")
 public class Cliente extends Entidade {
-
-    @Id
-    @GeneratedValue(generator = "SEQ_CLIENTE")
-    private Long id;
 
     @Column(name = "NOME")
     private String nome;

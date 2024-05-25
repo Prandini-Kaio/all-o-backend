@@ -4,16 +4,16 @@ import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.ProvedorValidator;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProvedorCreator {
 
-    @Autowired
+    @Resource
     private ProvedorRepository repository;
 
-    @Autowired
+    @Resource
     private ProvedorValidator validator;
 
     public Provedor create(ProvedorInput input){

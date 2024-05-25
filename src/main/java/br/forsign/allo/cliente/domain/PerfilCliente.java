@@ -13,10 +13,14 @@ import lombok.*;
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-@Entity
-@Table(name = "PERFIL_CLIENTE")
+@Entity(name = "PERFIL_CLIENTE")
 @EqualsAndHashCode(callSuper = true)
+@SequenceGenerator(name = "SEQ_PRFL", sequenceName = "SEQ_PRFL")
 public class PerfilCliente extends Perfil {
+
+    @Id
+    @GeneratedValue(generator = "SEQ_PRFL")
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "CLIENTE_ID")
