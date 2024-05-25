@@ -12,10 +12,6 @@ import lombok.Data;
 @MappedSuperclass
 public class Entidade {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @Column(name = "EMAIL")
     private String email;
 

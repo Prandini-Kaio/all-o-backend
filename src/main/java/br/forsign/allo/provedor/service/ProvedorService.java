@@ -9,12 +9,14 @@ import br.forsign.allo.provedor.service.action.ProvedorDeleter;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.provedor.service.action.ProvedorUpdater;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@CommonsLog
 public class ProvedorService {
 
     @Resource
@@ -29,19 +31,27 @@ public class ProvedorService {
     @Resource
     private ProvedorDeleter deleter;
 
-    public ProvedorOutput create(ProvedorInput input) {
-        return ProvedorConverter.toOutput(creator.create(input));
-    }
-
     public Page<ProvedorOutput> byRazaoSocial(String razaoSocial, Pageable pageable) {
+        log.info("Consultando provedor pela razão social no sistema.");
+
         return new PageImpl<>(getter.byFilter(razaoSocial, pageable)).map(ProvedorConverter::toOutput);
     }
 
+    public ProvedorOutput create(ProvedorInput input) {
+        log.info("Cadastrando provedor no sistema.");
+
+        return ProvedorConverter.toOutput(creator.create(input));
+    }
+
     public ProvedorOutput update(ProvedorInput input){
+        log.info("Atualizando provedor no sistema.");
+
         return ProvedorConverter.toOutput(updater.update(input));
     }
 
     public void delete(Long id){
+        log.info("Deletando provedor no sistema.");
+
         deleter.byId(id);
     }
 }
