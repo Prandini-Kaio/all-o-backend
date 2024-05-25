@@ -30,7 +30,7 @@ public class CpfCnpjValidator implements ConstraintValidator<CpfCnpj, String> {
             valid = CpfCnpjUtils.isCpfCnpjValido(cpfCnpjSMask);
 
         if(!valid)
-            throw new ValidationException(CommonExceptionMessages.inputInvalido("CPF/CNPJ", cpfCnpj));
+            throw new ValidationException(CommonExceptionMessages.campoInvalido("CPF/CNPJ", cpfCnpj));
 
         return valid;
     }
