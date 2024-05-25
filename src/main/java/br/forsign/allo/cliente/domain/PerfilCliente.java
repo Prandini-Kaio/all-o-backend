@@ -13,7 +13,8 @@ import lombok.*;
 @Data
 @Builder
 @NoArgsConstructor @AllArgsConstructor
-@Entity(name = "PERFIL_CLIENTE")
+@Entity
+@Table(name = "PERFIL_CLIENTE")
 @EqualsAndHashCode(callSuper = true)
 public class PerfilCliente extends Perfil {
 

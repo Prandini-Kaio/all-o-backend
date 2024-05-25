@@ -14,8 +14,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "PROVEDOR")
-@SequenceGenerator(name = "SEQ_PROVEDOR")
+@SequenceGenerator(name = "SEQ_PRVDR", sequenceName = "SEQ_PRVDR")
 public class Provedor extends Entidade {
+
+    @Id
+    @GeneratedValue(generator = "SEQ_PRVDR")
+    private Long id;
 
     @Column(name = "RAZAO_SOCIAL")
     private String razaoSocial;

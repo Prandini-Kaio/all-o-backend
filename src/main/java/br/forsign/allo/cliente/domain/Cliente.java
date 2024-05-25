@@ -1,18 +1,19 @@
 package br.forsign.allo.cliente.domain;
 
 import br.forsign.allo.entidade.domain.Entidade;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Entity
 @Table(name = "CLIENTE")
-@Data
 @EqualsAndHashCode(callSuper = true)
-@SequenceGenerator(name = "SEQ_CLIENTE")
+@SequenceGenerator(name = "SEQ_CLIENTE", sequenceName = "SEQ_CLIENTE")
 public class Cliente extends Entidade {
+
+    @Id
+    @GeneratedValue(generator = "SEQ_CLIENTE")
+    private Long id;
 
     @Column(name = "NOME")
     private String nome;

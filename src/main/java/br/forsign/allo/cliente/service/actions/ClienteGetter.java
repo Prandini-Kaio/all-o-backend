@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-
 public class ClienteGetter {
 
     @Resource
