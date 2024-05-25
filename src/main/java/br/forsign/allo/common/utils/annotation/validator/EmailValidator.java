@@ -16,7 +16,7 @@ public class EmailValidator implements ConstraintValidator<Email, String> {
     @Override
     public boolean isValid(String email, ConstraintValidatorContext constraintValidatorContext) {
         if(!ContatoUtils.isEmailValido(email))
-            throw new ValidationException(CommonExceptionMessages.inputInvalido("Email", email));
+            throw new ValidationException(CommonExceptionMessages.campoInvalido("Email", email));
         return true;
     }
 }
