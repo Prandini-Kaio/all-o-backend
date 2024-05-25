@@ -5,7 +5,6 @@ import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.ProvedorValidator;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,10 +13,10 @@ public class ProvedorUpdater {
     @Resource
     private ProvedorRepository repository;
 
-    @Autowired
+    @Resource
     private ProvedorGetter getter;
 
-    @Autowired
+    @Resource
     private ProvedorValidator validator;
 
     public Provedor update(ProvedorInput input){

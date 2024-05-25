@@ -32,7 +32,7 @@ public class ProvedorValidator {
     private void validarDocumentoJaCadastrado(ProvedorInput input){
         if(getter.existsByCpfCnpj(input.getCpfCnpj())){
             if(getter.byCpfCnpj(input.getCpfCnpj()).getId() != input.getId())
-                throw new BusinessException(CommonExceptionMessages.documentoJaCadastrado("Provedor", input.getCpfCnpj()));
+                throw new BusinessException(CommonExceptionMessages.entidadeJaCadastrada("Provedor", input.getCpfCnpj()));
         }
     }
 }

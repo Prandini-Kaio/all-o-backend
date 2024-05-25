@@ -5,10 +5,9 @@ import br.forsign.allo.cliente.model.ClienteOuput;
 import br.forsign.allo.cliente.service.ClienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +18,7 @@ import java.util.List;
 @Tag(name = "Cliente")
 public class ClienteController {
 
-    @Autowired
+    @Resource
     private ClienteService service;
 
     @GetMapping
@@ -42,8 +41,7 @@ public class ClienteController {
     @Operation(
             summary = "Atualiza um cliente",
             description = "Atualiza um cliente previamente cadastrado.")
-    public ResponseEntity<ClienteOuput> update(@RequestBody @Validated ClienteInput inputDTO){
-        // TODO -> VALIDAR UPDATE DO USUARIO, ESTA ACEITANDO DOCUMENTOS DUPLICADOS
+    public ResponseEntity<ClienteOuput> update(@RequestBody @Valid ClienteInput inputDTO){
         return ResponseEntity.ok().body(service.update(inputDTO));
     }
 

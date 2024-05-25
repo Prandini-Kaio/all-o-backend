@@ -16,12 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 @CommonsLog
+@Service
 public class ClienteService {
-
-    @Autowired
-    private ClienteRepository repository;
 
     @Resource
     private ClienteCreator creator;

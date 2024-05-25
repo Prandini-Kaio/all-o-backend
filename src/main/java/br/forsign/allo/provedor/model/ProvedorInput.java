@@ -14,7 +14,7 @@ import lombok.Getter;
 public class ProvedorInput extends EntidadeInput{
 
     @NotBlank
-    @Schema(title = "Razao Social", example = "Douglas Mecanico")
+    @Schema(title = "Razão Social", example = "Douglas Mecanico", description = "Razão social do provedor de serviços.")
     private String razaoSocial;
 
     @NotNull

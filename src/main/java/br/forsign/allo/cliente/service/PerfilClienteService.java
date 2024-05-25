@@ -12,7 +12,6 @@ import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteCreator;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteGetter;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteUpdater;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class PerfilClienteService {
     @Resource
     private PerfilClienteUpdater updater;
 
-    @Autowired
+    @Resource
     private PerfilClienteMapper mapper;
 
     public Page<PerfilClienteOutput> findAll(Pageable pageable){

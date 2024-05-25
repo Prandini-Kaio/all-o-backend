@@ -5,15 +5,17 @@ package br.forsign.allo.profissao.controller;
  * created 5/25/24
  */
 
+import br.forsign.allo.profissao.model.ProfissaoInput;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
 import br.forsign.allo.profissao.service.ProfissaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "Profissão")
 public class ProfissaoController {
 
-    @Autowired
+    @Resource
     private ProfissaoService service;
 
     @GetMapping
@@ -31,5 +33,13 @@ public class ProfissaoController {
             description = "Consulta todas as profissões cadastradas no sistema.")
     public ResponseEntity<Page<ProfissaoOutput>> findAll(Pageable pageable){
         return ResponseEntity.ok().body(this.service.findAll(pageable));
+    }
+
+    @PostMapping
+    @Operation(
+            summary = "Cadastra uma nova profissão.",
+            description = "Cadastra uma nova profissão no sistema.")
+    public ResponseEntity<ProfissaoOutput> create(ProfissaoInput input){
+        return ResponseEntity.ok().body(this.service.create(input));
     }
 }

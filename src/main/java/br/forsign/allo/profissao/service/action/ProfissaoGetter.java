@@ -7,18 +7,26 @@ package br.forsign.allo.profissao.service.action;
 
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.repository.ProfissaoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class ProfissaoGetter {
 
-    @Autowired
+    @Resource
     private ProfissaoRepository repository;
 
     public Page<Profissao> findAll(Pageable pageable){
         return repository.findAtivos(pageable);
+    }
+
+    public boolean existsByNome(String nome) {
+        Optional<Profissao> profissao = repository.findByNome(nome);
+
+        return profissao.isPresent();
     }
 }
