@@ -8,9 +8,8 @@ package br.forsign.allo.profissao.domain;
 import br.forsign.allo.profissao.model.ProfissaoCategoriaEnum;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -25,9 +24,13 @@ public class Profissao {
 
     private String descricao;
 
+    private String nomeIcone;
+
+    @Enumerated
     private ProfissaoCategoriaEnum categoria;
 
-    private String palavrasChave;
+    @ElementCollection
+    private Set<String> palavrasChave;
 
     private boolean ativo;
 }

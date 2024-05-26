@@ -12,6 +12,8 @@ public class ProfissaoOutput {
 
     private Long id;
 
+    private String nomeIcone;
+
     private String nome;
 
     private String descricao;
