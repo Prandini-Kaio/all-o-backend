@@ -53,4 +53,15 @@ public class ClienteController {
         this.service.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    @PutMapping("/favoritar")
+    @Operation(
+            summary = "Favorita um provedor",
+            description = "Adiciona um provedor a lista de favoritos de um cliente.")
+    public ResponseEntity<ClienteOuput> favoritar(
+            @RequestParam Long idCliente,
+            @RequestParam Long idProvedor
+    ){
+        return ResponseEntity.ok().body(service.favoritar(idCliente, idProvedor));
+    }
 }
