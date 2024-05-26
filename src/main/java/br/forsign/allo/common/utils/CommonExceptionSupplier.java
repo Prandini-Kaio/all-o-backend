@@ -13,6 +13,10 @@ import java.util.function.Supplier;
 @UtilityClass
 public class CommonExceptionSupplier {
 
+    public Supplier<BusinessException> naoEncontrado(String nome){
+        return () -> new BusinessException(CommonExceptionMessages.naoEncontrado(nome));
+    }
+
     public Supplier<BusinessException> naoEncontrado(String nome, Long id){
         return () -> new BusinessException(CommonExceptionMessages.naoEncontrado(nome, id));
     }

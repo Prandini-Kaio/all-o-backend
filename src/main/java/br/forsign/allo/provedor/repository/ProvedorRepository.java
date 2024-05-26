@@ -21,5 +21,5 @@ public interface ProvedorRepository extends JpaRepository<Provedor, Long> {
     Optional<Provedor> findByCpfCnpj(String cpfCnpj);
 
     @Query("SELECT p FROM Provedor p WHERE p.ativo = true")
-    Page<Provedor> findAtivos(Pageable pageable);
+    Optional<Page<Provedor>> findAtivos(Pageable pageable);
 }

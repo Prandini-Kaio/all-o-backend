@@ -10,6 +10,8 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class CommonExceptionMessages {
 
+    private static final String NAO_ENCONTRADO = "%s não encontrado(a).";
+
     private static final String NAO_ENCONTRADO_ID = "%s não encontrado(a) com id %s.";
 
     private static final String NAO_ENCONTRADO_CPFCNPJ = "%s não encontrado(a) com CPF/CNPJ %s.";
@@ -20,6 +22,10 @@ public class CommonExceptionMessages {
 
     private static final String JA_EXISTENTE = "\"%s\" com valor \"%s\" já cadastrado.";
 
+
+    public static String naoEncontrado(String nome){
+        return String.format(NAO_ENCONTRADO, nome);
+    }
 
     public static String naoEncontrado(String nome, Long id){
         return String.format(NAO_ENCONTRADO_ID, nome, id);

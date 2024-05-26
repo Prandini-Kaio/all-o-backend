@@ -18,7 +18,7 @@ public class ProvedorGetter {
     private ProvedorRepository repository;
 
     public Page<Provedor> findAll(Pageable pageable) {
-        return repository.findAtivos(pageable);
+        return repository.findAtivos(pageable).orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor"));
     }
 
     public Provedor byId(Long id){
