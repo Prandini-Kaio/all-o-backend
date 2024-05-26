@@ -64,12 +64,6 @@ public class ProvedorService {
         });
     }
 
-    public Page<ProvedorOutput> byRazaoSocial(String razaoSocial, Pageable pageable) {
-        log.info("Consultando provedor pela razão social no sistema.");
-
-        return new PageImpl<>(getter.byFilter(razaoSocial, pageable)).map(ProvedorConverter::toOutput);
-    }
-
     public ProvedorOutput create(ProvedorInput input) {
         log.info("Cadastrando provedor no sistema.");
 
