@@ -7,6 +7,8 @@ import br.forsign.allo.cliente.service.PerfilClienteService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+
 @Component
 public class ClienteCreator {
 
@@ -29,6 +31,7 @@ public class ClienteCreator {
         cliente.setEmail(input.getEmail());
         cliente.setTelefone(input.getTelefone());
         cliente.setCpfCnpj(input.getCpfCnpj());
+        cliente.setProvedoresFavoritados(new HashSet<>());
         cliente.setAtivo(true);
 
         repository.save(cliente);
