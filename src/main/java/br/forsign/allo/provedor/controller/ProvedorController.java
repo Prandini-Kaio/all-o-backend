@@ -24,15 +24,17 @@ public class ProvedorController {
     @Resource
     private ProvedorService service;
 
+
+
     @GetMapping
     @Operation(
             summary = "Procura um prestador com base em um filtro.",
             description = "Procura por um prestador com base em informações úteis."
     )
     public ResponseEntity<Page<ProvedorOutput>> getByFilter(
-            @RequestParam String razaoSocial,
+            @RequestParam Long idCliente,
             @PageableDefault(size = 15) Pageable pageable){
-        return ResponseEntity.ok().body(service.byRazaoSocial(razaoSocial, pageable));
+        return ResponseEntity.ok().body(service.findAllComFavoritos(idCliente, pageable));
     }
 
     @PostMapping

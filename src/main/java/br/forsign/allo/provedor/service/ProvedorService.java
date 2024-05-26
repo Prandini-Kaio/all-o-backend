@@ -1,7 +1,10 @@
 package br.forsign.allo.provedor.service;
 
 
+import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.provedor.converter.ProvedorConverter;
+import br.forsign.allo.provedor.converter.ProvedorMapper;
+import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.action.ProvedorCreator;
@@ -14,6 +17,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @CommonsLog
@@ -30,6 +37,32 @@ public class ProvedorService {
 
     @Resource
     private ProvedorDeleter deleter;
+
+    @Resource
+    private ProvedorMapper mapper;
+
+    @Resource
+    private ClienteGetter clienteGetter;
+
+    public Page<ProvedorOutput> findAllComFavoritos(Long idCliente, Pageable pageable) {
+        log.info("Consultando todos os provedores do sistema.");
+
+        Page<Provedor> provedores = getter.findAll(pageable);
+
+        // Id dos provedores favoritos
+        Set<Long> favIDs = clienteGetter.byId(idCliente)
+                .getProvedoresFavoritados()
+                .stream()
+                .map(Provedor::getId)
+                .collect(Collectors.toSet());
+
+        // MAPEAR PARA OUTPUT
+        return provedores.map(p -> {
+            ProvedorOutput output = mapper.toOutput(p);
+            output.setFavorito(favIDs.contains(p.getId()));
+            return output;
+        });
+    }
 
     public Page<ProvedorOutput> byRazaoSocial(String razaoSocial, Pageable pageable) {
         log.info("Consultando provedor pela razão social no sistema.");
