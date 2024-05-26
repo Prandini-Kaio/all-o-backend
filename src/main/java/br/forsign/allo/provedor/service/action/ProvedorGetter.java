@@ -4,6 +4,7 @@ import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,10 @@ public class ProvedorGetter {
 
     @Resource
     private ProvedorRepository repository;
+
+    public Page<Provedor> findAll(Pageable pageable) {
+        return repository.findAtivos(pageable);
+    }
 
     public Provedor byId(Long id){
         return repository
