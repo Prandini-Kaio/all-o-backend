@@ -9,6 +9,7 @@ import br.forsign.allo.avaliacao.model.AvaliacaoInput;
 import br.forsign.allo.avaliacao.model.AvaliacaoOutput;
 import br.forsign.allo.avaliacao.service.AvaliacaoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/avaliacao")
+@Tag(name = "Avaliação")
 public class AvaliacaoController {
 
     @Resource
