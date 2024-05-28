@@ -12,6 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 @Component
 public class AvaliacaoGetter {
 
@@ -20,5 +23,13 @@ public class AvaliacaoGetter {
 
     public Page<Avaliacao> byProvedor(Long id, Pageable pageable) {
         return repository.byProvedor(id, pageable);
+    }
+
+    public Avaliacao byProvedorDestaque(Long provedorId) {
+        Stream<Avaliacao> avaliacoes = this.repository.findByProvedor(provedorId);
+
+        avaliacoes = avaliacoes.filter(a -> a.getNota() > 4.5);
+
+        return avaliacoes.findFirst().orElse(null);
     }
 }

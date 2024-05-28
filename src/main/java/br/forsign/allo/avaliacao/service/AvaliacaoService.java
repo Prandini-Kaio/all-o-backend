@@ -39,4 +39,11 @@ public class AvaliacaoService {
 
         return this.mapper.toOutput(this.creator.avaliar(input));
     }
+
+    public AvaliacaoOutput byProvedorDestaque(Long provedorId) {
+        log.info("Consultando avaliação em destaque");
+        log.debug("Funcionalidade mockada, retornando avaliação randomizada");
+
+        return this.mapper.toOutput(this.getter.byProvedorDestaque(provedorId));
+    }
 }

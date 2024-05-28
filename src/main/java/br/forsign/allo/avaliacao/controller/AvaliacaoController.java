@@ -39,6 +39,16 @@ public class AvaliacaoController {
         return ResponseEntity.ok().body(this.service.byProvedor(id, pageable));
     }
 
+    @GetMapping
+    @Operation(
+            summary = "",
+            description = "")
+    public ResponseEntity<AvaliacaoOutput> destaque(
+            @RequestParam Long provedorId
+    ){
+        return ResponseEntity.ok().body(this.service.byProvedorDestaque(provedorId));
+    }
+
     @PostMapping
     @Operation(
             summary = "Cadastra uma avaliação.",
