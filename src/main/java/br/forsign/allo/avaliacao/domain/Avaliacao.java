@@ -19,11 +19,11 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "PROVEDOR_ID")
     private Provedor provedor;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "CLIENTE_ID")
     private Cliente cliente;
 

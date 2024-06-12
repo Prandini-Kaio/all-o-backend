@@ -34,7 +34,6 @@ public class AvaliacaoCreator {
         Provedor provedor = provedorGetter.byId(input.getProvedorId());
         Cliente cliente = clienteGetter.byId(input.getClienteId());
 
-        avaliacao.setId(input.getId());
         avaliacao.setTitulo(input.getTitulo());
         avaliacao.setDescricao(input.getDescricao());
         avaliacao.setNota(input.getNota());

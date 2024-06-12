@@ -1,2 +1,344 @@
 databaseChangeLog:
-  -
+  - changeSet:
+      id: 1717104651194-1
+      author: prandini (generated)
+      changes:
+        - createSequence:
+            sequenceName: SEQ_PRFL
+            incrementBy: 50
+  - changeSet:
+      id: 1717104651194-2
+      author: prandini (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_7
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: DESCRICAO
+                  type: VARCHAR(255)
+              - column:
+                  name: NOTA
+                  type: DOUBLE PRECISION
+              - column:
+                  name: TITULO
+                  type: VARCHAR(255)
+              - column:
+                  name: CLIENTE_ID
+                  type: BIGINT
+              - column:
+                  name: PROVEDOR_ID
+                  type: BIGINT
+            tableName: AVALIACAO
+  - changeSet:
+      id: 1717104651194-3
+      author: prandini (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_5
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: CPF_CNPJ
+                  type: VARCHAR(255)
+              - column:
+                  name: EMAIL
+                  type: VARCHAR(255)
+              - column:
+                  name: TELEFONE
+                  type: VARCHAR(255)
+              - column:
+                  name: ATIVO
+                  type: BOOLEAN
+              - column:
+                  name: NOME
+                  type: VARCHAR(255)
+            tableName: CLIENTE
+  - changeSet:
+      id: 1717104651194-4
+      author: prandini (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_1
+                  name: CLIENTE_ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_1
+                  name: PROVEDOR_ID
+                  type: BIGINT
+            tableName: CLIENTE_PROVEDOR_FAVORITO
+  - changeSet:
+      id: 1717104651194-5
+      author: prandini (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_A
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: EMAIL
+                  type: VARCHAR(255)
+              - column:
+                  name: NOME
+                  type: VARCHAR(255)
+              - column:
+                  name: PATH_TO_IMAGE
+                  type: VARCHAR(255)
+              - column:
+                  name: CLIENTE_ID
+                  type: BIGINT
+            tableName: PERFIL_CLIENTE
+  - changeSet:
+      id: 1717104651194-6
+      author: prandini (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_6A
+                  name: ID
+                  type: BIGINT
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ATIVO
+                  type: BOOLEAN
+              - column:
+                  name: CATEGORIA
+                  type: TINYINT
+              - column:
+                  name: DESCRICAO
+                  type: VARCHAR(255)
+              - column:
+                  name: NOME
+                  type: VARCHAR(255)
+              - column:
+                  name: NOME_ICONE
+                  type: VARCHAR(255)
+            tableName: PROFISSAO
+  - changeSet:
+      id: 1717104651194-7
+      author: prandini (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  constraints:
+                    nullable: false
+                  name: PROFISSAO_ID
+                  type: BIGINT
+              - column:
+                  name: PALAVRAS_CHAVE
+                  type: VARCHAR(255)
+            tableName: PROFISSAO_PALAVRAS_CHAVE
+  - changeSet:
+      id: 1717104651194-8
+      author: prandini (generated)
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: CONSTRAINT_F3
+                  name: ID
+                  type: BIGINT
+              - column:
+                  name: CPF_CNPJ
+                  type: VARCHAR(255)
+              - column:
+                  name: EMAIL
+                  type: VARCHAR(255)
+              - column:
+                  name: TELEFONE
+                  type: VARCHAR(255)
+              - column:
+                  constraints:
+                    nullable: false
+                  name: ATIVO
+                  type: BOOLEAN
+              - column:
+                  name: RAZAO_SOCIAL
+                  type: VARCHAR(255)
+              - column:
+                  name: TIPO_PESSOA
+                  type: TINYINT
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1717104651194-9
+      author: prandini (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: CLIENTE_ID
+            constraintName: UK_AYEC3HSAMY3TVRS4YROU31B86
+            tableName: PERFIL_CLIENTE
+  - changeSet:
+      id: 1717104651194-10
+      author: prandini (generated)
+      changes:
+        - addUniqueConstraint:
+            columnNames: PROVEDOR_ID
+            constraintName: UK_DPHC372R9R73N6XQ8YHJI5HKI
+            tableName: CLIENTE_PROVEDOR_FAVORITO
+  - changeSet:
+      id: 1717104651194-11
+      author: prandini (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: PROFISSAO_ID
+            indexName: FK24LHSHQHB0NYOUQWYDNP1FFRN_INDEX_5
+            tableName: PROFISSAO_PALAVRAS_CHAVE
+  - changeSet:
+      id: 1717104651194-12
+      author: prandini (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: CLIENTE_ID
+            indexName: FKKLTFLPIT07SDQ3K2AH1PUSI5R_INDEX_1
+            tableName: CLIENTE_PROVEDOR_FAVORITO
+  - changeSet:
+      id: 1717104651194-13
+      author: prandini (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: PROVEDOR_ID
+            indexName: FKMIAQUSEKG7E9HRV7OI5LL6VGF_INDEX_7
+            tableName: AVALIACAO
+  - changeSet:
+      id: 1717104651194-14
+      author: prandini (generated)
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: CLIENTE_ID
+            indexName: FKPOGWYPJ6DQ5O1P5VU3Q31LIFM_INDEX_7
+            tableName: AVALIACAO
+  - changeSet:
+      id: 1717104651194-15
+      author: prandini (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: PROFISSAO_ID
+            baseTableName: PROFISSAO_PALAVRAS_CHAVE
+            constraintName: FK24LHSHQHB0NYOUQWYDNP1FFRN
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: PROFISSAO
+            validate: true
+  - changeSet:
+      id: 1717104651194-16
+      author: prandini (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: PROVEDOR_ID
+            baseTableName: CLIENTE_PROVEDOR_FAVORITO
+            constraintName: FKBY8KH6DPMCJ2GVIHXUH7UL5LC
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: PROVEDOR
+            validate: true
+  - changeSet:
+      id: 1717104651194-17
+      author: prandini (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: CLIENTE_ID
+            baseTableName: PERFIL_CLIENTE
+            constraintName: FKKFS2LVKESXXBQYQ6YER9U7KA0
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: CLIENTE
+            validate: true
+  - changeSet:
+      id: 1717104651194-18
+      author: prandini (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: CLIENTE_ID
+            baseTableName: CLIENTE_PROVEDOR_FAVORITO
+            constraintName: FKKLTFLPIT07SDQ3K2AH1PUSI5R
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: CLIENTE
+            validate: true
+  - changeSet:
+      id: 1717104651194-19
+      author: prandini (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: PROVEDOR_ID
+            baseTableName: AVALIACAO
+            constraintName: FKMIAQUSEKG7E9HRV7OI5LL6VGF
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: PROVEDOR
+            validate: true
+  - changeSet:
+      id: 1717104651194-20
+      author: prandini (generated)
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: CLIENTE_ID
+            baseTableName: AVALIACAO
+            constraintName: FKPOGWYPJ6DQ5O1P5VU3Q31LIFM
+            deferrable: false
+            initiallyDeferred: false
+            onDelete: RESTRICT
+            onUpdate: RESTRICT
+            referencedColumnNames: ID
+            referencedTableName: CLIENTE
+            validate: true
+

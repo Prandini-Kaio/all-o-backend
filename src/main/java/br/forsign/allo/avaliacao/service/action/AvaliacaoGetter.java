@@ -28,7 +28,7 @@ public class AvaliacaoGetter {
     public Avaliacao byProvedorDestaque(Long provedorId) {
         Stream<Avaliacao> avaliacoes = this.repository.findByProvedor(provedorId);
 
-        avaliacoes = avaliacoes.filter(a -> a.getNota() > 4.5);
+        avaliacoes = avaliacoes.filter(a -> a.getNota() >= 4.5);
 
         return avaliacoes.findFirst().orElse(null);
     }

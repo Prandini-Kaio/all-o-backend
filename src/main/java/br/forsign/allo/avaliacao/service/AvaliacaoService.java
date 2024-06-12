@@ -11,6 +11,7 @@ import br.forsign.allo.avaliacao.model.AvaliacaoOutput;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoCreator;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoGetter;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,7 @@ public class AvaliacaoService {
         return this.mapper.toOutput(this.creator.avaliar(input));
     }
 
+    @Transactional
     public AvaliacaoOutput byProvedorDestaque(Long provedorId) {
         log.info("Consultando avaliação em destaque");
         log.debug("Funcionalidade mockada, retornando avaliação randomizada");
