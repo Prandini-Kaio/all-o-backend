@@ -11,8 +11,12 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "CLIENTE")
-@EqualsAndHashCode(callSuper = true)
+@SequenceGenerator(name = "SEQ_CLNT", sequenceName = "SEQ_CLNT")
 public class Cliente extends Entidade {
+
+    @Id
+    @GeneratedValue(generator = "SEQ_CLNT")
+    private Long id;
 
     @Column(name = "NOME")
     private String nome;
