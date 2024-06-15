@@ -73,12 +73,17 @@ public class ProvedorService {
     public ProvedorOutput update(ProvedorInput input){
         log.info("Atualizando provedor no sistema.");
 
-        return ProvedorConverter.toOutput(updater.update(input));
+        return mapper.toOutput(updater.update(input));
     }
 
     public void delete(Long id){
         log.info("Deletando provedor no sistema.");
 
         deleter.byId(id);
+    }
+    public ProvedorOutput getById(Long id){
+        log.info("Consultando um provedor pelo id.");
+
+        return mapper.toOutput(getter.byId(id));
     }
 }
