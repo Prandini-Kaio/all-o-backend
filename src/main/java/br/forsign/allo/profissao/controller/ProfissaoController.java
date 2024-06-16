@@ -14,10 +14,7 @@ import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/profissao")
@@ -39,7 +36,16 @@ public class ProfissaoController {
     @Operation(
             summary = "Cadastra uma nova profissão.",
             description = "Cadastra uma nova profissão no sistema.")
-    public ResponseEntity<ProfissaoOutput> create(ProfissaoInput input){
+    public ResponseEntity<ProfissaoOutput> create(@RequestBody ProfissaoInput input){
         return ResponseEntity.ok().body(this.service.create(input));
     }
+
+    @PostMapping("/sugerir")
+    @Operation(
+            summary = "Sugere uma nova profissão.",
+            description = "Cadastra uma sugestão de uma nova profissão.")
+    public ResponseEntity<ProfissaoOutput> createSugestion(@RequestParam String sugestao){
+        return ResponseEntity.ok().body(this.service.createSugestion(sugestao));
+    }
+
 }

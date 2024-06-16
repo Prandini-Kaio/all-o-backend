@@ -6,6 +6,7 @@ package br.forsign.allo.profissao.service;
  */
 
 import br.forsign.allo.profissao.converter.ProfissaoMapper;
+import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.model.ProfissaoInput;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
 import br.forsign.allo.profissao.service.action.ProfissaoCreator;
@@ -39,5 +40,11 @@ public class ProfissaoService {
         log.info("Cadastrando um profissão.");
 
         return mapper.toOutput(creator.create(input));
+    }
+
+    public ProfissaoOutput createSugestion(String suggestion){
+        log.info(String.format("Iniciando cadastro de sugestão de profissão %s.", suggestion));
+
+        return mapper.toOutput(creator.createSugestion(suggestion));
     }
 }

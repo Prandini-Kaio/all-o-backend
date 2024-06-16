@@ -26,9 +26,20 @@ public class ProfissaoCreator {
         Profissao profissao = new Profissao();
 
         profissao.setNome(input.getNome());
-        profissao.setDescricao(input.getDescricao());
-        profissao.setCategoria(input.getCategoria());
+        profissao.setSuggestion(false);
         profissao.setAtivo(true);
+
+        return repository.save(profissao);
+    }
+
+    public Profissao createSugestion(String suggestion){
+
+        validator.validaSuggestion(suggestion);
+
+        Profissao profissao = new Profissao();
+
+        profissao.setNome(suggestion);
+        profissao.setSuggestion(true);
 
         return repository.save(profissao);
     }
