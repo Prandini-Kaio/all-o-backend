@@ -7,6 +7,7 @@ import br.forsign.allo.cliente.service.PerfilClienteService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 
 @Component
@@ -33,6 +34,7 @@ public class ClienteCreator {
         cliente.setCpfCnpj(input.getCpfCnpj());
         cliente.setProvedoresFavoritados(new HashSet<>());
         cliente.setAtivo(true);
+        cliente.setDtRegistro(LocalDate.now());
 
         repository.save(cliente);
 
