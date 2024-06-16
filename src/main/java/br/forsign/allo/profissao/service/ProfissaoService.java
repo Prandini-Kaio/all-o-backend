@@ -43,7 +43,7 @@ public class ProfissaoService {
         return mapper.toOutput(getter.byIdAtivo(id));
     }
 
-    public ProfissaoOutput create(@RequestBody @Valid ProfissaoInput input) {
+    public ProfissaoOutput create(ProfissaoInput input) {
         log.info("Iniciando cadastro de uma profissão.");
 
         return mapper.toOutput(creator.create(input));

@@ -2,6 +2,7 @@ package br.forsign.allo.provedor.model;
 
 
 import br.forsign.allo.entidade.model.TipoPessoaEnum;
+import br.forsign.allo.profissao.model.ProfissaoOutput;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,6 +17,8 @@ public class ProvedorOutput {
     private Long id;
 
     private String razaoSocial;
+
+    private String profissao;
 
     private TipoPessoaEnum tipoPessoa;
 

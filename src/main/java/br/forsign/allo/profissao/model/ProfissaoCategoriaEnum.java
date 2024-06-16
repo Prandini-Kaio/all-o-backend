@@ -6,7 +6,6 @@ package br.forsign.allo.profissao.model;
  */
 
 public enum ProfissaoCategoriaEnum {
-
     SAUDE,
     DIREITO,
     TECNOLOGIA,
