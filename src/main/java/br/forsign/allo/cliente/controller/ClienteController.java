@@ -33,8 +33,8 @@ public class ClienteController {
     @Operation(
             summary = "Consulta o cliente por id.",
             description = "Consulta o ciente cadastrado e ativo.")
-    private ResponseEntity<List<ClienteOuput>> findById(@PathVariable Long id){
-        return ResponseEntity.ok().body(service.());
+    private ResponseEntity<ClienteOuput> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.findById(id));
     }
 
     @PostMapping
