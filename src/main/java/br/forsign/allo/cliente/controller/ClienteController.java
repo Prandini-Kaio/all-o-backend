@@ -37,14 +37,6 @@ public class ClienteController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @GetMapping("/{id}")
-    @Operation(
-            summary = "Consulta o cliente por id.",
-            description = "Consulta o ciente cadastrado e ativo.")
-    private ResponseEntity<List<ClienteOuput>> findById(@PathVariable Long id){
-        return ResponseEntity.ok().body(service.());
-    }
-
     @PostMapping
     @Operation(
             summary = "Cria um novo cliente.",
