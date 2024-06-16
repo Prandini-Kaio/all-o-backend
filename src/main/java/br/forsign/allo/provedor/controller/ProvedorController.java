@@ -37,6 +37,16 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.findAllComFavoritos(idCliente, pageable));
     }
 
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Retorna um prestador por id.",
+            description = "Retorna um prestador por id e ativo."
+    )
+    public ResponseEntity<ProvedorOutput> getById(
+            @RequestParam Long id){
+        return ResponseEntity.ok().body(service.findById(id));
+    }
+
     @PostMapping
     @Operation(
             summary = "Cria um prestador.",

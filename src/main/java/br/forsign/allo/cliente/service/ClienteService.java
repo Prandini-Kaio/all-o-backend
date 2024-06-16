@@ -37,9 +37,14 @@ public class ClienteService {
     @Resource
     private ClienteMapper mapper;
 
+    public ClienteOuput findById(Long id){
+        log.info("Iniciando consulta a um cliente no sistema.");
+
+        return this.mapper.toOutput(getter.byId(id));
+    }
 
     public List<ClienteOuput> findAll(){
-        log.info("Consultando clientes ativos no sistema.");
+        log.info("Iniciando consulta a clientes ativos no sistema.");
 
         List<Cliente> clientes = getter.findAtivos();
 
@@ -47,13 +52,13 @@ public class ClienteService {
     }
 
     public ClienteOuput create(ClienteInput input){
-        log.info("Cadastrando cliente no sistema.");
+        log.info("Iniciando cadastro de cliente no sistema.");
 
         return this.mapper.toOutput(this.creator.create(input));
     }
 
     public ClienteOuput update(ClienteInput input){
-        log.info("Atualizando cadastro do cliente no sistema.");
+        log.info("Iniciando atualizacao de cadastro do cliente no sistema.");
 
         return this.mapper.toOutput(updater.update(input));
     }

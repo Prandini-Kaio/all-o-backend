@@ -30,13 +30,19 @@ public class ProfissaoService {
     private ProfissaoMapper mapper;
 
     public Page<ProfissaoOutput> findAll(Pageable pageable) {
-        log.info("Consultando todas as profissões ativas do sistema.");
+        log.info("Iniciando consulta de todas as profissões ativas do sistema.");
 
         return getter.findAll(pageable).map(mapper::toOutput);
     }
 
+    public ProfissaoOutput findById(Long id) {
+        log.info(String.format("Iniciando consulta uma profissão com id %s.", id));
+
+        return mapper.toOutput(getter.byIdAtivo(id));
+    }
+
     public ProfissaoOutput create(ProfissaoInput input) {
-        log.info("Cadastrando um profissão.");
+        log.info("Iniciando cadastro de uma profissão.");
 
         return mapper.toOutput(creator.create(input));
     }
