@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,15 @@ public class ProfissaoController {
     public ResponseEntity<Page<ProfissaoOutput>> findAll(Pageable pageable){
         return ResponseEntity.ok().body(this.service.findAll(pageable));
     }
+
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Consulta uma profissão.",
+            description = "Consulta uma profissão cadastrada no sistema.")
+    public ResponseEntity<ProfissaoOutput> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(this.service.findById(id));
+    }
+
 
     @PostMapping
     @Operation(

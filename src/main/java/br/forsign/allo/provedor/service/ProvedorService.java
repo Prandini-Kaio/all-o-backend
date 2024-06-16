@@ -44,8 +44,14 @@ public class ProvedorService {
     @Resource
     private ClienteGetter clienteGetter;
 
+    public ProvedorOutput findById(Long id) {
+        log.info("Iniciando consulta provedor pelo id.");
+
+        return ProvedorConverter.toOutput(getter.byId(id));
+    }
+
     public Page<ProvedorOutput> findAllComFavoritos(Long idCliente, Pageable pageable) {
-        log.info("Consultando todos os provedores do sistema.");
+        log.info("Iniciando consulta todos os provedores do sistema.");
 
         Page<Provedor> provedores = getter.findAll(pageable);
 

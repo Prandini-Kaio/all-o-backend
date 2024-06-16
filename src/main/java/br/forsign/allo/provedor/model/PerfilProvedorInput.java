@@ -13,10 +13,10 @@ public class PerfilProvedorInput {
 
     @NotNull
     @Schema(description = "ID do provedor")
-    private Long provedorID;
+    private Long idProvedor;
 
     @Schema(description = "ID da avaliacao")
-    private Long avaliacaoID;
+    private Long idAvaliacao;
 
     @Schema(description = "Descricao do perfil")
     private String descricao;

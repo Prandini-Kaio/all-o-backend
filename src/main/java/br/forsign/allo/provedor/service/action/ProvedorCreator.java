@@ -1,5 +1,8 @@
 package br.forsign.allo.provedor.service.action;
 
+import br.forsign.allo.common.utils.CpfCnpjUtils;
+import br.forsign.allo.profissao.domain.Profissao;
+import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
@@ -22,16 +25,22 @@ public class ProvedorCreator {
     @Resource
     private PerfilProvedorService perfilProvedorService;
 
+    @Resource
+    private ProfissaoGetter profissaoGetter;
+
     public Provedor create(ProvedorInput input){
         validator.validarCreate(input);
 
         Provedor provedor = new Provedor();
 
+        Profissao profissao = profissaoGetter.byIdAtivo(input.getProfissaoId());
+
         provedor.setRazaoSocial(input.getRazaoSocial());
         provedor.setTipoPessoa(input.getTipoPessoa());
         provedor.setEmail(input.getEmail());
         provedor.setTelefone(input.getTelefone());
-        provedor.setCpfCnpj(input.getCpfCnpj());
+        provedor.setCpfCnpj(CpfCnpjUtils.removeMascara(input.getCpfCnpj()));
+        provedor.setProfissao(profissao);
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
 
