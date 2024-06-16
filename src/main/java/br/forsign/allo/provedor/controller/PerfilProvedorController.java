@@ -40,4 +40,13 @@ public class PerfilProvedorController {
         return ResponseEntity.ok().body(this.service.update(perfilProvedorInput));
     }
 
+    @PutMapping("/destacar")
+    @Operation(
+            summary = "Altera a avaliacao em destaque do perfil provedor.",
+            description = "Altera a avaliacao em destaque do perfil provedor.")
+    public ResponseEntity<PerfilProvedorOutput> destacarAvaliacao(@RequestParam Long idProvedor,
+                                                                  @RequestParam Long idAvaliacao){
+        return ResponseEntity.ok().body(this.service.destacarAvaliacao(idProvedor, idAvaliacao));
+    }
+
 }

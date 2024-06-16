@@ -89,4 +89,17 @@ public class PerfilProvedorUpdater {
 
         return mediaAvaliacoes;
     }
+
+    public PerfilProvedor destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
+        Provedor provedor = provedorGetter.byId(idProvedor);
+
+        Avaliacao avaliacao = avaliacaoGetter.byId(idAvaliacao);
+
+        PerfilProvedorInput input = new PerfilProvedorInput();
+
+        input.setIdProvedor(provedor.getId());
+        input.setIdAvaliacao(avaliacao.getId());
+
+        return this.update(input);
+    }
 }

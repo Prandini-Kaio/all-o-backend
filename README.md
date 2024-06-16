@@ -15,7 +15,7 @@ Ambos os comandos devem finalizar com **Build Success.**
 
 # End-points
 
-Todos os end-points estão documentados e especificados em http://localhost:8080/swagger-ui/index.html
+Todos os end-points estão documentados e especificados em http://localhost:8080/api/allo/swagger-ui/index.html
 
 Você pode verificar todos os end-points e seus parâmetros requeridos, assim como testar também. Recomendo para o teste 
 dos end-points sem o frontend, a instalação de um software como **Postman** e **Insomnia**.
