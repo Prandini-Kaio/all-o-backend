@@ -16,7 +16,5 @@ public class ProfissaoOutput {
 
     private String nome;
 
-    private String descricao;
-
     private ProfissaoCategoriaEnum categoria;
 }
