@@ -5,8 +5,11 @@ package br.forsign.allo.entidade.domain;
  * created 5/22/24
  */
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 @MappedSuperclass
@@ -20,5 +23,8 @@ public class Entidade {
 
     @Column(name = "CPF_CNPJ")
     private String cpfCnpj;
+
+    @Column(name = "DATA_REGISTRO")
+    private LocalDate dtRegistro;
 
 }

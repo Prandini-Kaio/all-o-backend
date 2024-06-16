@@ -1,0 +1,37 @@
+package br.forsign.allo.provedor.domain;
+
+import br.forsign.allo.avaliacao.domain.Avaliacao;
+import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.entidade.domain.Perfil;
+import jakarta.persistence.*;
+import lombok.*;
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Entity(name = "PERFIL_PROVEDOR")
+    public class PerfilProvedor extends Perfil {
+
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+
+        @OneToOne
+        @JoinColumn(name = "PROVEDOR_ID")
+        private Provedor provedor;
+
+        @OneToOne
+        @JoinColumn(name = "AVALIACAO_ID")
+        private Avaliacao avaliacao;
+
+        @Column(name = "SERVICOS")
+        private int servicosConcluidos;
+
+        @Column(name = "MEDIA_AVALIACAO")
+        private double mediaAvaliacao;
+
+        @Column(name = "TEMPO_CADASTRO")
+        private int tempoCadastro;
+    }
+
+
