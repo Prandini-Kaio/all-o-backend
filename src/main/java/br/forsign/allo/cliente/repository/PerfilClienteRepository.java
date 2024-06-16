@@ -8,6 +8,7 @@ package br.forsign.allo.cliente.repository;
 import br.forsign.allo.cliente.domain.PerfilCliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -16,5 +17,5 @@ import java.util.Optional;
 public interface PerfilClienteRepository extends JpaRepository<PerfilCliente, Long> {
 
     @Query("SELECT prf FROM PERFIL_CLIENTE prf JOIN prf.cliente c WHERE c.id = : idCliente AND c.ativo = true")
-    Optional<PerfilCliente> findByIdCliente(Long idCliente);
+    Optional<PerfilCliente> findByIdCliente(@Param("idCliente") Long idCliente);
 }

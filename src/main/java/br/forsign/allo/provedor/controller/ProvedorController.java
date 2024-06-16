@@ -26,15 +26,25 @@ public class ProvedorController {
 
 
 
-    @GetMapping
+    @GetMapping("/favoritos")
     @Operation(
-            summary = "Procura um prestador com base em um filtro.",
-            description = "Procura por um prestador com base em informações úteis."
+            summary = "Retorna um prestador favorito.",
+            description = "Retorna um prestador favorito."
     )
     public ResponseEntity<Page<ProvedorOutput>> getByFilter(
             @RequestParam Long idCliente,
             @PageableDefault(size = 15) Pageable pageable){
         return ResponseEntity.ok().body(service.findAllComFavoritos(idCliente, pageable));
+    }
+
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Retorna um prestador por id.",
+            description = "Retorna um prestador por id e ativo."
+    )
+    public ResponseEntity<ProvedorOutput> getById(
+            @RequestParam Long id){
+        return ResponseEntity.ok().body(service.findById(id));
     }
 
     @PostMapping
@@ -63,5 +73,14 @@ public class ProvedorController {
     public ResponseEntity delById(@PathVariable Long id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping
+    @Operation(
+            summary = "Procura um prestador pelo id",
+            description = "Procura um prestador pelo id, previamente cadastrado no sistema"
+    )
+    public ResponseEntity<ProvedorOutput> getByFilter(
+            @RequestParam Long id){
+        return ResponseEntity.ok().body(service.getById(id));
     }
 }

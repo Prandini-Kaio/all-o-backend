@@ -24,6 +24,7 @@ public class ProvedorValidator {
         validarExistente(input.getId());
         validarDocumentoJaCadastrado(input);
     }
+
     private void validarExistente(Long id){
         if(!getter.existsById(id))
             throw new BusinessException(CommonExceptionMessages.naoEncontrado("Provedor", id));

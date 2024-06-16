@@ -20,4 +20,7 @@ public class ProvedorInput extends EntidadeInput{
     @NotNull
     @Schema(title = "Tipo Pessoa", example = "FISICA", description = "Tipo de pessoa a ser cadastrada no sistema (FISICA/JURIDICA)")
     private TipoPessoaEnum tipoPessoa;
+
+    @NotNull
+    private Long profissaoId;
 }

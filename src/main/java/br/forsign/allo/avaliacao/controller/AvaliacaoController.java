@@ -41,8 +41,8 @@ public class AvaliacaoController {
 
     @GetMapping
     @Operation(
-            summary = "",
-            description = "")
+            summary = "Consulta a avaliação em destaque de um provedor",
+            description = "Consulta a melhor avaliação cadastrada em nome de um provedor.")
     public ResponseEntity<AvaliacaoOutput> destaque(
             @RequestParam Long provedorId
     ){
