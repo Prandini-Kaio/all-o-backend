@@ -31,4 +31,9 @@ public class ProfissaoValidator {
         if(getter.existsByNome(input.getNome()))
             throw new BusinessException(CommonExceptionMessages.jaExistente("Profissão", input.getNome()));
     }
+
+    public void validaSuggestion(String suggestion) {
+        if(getter.existsByNome(suggestion))
+            throw new BusinessException(CommonExceptionMessages.jaExistente("Profissão", suggestion));
+    }
 }

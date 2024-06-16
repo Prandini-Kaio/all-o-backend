@@ -25,6 +25,27 @@ public class ProvedorController {
     private ProvedorService service;
 
 
+    @GetMapping
+    @Operation(
+            summary = "Retorna um prestador por id.",
+            description = "Retorna um prestador por id e ativo."
+    )
+    public ResponseEntity<ProvedorOutput> getById(
+            @RequestParam Long id){
+        return ResponseEntity.ok().body(service.findById(id));
+    }
+
+    @GetMapping("/filter")
+    @Operation(
+            summary = "Retorna todos os prestadores com base em um filtro.",
+            description = "Retorna todos os prestadores ativos com base em um filtro."
+    )
+    public ResponseEntity<Page<ProvedorOutput>> getByFilter(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String profissao,
+            @PageableDefault(size = 15) Pageable pageable){
+        return ResponseEntity.ok().body(service.findByFilter(nome, profissao, pageable));
+    }
 
     @GetMapping("/favoritos")
     @Operation(
@@ -35,16 +56,6 @@ public class ProvedorController {
             @RequestParam Long idCliente,
             @PageableDefault(size = 15) Pageable pageable){
         return ResponseEntity.ok().body(service.findAllComFavoritos(idCliente, pageable));
-    }
-
-    @GetMapping("/{id}")
-    @Operation(
-            summary = "Retorna um prestador por id.",
-            description = "Retorna um prestador por id e ativo."
-    )
-    public ResponseEntity<ProvedorOutput> getById(
-            @RequestParam Long id){
-        return ResponseEntity.ok().body(service.findById(id));
     }
 
     @PostMapping
@@ -73,14 +84,5 @@ public class ProvedorController {
     public ResponseEntity delById(@PathVariable Long id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
-    }
-    @GetMapping
-    @Operation(
-            summary = "Procura um prestador pelo id",
-            description = "Procura um prestador pelo id, previamente cadastrado no sistema"
-    )
-    public ResponseEntity<ProvedorOutput> getByFilter(
-            @RequestParam Long id){
-        return ResponseEntity.ok().body(service.getById(id));
     }
 }

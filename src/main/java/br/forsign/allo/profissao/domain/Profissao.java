@@ -22,8 +22,6 @@ public class Profissao {
 
     private String nome;
 
-    private String descricao;
-
     private String nomeIcone;
 
     @Enumerated
@@ -31,6 +29,8 @@ public class Profissao {
 
     @ElementCollection
     private Set<String> palavrasChave;
+
+    private boolean suggestion;
 
     private boolean ativo;
 }

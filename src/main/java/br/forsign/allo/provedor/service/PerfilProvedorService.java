@@ -40,4 +40,7 @@ public class PerfilProvedorService {
         return mapper.toOutput(updater.update(input));
     }
 
+    public PerfilProvedorOutput destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
+        return mapper.toOutput(updater.destacarAvaliacao(idProvedor, idAvaliacao));
+    }
 }

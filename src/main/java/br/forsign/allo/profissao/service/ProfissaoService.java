@@ -6,15 +6,18 @@ package br.forsign.allo.profissao.service;
  */
 
 import br.forsign.allo.profissao.converter.ProfissaoMapper;
+import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.model.ProfissaoInput;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
 import br.forsign.allo.profissao.service.action.ProfissaoCreator;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 @CommonsLog
@@ -45,5 +48,11 @@ public class ProfissaoService {
         log.info("Iniciando cadastro de uma profissão.");
 
         return mapper.toOutput(creator.create(input));
+    }
+
+    public ProfissaoOutput createSugestion(String suggestion){
+        log.info(String.format("Iniciando cadastro de sugestão de profissão %s.", suggestion));
+
+        return mapper.toOutput(creator.createSugestion(suggestion));
     }
 }
