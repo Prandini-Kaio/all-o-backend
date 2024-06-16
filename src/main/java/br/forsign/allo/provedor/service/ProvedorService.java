@@ -12,6 +12,7 @@ import br.forsign.allo.provedor.service.action.ProvedorDeleter;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.provedor.service.action.ProvedorUpdater;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -44,12 +45,14 @@ public class ProvedorService {
     @Resource
     private ClienteGetter clienteGetter;
 
+    @Transactional
     public ProvedorOutput findById(Long id) {
         log.info("Iniciando consulta provedor pelo id.");
 
         return ProvedorConverter.toOutput(getter.byId(id));
     }
 
+    @Transactional
     public Page<ProvedorOutput> findAllComFavoritos(Long idCliente, Pageable pageable) {
         log.info("Iniciando consulta todos os provedores do sistema.");
 
@@ -70,32 +73,31 @@ public class ProvedorService {
         });
     }
 
+    @Transactional
     public Page<ProvedorOutput> findByFilter(String nome, String profissao, Pageable pageable) {
         log.info("Iniciando consulta de provedores com filtro.");
 
         return getter.findByFilter(nome, profissao, pageable).map(mapper::toOutput);
     }
 
+    @Transactional
     public ProvedorOutput create(ProvedorInput input) {
         log.info("Cadastrando provedor no sistema.");
 
         return ProvedorConverter.toOutput(creator.create(input));
     }
 
+    @Transactional
     public ProvedorOutput update(ProvedorInput input){
         log.info("Atualizando provedor no sistema.");
 
         return mapper.toOutput(updater.update(input));
     }
 
+    @Transactional
     public void delete(Long id){
         log.info("Deletando provedor no sistema.");
 
         deleter.byId(id);
-    }
-    public ProvedorOutput getById(Long id){
-        log.info("Consultando um provedor pelo id.");
-
-        return mapper.toOutput(getter.byId(id));
     }
 }

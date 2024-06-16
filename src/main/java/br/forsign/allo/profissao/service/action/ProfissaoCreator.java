@@ -29,6 +29,7 @@ public class ProfissaoCreator {
 
         Profissao profissao = new Profissao();
 
+        profissao.setNomeIcone(input.getNomeIcone());
         profissao.setNome(input.getNome());
         profissao.setDescricao(input.getDescricao());
         profissao.setCategoria(input.getCategoria());

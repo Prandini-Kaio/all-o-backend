@@ -22,7 +22,7 @@ public class Provedor extends Entidade {
     @GeneratedValue(generator = "SEQ_PRVDR")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "PROFISSAO_ID")
     private Profissao profissao;
 
