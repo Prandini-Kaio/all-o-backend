@@ -5,16 +5,15 @@ package br.forsign.allo.entidade.domain;
  * created 5/22/24
  */
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
+
+import java.time.LocalDate;
 
 @Data
 @MappedSuperclass
 public class Entidade {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(name = "EMAIL")
     private String email;
@@ -24,5 +23,8 @@ public class Entidade {
 
     @Column(name = "CPF_CNPJ")
     private String cpfCnpj;
+
+    @Column(name = "DATA_REGISTRO")
+    private LocalDate dtRegistro;
 
 }

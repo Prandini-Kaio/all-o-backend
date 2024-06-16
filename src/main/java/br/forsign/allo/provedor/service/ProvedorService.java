@@ -44,8 +44,14 @@ public class ProvedorService {
     @Resource
     private ClienteGetter clienteGetter;
 
+    public ProvedorOutput findById(Long id) {
+        log.info("Iniciando consulta provedor pelo id.");
+
+        return ProvedorConverter.toOutput(getter.byId(id));
+    }
+
     public Page<ProvedorOutput> findAllComFavoritos(Long idCliente, Pageable pageable) {
-        log.info("Consultando todos os provedores do sistema.");
+        log.info("Iniciando consulta todos os provedores do sistema.");
 
         Page<Provedor> provedores = getter.findAll(pageable);
 
@@ -73,12 +79,17 @@ public class ProvedorService {
     public ProvedorOutput update(ProvedorInput input){
         log.info("Atualizando provedor no sistema.");
 
-        return ProvedorConverter.toOutput(updater.update(input));
+        return mapper.toOutput(updater.update(input));
     }
 
     public void delete(Long id){
         log.info("Deletando provedor no sistema.");
 
         deleter.byId(id);
+    }
+    public ProvedorOutput getById(Long id){
+        log.info("Consultando um provedor pelo id.");
+
+        return mapper.toOutput(getter.byId(id));
     }
 }

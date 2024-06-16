@@ -9,6 +9,5 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface ProfissaoMapper {
 
-    @Mapping(target = "categoria", source = "categoria")
     ProfissaoOutput toOutput(Profissao profissao);
 }
