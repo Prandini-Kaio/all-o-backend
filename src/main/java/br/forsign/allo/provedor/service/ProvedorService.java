@@ -70,6 +70,12 @@ public class ProvedorService {
         });
     }
 
+    public Page<ProvedorOutput> findByFilter(String nome, String profissao, Pageable pageable) {
+        log.info("Iniciando consulta de provedores com filtro.");
+
+        return getter.findByFilter(nome, profissao, pageable).map(mapper::toOutput);
+    }
+
     public ProvedorOutput create(ProvedorInput input) {
         log.info("Cadastrando provedor no sistema.");
 

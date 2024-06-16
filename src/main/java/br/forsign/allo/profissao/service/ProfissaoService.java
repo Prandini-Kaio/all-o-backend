@@ -11,10 +11,12 @@ import br.forsign.allo.profissao.model.ProfissaoOutput;
 import br.forsign.allo.profissao.service.action.ProfissaoCreator;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 @CommonsLog
@@ -41,7 +43,7 @@ public class ProfissaoService {
         return mapper.toOutput(getter.byIdAtivo(id));
     }
 
-    public ProfissaoOutput create(ProfissaoInput input) {
+    public ProfissaoOutput create(@RequestBody @Valid ProfissaoInput input) {
         log.info("Iniciando cadastro de uma profissão.");
 
         return mapper.toOutput(creator.create(input));
