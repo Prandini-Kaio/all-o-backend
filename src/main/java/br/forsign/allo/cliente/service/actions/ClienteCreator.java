@@ -39,7 +39,7 @@ public class ClienteCreator {
 
         repository.save(cliente);
 
-        perfilClienteService.create(cliente);
+        perfilClienteService.create(input, cliente);
 
         return cliente;
     }

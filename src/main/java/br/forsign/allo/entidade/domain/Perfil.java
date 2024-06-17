@@ -5,6 +5,7 @@ package br.forsign.allo.entidade.domain;
  * created 5/24/24
  */
 
+import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 
@@ -12,11 +13,18 @@ import lombok.Data;
 @MappedSuperclass
 public class Perfil {
 
-    private String pathToImage;
+    @Column(name = "IMAGEM_PERFIL")
+    private String imagemPerfil;
 
+    @Column(name = "NOME")
     private String nome;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "TELEFONE")
+    private String telefone;
+
+    @Column(name = "DESCRICAO")
     private String descricao;
 }
