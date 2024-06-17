@@ -9,9 +9,11 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor
-public class ProvedorInput extends EntidadeInput{
+public class ProvedorInput extends EntidadeInput {
 
     @NotBlank
     @Schema(title = "Razão Social", example = "Douglas Mecanico", description = "Razão social do provedor de serviços.")
@@ -22,5 +24,5 @@ public class ProvedorInput extends EntidadeInput{
     private TipoPessoaEnum tipoPessoa;
 
     @NotNull
-    private Long profissaoId;
+    private List<Long> idProfissionais;
 }

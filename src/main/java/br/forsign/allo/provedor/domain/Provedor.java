@@ -9,6 +9,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Builder
 @Data
@@ -22,9 +24,9 @@ public class Provedor extends Entidade {
     @GeneratedValue(generator = "SEQ_PRVDR")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "PROFISSAO_ID")
-    private Profissao profissao;
+    private List<Profissao> profissao;
 
     @Column(name = "RAZAO_SOCIAL")
     private String razaoSocial;

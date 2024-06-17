@@ -8,12 +8,15 @@ package br.forsign.allo.profissao.service.action;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.repository.ProfissaoRepository;
+import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -27,6 +30,18 @@ public class ProfissaoGetter {
         log.info(String.format("Consultando profissão ativa com id %s.", id));
 
         return repository.findById(id).orElseThrow(CommonExceptionSupplier.naoEncontrado("Profissão", id));
+    }
+
+    public List<Profissao> byIdAtivo(List<Long> ids) {
+        log.info("Consultando profissões ativas com ids informados.");
+
+        List<Profissao> profissoes = new ArrayList<>();
+
+        for(Long id : ids){
+            profissoes.add(byIdAtivo(id));
+        }
+
+        return profissoes;
     }
 
     public Page<Profissao> findAll(Pageable pageable){

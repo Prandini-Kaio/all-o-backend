@@ -12,6 +12,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 public class ProvedorCreator {
@@ -33,7 +34,7 @@ public class ProvedorCreator {
 
         Provedor provedor = new Provedor();
 
-        Profissao profissao = profissaoGetter.byIdAtivo(input.getProfissaoId());
+        List<Profissao> profissao = profissaoGetter.byIdAtivo(input.getIdProfissionais());
 
         provedor.setRazaoSocial(input.getRazaoSocial());
         provedor.setTipoPessoa(input.getTipoPessoa());
