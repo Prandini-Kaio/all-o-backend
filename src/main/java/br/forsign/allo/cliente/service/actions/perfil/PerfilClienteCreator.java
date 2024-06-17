@@ -7,6 +7,7 @@ package br.forsign.allo.cliente.service.actions.perfil;
 
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.domain.PerfilCliente;
+import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.PerfilClienteRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -17,13 +18,13 @@ public class PerfilClienteCreator {
     @Resource
     private PerfilClienteRepository repository;
 
-    public PerfilCliente create(Cliente cliente) {
+    public PerfilCliente create(ClienteInput input, Cliente cliente) {
         PerfilCliente perfilCliente = new PerfilCliente();
 
         perfilCliente.setCliente(cliente);
         perfilCliente.setNome(cliente.getNome());
         perfilCliente.setEmail(cliente.getEmail());
-        perfilCliente.setPathToImage("CAMINHO DA IMAGEM NO SW3");
+        perfilCliente.setImagemPerfil(input.getImagem());
 
         return repository.save(perfilCliente);
     }

@@ -32,8 +32,8 @@ public class PerfilProvedorService {
         return mapper.toOutput(getter.byProvedorId(idProvedor));
     }
 
-    public PerfilProvedorOutput create(Provedor provedor){
-        return mapper.toOutput(creator.create(provedor));
+    public PerfilProvedorOutput create(ProvedorInput input, Provedor provedor){
+        return mapper.toOutput(creator.create(input, provedor));
     }
 
     public PerfilProvedorOutput update(PerfilProvedorInput input){

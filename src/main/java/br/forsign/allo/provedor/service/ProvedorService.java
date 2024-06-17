@@ -53,6 +53,11 @@ public class ProvedorService {
     }
 
     @Transactional
+    public Page<ProvedorOutput> findByProfissao(Long idProfissao, Pageable pageable) {
+        return this.getter.byProfissao(idProfissao, pageable).map(mapper::toOutput);
+    }
+
+    @Transactional
     public Page<ProvedorOutput> findAllComFavoritos(Long idCliente, Pageable pageable) {
         log.info("Iniciando consulta todos os provedores do sistema.");
 

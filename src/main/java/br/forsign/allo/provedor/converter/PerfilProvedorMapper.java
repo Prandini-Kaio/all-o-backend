@@ -13,4 +13,5 @@ public interface PerfilProvedorMapper {
 
     @Mapping(source = "perfilProvedor.id", target = "idAvaliacao")
     PerfilProvedorInput toInput(PerfilProvedor perfilProvedor);
+
 }

@@ -57,7 +57,7 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setNome(provedor.getRazaoSocial());
         perfilProvedor.setEmail(provedor.getEmail());
         perfilProvedor.setDescricao(input.getDescricao());
-        perfilProvedor.setPathToImage(input.getPerfilImage());
+        perfilProvedor.setImagemPerfil(input.getPerfilImage());
 
         perfilProvedor.setProvedor(provedor);
         perfilProvedor.setAvaliacao(avaliacao);

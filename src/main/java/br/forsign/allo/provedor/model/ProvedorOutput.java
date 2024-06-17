@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.model;
 
 
+import br.forsign.allo.entidade.model.EnderecoOutput;
 import br.forsign.allo.entidade.model.TipoPessoaEnum;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
 import lombok.AllArgsConstructor;
@@ -20,7 +21,9 @@ public class ProvedorOutput {
 
     private String razaoSocial;
 
-    private List<String> profissoes;
+    private EnderecoOutput endereco;
+
+    private List<ProfissaoOutput> profissoes;
 
     private TipoPessoaEnum tipoPessoa;
 

@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.model;
 
 
+import br.forsign.allo.entidade.model.EnderecoInput;
 import br.forsign.allo.entidade.model.EntidadeInput;
 import br.forsign.allo.entidade.model.TipoPessoaEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -24,5 +25,12 @@ public class ProvedorInput extends EntidadeInput {
     private TipoPessoaEnum tipoPessoa;
 
     @NotNull
-    private List<Long> idProfissionais;
+    private EnderecoInput enderecoInput;
+
+    @NotNull
+    private List<Long> idProfissoes;
+
+    private String perfilImagem;
+
+    private List<String> servicoImagens;
 }

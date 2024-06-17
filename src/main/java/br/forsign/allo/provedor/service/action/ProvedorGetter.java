@@ -3,7 +3,6 @@ package br.forsign.allo.provedor.service.action;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import br.forsign.allo.profissao.converter.ProfissaoMapper;
 import br.forsign.allo.provedor.domain.Provedor;
-import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
@@ -49,5 +48,9 @@ public class ProvedorGetter {
         Optional<Provedor> provedor = repository.findById(id);
 
         return provedor.isPresent();
+    }
+
+    public Page<Provedor> byProfissao(Long idProfissao, Pageable pageable) {
+        return repository.findByProfissoesId(idProfissao, pageable);
     }
 }
