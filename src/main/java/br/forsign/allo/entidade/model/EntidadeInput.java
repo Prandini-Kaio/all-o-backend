@@ -21,7 +21,7 @@ public class EntidadeInput {
     private String email;
 
     @Schema(title = "Telefone", example = "33978890000", description = "Telefone principal da entidade.")
-    @Pattern(regexp = "^(\\d{2,3})(\\d{9})$")
+    @Pattern(regexp = "^\\([1-9]{2}\\) (?:[2-8]|9[0-9])[0-9]{3}-[0-9]{4}$")
     private String telefone;
 
     @Schema(title = "CPF CNPJ", example = "869.039.770-15", description = "CPF ou CNPJ da entidade.")

@@ -7,6 +7,7 @@ package br.forsign.allo.profissao.controller;
 
 import br.forsign.allo.profissao.model.ProfissaoInput;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
+import br.forsign.allo.profissao.model.ProfissaoSugestaoInput;
 import br.forsign.allo.profissao.service.ProfissaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -61,8 +62,8 @@ public class ProfissaoController {
     @Operation(
             summary = "Sugere uma nova profissão.",
             description = "Cadastra uma sugestão de uma nova profissão.")
-    public ResponseEntity<ProfissaoOutput> createSugestion(@RequestParam String sugestao){
-        return ResponseEntity.ok().body(this.service.createSugestion(sugestao));
+    public ResponseEntity<ProfissaoOutput> createSugestion(@RequestBody ProfissaoSugestaoInput input){
+        return ResponseEntity.ok().body(this.service.createSugestion(input.getSugestao()));
     }
 
 }
