@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.service.action;
 
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.model.PerfilProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
@@ -35,8 +36,10 @@ public class ProvedorCreator {
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
 
+        PerfilProvedorInput perfilInput = new PerfilProvedorInput();
+
         repository.save(provedor);
-        perfilProvedorService.create(provedor);
+        perfilProvedorService.create(provedor, perfilInput);
         return provedor;
     }
 }
