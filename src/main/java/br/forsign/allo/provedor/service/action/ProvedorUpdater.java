@@ -10,12 +10,14 @@ import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.ProvedorValidator;
 import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorUpdater;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
+@CommonsLog
 public class ProvedorUpdater {
 
     @Resource
@@ -58,5 +60,4 @@ public class ProvedorUpdater {
 
         return repository.save(provedor);
     }
-
 }

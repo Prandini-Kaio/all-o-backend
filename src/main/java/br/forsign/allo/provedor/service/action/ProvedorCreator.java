@@ -39,7 +39,9 @@ public class ProvedorCreator {
 
         Provedor provedor = new Provedor();
 
-        List<Profissao> profissao = profissaoGetter.byIdAtivo(input.getIdProfissoes());
+        List<Profissao> profissao = input.getIdProfissoes().stream()
+                        .map(profissaoGetter::byIdAtivo)
+                        .toList();
 
         provedor.setRazaoSocial(input.getRazaoSocial());
         provedor.setEndereco(enderecoCreator.create(input.getEnderecoInput()));
