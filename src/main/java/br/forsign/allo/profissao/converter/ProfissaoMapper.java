@@ -6,9 +6,13 @@ import br.forsign.allo.profissao.model.ProfissaoOutput;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Mapper
 public interface ProfissaoMapper {
 
-    @Mapping(target = "categoria", source = "categoria")
     ProfissaoOutput toOutput(Profissao profissao);
+
+    List<Profissao> toOutputList(List<Profissao> profissao);
 }

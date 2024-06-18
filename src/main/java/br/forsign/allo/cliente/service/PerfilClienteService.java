@@ -7,6 +7,7 @@ package br.forsign.allo.cliente.service;
 
 import br.forsign.allo.cliente.converter.PerfilClienteMapper;
 import br.forsign.allo.cliente.domain.Cliente;
+import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.model.PerfilClienteOutput;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteCreator;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteGetter;
@@ -35,8 +36,8 @@ public class PerfilClienteService {
         return getter.findAll(pageable).map(mapper::toOuput);
     }
 
-    public PerfilClienteOutput create(Cliente cliente){
-        return mapper.toOuput(creator.create(cliente));
+    public PerfilClienteOutput create(ClienteInput input, Cliente cliente){
+        return mapper.toOuput(creator.create(input, cliente));
     }
 
     public PerfilClienteOutput update(Cliente cliente){

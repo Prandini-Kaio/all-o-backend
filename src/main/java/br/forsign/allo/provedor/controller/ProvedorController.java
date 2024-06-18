@@ -12,7 +12,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/provedor")
@@ -25,6 +33,39 @@ public class ProvedorController {
     private ProvedorService service;
 
 
+    @GetMapping
+    @Operation(
+            summary = "Retorna um prestador por id.",
+            description = "Retorna um prestador por id e ativo."
+    )
+    public ResponseEntity<ProvedorOutput> getById(
+            @RequestParam Long id){
+        return ResponseEntity.ok().body(service.findById(id));
+    }
+
+    @GetMapping("/{idProfissao}")
+    @Operation(
+            summary = "Retorna todos os prestadores de uma profissão.",
+            description = "Retorna todos os prestadores ativos de uma profissão."
+    )
+    public ResponseEntity<Page<ProvedorOutput>> getByProfissao(
+            @PathVariable Long idProfissao,
+            @PageableDefault(size = 15) Pageable pageable){
+
+        return ResponseEntity.ok().body(service.findByProfissao(idProfissao, pageable));
+    }
+
+    @GetMapping("/filter")
+    @Operation(
+            summary = "Retorna todos os prestadores com base em um filtro.",
+            description = "Retorna todos os prestadores ativos com base em um filtro."
+    )
+    public ResponseEntity<Page<ProvedorOutput>> getByFilter(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String profissao,
+            @PageableDefault(size = 15) Pageable pageable){
+        return ResponseEntity.ok().body(service.findByFilter(nome, profissao, pageable));
+    }
 
     @GetMapping("/favoritos")
     @Operation(
@@ -63,14 +104,5 @@ public class ProvedorController {
     public ResponseEntity delById(@PathVariable Long id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
-    }
-    @GetMapping
-    @Operation(
-            summary = "Procura um prestador pelo id",
-            description = "Procura um prestador pelo id, previamente cadastrado no sistema"
-    )
-    public ResponseEntity<ProvedorOutput> getByFilter(
-            @RequestParam Long id){
-        return ResponseEntity.ok().body(service.getById(id));
     }
 }

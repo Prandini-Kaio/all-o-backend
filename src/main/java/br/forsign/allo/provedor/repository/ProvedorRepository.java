@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ProvedorRepository extends JpaRepository<Provedor, Long> {
-
-    @Query("SELECT p FROM Provedor p WHERE p.ativo = true AND LOWER(p.razaoSocial) LIKE CONCAT('%', LOWER(:filtro), '%')")
-    List<Provedor> findByFiltro(String filtro, Pageable pageable);
+public interface ProvedorRepository extends JpaRepository<Provedor, Long>, ProvedorRepositoryCustom {
 
     @Query("SELECT p FROM Provedor p WHERE p.cpfCnpj = :cpfCnpj")
     Optional<Provedor> findByCpfCnpj(String cpfCnpj);
 
     @Query("SELECT p FROM Provedor p WHERE p.ativo = true")
     Optional<Page<Provedor>> findAtivos(Pageable pageable);
+
+    @Query("SELECT p FROM Provedor p JOIN p.profissoes prfs WHERE prfs.nome = :idProfissao")
+    Page<Provedor> findByProfissoesId(Long idProfissao, Pageable pageable);
 }

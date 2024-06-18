@@ -9,9 +9,11 @@ import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.model.ProfissaoInput;
 import br.forsign.allo.profissao.repository.ProfissaoRepository;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 @Component
+@CommonsLog
 public class ProfissaoCreator {
 
     @Resource
@@ -21,10 +23,13 @@ public class ProfissaoCreator {
     private ProfissaoRepository repository;
 
     public Profissao create(ProfissaoInput input) {
+        log.info("Criando uma nova profissão.");
+
         validator.validarCreate(input);
 
         Profissao profissao = new Profissao();
 
+        profissao.setNomeIcone(input.getNomeIcone());
         profissao.setNome(input.getNome());
         profissao.setSuggestion(false);
         profissao.setAtivo(true);

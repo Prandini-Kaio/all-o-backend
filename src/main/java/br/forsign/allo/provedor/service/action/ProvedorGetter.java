@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.service.action;
 
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.profissao.converter.ProfissaoMapper;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
@@ -8,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -16,6 +16,9 @@ public class ProvedorGetter {
 
     @Resource
     private ProvedorRepository repository;
+
+    @Resource
+    private ProfissaoMapper mapper;
 
     public Page<Provedor> findAll(Pageable pageable) {
         return repository.findAtivos(pageable).orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor"));
@@ -27,8 +30,8 @@ public class ProvedorGetter {
                 .orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor", id));
     }
 
-    public List<Provedor> byFilter(String razaoSocial, Pageable pageable){
-        return repository.findByFiltro(razaoSocial, pageable);
+    public Page<Provedor> findByFilter(String razaoSocial, String profissao, Pageable pageable){
+        return repository.byFilter(razaoSocial, profissao, pageable);
     }
 
     public Provedor byCpfCnpj(String cpfCnpj){
@@ -45,5 +48,9 @@ public class ProvedorGetter {
         Optional<Provedor> provedor = repository.findById(id);
 
         return provedor.isPresent();
+    }
+
+    public Page<Provedor> byProfissao(Long idProfissao, Pageable pageable) {
+        return repository.findByProfissoesId(idProfissao, pageable);
     }
 }

@@ -23,7 +23,7 @@ public class PerfilClienteUpdater {
 
         perfil.setNome(cliente.getNome());
         perfil.setEmail(cliente.getEmail());
-        perfil.setPathToImage("CAMINHO IMAGEM S3");
+        perfil.setImagemPerfil("CAMINHO IMAGEM S3");
 
         return repository.save(perfil);
     }

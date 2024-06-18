@@ -5,7 +5,10 @@ import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.entidade.domain.Perfil;
 import jakarta.persistence.*;
 import lombok.*;
-    @Data
+
+import java.util.List;
+
+@Data
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
@@ -23,6 +26,10 @@ import lombok.*;
         @OneToOne
         @JoinColumn(name = "AVALIACAO_ID")
         private Avaliacao avaliacao;
+
+        @ElementCollection
+        @Column(name = "IMAGENS_SERVICOS")
+        private List<String> imagensServicos;
 
         @Column(name = "SERVICOS")
         private int servicosConcluidos;

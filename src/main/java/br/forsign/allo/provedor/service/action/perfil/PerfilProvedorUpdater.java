@@ -2,9 +2,11 @@ package br.forsign.allo.provedor.service.action.perfil;
 
 import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoGetter;
+import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.PerfilProvedorInput;
+import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.PerfilProvedorRepository;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
@@ -30,21 +32,24 @@ public class PerfilProvedorUpdater {
     private ProvedorGetter provedorGetter;
 
     @Resource
+    private PerfilProvedorMapper mapper;
+
+    @Resource
     private AvaliacaoGetter avaliacaoGetter;
 
-    public PerfilProvedor update(PerfilProvedorInput input){
+    public PerfilProvedor update(ProvedorInput input){
 
-        log.info(String.format("Atualizando perfil do Provedor com id %s.", input.getProvedorID()));
+        log.info(String.format("Atualizando perfil do Provedor com id %s.", input.getId()));
 
-        Provedor provedor = provedorGetter.byId(input.getProvedorID());
-        Avaliacao avaliacao = avaliacaoGetter.byId(input.getAvaliacaoID());
+        Provedor provedor = provedorGetter.byId(input.getId());
+        Avaliacao avaliacao = avaliacaoGetter.byId(input.getPerfilProvedorInput().getIdAvaliacao());
 
         PerfilProvedor perfilProvedor = getter.byProvedorId(provedor.getId());
 
         perfilProvedor.setNome(provedor.getRazaoSocial());
         perfilProvedor.setEmail(provedor.getEmail());
-        perfilProvedor.setDescricao(input.getDescricao());
-        perfilProvedor.setPathToImage(input.getPerfilImage());
+        perfilProvedor.setDescricao(input.getPerfilProvedorInput().getDescricao());
+        perfilProvedor.setImagemPerfil(input.getPerfilProvedorInput().getPerfilImage());
 
         perfilProvedor.setProvedor(provedor);
         perfilProvedor.setAvaliacao(avaliacao);
@@ -52,10 +57,11 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setTempoCadastro(Period.between(provedor.getDtRegistro(), LocalDate.now()).getYears());
 
-        List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(input.getProvedorID());
+        List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(input.getId());
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
 
         perfilProvedor.setTotalAvaliacao(getTotalAvaliacao(avaliacoesProvedor));
+
 
         return perfilProvedor;
     }
@@ -76,8 +82,20 @@ public class PerfilProvedorUpdater {
 
         return mediaAvaliacoes;
     }
-
     private int getTotalAvaliacao(List<Avaliacao> avaliacoes){
         return avaliacoes.size();
+    }
+
+    public PerfilProvedor destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
+        Provedor provedor = provedorGetter.byId(idProvedor);
+
+        Avaliacao avaliacao = avaliacaoGetter.byId(idAvaliacao);
+
+        ProvedorInput input = new ProvedorInput();
+
+        input.getPerfilProvedorInput().setIdProvedor(provedor.getId());
+        input.getPerfilProvedorInput().setIdAvaliacao(avaliacao.getId());
+
+        return this.update(input);
     }
 }
