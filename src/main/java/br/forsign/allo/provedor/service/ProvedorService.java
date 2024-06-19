@@ -53,8 +53,8 @@ public class ProvedorService {
     }
 
     @Transactional
-    public Page<ProvedorOutput> findByProfissao(Long idProfissao, Pageable pageable) {
-        return this.getter.byProfissao(idProfissao, pageable).map(mapper::toOutput);
+    public List<ProvedorOutput> findByProfissao(Long idProfissao) {
+        return this.getter.byProfissao(idProfissao).stream().map(mapper::toOutput).toList();
     }
 
     @Transactional
