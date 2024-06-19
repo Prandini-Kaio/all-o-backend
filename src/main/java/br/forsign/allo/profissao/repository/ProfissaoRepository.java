@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -20,4 +21,7 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Long> {
 
     @Query("SELECT p FROM Profissao p WHERE p.ativo = true AND p.nome = :nome")
     Optional<Profissao> findByNome(String nome);
+
+    @Query("SELECT p FROM Profissao p WHERE p.nome LIKE %:profissao%")
+    List<Profissao> findByFilter(String profissao);
 }

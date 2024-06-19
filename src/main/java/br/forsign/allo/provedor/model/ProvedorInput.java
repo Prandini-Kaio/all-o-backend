@@ -20,12 +20,8 @@ public class ProvedorInput extends EntidadeInput {
     @Schema(title = "Razão Social", example = "Douglas Mecanico", description = "Razão social do provedor de serviços.")
     private String razaoSocial;
 
-    @NotNull
     @Schema(title = "Tipo Pessoa", example = "FISICA", description = "Tipo de pessoa a ser cadastrada no sistema (FISICA/JURIDICA)")
     private TipoPessoaEnum tipoPessoa;
-
-    @NotNull
-    private EnderecoInput enderecoInput;
 
     @NotNull
     private List<Long> idProfissoes;

@@ -44,6 +44,10 @@ public class ProfissaoGetter {
         return profissoes;
     }
 
+    public List<Profissao> findByFilter(String profissao) {
+        return repository.findByFilter(profissao);
+    }
+
     public Page<Profissao> findAll(Pageable pageable){
         log.info("Consultando todas as profissões ativas do sistema.");
 

@@ -16,6 +16,6 @@ import java.util.Optional;
 @Repository
 public interface PerfilClienteRepository extends JpaRepository<PerfilCliente, Long> {
 
-    @Query("SELECT prf FROM PERFIL_CLIENTE prf JOIN prf.cliente c WHERE c.id = : idCliente AND c.ativo = true")
-    Optional<PerfilCliente> findByIdCliente(@Param("idCliente") Long idCliente);
+    @Query("SELECT prf FROM PERFIL_CLIENTE prf JOIN prf.cliente c WHERE c.id = :idCliente AND c.ativo = true")
+    Optional<PerfilCliente> findByIdCliente(Long idCliente);
 }

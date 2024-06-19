@@ -4,6 +4,7 @@ import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteUpdater;
+import br.forsign.allo.entidade.service.action.EnderecoUpdater;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
@@ -27,6 +28,8 @@ public class ClienteUpdater {
     @Resource
     private ProvedorGetter provedorGetter;
 
+    @Resource
+    private EnderecoUpdater enderecoUpdater;
 
     public Cliente update(ClienteInput input){
         validator.validarUpdate(input);
@@ -37,6 +40,7 @@ public class ClienteUpdater {
         cliente.setCpfCnpj(input.getCpfCnpj());
         cliente.setEmail(input.getEmail());
         cliente.setTelefone(input.getTelefone());
+        cliente.setEndereco(enderecoUpdater.update(input.getEnderecoInput()));
         cliente.setAtivo(true);
 
         updater.update(cliente);
