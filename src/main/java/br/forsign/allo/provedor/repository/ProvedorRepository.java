@@ -20,6 +20,6 @@ public interface ProvedorRepository extends JpaRepository<Provedor, Long>, Prove
     @Query("SELECT p FROM Provedor p WHERE p.ativo = true")
     Optional<Page<Provedor>> findAtivos(Pageable pageable);
 
-    @Query("SELECT p FROM Provedor p JOIN p.profissoes prfs WHERE prfs.nome = :idProfissao")
+    @Query("SELECT p FROM Provedor p JOIN p.profissoes prfs WHERE prfs.id = :idProfissao")
     Page<Provedor> findByProfissoesId(Long idProfissao, Pageable pageable);
 }
