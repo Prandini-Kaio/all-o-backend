@@ -9,11 +9,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class ProvedorInput extends EntidadeInput {
 
     @NotBlank
@@ -29,4 +30,6 @@ public class ProvedorInput extends EntidadeInput {
     private String perfilImagem;
 
     private List<String> servicoImagens;
+
+    private PerfilProvedorInput perfilProvedorInput;
 }
