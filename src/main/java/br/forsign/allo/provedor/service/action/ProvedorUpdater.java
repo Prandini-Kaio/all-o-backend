@@ -1,6 +1,5 @@
 package br.forsign.allo.provedor.service.action;
 
-import br.forsign.allo.common.error.BusinessException;
 import br.forsign.allo.entidade.converter.EnderecoMapper;
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
@@ -14,7 +13,6 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @CommonsLog

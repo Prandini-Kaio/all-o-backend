@@ -18,9 +18,6 @@ import org.springframework.stereotype.Service;
 public class NotificacaoProvedorService {
 
     @Resource
-    private NotificacaoProvedorGetter getter;
-
-    @Resource
     private NotificaProvedorCreator creator;
 
     @Resource
