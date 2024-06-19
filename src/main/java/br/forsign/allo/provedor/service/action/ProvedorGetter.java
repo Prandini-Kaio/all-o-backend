@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -50,7 +51,7 @@ public class ProvedorGetter {
         return provedor.isPresent();
     }
 
-    public Page<Provedor> byProfissao(Long idProfissao, Pageable pageable) {
-        return repository.findByProfissoesId(idProfissao, pageable);
+    public List<Provedor> byProfissao(Long idProfissao) {
+        return repository.findByProfissoesId(idProfissao);
     }
 }
