@@ -24,7 +24,6 @@ public class NotificacaoProvedorController {
     @Resource
     private NotificacaoProvedorService service;
 
-
     @PostMapping
     @Operation(
             summary = "Registra uma notificação",
