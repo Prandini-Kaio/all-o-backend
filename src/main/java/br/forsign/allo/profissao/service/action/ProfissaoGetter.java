@@ -45,7 +45,7 @@ public class ProfissaoGetter {
     }
 
     public List<Profissao> findByFilter(String profissao) {
-        return repository.findByFilter(profissao);
+        return repository.findByFilter(profissao.toLowerCase());
     }
 
     public Page<Profissao> findAll(Pageable pageable){
