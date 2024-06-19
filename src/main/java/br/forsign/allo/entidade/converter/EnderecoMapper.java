@@ -14,4 +14,6 @@ import org.mapstruct.Mapper;
 public interface EnderecoMapper {
 
     EnderecoOutput toOutput(Endereco endereco);
+
+    Endereco fromInput(EnderecoInput enderecoInput);
 }

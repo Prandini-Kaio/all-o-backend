@@ -43,13 +43,16 @@ public class ProvedorService {
     private ProvedorMapper mapper;
 
     @Resource
+    private ProvedorConverter converter;
+
+    @Resource
     private ClienteGetter clienteGetter;
 
     @Transactional
     public ProvedorOutput findById(Long id) {
         log.info("Iniciando consulta provedor pelo id.");
 
-        return ProvedorConverter.toOutput(getter.byId(id));
+        return converter.toOutput(getter.byId(id));
     }
 
     @Transactional
@@ -89,7 +92,7 @@ public class ProvedorService {
     public ProvedorOutput create(ProvedorInput input) {
         log.info("Cadastrando provedor no sistema.");
 
-        return ProvedorConverter.toOutput(creator.create(input));
+        return converter.toOutput(creator.create(input));
     }
 
     @Transactional
