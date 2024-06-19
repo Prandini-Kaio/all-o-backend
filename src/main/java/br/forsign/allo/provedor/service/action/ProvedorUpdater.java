@@ -54,7 +54,7 @@ public class ProvedorUpdater {
         provedor.setEndereco(enderecoMapper.fromInput(input.getEnderecoInput()));
         provedor.setProfissoes(profissoes);
 
-        perfilProvedorUpdater.update(provedor);
+        perfilProvedorUpdater.update(input);
 
         return repository.save(provedor);
     }

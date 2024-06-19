@@ -2,7 +2,7 @@ package br.forsign.allo.provedor.service.action.perfil;
 
 import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
-import br.forsign.allo.provedor.model.ProvedorInput;
+import br.forsign.allo.provedor.model.PerfilProvedorInput;
 import br.forsign.allo.provedor.repository.PerfilProvedorRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -13,7 +13,7 @@ public class PerfilProvedorCreator {
     @Resource
     private PerfilProvedorRepository repository;
 
-    public PerfilProvedor create(ProvedorInput input, Provedor provedor){
+    public PerfilProvedor create(Provedor provedor, PerfilProvedorInput input) {
         PerfilProvedor perfilProvedor = new PerfilProvedor();
 
         perfilProvedor.setProvedor(provedor);
@@ -23,10 +23,7 @@ public class PerfilProvedorCreator {
         perfilProvedor.setTempoCadastro(0);
         perfilProvedor.setNome(provedor.getRazaoSocial());
         perfilProvedor.setEmail(provedor.getEmail());
-        perfilProvedor.setDescricao("Bem vindo ao meu perfil!");
-
-        perfilProvedor.setImagemPerfil(input.getPerfilImagem());
-        perfilProvedor.setImagensServicos(input.getServicoImagens());
+        perfilProvedor.setDescricao(input.getDescricao());
 
         return repository.save(perfilProvedor);
 
