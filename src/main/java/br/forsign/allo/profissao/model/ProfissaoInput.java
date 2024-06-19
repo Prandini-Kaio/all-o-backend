@@ -14,7 +14,7 @@ import lombok.Data;
 public class ProfissaoInput {
 
     @NotBlank
-    @Schema(title = "Nome do icone", example = "medic-outline", description = "Nome de referência do ícone da profissão.")
+    @Schema(title = "Nome do icone", example = "medical-bag", description = "Nome de referência do ícone da profissão.")
     private String nomeIcone;
 
     @NotBlank

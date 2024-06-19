@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/provedor")
 @Tag(
@@ -43,16 +45,13 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @GetMapping("/{idProfissao}")
+    @GetMapping("/profissao")
     @Operation(
             summary = "Retorna todos os prestadores de uma profissão.",
             description = "Retorna todos os prestadores ativos de uma profissão."
     )
-    public ResponseEntity<Page<ProvedorOutput>> getByProfissao(
-            @PathVariable Long idProfissao,
-            @PageableDefault(size = 15) Pageable pageable){
-
-        return ResponseEntity.ok().body(service.findByProfissao(idProfissao, pageable));
+    public ResponseEntity<List<ProvedorOutput>> getByProfissao(@RequestParam Long idProfissao){
+        return ResponseEntity.ok().body(service.findByProfissao(idProfissao));
     }
 
     @GetMapping("/filter")
