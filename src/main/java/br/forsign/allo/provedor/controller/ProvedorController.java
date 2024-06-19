@@ -101,7 +101,7 @@ public class ProvedorController {
             summary = "Deleta um prestador.",
             description = "Deleta um prestador previamente cadastrado, com base no identificador de cadastro."
     )
-    public ResponseEntity delById(@PathVariable Long id){
+    public ResponseEntity<Void> delById(@PathVariable Long id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
     }

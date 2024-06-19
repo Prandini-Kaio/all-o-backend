@@ -3,6 +3,7 @@ package br.forsign.allo.provedor.controller;
 
 import br.forsign.allo.provedor.model.PerfilProvedorInput;
 import br.forsign.allo.provedor.model.PerfilProvedorOutput;
+import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -36,8 +37,8 @@ public class PerfilProvedorController {
     @Operation(
             summary = "Atualiza o perfil de um provedor.",
             description = "Atualiza o perfil de um provedor ativo.")
-    public ResponseEntity<PerfilProvedorOutput> update(@RequestBody @Valid PerfilProvedorInput perfilProvedorInput){
-        return ResponseEntity.ok().body(this.service.update(perfilProvedorInput));
+    public ResponseEntity<PerfilProvedorOutput> update(@RequestBody @Valid ProvedorInput provedorInput){
+        return ResponseEntity.ok().body(this.service.update(provedorInput));
     }
 
     @PutMapping("/destacar")
