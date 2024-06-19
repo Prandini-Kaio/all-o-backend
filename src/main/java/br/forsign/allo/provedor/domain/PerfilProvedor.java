@@ -37,6 +37,9 @@ import java.util.List;
         @Column(name = "MEDIA_AVALIACAO")
         private double mediaAvaliacao;
 
+        @Column(name = "TOTAL_AVALIACAO")
+        private int totalAvaliacao;
+
         @Column(name = "TEMPO_CADASTRO")
         private int tempoCadastro;
     }

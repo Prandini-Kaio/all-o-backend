@@ -6,6 +6,7 @@ import br.forsign.allo.entidade.service.action.EnderecoCreator;
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.model.PerfilProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
@@ -53,10 +54,10 @@ public class ProvedorCreator {
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
 
+        PerfilProvedorInput perfilInput = new PerfilProvedorInput();
+
         repository.save(provedor);
-
-        perfilProvedorService.create(input, provedor);
-
+        perfilProvedorService.create(provedor, perfilInput);
         return provedor;
     }
 }
