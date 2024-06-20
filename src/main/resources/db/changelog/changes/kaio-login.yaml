@@ -104,3 +104,5 @@ databaseChangeLog:
     - dropSequence:
         sequenceName: SEQ_PRFL
 
+databaseChangeLog: []
+
