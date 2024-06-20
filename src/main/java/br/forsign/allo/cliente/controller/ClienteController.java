@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.id.GUIDGenerator;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
@@ -92,8 +93,12 @@ public class ClienteController {
         try {
             byte[] bytes = file.getBytes();
 
+            //Teste
+            byte[] encodedBytes = Base64.encodeBase64("Test".getBytes(), true, true);
+
             String directoryPath = "images-cliente";
             File directory = new File(directoryPath);
+
             if (!directory.exists()) {
                 directory.mkdirs(); // Cria os diretórios se não existirem
             }
@@ -121,6 +126,9 @@ public class ClienteController {
 
             // Verifica se o recurso existe e é acessível
             if (resource.exists() && resource.isReadable()) {
+
+                byte[] encodedBytes = Base64.encodeBase64(resource.getContentAsByteArray(), true, true);
+
                 // Retorna a resposta com o status OK e o recurso da imagem
                 return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
                                 "attachment; filename=\"" + resource.getFilename() + "\"")
@@ -133,6 +141,10 @@ public class ClienteController {
             // Tratamento de erro se ocorrer uma URL malformada
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
+
+        } catch (IOException e) {
+            // Tratamento de erro da codificação BASE64
+            throw new RuntimeException(e);
         }
     }
 }
