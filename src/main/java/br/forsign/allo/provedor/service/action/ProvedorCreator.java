@@ -54,10 +54,8 @@ public class ProvedorCreator {
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
 
-        PerfilProvedorInput perfilInput = new PerfilProvedorInput();
-
         repository.save(provedor);
-        perfilProvedorService.create(provedor, perfilInput);
+        perfilProvedorService.create(provedor, input.getPerfilProvedorInput());
         return provedor;
     }
 }
