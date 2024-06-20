@@ -45,12 +45,13 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @GetMapping("/profissao")
+    @GetMapping("/filter/profissao")
     @Operation(
             summary = "Retorna todos os prestadores de uma profissão.",
             description = "Retorna todos os prestadores ativos de uma profissão."
     )
     public ResponseEntity<List<ProvedorOutput>> getByProfissao(@RequestParam Long idProfissao){
+
         return ResponseEntity.ok().body(service.findByProfissao(idProfissao));
     }
 
@@ -100,7 +101,7 @@ public class ProvedorController {
             summary = "Deleta um prestador.",
             description = "Deleta um prestador previamente cadastrado, com base no identificador de cadastro."
     )
-    public ResponseEntity<Void> delById(@PathVariable Long id){
+    public ResponseEntity delById(@PathVariable Long id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
     }
