@@ -32,6 +32,9 @@ public class PerfilProvedorUpdater {
     private ProvedorGetter provedorGetter;
 
     @Resource
+    private PerfilProvedorGetter perfilProvedorGetter;
+
+    @Resource
     private PerfilProvedorMapper mapper;
 
     @Resource
@@ -91,11 +94,11 @@ public class PerfilProvedorUpdater {
 
         Avaliacao avaliacao = avaliacaoGetter.byId(idAvaliacao);
 
-        ProvedorInput input = new ProvedorInput();
+        PerfilProvedor perfilProvedor = perfilProvedorGetter.byProvedorId(provedor.getId());
 
-        input.getPerfilProvedorInput().setIdProvedor(provedor.getId());
-        input.getPerfilProvedorInput().setIdAvaliacao(avaliacao.getId());
+        perfilProvedor.setProvedor(provedor);
+        perfilProvedor.setAvaliacao(avaliacao);
 
-        return this.update(input);
+        return repository.save(perfilProvedor);
     }
 }
