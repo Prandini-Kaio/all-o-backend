@@ -18,7 +18,7 @@ public class PerfilClienteOutput {
 
     private ClienteOuput cliente;
 
-    private String pathToImage;
+    private String imagemPerfil;
 
     private String nome;
 
