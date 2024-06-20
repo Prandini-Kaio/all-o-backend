@@ -5,6 +5,7 @@ package br.forsign.allo.cliente.model;
  * created 5/24/24
  */
 
+import br.forsign.allo.entidade.domain.Endereco;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import lombok.Data;
 
@@ -17,7 +18,7 @@ public class PerfilClienteOutput {
 
     private ClienteOuput cliente;
 
-    private String pathToImage;
+    private String imagemPerfil;
 
     private String nome;
 

@@ -1,5 +1,6 @@
 package br.forsign.allo.cliente.domain;
 
+import br.forsign.allo.entidade.domain.Endereco;
 import br.forsign.allo.entidade.domain.Entidade;
 import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.persistence.*;
@@ -28,6 +29,10 @@ public class Cliente extends Entidade {
             inverseJoinColumns = @JoinColumn(name = "PROVEDOR_ID")
     )
     private Set<Provedor> provedoresFavoritados;
+
+    @OneToOne
+    @JoinColumn(name = "ENDERECO_ID")
+    private Endereco endereco;
 
     @Column(name = "ATIVO")
     private boolean ativo;

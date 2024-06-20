@@ -9,8 +9,7 @@ import org.mapstruct.Mapping;
 public interface PerfilClienteMapper {
 
     @Mapping(target = "cliente.cpf", source = "cliente.cpfCnpj")
-    @Mapping(target = "email", source = "email")
-    PerfilClienteOutput toOuput(PerfilCliente perfilCliente);
+    PerfilClienteOutput toOutput(PerfilCliente perfilCliente);
 
     PerfilCliente fromOutput(PerfilClienteOutput perfilClienteOutput);
 }

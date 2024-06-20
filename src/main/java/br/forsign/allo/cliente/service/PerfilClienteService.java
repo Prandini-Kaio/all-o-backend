@@ -12,6 +12,7 @@ import br.forsign.allo.cliente.model.PerfilClienteOutput;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteCreator;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteGetter;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteUpdater;
+import br.forsign.allo.provedor.model.PerfilProvedorOutput;
 import jakarta.annotation.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,15 +33,19 @@ public class PerfilClienteService {
     @Resource
     private PerfilClienteMapper mapper;
 
+    public PerfilClienteOutput getByClienteId(Long idCliente){
+        return mapper.toOutput(getter.byClienteId(idCliente));
+    }
+
     public Page<PerfilClienteOutput> findAll(Pageable pageable){
-        return getter.findAll(pageable).map(mapper::toOuput);
+        return getter.findAll(pageable).map(mapper::toOutput);
     }
 
     public PerfilClienteOutput create(ClienteInput input, Cliente cliente){
-        return mapper.toOuput(creator.create(input, cliente));
+        return mapper.toOutput(creator.create(input, cliente));
     }
 
     public PerfilClienteOutput update(Cliente cliente){
-        return mapper.toOuput(updater.update(cliente));
+        return mapper.toOutput(updater.update(cliente));
     }
 }
