@@ -1,5 +1,7 @@
 package br.forsign.allo.cliente.model;
 
+import br.forsign.allo.entidade.domain.Endereco;
+import br.forsign.allo.entidade.model.EnderecoOutput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +25,8 @@ public class ClienteOuput {
     private String email;
 
     private String telefone;
+
+    private EnderecoOutput endereco;
 
     private Set<ProvedorOutput> favoritos;
 

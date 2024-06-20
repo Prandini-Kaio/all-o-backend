@@ -30,7 +30,7 @@ public class ProfissaoCreator {
         Profissao profissao = new Profissao();
 
         profissao.setNomeIcone(input.getNomeIcone());
-        profissao.setNome(input.getNome());
+        profissao.setNome(input.getNome().toLowerCase());
         profissao.setSuggestion(false);
         profissao.setAtivo(true);
 

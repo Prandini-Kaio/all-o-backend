@@ -12,6 +12,9 @@ import lombok.Data;
 @Data
 public class EnderecoInput {
 
+    @Schema(title = "Identificador", example = "0", description = "Idetificador único do endereço.")
+    private Long id;
+
     @NotBlank
     @Schema(example = "37706524", description = "CEP")
     private String cep;

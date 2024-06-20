@@ -5,6 +5,7 @@ import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.cliente.service.PerfilClienteService;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
+import br.forsign.allo.entidade.service.action.EnderecoCreator;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +24,9 @@ public class ClienteCreator {
     @Resource
     private PerfilClienteService perfilClienteService;
 
+    @Resource
+    private EnderecoCreator enderecoCreator;
+
     public Cliente create(ClienteInput input){
 
         validator.validarCreate(input);
@@ -32,6 +36,7 @@ public class ClienteCreator {
         cliente.setNome(input.getNome());
         cliente.setEmail(input.getEmail());
         cliente.setTelefone(input.getTelefone());
+        cliente.setEndereco(enderecoCreator.create(input.getEnderecoInput()));
         cliente.setCpfCnpj(CpfCnpjUtils.removeMascara(input.getCpfCnpj()));
         cliente.setProvedoresFavoritados(new HashSet<>());
         cliente.setAtivo(true);
