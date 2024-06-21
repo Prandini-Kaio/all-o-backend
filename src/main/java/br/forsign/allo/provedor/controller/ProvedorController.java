@@ -34,8 +34,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/provedor")
 @Tag(
@@ -170,4 +168,11 @@ public class ProvedorController {
             return ResponseEntity.badRequest().build();
         }
     }
+    @GetMapping("/getAvaliacoes")
+    @Operation(summary = "Retorna o total de avaliações",
+               description = "Retorna o total de avaliações de um provedor pelo ID")
+    public ResponseEntity<Integer> getTotalbyId(@RequestParam Long id){
+        return ResponseEntity.ok().body(service.getTotalAval(id));
+    }
+
 }
