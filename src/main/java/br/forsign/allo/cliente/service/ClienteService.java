@@ -13,7 +13,9 @@ import br.forsign.allo.cliente.service.actions.ClienteUpdater;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Set;
@@ -71,5 +73,13 @@ public class ClienteService {
 
     public ClienteOuput favoritar(Long idCliente, Long idProvedor) {
         return this.mapper.toOutput(this.updater.favoritar(idCliente, idProvedor));
+    }
+
+    public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename){
+        return getter.getImageByName(filename);
+    }
+
+    public String postImageCliente(MultipartFile file){
+        return updater.postImagemCliente(file);
     }
 }

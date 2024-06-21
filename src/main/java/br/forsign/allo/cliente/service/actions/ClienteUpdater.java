@@ -9,6 +9,12 @@ import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.UUID;
 
 @Component
 public class ClienteUpdater {
@@ -59,5 +65,34 @@ public class ClienteUpdater {
             cliente.getProvedoresFavoritados().add(provedor);
 
         return this.repository.save(cliente);
+    }
+
+    public String postImagemCliente(MultipartFile file) {
+        if (file.isEmpty()) {
+            return "";
+        }
+        try {
+            byte[] bytes = file.getBytes();
+
+            String directoryPath = "src/main/resources/images-cliente";
+            File directory = new File(directoryPath);
+
+            if (!directory.exists()) {
+                directory.mkdirs(); // Cria os diretórios se não existirem
+            }
+
+            UUID uuid = UUID.randomUUID();
+            var nameImage = uuid.toString() + '.' + file.getContentType().split("/")[1];
+            // Salva o arquivo no diretório especificado
+            File uploadedFile = new File(directory, nameImage);
+            try (FileOutputStream fos = new FileOutputStream(uploadedFile)) {
+                fos.write(bytes);
+            }
+
+            return nameImage;
+        } catch (IOException e) {
+            return "erro";
+        }
+
     }
 }
