@@ -23,7 +23,7 @@ public class ClienteUpdater {
     private ClienteValidator validator;
 
     @Resource
-    private PerfilClienteUpdater updater;
+    private PerfilClienteUpdater perfilClienteUpdater;
 
     @Resource
     private ProvedorGetter provedorGetter;
@@ -43,7 +43,7 @@ public class ClienteUpdater {
         cliente.setEndereco(enderecoUpdater.update(input.getEnderecoInput()));
         cliente.setAtivo(true);
 
-        updater.update(cliente);
+        perfilClienteUpdater.update(input);
 
         return repository.save(cliente);
     }
