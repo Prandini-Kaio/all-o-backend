@@ -93,9 +93,6 @@ public class ClienteController {
         try {
             byte[] bytes = file.getBytes();
 
-            //Teste
-            byte[] encodedBytes = Base64.encodeBase64("Test".getBytes(), true, true);
-
             String directoryPath = "images-cliente";
             File directory = new File(directoryPath);
 
@@ -127,7 +124,6 @@ public class ClienteController {
             // Verifica se o recurso existe e é acessível
             if (resource.exists() && resource.isReadable()) {
 
-                byte[] encodedBytes = Base64.encodeBase64(resource.getContentAsByteArray(), true, true);
 
                 // Retorna a resposta com o status OK e o recurso da imagem
                 return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
@@ -142,9 +138,6 @@ public class ClienteController {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
 
-        } catch (IOException e) {
-            // Tratamento de erro da codificação BASE64
-            throw new RuntimeException(e);
         }
     }
 }
