@@ -63,7 +63,7 @@ public class PerfilProvedorUpdater {
         List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(input.getId());
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
 
-        perfilProvedor.setTotalAvaliacao(getTotalAvaliacao(avaliacoesProvedor));
+        perfilProvedor.setTotalAvaliacao(getTotalAvaliacoes(avaliacoesProvedor));
 
 
         return perfilProvedor;
@@ -85,7 +85,7 @@ public class PerfilProvedorUpdater {
 
         return mediaAvaliacoes;
     }
-    private int getTotalAvaliacao(List<Avaliacao> avaliacoes){
+    private int getTotalAvaliacoes(List<Avaliacao> avaliacoes){
         return avaliacoes.size();
     }
 

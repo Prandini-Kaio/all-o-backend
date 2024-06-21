@@ -1,16 +1,24 @@
 package br.forsign.allo.provedor.service.action;
 
+import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import br.forsign.allo.profissao.converter.ProfissaoMapper;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+
+@Data
+@Getter
+@Setter
 
 @Component
 public class ProvedorGetter {
@@ -53,5 +61,9 @@ public class ProvedorGetter {
 
     public List<Provedor> byProfissao(Long idProfissao) {
         return repository.findByProfissoesId(idProfissao);
+    }
+
+    public int getTotalAvaliacao(List<Avaliacao> avaliacoes){
+        return avaliacoes.size();
     }
 }

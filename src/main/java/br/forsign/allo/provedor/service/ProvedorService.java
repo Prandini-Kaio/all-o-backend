@@ -1,6 +1,8 @@
 package br.forsign.allo.provedor.service;
 
 
+import br.forsign.allo.avaliacao.domain.Avaliacao;
+import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.provedor.converter.ProvedorConverter;
 import br.forsign.allo.provedor.converter.ProvedorMapper;
@@ -13,6 +15,9 @@ import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.provedor.service.action.ProvedorUpdater;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -23,6 +28,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Data
+@Getter
+@Setter
 @Service
 @CommonsLog
 public class ProvedorService {
@@ -47,6 +55,9 @@ public class ProvedorService {
 
     @Resource
     private ClienteGetter clienteGetter;
+
+    @Resource
+    private AvaliacaoRepository avaliacaoRepository;
 
     @Transactional
     public ProvedorOutput findById(Long id) {
@@ -107,5 +118,10 @@ public class ProvedorService {
         log.info("Deletando provedor no sistema.");
 
         deleter.byId(id);
+    }
+
+    @Transactional
+    public int getTotalAval(Long id){
+        return avaliacaoRepository.byProvedor(id).size();
     }
 }
