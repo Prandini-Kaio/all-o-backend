@@ -21,6 +21,7 @@ public class PerfilProvedorCreator {
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setMediaAvaliacao(0);
         perfilProvedor.setTempoCadastro(0);
+        perfilProvedor.setImagemPerfil(input.getPerfilImage());
         perfilProvedor.setNome(provedor.getRazaoSocial());
         perfilProvedor.setEmail(provedor.getEmail());
         perfilProvedor.setDescricao(input.getDescricao());
