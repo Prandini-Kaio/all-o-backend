@@ -85,59 +85,16 @@ public class ClienteController {
     }
 
     @PostMapping("/upload")
+    @Operation(summary = "Sobe uma imagem",
+               description = "Sobe uma imagem para um cliente.")
     public String handleFileUpload(@RequestParam("image") MultipartFile file) {
-        if (file.isEmpty()) {
-            return "";
-        }
-
-        try {
-            byte[] bytes = file.getBytes();
-
-            String directoryPath = "src/main/resources/images-cliente";
-            File directory = new File(directoryPath);
-
-            if (!directory.exists()) {
-                directory.mkdirs(); // Cria os diretórios se não existirem
-            }
-
-            UUID uuid = UUID.randomUUID();
-            var nameImage = uuid.toString() + '.' + file.getContentType().split("/")[1];
-            // Salva o arquivo no diretório especificado
-            File uploadedFile = new File(directory, nameImage);
-            try (FileOutputStream fos = new FileOutputStream(uploadedFile)) {
-                fos.write(bytes);
-            }
-
-            return nameImage;
-        } catch (IOException e) {
-            return "erro";
-        }
+        return service.postImageCliente(file);
     }
 
     @GetMapping("/buscarImagem")
+    @Operation(summary = "Busca uma imagem",
+               description = "Busca uma imagem pelo Nome.")
     public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
-        try {
-            // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
-            Path filePath = Paths.get("src/main/resources/images-cliente").resolve(fileName).normalize();
-            org.springframework.core.io.Resource resource = new UrlResource(filePath.toUri());
-
-            // Verifica se o recurso existe e é acessível
-            if (resource.exists() && resource.isReadable()) {
-
-
-                // Retorna a resposta com o status OK e o recurso da imagem
-                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                                "attachment; filename=\"" + resource.getFilename() + "\"")
-                        .body(resource);
-            } else {
-                // Caso a imagem não seja encontrada, retorna um status de não encontrado (404)
-                return ResponseEntity.notFound().build();
-            }
-        } catch (MalformedURLException e) {
-            // Tratamento de erro se ocorrer uma URL malformada
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
-
-        }
+        return service.getImage(fileName);
     }
 }
