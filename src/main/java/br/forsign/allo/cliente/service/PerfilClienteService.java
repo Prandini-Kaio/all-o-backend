@@ -28,7 +28,7 @@ public class PerfilClienteService {
     private PerfilClienteCreator creator;
 
     @Resource
-    private PerfilClienteUpdater updater;
+    private PerfilClienteUpdater perfilClienteUpdater;
 
     @Resource
     private PerfilClienteMapper mapper;
@@ -45,7 +45,7 @@ public class PerfilClienteService {
         return mapper.toOutput(creator.create(input, cliente));
     }
 
-    public PerfilClienteOutput update(Cliente cliente){
-        return mapper.toOutput(updater.update(cliente));
+    public PerfilClienteOutput update(ClienteInput input){
+        return mapper.toOutput(perfilClienteUpdater.update(input));
     }
 }

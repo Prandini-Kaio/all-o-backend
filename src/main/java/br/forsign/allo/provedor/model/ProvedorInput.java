@@ -28,8 +28,6 @@ public class ProvedorInput extends EntidadeInput {
     @NotNull
     private List<Long> idProfissoes;
 
-    private String perfilImagem;
-
     private List<String> servicoImagens;
 
     private PerfilProvedorInput perfilProvedorInput;
