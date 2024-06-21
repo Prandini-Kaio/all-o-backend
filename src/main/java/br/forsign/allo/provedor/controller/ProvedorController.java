@@ -125,7 +125,7 @@ public class ProvedorController {
         try {
             byte[] bytes = file.getBytes();
 
-            String directoryPath = "images-provedor";
+            String directoryPath = "src/main/resources/images-provedor";
             File directory = new File(directoryPath);
             if (!directory.exists()) {
                 directory.mkdirs(); // Cria os diretórios se não existirem
@@ -149,7 +149,7 @@ public class ProvedorController {
     public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
         try {
             // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
-            Path filePath = Paths.get("images-provedor").resolve(fileName).normalize();
+            Path filePath = Paths.get("src/main/resources/images-provedor").resolve(fileName).normalize();
             org.springframework.core.io.Resource resource = new UrlResource(filePath.toUri());
 
             // Verifica se o recurso existe e é acessível
