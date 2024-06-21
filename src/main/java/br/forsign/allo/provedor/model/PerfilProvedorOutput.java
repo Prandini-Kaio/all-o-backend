@@ -17,9 +17,9 @@ public class PerfilProvedorOutput {
 
     private float mediaAvaliacao;
 
-    private int tempoCadastro;
+    private String imagemPerfil;
 
-    private String pathToImage;
+    private int tempoCadastro;
 
     private String nome;
 

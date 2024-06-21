@@ -9,6 +9,7 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.hibernate.id.GUIDGenerator;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +23,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
-
 @RestController
 @RequestMapping("/cliente")
 @Tag(name = "Cliente")
@@ -35,7 +35,7 @@ public class ClienteController {
     @Operation(
             summary = "Consulta todos os clientes.",
             description = "Consulta todos os cientes cadastrador e ativos.")
-    private ResponseEntity<List<ClienteOuput>> findAll(){
+    private ResponseEntity<List<ClienteOuput>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
     }
 
@@ -43,7 +43,7 @@ public class ClienteController {
     @Operation(
             summary = "Consulta o cliente por id.",
             description = "Consulta o ciente cadastrado e ativo.")
-    private ResponseEntity<ClienteOuput> findById(@PathVariable Long id){
+    private ResponseEntity<ClienteOuput> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
@@ -51,7 +51,7 @@ public class ClienteController {
     @Operation(
             summary = "Cria um novo cliente.",
             description = "Cria um novo cliente e cadastra na base.")
-    public ResponseEntity<ClienteOuput> create(@RequestBody @Valid ClienteInput input){
+    public ResponseEntity<ClienteOuput> create(@RequestBody @Valid ClienteInput input) {
         return ResponseEntity.ok().body(service.create(input));
     }
 
@@ -59,7 +59,7 @@ public class ClienteController {
     @Operation(
             summary = "Atualiza um cliente",
             description = "Atualiza um cliente previamente cadastrado.")
-    public ResponseEntity<ClienteOuput> update(@RequestBody @Valid ClienteInput inputDTO){
+    public ResponseEntity<ClienteOuput> update(@RequestBody @Valid ClienteInput inputDTO) {
         return ResponseEntity.ok().body(service.update(inputDTO));
     }
 
@@ -67,7 +67,7 @@ public class ClienteController {
     @Operation(
             summary = "Desativa um cliente",
             description = "Desativa um cliente previamente cadastrado.")
-    public ResponseEntity delById(@PathVariable Long id){
+    public ResponseEntity delById(@PathVariable Long id) {
         this.service.delete(id);
         return ResponseEntity.ok().build();
     }
@@ -79,7 +79,7 @@ public class ClienteController {
     public ResponseEntity<ClienteOuput> favoritar(
             @RequestParam Long idCliente,
             @RequestParam Long idProvedor
-    ){
+    ) {
         return ResponseEntity.ok().body(service.favoritar(idCliente, idProvedor));
     }
 
@@ -99,15 +99,16 @@ public class ClienteController {
             }
 
             UUID uuid = UUID.randomUUID();
+            var nameImage = uuid.toString() + '.' + file.getContentType().split("/")[1];
             // Salva o arquivo no diretório especificado
-            File uploadedFile = new File(directory, uuid.toString());
+            File uploadedFile = new File(directory, nameImage);
             try (FileOutputStream fos = new FileOutputStream(uploadedFile)) {
                 fos.write(bytes);
             }
 
-            return uuid.toString();
+            return nameImage;
         } catch (IOException e) {
-            return "";
+            return "erro";
         }
     }
 
@@ -121,7 +122,9 @@ public class ClienteController {
             // Verifica se o recurso existe e é acessível
             if (resource.exists() && resource.isReadable()) {
                 // Retorna a resposta com o status OK e o recurso da imagem
-                return ResponseEntity.ok().body(resource);
+                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                                "attachment; filename=\"" + resource.getFilename() + "\"")
+                        .body(resource);
             } else {
                 // Caso a imagem não seja encontrada, retorna um status de não encontrado (404)
                 return ResponseEntity.notFound().build();
