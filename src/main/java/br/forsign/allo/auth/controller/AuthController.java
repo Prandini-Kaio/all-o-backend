@@ -2,9 +2,11 @@ package br.forsign.allo.auth.controller;
 
 import br.forsign.allo.auth.model.AuthInput;
 import br.forsign.allo.auth.model.RegisterInput;
+import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.config.TokenService;
 import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.repository.UsuarioRepository;
+import br.forsign.allo.usuario.service.UsuarioService;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -32,29 +34,20 @@ public class AuthController {
     private UsuarioRepository repository;
 
     @Resource
+    private AuthService service;
+
+    @Resource
     private TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthInput input) {
-
-        var usernamePass = new UsernamePasswordAuthenticationToken(input.getLogin(), input.getSenha());
-        var auth = this.authenticationManager.authenticate(usernamePass);
-
-        String token = tokenService.generateToken((Usuario) auth.getPrincipal());
-
-        return ResponseEntity.ok().body(token);
+    public ResponseEntity<String> login(@RequestBody @Valid AuthInput input) {
+        return ResponseEntity.ok().body(this.service.login(input));
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterInput input) {
+    public ResponseEntity<Void> register(@RequestBody @Valid RegisterInput input) {
 
-        if(repository.findByLogin(input.login()) != null)
-            return ResponseEntity.badRequest().build();
-
-        String encodedPassword = new BCryptPasswordEncoder().encode(input.senha());
-        Usuario usuario = new Usuario(input.login(), encodedPassword, input.role());
-
-        this.repository.save(usuario);
+        this.service.register(input);
 
         return ResponseEntity.ok().build();
     }
