@@ -22,7 +22,7 @@ public class PerfilClienteGetter {
     @Resource
     private PerfilClienteRepository repository;
 
-    public PerfilCliente byCliente(Long idCliente) {
+    public PerfilCliente byClienteId(Long idCliente) {
         return repository.findByIdCliente(idCliente).orElseThrow(CommonExceptionSupplier.naoEncontrado("PerfilCliente", idCliente));
     }
 

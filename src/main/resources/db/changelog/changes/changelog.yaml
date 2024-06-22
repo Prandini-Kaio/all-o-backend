@@ -2,6 +2,9 @@ databaseChangeLog:
   - include:
       file: initial-schema.yaml
       relativeToChangelogFile: true
-  - include:
-      file: dev-kaio.yaml
-      relativeToChangelogFile: true
+#  - include:
+#      file: dudu-a.yaml
+#      relativeToChangelogFile: true
+#  - include:
+#      file: dudu-b.yaml
+#      relativeToChangelogFile: true

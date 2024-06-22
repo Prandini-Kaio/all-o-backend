@@ -1,0 +1,105 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1717105050792-1
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROFISSAO_PALAVRAS_CHAVE
+            constraintName: FK24LHSHQHB0NYOUQWYDNP1FFRN
+  - changeSet:
+      id: 1717105050792-2
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: CLIENTE_PROVEDOR_FAVORITO
+            constraintName: FKBY8KH6DPMCJ2GVIHXUH7UL5LC
+  - changeSet:
+      id: 1717105050792-3
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PERFIL_CLIENTE
+            constraintName: FKKFS2LVKESXXBQYQ6YER9U7KA0
+  - changeSet:
+      id: 1717105050792-4
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: CLIENTE_PROVEDOR_FAVORITO
+            constraintName: FKKLTFLPIT07SDQ3K2AH1PUSI5R
+  - changeSet:
+      id: 1717105050792-5
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: AVALIACAO
+            constraintName: FKMIAQUSEKG7E9HRV7OI5LL6VGF
+  - changeSet:
+      id: 1717105050792-6
+      author: prandini (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: AVALIACAO
+            constraintName: FKPOGWYPJ6DQ5O1P5VU3Q31LIFM
+  - changeSet:
+      id: 1717105050792-7
+      author: prandini (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_AYEC3HSAMY3TVRS4YROU31B86
+            tableName: PERFIL_CLIENTE
+  - changeSet:
+      id: 1717105050792-8
+      author: prandini (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_DPHC372R9R73N6XQ8YHJI5HKI
+            tableName: CLIENTE_PROVEDOR_FAVORITO
+  - changeSet:
+      id: 1717105050792-9
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: AVALIACAO
+  - changeSet:
+      id: 1717105050792-10
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: CLIENTE
+  - changeSet:
+      id: 1717105050792-11
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: CLIENTE_PROVEDOR_FAVORITO
+  - changeSet:
+      id: 1717105050792-12
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: PERFIL_CLIENTE
+  - changeSet:
+      id: 1717105050792-13
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: PROFISSAO
+  - changeSet:
+      id: 1717105050792-14
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: PROFISSAO_PALAVRAS_CHAVE
+  - changeSet:
+      id: 1717105050792-15
+      author: prandini (generated)
+      changes:
+        - dropTable:
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1717105050792-16
+      author: prandini (generated)
+      changes:
+        - dropSequence:
+            sequenceName: SEQ_PRFL

@@ -20,15 +20,11 @@ public class Profissao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "NOME")
     private String nome;
 
+    @Column(name = "NOME_ICONE")
     private String nomeIcone;
-
-    @Enumerated
-    private ProfissaoCategoriaEnum categoria;
-
-    @ElementCollection
-    private Set<String> palavrasChave;
 
     private boolean suggestion;
 

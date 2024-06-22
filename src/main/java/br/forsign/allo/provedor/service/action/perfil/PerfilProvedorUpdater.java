@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.service.action.perfil;
 
 import br.forsign.allo.avaliacao.domain.Avaliacao;
+import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoGetter;
 import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.domain.PerfilProvedor;
@@ -32,10 +33,16 @@ public class PerfilProvedorUpdater {
     private ProvedorGetter provedorGetter;
 
     @Resource
+    private PerfilProvedorGetter perfilProvedorGetter;
+
+    @Resource
     private PerfilProvedorMapper mapper;
 
     @Resource
     private AvaliacaoGetter avaliacaoGetter;
+
+    @Resource
+    private AvaliacaoRepository avaliacaoRepository;
 
     public PerfilProvedor update(ProvedorInput input){
 
@@ -52,16 +59,15 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setImagemPerfil(input.getPerfilProvedorInput().getPerfilImage());
 
         perfilProvedor.setProvedor(provedor);
-        perfilProvedor.setAvaliacao(avaliacao);
+
+        if (!avaliacaoRepository.byProvedor(provedor.getId()).isEmpty())
+            perfilProvedor.setAvaliacao(avaliacao);
 
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setTempoCadastro(Period.between(provedor.getDtRegistro(), LocalDate.now()).getYears());
 
         List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(input.getId());
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
-
-        perfilProvedor.setTotalAvaliacao(getTotalAvaliacao(avaliacoesProvedor));
-
 
         return perfilProvedor;
     }
@@ -82,20 +88,17 @@ public class PerfilProvedorUpdater {
 
         return mediaAvaliacoes;
     }
-    private int getTotalAvaliacao(List<Avaliacao> avaliacoes){
-        return avaliacoes.size();
-    }
 
     public PerfilProvedor destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
         Provedor provedor = provedorGetter.byId(idProvedor);
 
         Avaliacao avaliacao = avaliacaoGetter.byId(idAvaliacao);
 
-        ProvedorInput input = new ProvedorInput();
+        PerfilProvedor perfilProvedor = perfilProvedorGetter.byProvedorId(provedor.getId());
 
-        input.getPerfilProvedorInput().setIdProvedor(provedor.getId());
-        input.getPerfilProvedorInput().setIdAvaliacao(avaliacao.getId());
+        perfilProvedor.setProvedor(provedor);
+        perfilProvedor.setAvaliacao(avaliacao);
 
-        return this.update(input);
+        return repository.save(perfilProvedor);
     }
 }

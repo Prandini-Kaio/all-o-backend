@@ -3,8 +3,8 @@ package br.forsign.allo.handler;
 import br.forsign.allo.common.error.BusinessException;
 import br.forsign.allo.common.error.rest.APIErrorResponse;
 import jakarta.persistence.EntityNotFoundException;
-import liquibase.util.StringUtil;
 import lombok.extern.apachecommons.CommonsLog;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -20,8 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-
-import static org.apache.commons.collections4.CollectionUtils.isEmpty;
 
 /**
  * @author kaiooliveira
@@ -111,7 +109,7 @@ public class ControllerExceptionHandler {
     }
 
     private List<String> getMethodArgumentNotValidMessage(HttpStatus status, MethodArgumentNotValidException e, WebRequest request) {
-        if (isEmpty(e.getBindingResult().getFieldErrors())) {
+        if (StringUtils.isEmpty(e.getBindingResult().getFieldErrors ().toString())) {
             return new ArrayList<>();
         }
         return e.getBindingResult()
@@ -132,13 +130,13 @@ public class ControllerExceptionHandler {
 
     private static String formatError(FieldError error) {
         StringBuilder builder = new StringBuilder();
-        if(!StringUtil.isEmpty(error.getDefaultMessage())){
+        if(!StringUtils.isEmpty(error.getDefaultMessage())){
             builder.append(error.getDefaultMessage());
         }
-        if(!StringUtil.isEmpty(error.getField())){
+        if(!StringUtils.isEmpty(error.getField())){
             builder.append(" - ").append(error.getField());
         }
-        if(error.getRejectedValue() != null && !StringUtil.isEmpty(error.getRejectedValue().toString())){
+        if(error.getRejectedValue() != null && !StringUtils.isEmpty(error.getRejectedValue().toString())){
             builder.append(" - ").append(error.getRejectedValue());
         }
         return builder.toString();
