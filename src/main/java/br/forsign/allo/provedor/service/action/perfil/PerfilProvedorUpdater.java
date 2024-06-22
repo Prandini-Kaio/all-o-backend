@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.service.action.perfil;
 
 import br.forsign.allo.avaliacao.domain.Avaliacao;
+import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoGetter;
 import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.domain.PerfilProvedor;
@@ -40,6 +41,9 @@ public class PerfilProvedorUpdater {
     @Resource
     private AvaliacaoGetter avaliacaoGetter;
 
+    @Resource
+    private AvaliacaoRepository avaliacaoRepository;
+
     public PerfilProvedor update(ProvedorInput input){
 
         log.info(String.format("Atualizando perfil do Provedor com id %s.", input.getId()));
@@ -55,16 +59,15 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setImagemPerfil(input.getPerfilProvedorInput().getPerfilImage());
 
         perfilProvedor.setProvedor(provedor);
-        perfilProvedor.setAvaliacao(avaliacao);
+
+        if (!avaliacaoRepository.byProvedor(provedor.getId()).isEmpty())
+            perfilProvedor.setAvaliacao(avaliacao);
 
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setTempoCadastro(Period.between(provedor.getDtRegistro(), LocalDate.now()).getYears());
 
         List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(input.getId());
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
-
-        perfilProvedor.setTotalAvaliacao(getTotalAvaliacoes(avaliacoesProvedor));
-
 
         return perfilProvedor;
     }
@@ -84,9 +87,6 @@ public class PerfilProvedorUpdater {
         }
 
         return mediaAvaliacoes;
-    }
-    private int getTotalAvaliacoes(List<Avaliacao> avaliacoes){
-        return avaliacoes.size();
     }
 
     public PerfilProvedor destacarAvaliacao(Long idProvedor, Long idAvaliacao) {

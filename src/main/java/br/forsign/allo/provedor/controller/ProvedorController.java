@@ -8,11 +8,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,14 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/provedor")
@@ -119,8 +110,9 @@ public class ProvedorController {
     @PostMapping("/upload")
     @Operation(summary = "Sobe uma imagem",
                description = "Sobe uma imagem para um provedor")
-    public String handleFileUpload(@RequestParam("image") MultipartFile file) {
-        return service.postImageProvedor(file);
+    public ResponseEntity handleFileUpload(@RequestParam("image") MultipartFile file) {
+        this.service.postImage(file);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/buscarImagem")
@@ -136,6 +128,4 @@ public class ProvedorController {
     public ResponseEntity<Integer> getTotalbyId(@RequestParam Long id){
         return ResponseEntity.ok().body(service.getTotalAval(id));
     }
-
-
 }

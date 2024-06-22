@@ -4,6 +4,7 @@ import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteUpdater;
+import br.forsign.allo.common.utils.ImageUtils;
 import br.forsign.allo.entidade.service.action.EnderecoUpdater;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
@@ -68,31 +69,6 @@ public class ClienteUpdater {
     }
 
     public String postImagemCliente(MultipartFile file) {
-        if (file.isEmpty()) {
-            return "";
-        }
-        try {
-            byte[] bytes = file.getBytes();
-
-            String directoryPath = "src/main/resources/images-cliente";
-            File directory = new File(directoryPath);
-
-            if (!directory.exists()) {
-                directory.mkdirs(); // Cria os diretórios se não existirem
-            }
-
-            UUID uuid = UUID.randomUUID();
-            var nameImage = uuid.toString() + '.' + file.getContentType().split("/")[1];
-            // Salva o arquivo no diretório especificado
-            File uploadedFile = new File(directory, nameImage);
-            try (FileOutputStream fos = new FileOutputStream(uploadedFile)) {
-                fos.write(bytes);
-            }
-
-            return nameImage;
-        } catch (IOException e) {
-            return "erro";
-        }
-
+        return ImageUtils.saveImageFile(file, "images-cliente");
     }
 }
