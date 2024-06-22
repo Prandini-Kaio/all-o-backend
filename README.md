@@ -22,8 +22,10 @@ dos end-points sem o frontend, a instalação de um software como **Postman** e 
 
 # Perfis - EM DESENVOLVIMENTO
 
-Alguns perfis do spring podem ser alterados a depender de como quer que sua aplicação suba. Temos um peril para um banco H2,
- postgres e outros, por isso é separado esses perfis. Os perfis podem ser alterados no application.properties principal do sistema, em spring.profiles.active.
+O perfil ativo determina como a aplicação será iniciada. Descrição breve sobre cada perfil:
+
+db-h2 - Banco de dados temporario, ignora validações gerais de banco e não é persistente.
+db-local - Banco de dados local (postgresql), segue validações do liquibase.
 
 # Tecnologias Usadas
 

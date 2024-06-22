@@ -1,7 +1,6 @@
 package br.forsign.allo.provedor.service;
 
 
-import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.provedor.converter.ProvedorConverter;
@@ -19,18 +18,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -136,7 +129,7 @@ public class ProvedorService {
         return getter.getImageByName(filename);
     }
 
-    public String postImageProvedor(MultipartFile file){
+    public String postImage(MultipartFile file){
         return updater.postImagemProvedor(file);
     }
 

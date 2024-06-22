@@ -2,6 +2,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-1
       author: prandini (generated)
+      preConditions:
+        - not:
+            - sequenceExists:
+                sequenceName: SEQ_PRFL
       changes:
         - createSequence:
             sequenceName: SEQ_PRFL
@@ -9,6 +13,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-2
       author: prandini (generated)
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: AVALIACAO
       changes:
         - createTable:
             columns:
@@ -39,6 +47,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-3
       author: prandini (generated)
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: CLIENTE
       changes:
         - createTable:
             columns:
@@ -69,6 +81,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-4
       author: prandini (generated)
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: CLIENTE_PROVEDOR_FAVORITO
       changes:
         - createTable:
             columns:
@@ -90,6 +106,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-5
       author: prandini (generated)
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: PERFIL_CLIENTE
       changes:
         - createTable:
             columns:
@@ -116,6 +136,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-6
       author: prandini (generated)
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: PROFISSAO
       changes:
         - createTable:
             columns:
@@ -148,6 +172,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-7
       author: prandini (generated)
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: PROFISSAO_PALAVRAS_CHAVE
       changes:
         - createTable:
             columns:
@@ -163,6 +191,10 @@ databaseChangeLog:
   - changeSet:
       id: 1717104651194-8
       author: prandini (generated)
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: PROVEDOR
       changes:
         - createTable:
             columns:
@@ -211,134 +243,4 @@ databaseChangeLog:
             columnNames: PROVEDOR_ID
             constraintName: UK_DPHC372R9R73N6XQ8YHJI5HKI
             tableName: CLIENTE_PROVEDOR_FAVORITO
-  - changeSet:
-      id: 1717104651194-11
-      author: prandini (generated)
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: PROFISSAO_ID
-            indexName: FK24LHSHQHB0NYOUQWYDNP1FFRN_INDEX_5
-            tableName: PROFISSAO_PALAVRAS_CHAVE
-  - changeSet:
-      id: 1717104651194-12
-      author: prandini (generated)
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: CLIENTE_ID
-            indexName: FKKLTFLPIT07SDQ3K2AH1PUSI5R_INDEX_1
-            tableName: CLIENTE_PROVEDOR_FAVORITO
-  - changeSet:
-      id: 1717104651194-13
-      author: prandini (generated)
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: PROVEDOR_ID
-            indexName: FKMIAQUSEKG7E9HRV7OI5LL6VGF_INDEX_7
-            tableName: AVALIACAO
-  - changeSet:
-      id: 1717104651194-14
-      author: prandini (generated)
-      changes:
-        - createIndex:
-            columns:
-              - column:
-                  name: CLIENTE_ID
-            indexName: FKPOGWYPJ6DQ5O1P5VU3Q31LIFM_INDEX_7
-            tableName: AVALIACAO
-  - changeSet:
-      id: 1717104651194-15
-      author: prandini (generated)
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: PROFISSAO_ID
-            baseTableName: PROFISSAO_PALAVRAS_CHAVE
-            constraintName: FK24LHSHQHB0NYOUQWYDNP1FFRN
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: RESTRICT
-            onUpdate: RESTRICT
-            referencedColumnNames: ID
-            referencedTableName: PROFISSAO
-            validate: true
-  - changeSet:
-      id: 1717104651194-16
-      author: prandini (generated)
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: PROVEDOR_ID
-            baseTableName: CLIENTE_PROVEDOR_FAVORITO
-            constraintName: FKBY8KH6DPMCJ2GVIHXUH7UL5LC
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: RESTRICT
-            onUpdate: RESTRICT
-            referencedColumnNames: ID
-            referencedTableName: PROVEDOR
-            validate: true
-  - changeSet:
-      id: 1717104651194-17
-      author: prandini (generated)
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: CLIENTE_ID
-            baseTableName: PERFIL_CLIENTE
-            constraintName: FKKFS2LVKESXXBQYQ6YER9U7KA0
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: RESTRICT
-            onUpdate: RESTRICT
-            referencedColumnNames: ID
-            referencedTableName: CLIENTE
-            validate: true
-  - changeSet:
-      id: 1717104651194-18
-      author: prandini (generated)
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: CLIENTE_ID
-            baseTableName: CLIENTE_PROVEDOR_FAVORITO
-            constraintName: FKKLTFLPIT07SDQ3K2AH1PUSI5R
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: RESTRICT
-            onUpdate: RESTRICT
-            referencedColumnNames: ID
-            referencedTableName: CLIENTE
-            validate: true
-  - changeSet:
-      id: 1717104651194-19
-      author: prandini (generated)
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: PROVEDOR_ID
-            baseTableName: AVALIACAO
-            constraintName: FKMIAQUSEKG7E9HRV7OI5LL6VGF
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: RESTRICT
-            onUpdate: RESTRICT
-            referencedColumnNames: ID
-            referencedTableName: PROVEDOR
-            validate: true
-  - changeSet:
-      id: 1717104651194-20
-      author: prandini (generated)
-      changes:
-        - addForeignKeyConstraint:
-            baseColumnNames: CLIENTE_ID
-            baseTableName: AVALIACAO
-            constraintName: FKPOGWYPJ6DQ5O1P5VU3Q31LIFM
-            deferrable: false
-            initiallyDeferred: false
-            onDelete: RESTRICT
-            onUpdate: RESTRICT
-            referencedColumnNames: ID
-            referencedTableName: CLIENTE
-            validate: true
 
