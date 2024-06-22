@@ -21,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/provedor")
@@ -43,16 +46,14 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @GetMapping("/{idProfissao}")
+    @GetMapping("/filter/profissao")
     @Operation(
             summary = "Retorna todos os prestadores de uma profissão.",
             description = "Retorna todos os prestadores ativos de uma profissão."
     )
-    public ResponseEntity<Page<ProvedorOutput>> getByProfissao(
-            @PathVariable Long idProfissao,
-            @PageableDefault(size = 15) Pageable pageable){
+    public ResponseEntity<List<ProvedorOutput>> getByProfissao(@RequestParam Long idProfissao){
 
-        return ResponseEntity.ok().body(service.findByProfissao(idProfissao, pageable));
+        return ResponseEntity.ok().body(service.findByProfissao(idProfissao));
     }
 
     @GetMapping("/filter")
@@ -101,8 +102,30 @@ public class ProvedorController {
             summary = "Deleta um prestador.",
             description = "Deleta um prestador previamente cadastrado, com base no identificador de cadastro."
     )
-    public ResponseEntity<Void> delById(@PathVariable Long id){
+    public ResponseEntity delById(@PathVariable Long id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/upload")
+    @Operation(summary = "Sobe uma imagem",
+               description = "Sobe uma imagem para um provedor")
+    public ResponseEntity handleFileUpload(@RequestParam("image") MultipartFile file) {
+        this.service.postImage(file);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/buscarImagem")
+    @Operation(summary = "Busca uma imagem",
+               description = "Busca uma imagem pelo Nome.")
+    public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
+        return service.getImage(fileName);
+    }
+  
+    @GetMapping("/getAvaliacoes")
+    @Operation(summary = "Retorna o total de avaliações",
+               description = "Retorna o total de avaliações de um provedor pelo ID")
+    public ResponseEntity<Integer> getTotalbyId(@RequestParam Long id){
+        return ResponseEntity.ok().body(service.getTotalAval(id));
     }
 }

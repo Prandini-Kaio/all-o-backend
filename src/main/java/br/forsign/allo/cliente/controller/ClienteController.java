@@ -7,11 +7,22 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.hibernate.id.GUIDGenerator;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/cliente")
@@ -25,7 +36,7 @@ public class ClienteController {
     @Operation(
             summary = "Consulta todos os clientes.",
             description = "Consulta todos os cientes cadastrador e ativos.")
-    private ResponseEntity<List<ClienteOuput>> findAll(){
+    private ResponseEntity<List<ClienteOuput>> findAll() {
         return ResponseEntity.ok().body(service.findAll());
     }
 
@@ -33,7 +44,7 @@ public class ClienteController {
     @Operation(
             summary = "Consulta o cliente por id.",
             description = "Consulta o ciente cadastrado e ativo.")
-    private ResponseEntity<ClienteOuput> findById(@PathVariable Long id){
+    private ResponseEntity<ClienteOuput> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
@@ -41,7 +52,7 @@ public class ClienteController {
     @Operation(
             summary = "Cria um novo cliente.",
             description = "Cria um novo cliente e cadastra na base.")
-    public ResponseEntity<ClienteOuput> create(@RequestBody @Valid ClienteInput input){
+    public ResponseEntity<ClienteOuput> create(@RequestBody @Valid ClienteInput input) {
         return ResponseEntity.ok().body(service.create(input));
     }
 
@@ -49,7 +60,7 @@ public class ClienteController {
     @Operation(
             summary = "Atualiza um cliente",
             description = "Atualiza um cliente previamente cadastrado.")
-    public ResponseEntity<ClienteOuput> update(@RequestBody @Valid ClienteInput inputDTO){
+    public ResponseEntity<ClienteOuput> update(@RequestBody @Valid ClienteInput inputDTO) {
         return ResponseEntity.ok().body(service.update(inputDTO));
     }
 
@@ -57,7 +68,7 @@ public class ClienteController {
     @Operation(
             summary = "Desativa um cliente",
             description = "Desativa um cliente previamente cadastrado.")
-    public ResponseEntity delById(@PathVariable Long id){
+    public ResponseEntity delById(@PathVariable Long id) {
         this.service.delete(id);
         return ResponseEntity.ok().build();
     }
@@ -69,7 +80,21 @@ public class ClienteController {
     public ResponseEntity<ClienteOuput> favoritar(
             @RequestParam Long idCliente,
             @RequestParam Long idProvedor
-    ){
+    ) {
         return ResponseEntity.ok().body(service.favoritar(idCliente, idProvedor));
+    }
+
+    @PostMapping("/upload")
+    @Operation(summary = "Sobe uma imagem",
+               description = "Sobe uma imagem para um cliente.")
+    public String handleFileUpload(@RequestParam("image") MultipartFile file) {
+        return service.postImageCliente(file);
+    }
+
+    @GetMapping("/buscarImagem")
+    @Operation(summary = "Busca uma imagem",
+               description = "Busca uma imagem pelo Nome.")
+    public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
+        return service.getImage(fileName);
     }
 }

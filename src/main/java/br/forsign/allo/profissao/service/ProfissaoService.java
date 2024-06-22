@@ -19,6 +19,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 @Service
 @CommonsLog
 public class ProfissaoService {
@@ -36,6 +38,10 @@ public class ProfissaoService {
         log.info("Iniciando consulta de todas as profissões ativas do sistema.");
 
         return getter.findAll(pageable).map(mapper::toOutput);
+    }
+
+    public List<ProfissaoOutput> findByFilter(String profissao) {
+        return getter.findByFilter(profissao).stream().map(mapper::toOutput).toList();
     }
 
     public ProfissaoOutput findById(Long id) {
