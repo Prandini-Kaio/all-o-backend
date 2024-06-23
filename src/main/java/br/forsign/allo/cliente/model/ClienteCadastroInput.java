@@ -2,6 +2,7 @@ package br.forsign.allo.cliente.model;
 
 import br.forsign.allo.auth.model.AuthInput;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -16,5 +17,6 @@ public class ClienteCadastroInput {
     private AuthInput usuario;
 
     @Valid
+    @NotNull
     private ClienteInput cliente;
 }
