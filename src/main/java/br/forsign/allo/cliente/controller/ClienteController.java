@@ -89,7 +89,6 @@ public class ClienteController {
     @PostMapping("/upload")
     @Operation(summary = "Sobe uma imagem",
                description = "Sobe uma imagem para um cliente.")
-    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public String handleFileUpload(@RequestParam("image") MultipartFile file) {
         return service.postImageCliente(file);
     }
