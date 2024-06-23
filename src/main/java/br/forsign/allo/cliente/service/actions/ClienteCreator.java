@@ -40,7 +40,7 @@ public class ClienteCreator {
 
     public Cliente create(ClienteCadastroInput clienteInput){
         logger.info("Criando um novo cliente {}.", clienteInput.getCliente().getNome());
-git
+
         ClienteInput input = clienteInput.getCliente();
 
         validator.validarCreate(input);
