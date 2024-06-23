@@ -1,6 +1,7 @@
 package br.forsign.allo.auth.model;
 
-import jakarta.validation.constraints.NotBlank;
+import br.forsign.allo.provedor.model.ProvedorInput;
+import br.forsign.allo.usuario.domain.UsuarioRole;
 import lombok.Data;
 
 /**
@@ -11,10 +12,12 @@ import lombok.Data;
 @Data
 public class AuthInput {
 
-    @NotBlank
     private String login;
 
-    @NotBlank
     private String senha;
+
+    private UsuarioRole role;
+
+    private ProvedorInput provedorInput;
 
 }
