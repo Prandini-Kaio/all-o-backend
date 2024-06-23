@@ -1,19 +1,18 @@
 package br.forsign.allo.servico;
 
+import br.forsign.allo.servico.model.ServicoConfirmacaoInput;
 import br.forsign.allo.servico.model.ServicoInput;
 import br.forsign.allo.servico.model.ServicoOutput;
 import br.forsign.allo.servico.service.ServicoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.RolesAllowed;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author kaiooliveira
@@ -22,6 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/servico")
+@Tag(
+        name = "Servico",
+        description = "Endpoints relacionados aos serviços.")
 public class ServicoController {
 
     @Resource
@@ -43,8 +45,8 @@ public class ServicoController {
             description = "Confirmação de Serviço entre Cliente e Provedor"
     )
     @PreAuthorize("hasRole('ROLE_PROVEDOR')")
-    public ResponseEntity<ServicoOutput> confirmarServico(@RequestParam("idServico") Long idServico){
-        return ResponseEntity.ok().body(service.confirmarServico(idServico));
+    public ResponseEntity<ServicoOutput> confirmarServico(@RequestBody ServicoConfirmacaoInput servicoInput){
+        return ResponseEntity.ok().body(service.confirmarServico(servicoInput.getId(), servicoInput.getConfirmado()));
     }
 
     @PutMapping("/avaliar")
@@ -55,5 +57,17 @@ public class ServicoController {
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<ServicoOutput> avaliarServico(@RequestBody ServicoInput input){
         return ResponseEntity.ok().body(service.avaliarServico(input));
+    }
+
+    @GetMapping("/naoVistoPeloProvedor")
+    @PreAuthorize("hasRole('ROLE_PROVEDOR')")
+    public List<ServicoOutput> findByNaoVistoPeloProvedor() {
+        return service.findByNaoVistoPeloProvedor();
+    }
+
+    @GetMapping("/naoVistoPeloCliente")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
+    public List<ServicoOutput> findByNaoVistoPeloCliente() {
+        return service.findByNaoVistoPeloCliente();
     }
 }
