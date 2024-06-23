@@ -48,10 +48,10 @@ public class ProfissaoGetter {
         return repository.findByFilter(profissao.toLowerCase());
     }
 
-    public Page<Profissao> findAll(Pageable pageable){
+    public List<Profissao> findAll(){
         log.info("Consultando todas as profissões ativas do sistema.");
 
-        return repository.findAtivos(pageable);
+        return repository.findAtivos();
     }
 
     public boolean existsByNome(String nome) {
