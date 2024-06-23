@@ -5,14 +5,21 @@ import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.ProvedorService;
+import br.forsign.allo.usuario.domain.Usuario;
+import br.forsign.allo.usuario.domain.UsuarioRole;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.springframework.context.annotation.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,8 +49,13 @@ public class ProvedorController {
             summary = "Retorna um prestador por id.",
             description = "Retorna um prestador por id e ativo."
     )
+
     public ResponseEntity<ProvedorOutput> getById(
             @RequestParam Long id){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (Usuario) authentication.getPrincipal();
+
         return ResponseEntity.ok().body(service.findById(id));
     }
 
@@ -80,7 +92,7 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.findAllComFavoritos(idCliente, pageable));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @Operation(
             summary = "Cria um prestador.",
             description = "Cria um prestador com todas as informações necessárias."
@@ -94,7 +106,7 @@ public class ProvedorController {
             summary = "Atualiza os dados de um prestador.",
             description = "Atualiza um prestador previamente cadastrado no sistema."
     )
-    public ResponseEntity updateById(@RequestBody @Valid ProvedorInput input){
+    public ResponseEntity<ProvedorOutput> updateById(@RequestBody @Valid ProvedorInput input){
         return ResponseEntity.ok().body(service.update(input));
     }
 
@@ -103,7 +115,7 @@ public class ProvedorController {
             summary = "Deleta um prestador.",
             description = "Deleta um prestador previamente cadastrado, com base no identificador de cadastro."
     )
-    public ResponseEntity delById(@PathVariable Long id){
+    public ResponseEntity<Void> delById(@PathVariable Long id){
         this.service.delete(id);
         return ResponseEntity.ok().build();
     }
@@ -111,7 +123,7 @@ public class ProvedorController {
     @PostMapping("/upload")
     @Operation(summary = "Sobe uma imagem",
                description = "Sobe uma imagem para um provedor")
-    public ResponseEntity handleFileUpload(@RequestParam("image") MultipartFile file) {
+    public ResponseEntity<Void> handleFileUpload(@RequestParam("image") MultipartFile file) {
         this.service.postImage(file);
         return ResponseEntity.ok().build();
     }
@@ -122,7 +134,7 @@ public class ProvedorController {
     public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
         return service.getImage(fileName);
     }
-  
+
     @GetMapping("/getAvaliacoes")
     @Operation(summary = "Retorna o total de avaliações",
                description = "Retorna o total de avaliações de um provedor pelo ID")

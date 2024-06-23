@@ -1,11 +1,14 @@
 package br.forsign.allo.cliente.service.actions;
 
+import br.forsign.allo.auth.controller.AuthController;
+import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.cliente.service.PerfilClienteService;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
 import br.forsign.allo.entidade.service.action.EnderecoCreator;
+import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -27,8 +30,10 @@ public class ClienteCreator {
     @Resource
     private EnderecoCreator enderecoCreator;
 
-    public Cliente create(ClienteInput input){
+    @Resource
+    private AuthService authService;
 
+    public Cliente create(ClienteInput input){
         validator.validarCreate(input);
 
         Cliente cliente = new Cliente();
@@ -42,9 +47,13 @@ public class ClienteCreator {
         cliente.setAtivo(true);
         cliente.setDtRegistro(LocalDate.now());
 
-        repository.save(cliente);
+        input.getUsuario().setRole(UsuarioRole.CLIENTE);
 
-        perfilClienteService.create(input, cliente);
+        this.authService.register(input.getUsuario());
+
+        this.repository.save(cliente);
+
+        this.perfilClienteService.create(input, cliente);
 
         return cliente;
     }

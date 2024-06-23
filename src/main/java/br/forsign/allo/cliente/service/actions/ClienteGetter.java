@@ -69,4 +69,8 @@ public class ClienteGetter {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    public Cliente byUsernameId(String clienteUsername) {
+        return repository.byUsernameId(clienteUsername);
+    }
 }

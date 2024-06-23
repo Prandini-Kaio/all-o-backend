@@ -55,9 +55,9 @@ public class ClienteUpdater {
         return repository.save(cliente);
     }
 
-    public Cliente favoritar(Long idCliente, Long idProvedor) {
+    public Cliente favoritar(String clienteUsername, Long idProvedor) {
 
-        Cliente cliente = getter.byId(idCliente);
+        Cliente cliente = getter.byUsernameId(clienteUsername);
         Provedor provedor = provedorGetter.byId(idProvedor);
 
         if(cliente.getProvedoresFavoritados().contains(provedor))
