@@ -1,9 +1,11 @@
 package br.forsign.allo.provedor.model;
 
 
+import br.forsign.allo.auth.model.AuthInput;
 import br.forsign.allo.entidade.model.EnderecoInput;
 import br.forsign.allo.entidade.model.EntidadeInput;
 import br.forsign.allo.entidade.model.TipoPessoaEnum;
+import br.forsign.allo.usuario.domain.Usuario;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -24,6 +26,9 @@ public class ProvedorInput extends EntidadeInput {
 
     @Schema(title = "Tipo Pessoa", example = "FISICA", description = "Tipo de pessoa a ser cadastrada no sistema (FISICA/JURIDICA)")
     private TipoPessoaEnum tipoPessoa;
+
+    @NotNull
+    private AuthInput usuario;
 
     @NotNull
     private List<Long> idProfissoes;
