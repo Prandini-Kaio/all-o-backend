@@ -1,17 +1,13 @@
 package br.forsign.allo.provedor.model;
 
 
-import br.forsign.allo.auth.model.AuthInput;
-import br.forsign.allo.entidade.model.EnderecoInput;
 import br.forsign.allo.entidade.model.EntidadeInput;
 import br.forsign.allo.entidade.model.TipoPessoaEnum;
-import br.forsign.allo.usuario.domain.Usuario;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -28,7 +24,7 @@ public class ProvedorInput extends EntidadeInput {
     private TipoPessoaEnum tipoPessoa;
 
     @NotNull
-    private List<Long> idProfissoes;
+    private Long idProfissao;
 
     private List<String> servicoImagens;
 
