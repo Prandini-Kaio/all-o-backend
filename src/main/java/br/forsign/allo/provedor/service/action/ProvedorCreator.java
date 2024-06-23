@@ -56,8 +56,6 @@ public class ProvedorCreator {
 
         Provedor provedor = new Provedor();
 
-        provedor.getUsuario().setRole(UsuarioRole.PROVEDOR);
-
         List<Profissao> profissao = input.getIdProfissoes().stream()
                         .map(profissaoGetter::byIdAtivo)
                         .toList();
