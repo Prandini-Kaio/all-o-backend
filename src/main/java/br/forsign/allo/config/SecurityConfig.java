@@ -40,6 +40,8 @@ public class SecurityConfig {
                                 .requestMatchers("/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/provedor/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/cliente/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/provedor/upload").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/cliente/upload").permitAll()
                         .requestMatchers(HttpMethod.POST, "/profissao/**").permitAll()
                         .requestMatchers("/servico/abertura/**").hasRole("CLIENTE")
                         .requestMatchers("/provedor").hasRole("PROVEDOR")
