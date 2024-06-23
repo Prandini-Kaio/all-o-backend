@@ -48,7 +48,7 @@ public class ClienteController {
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @Operation(
             summary = "Cria um novo cliente.",
             description = "Cria um novo cliente e cadastra na base.")

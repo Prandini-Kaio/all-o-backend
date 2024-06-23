@@ -28,9 +28,6 @@ public class ProvedorInput extends EntidadeInput {
     private TipoPessoaEnum tipoPessoa;
 
     @NotNull
-    private AuthInput usuario;
-
-    @NotNull
     private List<Long> idProfissoes;
 
     private List<String> servicoImagens;
