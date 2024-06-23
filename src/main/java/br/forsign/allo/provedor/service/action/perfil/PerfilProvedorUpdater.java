@@ -68,7 +68,6 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setTotalAvaliacao(totalServicos);
 
 
-
         perfilProvedor.setProvedor(provedor);
 
         if (!avaliacaoRepository.findAll().isEmpty())
