@@ -6,6 +6,8 @@ import br.forsign.allo.provedor.repository.PerfilProvedorRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class PerfilProvedorGetter {
 
@@ -14,5 +16,9 @@ public class PerfilProvedorGetter {
 
     public PerfilProvedor byProvedorId(Long idProvedor) {
         return repository.findByIdProvedor(idProvedor).orElseThrow(CommonExceptionSupplier.naoEncontrado("PerfilProvedor", idProvedor));
+    }
+
+    public List<PerfilProvedor> listByProvedor(Long idProvedor) {
+        return repository.findListByProvedor(idProvedor);
     }
 }

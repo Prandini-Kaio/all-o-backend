@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper
 public interface PerfilProvedorMapper {
 
+    @Mapping(source = "totalAvaliacao", target = "totalAvaliacoes")
     PerfilProvedorOutput toOutput(PerfilProvedor perfilProvedor);
 
     @Mapping(source = "perfilProvedor.id", target = "idAvaliacao")
