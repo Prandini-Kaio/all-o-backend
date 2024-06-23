@@ -1,8 +1,11 @@
 package br.forsign.allo.servico.service.action;
 
 import br.forsign.allo.avaliacao.converter.AvaliacaoMapper;
+import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.provedor.service.PerfilProvedorService;
 import br.forsign.allo.provedor.service.action.ProvedorUpdater;
+import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorUpdater;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.model.ServicoInput;
 import br.forsign.allo.servico.repository.ServicoRepository;
@@ -24,10 +27,13 @@ public class ServicoUpdater {
     private ServicoGetter getter;
 
     @Resource
+    private PerfilProvedorUpdater perfilProvedorUpdater;
+
+    @Resource
     private AvaliacaoMapper avaliacaoMapper;
 
     public Servico confirmarServico(Long idServico, Boolean confirmado) {
-        Servico servico = repository.findById(idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", idServico));
+        Servico servico = getter.byId(idServico);
 
         servico.setServicoRealizado(confirmado);
         servico.setServicoVisto(true);
@@ -39,6 +45,8 @@ public class ServicoUpdater {
         Servico servico = getter.byId(input.getId());
 
         servico.setAvaliacao(avaliacaoMapper.fromInput(input.getAvaliacao()));
+
+        perfilProvedorUpdater.updateStats(servico.getProvedor().getId(), input.getId());
 
         return this.repository.save(servico);
     }
