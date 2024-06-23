@@ -44,9 +44,6 @@ public class ClienteService {
     @Resource
     private ClienteMapper mapper;
 
-    @Resource
-    private AuthService authService;
-
     public ClienteOuput findById(Long id){
         log.info("Iniciando consulta a um cliente no sistema.");
 
@@ -80,9 +77,11 @@ public class ClienteService {
     }
 
     public ClienteOuput favoritar(Long idCliente, Long idProvedor) {
-        String username = authService.loadCurrentUser().getUsername();
 
-        return this.mapper.toOutput(this.updater.favoritar(username, idProvedor));
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (Usuario) authentication.getPrincipal();
+
+        return this.mapper.toOutput(this.updater.favoritar(userDetails.getUsername(), idProvedor));
     }
 
     public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename){

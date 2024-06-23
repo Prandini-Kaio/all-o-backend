@@ -18,6 +18,4 @@ public class AuthInput {
 
     private UsuarioRole role;
 
-    private ProvedorInput provedorInput;
-
 }

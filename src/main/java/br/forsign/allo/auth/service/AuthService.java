@@ -10,8 +10,6 @@ import br.forsign.allo.usuario.repository.UsuarioRepository;
 import jakarta.annotation.Resource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,9 +29,6 @@ public class AuthService {
     private AuthenticationManager authenticationManager;
 
     @Resource
-    private ProvedorService provedorService;
-
-    @Resource
     private TokenService tokenService;
 
     public String login(LoginInput input){
@@ -45,7 +40,7 @@ public class AuthService {
     }
 
     public boolean register(AuthInput input) {
-        if(loadCurrentUser() != null)
+        if(loadUserByUsername(input.getLogin()) != null)
             return false;
 
         String encodedPassword = new BCryptPasswordEncoder().encode(input.getSenha());
@@ -53,15 +48,10 @@ public class AuthService {
 
         this.usuarioRepository.save(usuario);
 
-        this.provedorService.create(input.getProvedorInput());
-
         return true;
     }
 
-    public UserDetails loadCurrentUser(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails user = (UserDetails) authentication.getPrincipal();
-
-        return usuarioRepository.findByLogin(user.getUsername());
+    public UserDetails loadUserByUsername(String username){
+        return usuarioRepository.findByLogin(username);
     }
 }

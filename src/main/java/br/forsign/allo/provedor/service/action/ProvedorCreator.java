@@ -1,5 +1,6 @@
 package br.forsign.allo.provedor.service.action;
 
+import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
 import br.forsign.allo.entidade.converter.EnderecoMapper;
 import br.forsign.allo.entidade.service.action.EnderecoCreator;
@@ -35,6 +36,9 @@ public class ProvedorCreator {
     @Resource
     private EnderecoCreator enderecoCreator;
 
+    @Resource
+    private AuthService authService;
+
     public Provedor create(ProvedorInput input){
         validator.validarCreate(input);
 
@@ -53,6 +57,8 @@ public class ProvedorCreator {
         provedor.setProfissoes(profissao);
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
+
+        this.authService.register(input.getUsuario());
 
         repository.save(provedor);
         perfilProvedorService.create(provedor, input.getPerfilProvedorInput());
