@@ -28,7 +28,7 @@ public class Avaliacao {
     private Cliente cliente;
 
     @Column(name = "NOTA")
-    private double nota;
+    private Double nota;
 
     @Column(name = "TITULO")
     private String titulo;

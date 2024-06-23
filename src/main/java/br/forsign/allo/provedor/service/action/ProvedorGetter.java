@@ -97,4 +97,8 @@ public class ProvedorGetter {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    public List<Provedor> getByHighAvaliacao() {
+        return repository.findMelhoresAvaliacoes();
+    }
 }

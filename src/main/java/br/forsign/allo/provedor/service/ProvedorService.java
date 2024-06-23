@@ -133,4 +133,8 @@ public class ProvedorService {
         return updater.postImagemProvedor(file);
     }
 
+    public List<Provedor> getByHighAvaliacao(){
+        return getter.getByHighAvaliacao();
+    }
+
 }
