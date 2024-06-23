@@ -3,13 +3,7 @@ package br.forsign.allo.servico.domain;
 import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.provedor.domain.Provedor;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 /**
@@ -27,10 +21,10 @@ public class Servico {
     @GeneratedValue(generator = "SEQ_SERV")
     private Long id;
 
-    @OneToOne
+    @ManyToOne
     private Provedor provedor;
 
-    @OneToOne
+    @ManyToOne
     private Cliente cliente;
 
     @OneToOne(cascade = CascadeType.ALL)
