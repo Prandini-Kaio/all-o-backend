@@ -3,6 +3,7 @@ package br.forsign.allo.servico.domain;
 import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.provedor.domain.Provedor;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -32,7 +33,7 @@ public class Servico {
     @OneToOne
     private Cliente cliente;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Avaliacao avaliacao;
 
     private boolean servicoRealizado;
