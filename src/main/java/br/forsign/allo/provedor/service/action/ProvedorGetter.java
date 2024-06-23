@@ -101,4 +101,8 @@ public class ProvedorGetter {
     public List<Provedor> getByHighAvaliacao() {
         return repository.findMelhoresAvaliacoes();
     }
+
+    public Provedor byUsername(String username) {
+        return repository.byUsername(username).orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor", username));
+    }
 }

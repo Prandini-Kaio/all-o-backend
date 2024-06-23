@@ -4,6 +4,7 @@ import br.forsign.allo.entidade.domain.Endereco;
 import br.forsign.allo.entidade.domain.Entidade;
 import br.forsign.allo.entidade.model.TipoPessoaEnum;
 import br.forsign.allo.profissao.domain.Profissao;
+import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,6 +31,10 @@ public class Provedor extends Entidade {
             joinColumns = @JoinColumn(name = "ID_PROVEDOR"),
             inverseJoinColumns = @JoinColumn(name = "ID_PROFISSAO"))
     private List<Profissao> profissoes;
+
+    @OneToOne
+    @JoinColumn(name = "USUARIO_ID")
+    private Usuario usuario;
 
     @Column(name = "RAZAO_SOCIAL")
     private String razaoSocial;

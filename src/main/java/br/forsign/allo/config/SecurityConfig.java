@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -24,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalAuthentication()
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     @Resource
@@ -39,7 +40,10 @@ public class SecurityConfig {
                                 .requestMatchers("/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/provedor/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/cliente/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/provedor/upload").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/cliente/upload").permitAll()
                         .requestMatchers(HttpMethod.POST, "/profissao/**").permitAll()
+                        .requestMatchers("/servico/abertura/**").hasRole("CLIENTE")
                         .requestMatchers("/provedor").hasRole("PROVEDOR")
                         .requestMatchers("/cliente").hasRole("CLIENTE")
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()

@@ -17,20 +17,8 @@ public class AvaliacaoInput {
     private Long id;
 
     @NotNull
-    @Schema(example = "1", description = "Identificador único do provedor.")
-    private Long provedorId;
-
-    @NotNull
-    @Schema(example = "1", description = "Identificador único da cliente.")
-    private Long clienteId;
-
-    @NotNull
     @Schema(example = "5.0", description = "Nota do serviço para o provedor.")
     private double nota;
-
-    @NotBlank
-    @Schema(example = "Muito bom", description = "Título da avaliação.")
-    private String titulo;
 
     @NotBlank
     @Schema(description = "Descrição/comentário da avaliação.")

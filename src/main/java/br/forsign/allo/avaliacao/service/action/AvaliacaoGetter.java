@@ -8,12 +8,15 @@ package br.forsign.allo.avaliacao.service.action;
 import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.annotation.Resource;
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
@@ -26,19 +29,19 @@ public class AvaliacaoGetter {
         return repository.findById(id).orElseThrow(CommonExceptionSupplier.naoEncontrado("Avaliacão", id));
     }
 
-    public Page<Avaliacao> byProvedor(Long id, Pageable pageable) {
-        return repository.byProvedor(id, pageable);
-    }
-
-    public List<Avaliacao> byProvedor(Long id) {
-        return repository.byProvedor(id);
+    public List<Avaliacao> findAll() {
+        return repository.findAll();
     }
 
     public Avaliacao byProvedorDestaque(Long provedorId) {
-        Stream<Avaliacao> avaliacoes = this.repository.findByProvedor(provedorId);
+        List<Avaliacao> avaliacoes = this.repository.findAll();
 
-        avaliacoes = avaliacoes.filter(a -> a.getNota() >= 4.5);
+        avaliacoes = avaliacoes.stream().filter(a -> a.getNota() >= 4.5).collect(Collectors.toList());
 
-        return avaliacoes.findFirst().orElse(null);
+        return avaliacoes.stream().filter(a -> a.getNota() >= 4.5).findFirst().orElse(null);
+    }
+
+    public Page<Avaliacao> byProvedor(Long id, Pageable pageable) {
+        return repository.findAll(pageable);
     }
 }

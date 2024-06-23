@@ -2,6 +2,8 @@ package br.forsign.allo.provedor.controller;
 
 
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.auth.model.AuthInput;
+import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.ProvedorService;
@@ -97,7 +99,7 @@ public class ProvedorController {
             summary = "Cria um prestador.",
             description = "Cria um prestador com todas as informações necessárias."
     )
-    public ResponseEntity<ProvedorOutput> create(@RequestBody @Valid ProvedorInput input){
+    public ResponseEntity<ProvedorOutput> create(@RequestBody @Valid ProvedorCadastroInput input){
         return ResponseEntity.ok().body(service.create(input));
     }
 

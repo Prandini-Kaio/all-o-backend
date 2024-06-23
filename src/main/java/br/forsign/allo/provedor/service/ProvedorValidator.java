@@ -6,6 +6,7 @@ import br.forsign.allo.common.utils.CommonExceptionMessages;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
 import br.forsign.allo.entidade.model.TipoPessoaEnum;
 import br.forsign.allo.provedor.exceptions.ProvedorExceptionMessages;
+import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
