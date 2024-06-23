@@ -4,11 +4,9 @@ import br.forsign.allo.avaliacao.converter.AvaliacaoMapper;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.model.ServicoInput;
-import br.forsign.allo.servico.service.repository.ServicoRepository;
+import br.forsign.allo.servico.repository.ServicoRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 /**
  * @author kaiooliveira
@@ -16,7 +14,7 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
  */
 
 @Component
-public class ServiceUpdater {
+public class ServicoUpdater {
 
     @Resource
     private ServicoRepository repository;
@@ -27,10 +25,10 @@ public class ServiceUpdater {
     @Resource
     private AvaliacaoMapper avaliacaoMapper;
 
-    public Servico confirmarServico(Long idServico) {
+    public Servico confirmarServico(Long idServico, Boolean confirmado) {
         Servico servico = repository.findById(idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", idServico));
 
-        servico.setServicoRealizado(true);
+        servico.setServicoRealizado(confirmado);
         servico.setServicoVisto(true);
 
         return this.repository.save(servico);
