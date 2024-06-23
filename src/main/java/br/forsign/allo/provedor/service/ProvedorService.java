@@ -6,6 +6,7 @@ import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.provedor.converter.ProvedorConverter;
 import br.forsign.allo.provedor.converter.ProvedorMapper;
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.action.ProvedorCreator;
@@ -100,7 +101,7 @@ public class ProvedorService {
     }
 
     @Transactional
-    public ProvedorOutput create(ProvedorInput input) {
+    public ProvedorOutput create(ProvedorCadastroInput input) {
         log.info("Cadastrando provedor no sistema.");
 
         return converter.toOutput(creator.create(input));
@@ -122,7 +123,8 @@ public class ProvedorService {
 
     @Transactional
     public int getTotalAval(Long id){
-        return avaliacaoRepository.byProvedor(id).size();
+//        return avaliacaoRepository.byProvedor(id).size();
+        return 1;
     }
 
     public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename){

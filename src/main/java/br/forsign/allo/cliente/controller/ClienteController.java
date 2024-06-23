@@ -1,5 +1,6 @@
 package br.forsign.allo.cliente.controller;
 
+import br.forsign.allo.cliente.model.ClienteCadastroInput;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.model.ClienteOuput;
 import br.forsign.allo.cliente.service.ClienteService;
@@ -12,6 +13,7 @@ import org.hibernate.id.GUIDGenerator;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,7 +54,7 @@ public class ClienteController {
     @Operation(
             summary = "Cria um novo cliente.",
             description = "Cria um novo cliente e cadastra na base.")
-    public ResponseEntity<ClienteOuput> create(@RequestBody @Valid ClienteInput input) {
+    public ResponseEntity<ClienteOuput> create(@RequestBody @Valid ClienteCadastroInput input) {
         return ResponseEntity.ok().body(service.create(input));
     }
 
@@ -68,7 +70,7 @@ public class ClienteController {
     @Operation(
             summary = "Desativa um cliente",
             description = "Desativa um cliente previamente cadastrado.")
-    public ResponseEntity delById(@PathVariable Long id) {
+    public ResponseEntity<Void> delById(@PathVariable Long id) {
         this.service.delete(id);
         return ResponseEntity.ok().build();
     }
@@ -77,16 +79,17 @@ public class ClienteController {
     @Operation(
             summary = "Favorita um provedor",
             description = "Adiciona um provedor a lista de favoritos de um cliente.")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<ClienteOuput> favoritar(
-            @RequestParam Long idCliente,
             @RequestParam Long idProvedor
     ) {
-        return ResponseEntity.ok().body(service.favoritar(idCliente, idProvedor));
+        return ResponseEntity.ok().body(service.favoritar(idProvedor));
     }
 
     @PostMapping("/upload")
     @Operation(summary = "Sobe uma imagem",
                description = "Sobe uma imagem para um cliente.")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public String handleFileUpload(@RequestParam("image") MultipartFile file) {
         return service.postImageCliente(file);
     }
@@ -94,6 +97,7 @@ public class ClienteController {
     @GetMapping("/buscarImagem")
     @Operation(summary = "Busca uma imagem",
                description = "Busca uma imagem pelo Nome.")
+    @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
         return service.getImage(fileName);
     }

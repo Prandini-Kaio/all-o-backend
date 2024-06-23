@@ -4,6 +4,8 @@ import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ import java.util.Optional;
 @Component
 public class ClienteGetter {
 
+    private final Logger logger = LoggerFactory.getLogger(ClienteGetter.class);
+
     @Resource
     private ClienteRepository repository;
 
@@ -26,10 +30,20 @@ public class ClienteGetter {
     }
 
     public Cliente byId(Long id){
+        logger.info("Consultando um cliente no sistema pelo ID {}.", id);
+
         return repository.findById(id).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", id));
     }
 
+    public Cliente byUsername(String username){
+        logger.info("Consultando um cliente no sistema pelo usernam {}.", username);
+
+        return repository.findByUsername(username).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", username));
+    }
+
     public Cliente byCpf(String cpf){
+        logger.info("Consultando um cliente no sistema pelo CPF {}.", cpf);
+
         return repository.findByCpf(cpf).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", cpf));
     }
 
@@ -46,6 +60,8 @@ public class ClienteGetter {
     }
 
     public ResponseEntity<org.springframework.core.io.Resource> getImageByName(String fileName){
+        logger.info("Consultando imagem do cliente {}.", fileName);
+
         try {
             // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
             Path filePath = Paths.get("src/main/resources/images-cliente").resolve(fileName).normalize();
