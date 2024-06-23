@@ -3,6 +3,7 @@ package br.forsign.allo.cliente.domain;
 import br.forsign.allo.entidade.domain.Endereco;
 import br.forsign.allo.entidade.domain.Entidade;
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,6 +22,13 @@ public class Cliente extends Entidade {
 
     @Column(name = "NOME")
     private String nome;
+
+    @OneToOne
+    @JoinColumn(
+            name = "USUARIO_ID",
+            referencedColumnName = "ID"
+    )
+    private Usuario usuario;
 
     @OneToMany
     @JoinTable(

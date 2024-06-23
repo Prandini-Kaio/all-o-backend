@@ -1,0 +1,59 @@
+databaseChangeLog:
+- changeSet:
+    id: 1718910251424-1
+    author: prandini (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_AYEC3HSAMY3TVRS4YROU31B86
+        tableName: PERFIL_CLIENTE
+- changeSet:
+    id: 1718910251424-2
+    author: prandini (generated)
+    changes:
+    - dropTable:
+        tableName: AVALIACAO
+- changeSet:
+    id: 1718910251424-3
+    author: prandini (generated)
+    changes:
+    - dropTable:
+        tableName: CLIENTE
+- changeSet:
+    id: 1718910251424-4
+    author: prandini (generated)
+    changes:
+    - dropTable:
+        tableName: CLIENTE_PROVEDOR_FAVORITO
+- changeSet:
+    id: 1718910251424-5
+    author: prandini (generated)
+    changes:
+    - dropTable:
+        tableName: PERFIL_CLIENTE
+- changeSet:
+    id: 1718910251424-6
+    author: prandini (generated)
+    changes:
+    - dropTable:
+        tableName: PROFISSAO
+- changeSet:
+    id: 1718910251424-7
+    author: prandini (generated)
+    changes:
+    - dropTable:
+        tableName: PROFISSAO_PALAVRAS_CHAVE
+- changeSet:
+    id: 1718910251424-8
+    author: prandini (generated)
+    changes:
+    - dropTable:
+        tableName: PROVEDOR
+- changeSet:
+    id: 1718910251424-9
+    author: prandini (generated)
+    changes:
+    - dropSequence:
+        sequenceName: SEQ_PRFL
+
+databaseChangeLog: []
+

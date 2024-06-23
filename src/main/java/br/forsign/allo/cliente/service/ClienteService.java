@@ -1,5 +1,6 @@
 package br.forsign.allo.cliente.service;
 
+import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.cliente.converter.ClienteConverter;
 import br.forsign.allo.cliente.converter.ClienteMapper;
 import br.forsign.allo.cliente.domain.Cliente;
@@ -10,10 +11,14 @@ import br.forsign.allo.cliente.service.actions.ClienteCreator;
 import br.forsign.allo.cliente.service.actions.ClienteDeleter;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.cliente.service.actions.ClienteUpdater;
+import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -72,7 +77,11 @@ public class ClienteService {
     }
 
     public ClienteOuput favoritar(Long idCliente, Long idProvedor) {
-        return this.mapper.toOutput(this.updater.favoritar(idCliente, idProvedor));
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (Usuario) authentication.getPrincipal();
+
+        return this.mapper.toOutput(this.updater.favoritar(userDetails.getUsername(), idProvedor));
     }
 
     public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename){

@@ -1,5 +1,6 @@
 package br.forsign.allo.entidade.model;
 
+import br.forsign.allo.auth.model.AuthInput;
 import br.forsign.allo.common.utils.annotation.CpfCnpj;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
@@ -28,6 +29,9 @@ public class EntidadeInput {
     @Schema(title = "CPF CNPJ", example = "869.039.770-15", description = "CPF ou CNPJ da entidade.")
     @CpfCnpj(tipoDocumento = TipoPessoaEnum.FISICA_JURIDICA)
     private String cpfCnpj;
+
+    @NotNull
+    private AuthInput usuario;
 
     @NotNull
     private EnderecoInput enderecoInput;

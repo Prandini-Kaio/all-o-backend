@@ -1,5 +1,6 @@
 package br.forsign.allo.provedor.service.action;
 
+import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
 import br.forsign.allo.entidade.converter.EnderecoMapper;
 import br.forsign.allo.entidade.service.action.EnderecoCreator;
@@ -11,6 +12,7 @@ import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
 import br.forsign.allo.provedor.service.ProvedorValidator;
+import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +37,9 @@ public class ProvedorCreator {
     @Resource
     private EnderecoCreator enderecoCreator;
 
+    @Resource
+    private AuthService authService;
+
     public Provedor create(ProvedorInput input){
         validator.validarCreate(input);
 
@@ -53,6 +58,10 @@ public class ProvedorCreator {
         provedor.setProfissoes(profissao);
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
+
+        input.getUsuario().setRole(UsuarioRole.PROVEDOR);
+
+        this.authService.register(input.getUsuario());
 
         repository.save(provedor);
         perfilProvedorService.create(provedor, input.getPerfilProvedorInput());
