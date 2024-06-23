@@ -34,10 +34,10 @@ public class ProfissaoService {
     @Resource
     private ProfissaoMapper mapper;
 
-    public Page<ProfissaoOutput> findAll(Pageable pageable) {
+    public List<ProfissaoOutput> findAll() {
         log.info("Iniciando consulta de todas as profissões ativas do sistema.");
 
-        return getter.findAll(pageable).map(mapper::toOutput);
+        return getter.findAll().stream().map(mapper::toOutput).toList();
     }
 
     public List<ProfissaoOutput> findByFilter(String profissao) {

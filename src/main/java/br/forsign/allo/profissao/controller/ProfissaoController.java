@@ -41,8 +41,8 @@ public class ProfissaoController {
     @Operation(
             summary = "Consulta todas as profissões.",
             description = "Consulta todas as profissões cadastradas no sistema.")
-    public ResponseEntity<Page<ProfissaoOutput>> findAll(Pageable pageable){
-        return ResponseEntity.ok().body(this.service.findAll(pageable));
+    public ResponseEntity<List<ProfissaoOutput>> findAll(){
+        return ResponseEntity.ok().body(this.service.findAll());
     }
 
     @GetMapping("/filter")
