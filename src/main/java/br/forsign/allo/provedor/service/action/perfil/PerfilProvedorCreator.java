@@ -1,5 +1,6 @@
 package br.forsign.allo.provedor.service.action.perfil;
 
+import br.forsign.allo.common.utils.LocalDateUtils;
 import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.PerfilProvedorInput;
@@ -20,7 +21,7 @@ public class PerfilProvedorCreator {
         perfilProvedor.setAvaliacao(null);
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setMediaAvaliacao(0);
-        perfilProvedor.setTempoCadastro(0);
+        perfilProvedor.setTempoCadastro(LocalDateUtils.toBrazilianDateString(provedor.getDtRegistro()));
         perfilProvedor.setImagemPerfil(input.getPerfilImage());
         perfilProvedor.setNome(provedor.getRazaoSocial());
         perfilProvedor.setEmail(provedor.getEmail());

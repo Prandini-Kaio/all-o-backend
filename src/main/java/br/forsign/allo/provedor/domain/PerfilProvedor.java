@@ -6,6 +6,7 @@ import br.forsign.allo.entidade.domain.Perfil;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -41,7 +42,7 @@ import java.util.List;
         private int totalAvaliacao;
 
         @Column(name = "TEMPO_CADASTRO")
-        private int tempoCadastro;
+        private String tempoCadastro;
     }
 
 

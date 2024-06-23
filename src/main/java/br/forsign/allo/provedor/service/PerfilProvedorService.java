@@ -31,12 +31,15 @@ public class PerfilProvedorService {
     public PerfilProvedorOutput getByProvedorId(Long idProvedor){
         return mapper.toOutput(getter.byProvedorId(idProvedor));
     }
+
     public PerfilProvedorOutput create(Provedor provedor, PerfilProvedorInput input){
         return mapper.toOutput(creator.create(provedor, input));
     }
+
     public PerfilProvedorOutput update(ProvedorInput input){
         return mapper.toOutput(updater.update(input));
     }
+
     public PerfilProvedorOutput destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
         return mapper.toOutput(updater.destacarAvaliacao(idProvedor, idAvaliacao));
     }

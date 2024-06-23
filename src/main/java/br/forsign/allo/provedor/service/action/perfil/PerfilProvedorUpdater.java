@@ -3,6 +3,7 @@ package br.forsign.allo.provedor.service.action.perfil;
 import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoGetter;
+import br.forsign.allo.common.utils.LocalDateUtils;
 import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
@@ -10,6 +11,8 @@ import br.forsign.allo.provedor.model.PerfilProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.PerfilProvedorRepository;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
+import br.forsign.allo.servico.domain.Servico;
+import br.forsign.allo.servico.service.action.ServiceGetter;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
@@ -42,6 +45,9 @@ public class PerfilProvedorUpdater {
     private AvaliacaoGetter avaliacaoGetter;
 
     @Resource
+    private ServiceGetter serviceGetter;
+
+    @Resource
     private AvaliacaoRepository avaliacaoRepository;
 
     public PerfilProvedor update(ProvedorInput input){
@@ -53,10 +59,15 @@ public class PerfilProvedorUpdater {
 
         PerfilProvedor perfilProvedor = getter.byProvedorId(provedor.getId());
 
+        int totalServicos = serviceGetter.getTotalAvaliacoes(provedor.getId());
+
         perfilProvedor.setNome(provedor.getRazaoSocial());
         perfilProvedor.setEmail(provedor.getEmail());
         perfilProvedor.setDescricao(input.getPerfilProvedorInput().getDescricao());
         perfilProvedor.setImagemPerfil(input.getPerfilProvedorInput().getPerfilImage());
+        perfilProvedor.setTotalAvaliacao(totalServicos);
+
+
 
         perfilProvedor.setProvedor(provedor);
 
@@ -64,7 +75,7 @@ public class PerfilProvedorUpdater {
             perfilProvedor.setAvaliacao(avaliacao);
 
         perfilProvedor.setServicosConcluidos(0);
-        perfilProvedor.setTempoCadastro(Period.between(provedor.getDtRegistro(), LocalDate.now()).getYears());
+        perfilProvedor.setTempoCadastro(LocalDateUtils.toBrazilianDateString(provedor.getDtRegistro()));
 
         List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.findAll();
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
