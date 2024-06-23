@@ -97,4 +97,8 @@ public class ProvedorGetter {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    public Provedor byUsername(String username) {
+        return repository.byUsername(username).orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor", username));
+    }
 }

@@ -19,20 +19,9 @@ public class Avaliacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "PROVEDOR_ID")
-    private Provedor provedor;
-
-    @ManyToOne
-    @JoinColumn(name = "CLIENTE_ID")
-    private Cliente cliente;
+    @Column(name = "DESCRICAO")
+    private String descricao;
 
     @Column(name = "NOTA")
     private double nota;
-
-    @Column(name = "TITULO")
-    private String titulo;
-
-    @Column(name = "DESCRICAO")
-    private String descricao;
 }

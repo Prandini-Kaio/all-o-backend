@@ -2,6 +2,7 @@ package br.forsign.allo.auth.controller;
 
 import br.forsign.allo.auth.model.AuthInput;
 import br.forsign.allo.auth.model.LoginInput;
+import br.forsign.allo.auth.model.LoginOutput;
 import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,7 +28,7 @@ public class AuthController {
     private AuthService service;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody @Valid LoginInput input) {
+    public ResponseEntity<LoginOutput> login(@RequestBody @Valid LoginInput input) {
         return ResponseEntity.ok().body(this.service.login(input));
     }
 

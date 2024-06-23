@@ -12,6 +12,7 @@ import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
 import br.forsign.allo.provedor.service.ProvedorValidator;
+import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -45,6 +46,8 @@ public class ProvedorCreator {
 
         Provedor provedor = new Provedor();
 
+        input.getUsuario().setRole(UsuarioRole.PROVEDOR);
+
         List<Profissao> profissao = input.getIdProfissoes().stream()
                         .map(profissaoGetter::byIdAtivo)
                         .toList();
@@ -59,9 +62,7 @@ public class ProvedorCreator {
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
 
-        input.getUsuario().setRole(UsuarioRole.PROVEDOR);
-
-        this.authService.register(input.getUsuario());
+        provedor.setUsuario((Usuario) this.authService.register(input.getUsuario()));
 
         repository.save(provedor);
         perfilProvedorService.create(provedor, input.getPerfilProvedorInput());

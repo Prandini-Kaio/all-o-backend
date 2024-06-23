@@ -11,5 +11,5 @@ public interface ClienteMapper {
     @Mapping(target = "favoritos", source = "provedoresFavoritados")
     ClienteOuput toOutput(Cliente cliente);
 
-    Cliente toCliente(ClienteOuput clienteOuput);
+    Cliente fromOutput(ClienteOuput clienteOuput);
 }

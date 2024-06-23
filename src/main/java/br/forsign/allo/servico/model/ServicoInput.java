@@ -1,8 +1,11 @@
 package br.forsign.allo.servico.model;
 
+import br.forsign.allo.avaliacao.model.AvaliacaoInput;
 import br.forsign.allo.avaliacao.model.AvaliacaoOutput;
 import br.forsign.allo.cliente.model.ClienteOuput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -13,14 +16,10 @@ import lombok.Data;
 @Data
 public class ServicoInput {
 
+    @NotNull
     private Long id;
 
-    private ProvedorOutput provedor;
-
-    private ClienteOuput cliente;
-
-    private AvaliacaoOutput avaliacao;
-
-    private boolean servicoRealizado;
+    @Valid
+    private AvaliacaoInput avaliacao;
 
 }

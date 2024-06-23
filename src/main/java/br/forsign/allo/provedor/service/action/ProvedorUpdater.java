@@ -67,32 +67,5 @@ public class ProvedorUpdater {
 
     public String postImagemProvedor(MultipartFile file) {
         return ImageUtils.saveImageFile(file, "images-provedor");
-//        if (file.isEmpty()) {
-//            return "";
-//        }
-//
-//        try {
-//            byte[] bytes = file.getBytes();
-//
-//            String directoryPath = "src/main/resources/images-provedor";
-//
-//            File directory = new File(directoryPath);
-//
-//            if (!directory.exists()) {
-//                directory.mkdirs(); // Cria os diretórios se não existirem
-//            }
-//
-//            UUID uuid = UUID.randomUUID();
-//            var nameImage = uuid.toString() + '.' + file.getContentType().split("/")[1];
-//            // Salva o arquivo no diretório especificado
-//            File uploadedFile = new File(directory, nameImage);
-//            try (FileOutputStream fos = new FileOutputStream(uploadedFile)) {
-//                fos.write(bytes);
-//            }
-//
-//            return nameImage;
-//        } catch (IOException e) {
-//            return "erro";
-//        }
     }
 }
