@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface ProfissaoRepository extends JpaRepository<Profissao, Long> {
 
     @Query("SELECT p FROM Profissao p WHERE p.ativo = true")
-    Page<Profissao> findAtivos(Pageable pageable);
+    List<Profissao> findAtivos();
 
     @Query("SELECT p FROM Profissao p WHERE p.ativo = true AND p.id = :id")
     Optional<Profissao> findById(Long id);
