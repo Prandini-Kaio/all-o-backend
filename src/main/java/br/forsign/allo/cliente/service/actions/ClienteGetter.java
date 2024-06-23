@@ -29,6 +29,10 @@ public class ClienteGetter {
         return repository.findById(id).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", id));
     }
 
+    public Cliente byUsername(String username){
+        return repository.findByUsername(username).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", username));
+    }
+
     public Cliente byCpf(String cpf){
         return repository.findByCpf(cpf).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", cpf));
     }

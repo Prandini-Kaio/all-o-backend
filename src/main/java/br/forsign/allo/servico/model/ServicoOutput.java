@@ -20,9 +20,4 @@ public class ServicoOutput {
     private ClienteOuput cliente;
 
     private AvaliacaoOutput avaliacao;
-
-    private boolean servicoRealizado;
-
-    private boolean visualizadoProvedor;
-
 }

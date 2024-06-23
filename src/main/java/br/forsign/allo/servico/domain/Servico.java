@@ -36,4 +36,6 @@ public class Servico {
     private Avaliacao avaliacao;
 
     private boolean servicoRealizado;
+
+    private boolean servicoVisto;
 }

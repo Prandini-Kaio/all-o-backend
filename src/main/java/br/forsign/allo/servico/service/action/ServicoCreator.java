@@ -51,6 +51,7 @@ public class ServicoCreator {
         servico.setCliente(cliente);
         servico.setProvedor(provedor);
         servico.setServicoRealizado(false);
+        servico.setServicoVisto(false);
 
         return repository.save(servico);
     }

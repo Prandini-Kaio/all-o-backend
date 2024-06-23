@@ -5,6 +5,7 @@ import br.forsign.allo.servico.model.ServicoInput;
 import br.forsign.allo.servico.model.ServicoOutput;
 import br.forsign.allo.servico.service.action.ServiceUpdater;
 import br.forsign.allo.servico.service.action.ServicoCreator;
+import br.forsign.allo.servico.service.action.ServicoGetter;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +24,20 @@ public class ServicoService {
     private ServiceUpdater updater;
 
     @Resource
+    private ServicoGetter getter;
+
+    @Resource
     private ServicoMapper mapper;
 
     public ServicoOutput requisitarServico(Long idProvedor){
         return this.mapper.toOutput(this.creator.abrirServico(idProvedor));
     }
 
-    public ServicoOutput update(ServicoInput input){
-        return this.mapper.toOutput(this.updater.update(input));
+    public ServicoOutput confirmarServico(Long idServico) {
+        return this.mapper.toOutput(this.updater.confirmarServico(idServico));
+    }
+
+    public ServicoOutput avaliarServico(ServicoInput input) {
+        return this.mapper.toOutput(this.updater.avaliarServico(input));
     }
 }

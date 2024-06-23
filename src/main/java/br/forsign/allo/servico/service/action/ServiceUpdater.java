@@ -1,6 +1,7 @@
 package br.forsign.allo.servico.service.action;
 
 import br.forsign.allo.avaliacao.converter.AvaliacaoMapper;
+import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.model.ServicoInput;
 import br.forsign.allo.servico.service.repository.ServicoRepository;
@@ -21,13 +22,24 @@ public class ServiceUpdater {
     private ServicoRepository repository;
 
     @Resource
+    private ServicoGetter getter;
+
+    @Resource
     private AvaliacaoMapper avaliacaoMapper;
 
-    public Servico update(ServicoInput input){
-        Servico servico = repository.getReferenceById(input.getId());
+    public Servico confirmarServico(Long idServico) {
+        Servico servico = repository.findById(idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", idServico));
 
-        servico.setAvaliacao(avaliacaoMapper.fromOutput(input.getAvaliacao()));
-        servico.setServicoRealizado(input.isServicoRealizado());
+        servico.setServicoRealizado(true);
+        servico.setServicoVisto(true);
+
+        return this.repository.save(servico);
+    }
+
+    public Servico avaliarServico(ServicoInput input) {
+        Servico servico = getter.byId(input.getId());
+
+        servico.setAvaliacao(avaliacaoMapper.fromInput(input.getAvaliacao()));
 
         return this.repository.save(servico);
     }

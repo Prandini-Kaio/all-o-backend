@@ -60,13 +60,13 @@ public class PerfilProvedorUpdater {
 
         perfilProvedor.setProvedor(provedor);
 
-        if (!avaliacaoRepository.byProvedor(provedor.getId()).isEmpty())
+        if (!avaliacaoRepository.findAll().isEmpty())
             perfilProvedor.setAvaliacao(avaliacao);
 
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setTempoCadastro(Period.between(provedor.getDtRegistro(), LocalDate.now()).getYears());
 
-        List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(input.getId());
+        List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.findAll();
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
 
         return perfilProvedor;

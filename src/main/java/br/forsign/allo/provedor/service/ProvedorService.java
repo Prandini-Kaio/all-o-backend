@@ -122,7 +122,8 @@ public class ProvedorService {
 
     @Transactional
     public int getTotalAval(Long id){
-        return avaliacaoRepository.byProvedor(id).size();
+//        return avaliacaoRepository.byProvedor(id).size();
+        return 1;
     }
 
     public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename){

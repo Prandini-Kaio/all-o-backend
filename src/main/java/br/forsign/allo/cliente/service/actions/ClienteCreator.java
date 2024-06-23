@@ -8,6 +8,7 @@ import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.cliente.service.PerfilClienteService;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
 import br.forsign.allo.entidade.service.action.EnderecoCreator;
+import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -38,6 +39,8 @@ public class ClienteCreator {
 
         Cliente cliente = new Cliente();
 
+        input.getUsuario().setRole(UsuarioRole.CLIENTE);
+
         cliente.setNome(input.getNome());
         cliente.setEmail(input.getEmail());
         cliente.setTelefone(input.getTelefone());
@@ -47,9 +50,7 @@ public class ClienteCreator {
         cliente.setAtivo(true);
         cliente.setDtRegistro(LocalDate.now());
 
-        input.getUsuario().setRole(UsuarioRole.CLIENTE);
-
-        this.authService.register(input.getUsuario());
+        cliente.setUsuario((Usuario) this.authService.register(input.getUsuario()));
 
         this.repository.save(cliente);
 
