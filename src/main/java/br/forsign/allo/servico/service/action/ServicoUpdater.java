@@ -2,6 +2,7 @@ package br.forsign.allo.servico.service.action;
 
 import br.forsign.allo.avaliacao.converter.AvaliacaoMapper;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.provedor.service.action.ProvedorUpdater;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.model.ServicoInput;
 import br.forsign.allo.servico.repository.ServicoRepository;
