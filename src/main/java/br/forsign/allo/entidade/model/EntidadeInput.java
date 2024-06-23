@@ -31,8 +31,5 @@ public class EntidadeInput {
     private String cpfCnpj;
 
     @NotNull
-    private AuthInput usuario;
-
-    @NotNull
     private EnderecoInput enderecoInput;
 }

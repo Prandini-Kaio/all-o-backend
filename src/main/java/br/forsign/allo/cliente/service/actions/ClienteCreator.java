@@ -1,8 +1,8 @@
 package br.forsign.allo.cliente.service.actions;
 
-import br.forsign.allo.auth.controller.AuthController;
 import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.cliente.domain.Cliente;
+import br.forsign.allo.cliente.model.ClienteCadastroInput;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.cliente.service.PerfilClienteService;
@@ -11,6 +11,8 @@ import br.forsign.allo.entidade.service.action.EnderecoCreator;
 import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -34,12 +36,18 @@ public class ClienteCreator {
     @Resource
     private AuthService authService;
 
-    public Cliente create(ClienteInput input){
+    private final Logger logger = LoggerFactory.getLogger(ClienteCreator.class);
+
+    public Cliente create(ClienteCadastroInput clienteInput){
+        logger.info("Criando um novo cliente {}.", clienteInput.getCliente().getNome());
+git
+        ClienteInput input = clienteInput.getCliente();
+
         validator.validarCreate(input);
 
         Cliente cliente = new Cliente();
 
-        input.getUsuario().setRole(UsuarioRole.CLIENTE);
+        clienteInput.getUsuario().setRole(UsuarioRole.CLIENTE);
 
         cliente.setNome(input.getNome());
         cliente.setEmail(input.getEmail());
@@ -50,7 +58,7 @@ public class ClienteCreator {
         cliente.setAtivo(true);
         cliente.setDtRegistro(LocalDate.now());
 
-        cliente.setUsuario((Usuario) this.authService.register(input.getUsuario()));
+        cliente.setUsuario((Usuario) this.authService.register(clienteInput.getUsuario()));
 
         this.repository.save(cliente);
 
