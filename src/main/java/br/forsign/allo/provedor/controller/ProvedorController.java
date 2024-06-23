@@ -91,7 +91,7 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.findAllComFavoritos(idCliente, pageable));
     }
 
-    @PostMapping
+    @PostMapping("/register")
     @Operation(
             summary = "Cria um prestador.",
             description = "Cria um prestador com todas as informações necessárias."
