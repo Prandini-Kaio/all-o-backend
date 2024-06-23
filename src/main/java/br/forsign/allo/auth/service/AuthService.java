@@ -100,6 +100,6 @@ public class AuthService {
         }
 
 
-        return new LoginOutput(token, nome, id, usuario.getRole());
+        return new LoginOutput(id, nome, usuario.getRole(), token);
     }
 }

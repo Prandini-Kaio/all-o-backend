@@ -8,6 +8,7 @@ import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.PerfilProvedorInput;
+import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
@@ -15,6 +16,8 @@ import br.forsign.allo.provedor.service.ProvedorValidator;
 import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -41,12 +44,19 @@ public class ProvedorCreator {
     @Resource
     private AuthService authService;
 
-    public Provedor create(ProvedorInput input){
+    private final Logger logger = LoggerFactory.getLogger(ProvedorCreator.class);
+
+    public Provedor create(ProvedorCadastroInput provedorCadastroInput){
+
+        logger.info("Criando provedor com nome {}.", provedorCadastroInput.getProvedor().getRazaoSocial());
+
+        ProvedorInput input = provedorCadastroInput.getProvedor();
+
         validator.validarCreate(input);
 
         Provedor provedor = new Provedor();
 
-        input.getUsuario().setRole(UsuarioRole.PROVEDOR);
+        provedor.getUsuario().setRole(UsuarioRole.PROVEDOR);
 
         List<Profissao> profissao = input.getIdProfissoes().stream()
                         .map(profissaoGetter::byIdAtivo)
@@ -62,7 +72,7 @@ public class ProvedorCreator {
         provedor.setAtivo(true);
         provedor.setDtRegistro(LocalDate.now());
 
-        provedor.setUsuario((Usuario) this.authService.register(input.getUsuario()));
+        provedor.setUsuario((Usuario) this.authService.register(provedorCadastroInput.getUsuario()));
 
         repository.save(provedor);
         perfilProvedorService.create(provedor, input.getPerfilProvedorInput());

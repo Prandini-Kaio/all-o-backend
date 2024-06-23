@@ -1,6 +1,7 @@
 package br.forsign.allo.auth.model;
 
 import br.forsign.allo.usuario.domain.UsuarioRole;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,12 +13,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class LoginOutput {
 
-    private String token;
+    private Long id;
 
     private String nome;
 
-    private Long id;
-
     private UsuarioRole role;
+
+    private String token;
 
 }
