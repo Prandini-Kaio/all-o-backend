@@ -7,6 +7,8 @@ import br.forsign.allo.servico.service.action.ServicoUpdater;
 import br.forsign.allo.servico.service.action.ServicoCreator;
 import br.forsign.allo.servico.service.action.ServicoGetter;
 import jakarta.annotation.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,5 +51,9 @@ public class ServicoService {
 
     public List<ServicoOutput> findByNaoVistoPeloCliente() {
         return this.getter.byNaoVistoPeloCliente().stream().map(mapper::toOutput).toList();
+    }
+
+    public Page<ServicoOutput> findByProvedor(Long idProvedor, Pageable pageable) {
+        return this.getter.byProvedor(idProvedor, pageable).map(mapper::toOutput);
     }
 }
