@@ -22,8 +22,6 @@ public class PerfilClienteUpdater {
     public PerfilCliente update(ClienteInput cliente) {
         PerfilCliente perfil = repository.findByIdCliente(cliente.getId()).orElseThrow(CommonExceptionSupplier.naoEncontrado("PerfilCliente", cliente.getId()));
 
-        perfil.setNome(cliente.getNome());
-        perfil.setEmail(cliente.getEmail());
         perfil.setImagemPerfil(cliente.getImagem());
 
         return repository.save(perfil);

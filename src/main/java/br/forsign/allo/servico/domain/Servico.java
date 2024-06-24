@@ -22,9 +22,11 @@ public class Servico {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "ID_PROVEDOR")
     private Provedor provedor;
 
     @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE")
     private Cliente cliente;
 
     @OneToOne(cascade = CascadeType.ALL)

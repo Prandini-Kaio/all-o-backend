@@ -54,10 +54,6 @@ public class ProvedorController {
 
     public ResponseEntity<ProvedorOutput> getById(
             @RequestParam Long id){
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (Usuario) authentication.getPrincipal();
-
         return ResponseEntity.ok().body(service.findById(id));
     }
 
@@ -89,9 +85,8 @@ public class ProvedorController {
             description = "Retorna um prestador favorito."
     )
     public ResponseEntity<Page<ProvedorOutput>> getByFilter(
-            @RequestParam Long idCliente,
             @PageableDefault(size = 15) Pageable pageable){
-        return ResponseEntity.ok().body(service.findAllComFavoritos(idCliente, pageable));
+        return ResponseEntity.ok().body(service.findAllComFavoritos(pageable));
     }
 
     @PostMapping("/register")

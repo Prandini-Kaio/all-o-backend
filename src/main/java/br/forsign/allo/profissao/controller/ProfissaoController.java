@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -79,4 +80,21 @@ public class ProfissaoController {
         return ResponseEntity.ok().body(this.service.createSugestion(input.getSugestao()));
     }
 
+    @GetMapping("/destaques")
+    @Operation(
+            summary = "Consulta todas as sugestões de profissões.",
+            description = "Consulta todas as sugestões de profissões cadastradas no sistema.")
+    @PreAuthorize("hasRole('ROLE_PROVEDOR') OR hasRole('ROLE_CLIENTE')")
+    public ResponseEntity<List<ProfissaoOutput>> findDestaques(){
+        return ResponseEntity.ok().body(this.service.findDestaques());
+    }
+
+    @GetMapping("/aleatorias")
+    @Operation(
+            summary = "Consulta todas as sugestões de profissões.",
+            description = "Consulta todas as sugestões de profissões cadastradas no sistema.")
+    @PreAuthorize("hasRole('ROLE_PROVEDOR') OR hasRole('ROLE_CLIENTE')")
+    public ResponseEntity<List<ProfissaoOutput>> findAleatorias(){
+        return ResponseEntity.ok().body(this.service.findAleatorias());
+    }
 }

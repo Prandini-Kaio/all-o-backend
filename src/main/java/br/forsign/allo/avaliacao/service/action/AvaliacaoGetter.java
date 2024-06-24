@@ -44,4 +44,8 @@ public class AvaliacaoGetter {
     public Page<Avaliacao> byProvedor(Long id, Pageable pageable) {
         return repository.findAll(pageable);
     }
+
+    public List<Avaliacao> byProvedor(Long idProvedor) {
+        return repository.findByProvedor(idProvedor);
+    }
 }

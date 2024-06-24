@@ -9,6 +9,9 @@ import lombok.Data;
 
 @Data
 public class ServicoConfirmacaoInput {
+
     private Long id;
+
     private Boolean confirmado;
+
 }

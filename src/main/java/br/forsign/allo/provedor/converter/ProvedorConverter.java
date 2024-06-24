@@ -21,9 +21,7 @@ public class ProvedorConverter {
 
     public ProvedorOutput toOutput(Provedor provedor){
 
-        List<ProfissaoOutput> profissoesOutp = provedor.getProfissoes().stream()
-                .map(profissaoMapper::toOutput)
-                .toList();
+        ProfissaoOutput profissao = profissaoMapper.toOutput(provedor.getProfissao());
 
         return ProvedorOutput.builder()
                 .id(provedor.getId())
@@ -31,7 +29,7 @@ public class ProvedorConverter {
                 .tipoPessoa(provedor.getTipoPessoa())
                 .cpfCnpj(provedor.getCpfCnpj())
                 .telefone(provedor.getTelefone())
-                .profissoes(profissoesOutp)
+                .profissao(profissao)
                 .endereco(enderecoMapper.toOutput(provedor.getEndereco()))
                 .email(provedor.getEmail())
                 .ativo(provedor.isAtivo())
