@@ -55,7 +55,6 @@ public class PerfilProvedorUpdater {
         log.info(String.format("Atualizando perfil do Provedor com id %s.", input.getId()));
 
         Provedor provedor = provedorGetter.byId(input.getId());
-        Avaliacao avaliacao = avaliacaoGetter.byId(input.getPerfilProvedorInput().getIdAvaliacao());
 
         PerfilProvedor perfilProvedor = getter.byProvedorId(provedor.getId());
 
@@ -66,9 +65,6 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setTotalAvaliacao(totalServicos);
 
         perfilProvedor.setProvedor(provedor);
-
-        if (!avaliacaoRepository.findAll().isEmpty())
-            perfilProvedor.setAvaliacao(avaliacao);
 
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setTempoCadastro(LocalDateUtils.toBrazilianDateString(provedor.getDtRegistro()));
