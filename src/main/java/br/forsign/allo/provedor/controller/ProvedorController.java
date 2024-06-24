@@ -3,6 +3,7 @@ package br.forsign.allo.provedor.controller;
 
 import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
+import br.forsign.allo.provedor.model.ProvedorListOutput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.ProvedorService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -53,7 +54,7 @@ public class ProvedorController {
             summary = "Retorna todos os prestadores de uma profissão.",
             description = "Retorna todos os prestadores ativos de uma profissão."
     )
-    public ResponseEntity<List<ProvedorOutput>> getByProfissao(@RequestParam Long idProfissao){
+    public ResponseEntity<List<ProvedorListOutput>> getByProfissao(@RequestParam Long idProfissao){
 
         return ResponseEntity.ok().body(service.findByProfissao(idProfissao));
     }
@@ -119,7 +120,7 @@ public class ProvedorController {
     @Operation(summary = "Busca uma imagem",
                description = "Busca uma imagem pelo Nome.")
     public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
-        return service.getImage(fileName);
+         return service.getImage(fileName);
     }
 
     @GetMapping("/getAvaliacoes")
