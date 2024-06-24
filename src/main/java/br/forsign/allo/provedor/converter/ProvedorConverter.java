@@ -4,6 +4,7 @@ import br.forsign.allo.entidade.converter.EnderecoMapper;
 import br.forsign.allo.profissao.converter.ProfissaoMapper;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,20 @@ public class ProvedorConverter {
                 .email(provedor.getEmail())
                 .ativo(provedor.isAtivo())
                 .build();
+    }
+
+    public ProvedorDestaquesOutput toDestaqueOutput(Provedor provedor){
+        ProvedorDestaquesOutput provedorDestaque = new ProvedorDestaquesOutput();
+
+        provedorDestaque.setRazaoSocial(provedor.getRazaoSocial());
+        provedorDestaque.setId(provedor.getId());
+        provedorDestaque.setNomeProfissao(provedor.getProfissao().toString());
+        provedorDestaque.setRazaoSocial(provedor.getRazaoSocial());
+        return provedorDestaque;
+    }
+
+    public List<ProvedorDestaquesOutput> toDestaqueOutput(List<Provedor> provedores){
+        return provedores.stream().map(this::toDestaqueOutput).toList();
     }
 }
 
