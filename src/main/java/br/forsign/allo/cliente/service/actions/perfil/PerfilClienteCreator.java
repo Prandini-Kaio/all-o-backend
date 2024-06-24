@@ -22,8 +22,6 @@ public class PerfilClienteCreator {
         PerfilCliente perfilCliente = new PerfilCliente();
 
         perfilCliente.setCliente(cliente);
-        perfilCliente.setNome(cliente.getNome());
-        perfilCliente.setEmail(cliente.getEmail());
         perfilCliente.setImagemPerfil(input.getImagem());
 
         return repository.save(perfilCliente);
