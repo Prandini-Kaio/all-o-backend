@@ -75,8 +75,8 @@ public class PerfilProvedorUpdater {
         return perfilProvedor;
     }
 
-    public PerfilProvedor destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
-        Provedor provedor = provedorGetter.byId(idProvedor);
+    public PerfilProvedor destacarAvaliacao(String username, Long idAvaliacao) {
+        Provedor provedor = provedorGetter.byUsername(username);
 
         Avaliacao avaliacao = avaliacaoGetter.byId(idAvaliacao);
 
