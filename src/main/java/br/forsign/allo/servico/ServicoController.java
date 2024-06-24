@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.annotation.security.RolesAllowed;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -69,5 +71,11 @@ public class ServicoController {
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public List<ServicoOutput> findByNaoVistoPeloCliente() {
         return service.findByNaoVistoPeloCliente();
+    }
+
+    @GetMapping("/filter/provedor")
+    @PreAuthorize("hasRole('ROLE_PROVEDOR') OR hasRole('ROLE_CLIENTE')")
+    public Page<ServicoOutput> findByProvedor(@RequestParam Long idProvedor, Pageable pageable){
+        return service.findByProvedor(idProvedor, pageable);
     }
 }

@@ -101,19 +101,6 @@ public class PerfilProvedorUpdater {
         return repository.save(perfilProvedor);
     }
 
-    public PerfilProvedor updateAvaliados(Long id){
-
-        PerfilProvedor perfilProvedor = getter.byProvedorId(id);
-
-        int totalAvaliacoes = serviceGetter.getTotalAvaliacoes(id);
-
-        perfilProvedor.setTotalAvaliacao(totalAvaliacoes);
-        perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacaoGetter.findAll()));
-        perfilProvedor.setServicosConcluidos(getter.listByProvedor(id).size());
-
-        return repository.save(perfilProvedor);
-    }
-
     private double getMediaAvaliacao(List<Avaliacao> avaliacoes){
         double mediaAvaliacoes = 0;
 
