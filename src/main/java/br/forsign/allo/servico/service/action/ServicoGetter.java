@@ -46,7 +46,7 @@ public class ServicoGetter {
         return repository.findByNaoVistoPeloCliente(cliente.getId());
     }
 
-    public Page<Servico> byProvedor(Long idProvedor, Pageable pageable) {
-        return this.repository.byProvedor(idProvedor, pageable);
+    public List<Servico> byProvedor(Long idProvedor) {
+        return this.repository.byProvedor(idProvedor);
     }
 }

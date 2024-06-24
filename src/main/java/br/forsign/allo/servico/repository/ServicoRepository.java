@@ -30,6 +30,6 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
     @Query("SELECT s "
             + "FROM Servico s "
             + "JOIN s.provedor p "
-            + "WHERE p.id = :idProvedor ")
-    Page<Servico> byProvedor(Long idProvedor, Pageable pageable);
+            + "WHERE p.id = :idProvedor AND s.avaliacao.id IS NOT NULL")
+    List<Servico> byProvedor(Long idProvedor);
 }
