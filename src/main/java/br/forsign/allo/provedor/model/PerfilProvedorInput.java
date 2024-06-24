@@ -15,9 +15,6 @@ public class PerfilProvedorInput {
     @Schema(description = "ID do provedor")
     private Long idProvedor;
 
-    @Schema(description = "ID da avaliacao")
-    private Long idAvaliacao;
-
     @Schema(description = "Descricao do perfil")
     private String descricao;
 
