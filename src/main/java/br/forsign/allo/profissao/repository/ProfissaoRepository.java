@@ -24,4 +24,13 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Long> {
 
     @Query("SELECT p FROM Profissao p WHERE p.nome LIKE %:profissao%")
     List<Profissao> findByFilter(String profissao);
+
+    @Query("SELECT p.profissao " +
+            "FROM Servico s " +
+            "JOIN s.provedor p " +
+            "JOIN p.profissao profissao " +
+            "WHERE s.servicoRealizado = true " +
+            "GROUP BY profissao.id, profissao.nome, profissao.nomeIcone, profissao.suggestion, profissao.ativo " +
+            "ORDER BY COUNT(s) DESC")
+    List<Profissao> findDestaques();
 }

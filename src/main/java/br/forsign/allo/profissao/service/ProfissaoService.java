@@ -61,4 +61,10 @@ public class ProfissaoService {
 
         return mapper.toOutput(creator.createSugestion(suggestion));
     }
+
+    public List<ProfissaoOutput> findDestaques() {
+        log.info("Iniciando consulta de todas as profissões em destaque.");
+
+        return getter.findDestaques().stream().map(mapper::toOutput).toList();
+    }
 }
