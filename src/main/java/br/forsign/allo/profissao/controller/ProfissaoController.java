@@ -88,4 +88,13 @@ public class ProfissaoController {
     public ResponseEntity<List<ProfissaoOutput>> findDestaques(){
         return ResponseEntity.ok().body(this.service.findDestaques());
     }
+
+    @GetMapping("/aleatorias")
+    @Operation(
+            summary = "Consulta todas as sugestões de profissões.",
+            description = "Consulta todas as sugestões de profissões cadastradas no sistema.")
+    @PreAuthorize("hasRole('ROLE_PROVEDOR') OR hasRole('ROLE_CLIENTE')")
+    public ResponseEntity<List<ProfissaoOutput>> findAleatorias(){
+        return ResponseEntity.ok().body(this.service.findAleatorias());
+    }
 }

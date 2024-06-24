@@ -31,6 +31,13 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Long> {
             "JOIN p.profissao profissao " +
             "WHERE s.servicoRealizado = true " +
             "GROUP BY profissao.id, profissao.nome, profissao.nomeIcone, profissao.suggestion, profissao.ativo " +
-            "ORDER BY COUNT(s) DESC")
+            "ORDER BY COUNT(s) DESC " +
+            "LIMIT 6")
     List<Profissao> findDestaques();
+
+    @Query("SELECT p " +
+            "FROM Profissao p " +
+            "ORDER BY RANDOM() " +
+            "LIMIT 6")
+    List<Profissao> findAleatorias();
 }
