@@ -75,8 +75,8 @@ public class PerfilProvedorUpdater {
         return perfilProvedor;
     }
 
-    public PerfilProvedor destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
-        Provedor provedor = provedorGetter.byId(idProvedor);
+    public PerfilProvedor destacarAvaliacao(String username, Long idAvaliacao) {
+        Provedor provedor = provedorGetter.byUsername(username);
 
         Avaliacao avaliacao = avaliacaoGetter.byId(idAvaliacao);
 
@@ -97,19 +97,6 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacaoGetter.findAll()));
         perfilProvedor.setTotalAvaliacao(totalAvaliacoes);
         perfilProvedor.setServicosConcluidos(serviceGetter.getTotalAvaliacoes(idProvedor));
-
-        return repository.save(perfilProvedor);
-    }
-
-    public PerfilProvedor updateAvaliados(Long id){
-
-        PerfilProvedor perfilProvedor = getter.byProvedorId(id);
-
-        int totalAvaliacoes = serviceGetter.getTotalAvaliacoes(id);
-
-        perfilProvedor.setTotalAvaliacao(totalAvaliacoes);
-        perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacaoGetter.findAll()));
-        perfilProvedor.setServicosConcluidos(getter.listByProvedor(id).size());
 
         return repository.save(perfilProvedor);
     }
