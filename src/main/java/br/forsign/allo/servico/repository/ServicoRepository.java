@@ -24,12 +24,9 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
     @Query("SELECT s FROM Servico s WHERE s.servicoRealizado AND s.avaliacao.id IS NULL AND s.cliente.id = :idCliente ")
     List<Servico> findByNaoVistoPeloCliente(Long idCliente);
 
-    @Query("SELECT COUNT(s) FROM Servico s JOIN s.provedor p WHERE p.id = :idProvedor")
+    @Query("SELECT COUNT(s) FROM Servico s JOIN s.provedor p ON s.provedor.id = p.id WHERE p.id = :idProvedor")
     int getTotalAvaliacoes(Long idProvedor);
 
-    @Query("SELECT s "
-            + "FROM Servico s "
-            + "JOIN s.provedor p "
-            + "WHERE p.id = :idProvedor AND s.avaliacao.id IS NOT NULL")
+    @Query("SELECT s FROM Servico s JOIN s.provedor p ON s.provedor.id = p.id WHERE p.id = :idProvedor AND s.avaliacao.id IS NOT NULL")
     List<Servico> byProvedor(Long idProvedor);
 }
