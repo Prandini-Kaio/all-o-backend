@@ -48,8 +48,6 @@ public class PerfilProvedorService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
-
-
         return mapper.toOutput(updater.destacarAvaliacao(usuario.getLogin(), idAvaliacao));
     }
 }

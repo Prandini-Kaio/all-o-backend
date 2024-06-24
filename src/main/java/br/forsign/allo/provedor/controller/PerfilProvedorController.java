@@ -48,7 +48,7 @@ public class PerfilProvedorController {
             summary = "Altera a avaliacao em destaque do perfil provedor.",
             description = "Altera a avaliacao em destaque do perfil provedor.")
     @PreAuthorize("hasRole('PROVEDOR') or hasRole('ADMIN')")
-    public ResponseEntity<PerfilProvedorOutput> destacarAvaliacao(@RequestParam Long idAvaliacao){
+    public ResponseEntity<PerfilProvedorOutput> destacarAvaliacao(@RequestBody Long idAvaliacao){
         return ResponseEntity.ok().body(this.service.destacarAvaliacao(idAvaliacao));
     }
 
