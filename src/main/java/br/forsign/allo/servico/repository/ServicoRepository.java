@@ -2,6 +2,8 @@ package br.forsign.allo.servico.repository;
 
 import br.forsign.allo.servico.domain.Servico;
 import jakarta.annotation.Resource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -24,4 +26,10 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
 
     @Query("SELECT COUNT(s) FROM Servico s JOIN s.provedor p WHERE p.id = :idProvedor")
     int getTotalAvaliacoes(Long idProvedor);
+
+    @Query("SELECT s "
+            + "FROM Servico s "
+            + "JOIN s.provedor p "
+            + "WHERE p.id = :idProvedor ")
+    Page<Servico> byProvedor(Long idProvedor, Pageable pageable);
 }
