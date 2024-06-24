@@ -61,12 +61,9 @@ public class PerfilProvedorUpdater {
 
         int totalServicos = serviceGetter.getTotalAvaliacoes(provedor.getId());
 
-        perfilProvedor.setNome(provedor.getRazaoSocial());
-        perfilProvedor.setEmail(provedor.getEmail());
         perfilProvedor.setDescricao(input.getPerfilProvedorInput().getDescricao());
         perfilProvedor.setImagemPerfil(input.getPerfilProvedorInput().getPerfilImage());
         perfilProvedor.setTotalAvaliacao(totalServicos);
-
 
         perfilProvedor.setProvedor(provedor);
 
