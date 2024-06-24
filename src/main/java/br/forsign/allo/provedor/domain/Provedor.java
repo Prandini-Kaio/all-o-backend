@@ -11,8 +11,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Builder
 @Data
@@ -26,11 +24,9 @@ public class Provedor extends Entidade {
     @GeneratedValue(generator = "SEQ_PRVDR")
     private Long id;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "PROFISSAO_PROVEDOR",
-            joinColumns = @JoinColumn(name = "ID_PROVEDOR"),
-            inverseJoinColumns = @JoinColumn(name = "ID_PROFISSAO"))
-    private List<Profissao> profissoes;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PROFISSAO_PROVEDOR")
+    private Profissao profissao;
 
     @OneToOne
     @JoinColumn(name = "USUARIO_ID")

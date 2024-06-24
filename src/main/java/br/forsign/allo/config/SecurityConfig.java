@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                                .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/provedor/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/cliente/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/provedor/upload").permitAll()

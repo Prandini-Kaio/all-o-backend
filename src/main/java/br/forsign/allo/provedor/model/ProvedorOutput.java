@@ -9,8 +9,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +21,7 @@ public class ProvedorOutput {
 
     private EnderecoOutput endereco;
 
-    private List<ProfissaoOutput> profissoes;
+    private ProfissaoOutput profissao;
 
     private TipoPessoaEnum tipoPessoa;
 
