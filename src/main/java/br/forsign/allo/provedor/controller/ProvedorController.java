@@ -2,6 +2,7 @@ package br.forsign.allo.provedor.controller;
 
 
 import br.forsign.allo.provedor.model.ProvedorCadastroInput;
+import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorListOutput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
@@ -128,5 +129,12 @@ public class ProvedorController {
                description = "Retorna o total de avaliações de um provedor pelo ID")
     public ResponseEntity<Integer> getTotalbyId(@RequestParam Long id){
         return ResponseEntity.ok().body(service.getTotalAval(id));
+    }
+
+    @GetMapping("/melhoresAvaliados")
+    @Operation(summary = "Retorna os provedores mais bem-avaliados",
+               description = "Retorna os provedores mais bem avaliados")
+    public ResponseEntity<List<ProvedorDestaquesOutput>> getByHighAvaliacao(){
+        return ResponseEntity.ok().body(service.getByHighAvaliacao());
     }
 }
