@@ -9,7 +9,10 @@ import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.repository.ServicoRepository;
 import jakarta.annotation.Resource;
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -43,4 +46,7 @@ public class ServicoGetter {
         return repository.findByNaoVistoPeloCliente(cliente.getId());
     }
 
+    public Page<Servico> byProvedor(Long idProvedor, Pageable pageable) {
+        return this.repository.byProvedor(idProvedor, pageable);
+    }
 }
