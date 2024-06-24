@@ -34,5 +34,4 @@ public class ProvedorOutput {
     private boolean ativo;
 
     private boolean favorito;
-
 }

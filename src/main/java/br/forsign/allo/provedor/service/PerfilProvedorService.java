@@ -10,7 +10,10 @@ import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorCreator;
 import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorGetter;
 import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorUpdater;
+import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.annotation.Resource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,8 +43,14 @@ public class PerfilProvedorService {
         return mapper.toOutput(updater.update(input));
     }
 
-    public PerfilProvedorOutput destacarAvaliacao(Long idProvedor, Long idAvaliacao) {
-        return mapper.toOutput(updater.destacarAvaliacao(idProvedor, idAvaliacao));
+    public PerfilProvedorOutput destacarAvaliacao(Long idAvaliacao) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = (Usuario) authentication.getPrincipal();
+
+
+
+        return mapper.toOutput(updater.destacarAvaliacao(usuario.getLogin(), idAvaliacao));
     }
 }
 
