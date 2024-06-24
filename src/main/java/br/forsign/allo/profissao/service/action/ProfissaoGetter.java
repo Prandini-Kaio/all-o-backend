@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,5 +59,11 @@ public class ProfissaoGetter {
         Optional<Profissao> profissao = repository.findByNome(nome);
 
         return profissao.isPresent();
+    }
+
+    public List<Profissao> findDestaques() {
+        log.info("Consultando profissões em destaque.");
+
+        return repository.findDestaques();
     }
 }
