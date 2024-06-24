@@ -16,15 +16,6 @@ public class Perfil {
     @Column(name = "IMAGEM_PERFIL")
     private String imagemPerfil;
 
-    @Column(name = "NOME")
-    private String nome;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "TELEFONE")
-    private String telefone;
-
     @Column(name = "DESCRICAO")
     private String descricao;
 }
