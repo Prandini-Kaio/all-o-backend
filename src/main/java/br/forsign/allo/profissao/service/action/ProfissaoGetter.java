@@ -66,4 +66,12 @@ public class ProfissaoGetter {
 
         return repository.findDestaques();
     }
+
+    public List<Profissao> findAleatorias() {
+
+        log.info("Gerando profissões aleatórias.");
+
+        return repository.findAleatorias();
+
+    }
 }

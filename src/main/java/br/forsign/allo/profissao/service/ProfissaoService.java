@@ -67,4 +67,10 @@ public class ProfissaoService {
 
         return getter.findDestaques().stream().map(mapper::toOutput).toList();
     }
+
+    public List<ProfissaoOutput> findAleatorias() {
+        log.info("Iniciando consulta de profissões aleatórias.");
+
+        return getter.findAleatorias().stream().map(mapper::toOutput).toList();
+    }
 }
