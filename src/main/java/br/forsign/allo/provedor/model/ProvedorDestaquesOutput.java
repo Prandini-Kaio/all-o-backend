@@ -10,8 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ProvedorDestaquesOutput {
+
     private Long id;
 
     private String razaoSocial;
-    
+
+    private String nomeProfissao;
+
+    private String imagem;
+
 }
