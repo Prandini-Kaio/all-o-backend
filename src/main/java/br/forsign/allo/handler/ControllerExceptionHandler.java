@@ -3,6 +3,7 @@ package br.forsign.allo.handler;
 import br.forsign.allo.common.error.BusinessException;
 import br.forsign.allo.common.error.rest.APIErrorResponse;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import lombok.extern.apachecommons.CommonsLog;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -59,7 +60,14 @@ public class ControllerExceptionHandler {
         return this.handleError(HttpStatus.BAD_REQUEST, ex, request);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler({
+            ValidationException.class
+    })
+    public ResponseEntity<APIErrorResponse> handleValidationException(Exception ex, WebRequest request) {
+        return this.handleError(ex.getCause().getMessage(), request);
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<APIErrorResponse> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
         return this.getMethodArgumentoNotValidResponse(HttpStatus.BAD_REQUEST, ex, request);
     }

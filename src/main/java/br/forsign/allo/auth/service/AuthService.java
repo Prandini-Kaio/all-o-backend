@@ -5,6 +5,7 @@ import br.forsign.allo.auth.model.LoginInput;
 import br.forsign.allo.auth.model.LoginOutput;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
+import br.forsign.allo.common.error.BusinessException;
 import br.forsign.allo.config.TokenService;
 import br.forsign.allo.entidade.domain.Entidade;
 import br.forsign.allo.provedor.domain.Provedor;
@@ -65,7 +66,7 @@ public class AuthService {
         log.info("Register attempt: " + input.getLogin());
 
         if(loadUserByUsername(input.getLogin()) != null)
-            return null;
+            throw new BusinessException("Usúario já cadastrado.");
 
         String encodedPassword = new BCryptPasswordEncoder().encode(input.getSenha());
         Usuario usuario = new Usuario(input.getLogin(), encodedPassword, input.getRole());
