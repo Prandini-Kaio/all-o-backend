@@ -39,7 +39,7 @@ public class NotificaProvedorCreator {
     }
 
     public NotificacaoProvedor createAvaliacao(NotificacaoProvedorInput input) {
-        logger.info("Criando notificação de avaliação de serviço {}", input.getId());
+        logger.info("Criando notificação de avaliação de serviço");
 
         NotificacaoProvedor notificacao = new NotificacaoProvedor();
 

@@ -1,11 +1,16 @@
 package br.forsign.allo.servico.service.action;
 
+import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.avaliacao.converter.AvaliacaoMapper;
 import br.forsign.allo.avaliacao.domain.Avaliacao;
+import br.forsign.allo.cliente.domain.Cliente;
+import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.NotificacaoProvedorInput;
 import br.forsign.allo.provedor.service.NotificacaoProvedorService;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
+import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.provedor.service.action.ProvedorUpdater;
 import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorUpdater;
 import br.forsign.allo.servico.domain.Servico;
@@ -39,13 +44,24 @@ public class ServicoUpdater {
     @Resource
     private NotificacaoProvedorService notificacaoProvedorService;
 
+    @Resource
+    private ProvedorGetter provedorGetter;
+
+    @Resource
+    private ClienteGetter clienteGetter;
+
+    @Resource
+    private AuthService authService;
+
     private final Logger logger = LoggerFactory.getLogger(ServicoUpdater.class);
 
     public Servico confirmarServico(Long idServico, Boolean confirmado) {
 
         logger.info("Confirmando ( {} ) serviço: {}", confirmado, idServico);
 
-        Servico servico = getter.byId(idServico);
+        Provedor provedor = provedorGetter.byUsername(AuthService.getContextUser().getUsername());
+
+        Servico servico = getter.byProvedorAndID(provedor.getUsuario().getUsername(), idServico);
 
         servico.setServicoRealizado(confirmado);
         servico.setServicoVisto(true);
@@ -55,11 +71,13 @@ public class ServicoUpdater {
 
     public Servico avaliarServico(ServicoInput input) {
 
+        Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
+
+        Servico servico = getter.byClienteAndId(cliente.getUsuario().getUsername(), input.getId());
+
         logger.info("Avaliando serviço: {}", input.getId());
 
-        Servico servico = getter.byId(input.getId());
-
-        String mensagem = String.format("O cliente %s avaliou o serviço!", servico.getCliente().getNome());
+        String mensagem = String.format("O cliente %s avaliou o serviço!", cliente.getNome());
 
         servico.setAvaliacao(avaliacaoMapper.fromInput(input.getAvaliacao()));
 
