@@ -8,6 +8,7 @@ import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorListOutput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.ProvedorService;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -101,6 +102,7 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.update(input));
     }
 
+    @Hidden
     @DeleteMapping("/{id}")
     @Operation(
             summary = "Deleta um prestador.",
@@ -137,13 +139,6 @@ public class ProvedorController {
             description = "Busca uma imagem pelo Nome.")
     public ResponseEntity<org.springframework.core.io.Resource> buscarImagemServicoPorNome(@RequestParam String fileName) {
         return service.getImage(fileName, TipoUpload.SERVICO);
-    }
-
-    @GetMapping("/getAvaliacoes")
-    @Operation(summary = "Retorna o total de avaliações",
-               description = "Retorna o total de avaliações de um provedor pelo ID")
-    public ResponseEntity<Integer> getTotalbyId(@RequestParam Long id){
-        return ResponseEntity.ok().body(service.getTotalAval(id));
     }
 
     @GetMapping("/melhoresAvaliados")

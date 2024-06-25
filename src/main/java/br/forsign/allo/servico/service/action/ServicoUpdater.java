@@ -72,18 +72,21 @@ public class ServicoUpdater {
     public Servico avaliarServico(ServicoInput input) {
 
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
-
         Servico servico = getter.byClienteAndId(cliente.getUsuario().getUsername(), input.getId());
+        String mensagem = String.format("O cliente %s avaliou o serviço!", cliente.getNome());
 
         logger.info("Avaliando serviço: {}", input.getId());
 
-        String mensagem = String.format("O cliente %s avaliou o serviço!", cliente.getNome());
+        NotificacaoProvedorInput notificacaoProvedorInput = new NotificacaoProvedorInput();
+
+        notificacaoProvedorInput.setIdProvedor(servico.getProvedor().getId());
+        notificacaoProvedorInput.setNomeCliente(cliente.getNome());
+        notificacaoProvedorInput.setMensagem(mensagem);
 
         servico.setAvaliacao(avaliacaoMapper.fromInput(input.getAvaliacao()));
 
         perfilProvedorUpdater.updateStats(servico.getProvedor().getId(), input.getId());
-
-        notificacaoProvedorService.createAvaliacao(new NotificacaoProvedorInput(mensagem));
+        notificacaoProvedorService.createAvaliacao(notificacaoProvedorInput);
 
         return this.repository.save(servico);
     }
