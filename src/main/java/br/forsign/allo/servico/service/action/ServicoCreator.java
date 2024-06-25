@@ -40,6 +40,7 @@ public class ServicoCreator {
         logger.info("Criando serviço para o provedor: {}", idProvedor);
 
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
+
         Provedor provedor = provedorGetter.byId(idProvedor);
 
         Servico servico = new Servico();

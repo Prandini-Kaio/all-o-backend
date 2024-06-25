@@ -49,9 +49,11 @@ public class AuthService {
 
     public LoginOutput login(LoginInput input){
 
-        log.info("Login attempt: " + input.getLogin());
+        String login = input.getLogin().toLowerCase();
 
-        var usernamePass = new UsernamePasswordAuthenticationToken(input.getLogin(), input.getSenha());
+        log.info("Login attempt: " + login);
+
+        var usernamePass = new UsernamePasswordAuthenticationToken(login, input.getSenha());
         Authentication auth = this.authenticationManager.authenticate(usernamePass);
 
         String token = tokenService.generateToken((Usuario) auth.getPrincipal());
@@ -69,7 +71,7 @@ public class AuthService {
             throw new BusinessException("Usúario já cadastrado.");
 
         String encodedPassword = new BCryptPasswordEncoder().encode(input.getSenha());
-        Usuario usuario = new Usuario(input.getLogin(), encodedPassword, input.getRole());
+        Usuario usuario = new Usuario(input.getLogin().toLowerCase(), encodedPassword, input.getRole());
 
         return this.usuarioRepository.save(usuario);
     }

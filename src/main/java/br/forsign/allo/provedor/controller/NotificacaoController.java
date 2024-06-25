@@ -8,6 +8,7 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,8 @@ public class NotificacaoController {
             summary = "Lista notificações",
             description = "Lista todas as notificações do provedor"
     )
-    public ResponseEntity<List<NotificacaoOutput>> listNotificacoes(@RequestParam Long idProvedor) {
+    @PreAuthorize("hasRole('ROLE_PROVEDOR')")
+    public ResponseEntity<List<NotificacaoOutput>> listNotificacoes() {
         return ResponseEntity.ok().body(this.service.byProvedor());
     }
 

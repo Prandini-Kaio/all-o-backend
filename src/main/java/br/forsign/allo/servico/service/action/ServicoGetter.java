@@ -67,4 +67,12 @@ public class ServicoGetter {
 
         return this.repository.byProvedor(idProvedor);
     }
+
+    public Servico byClienteAndId(String cliente, Long idServico) {
+        return repository.findByClienteAndId(cliente, idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", cliente));
+    }
+
+    public Servico byProvedorAndID(String provedor, Long idServico) {
+        return repository.findByProvedorAndId(provedor, idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", provedor));
+    }
 }
