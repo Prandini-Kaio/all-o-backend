@@ -156,6 +156,8 @@ public class ProvedorService {
     }
 
     public List<ProvedorDestaquesOutput> getByHighAvaliacao(){
+        log.info("Iniciando consulta a profissionais em destaque.");
+
         return converter.toDestaqueOutput(getter.getByHighAvaliacao());
     }
 
