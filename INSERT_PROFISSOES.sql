@@ -11,7 +11,7 @@ INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Cozinh
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Cuidador','human-wheelchair', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Dentista','tooth-outline', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Desenvolvedor','code-tags', TRUE, FALSE);
-INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Design Gráfico','vector-circle', TRUE, FALSE);
+INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Designer','vector-circle', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Doméstica','broom', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Economista','currency-usd', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Editor de Textos','text-box-outline', TRUE, FALSE);
@@ -43,12 +43,10 @@ INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Social
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Soldador','fire', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Taxista','taxi', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Técnico de TI','laptop', TRUE, FALSE);
-INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Técnico em Segurança do Trabalho','shoe-cleat', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Tradutor','translate', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Vendedor','cash-register', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Veterinário','dog-service', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Encanador','pipe-wrench', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Engenheiro','math-compass', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Manicure','hand-back-right-outline', TRUE, FALSE);
-INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Designer de Moda','bow-tie', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Costureiro','tshirt-crew-outline', TRUE, FALSE);
