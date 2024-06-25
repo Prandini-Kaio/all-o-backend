@@ -1,5 +1,6 @@
 package br.forsign.allo.provedor.repository;
 
+import br.forsign.allo.entidade.domain.Notificacao;
 import br.forsign.allo.provedor.domain.NotificacaoProvedor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +21,7 @@ public interface NotificacaoProvedorRepository extends JpaRepository<Notificacao
     @Query("SELECT n " +
             "FROM NotificacaoProvedor n " +
             "JOIN n.provedor p " +
-            "WHERE p.email = :login")
+            "JOIN p.usuario u " +
+            "WHERE u.login = :login")
     List<NotificacaoProvedor> findByUsername(String login);
 }

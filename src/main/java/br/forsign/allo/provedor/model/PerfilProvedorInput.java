@@ -15,9 +15,9 @@ public class PerfilProvedorInput {
     @Schema(description = "ID do provedor")
     private Long idProvedor;
 
-    @Schema(description = "Descricao do perfil")
+    @Schema(description = "Descricao do perfil", example = "Sou um provedor de serviços")
     private String descricao;
 
-    @Schema(description = "Imagem")
+    @Schema(description = "Imagem do perfil", example = "IMAGEM DE TESTE")
     private String perfilImage;
 }

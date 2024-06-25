@@ -3,6 +3,7 @@ package br.forsign.allo.provedor.service;
 import br.forsign.allo.provedor.converter.NotificacaoProvedorMapper;
 import br.forsign.allo.provedor.model.NotificacaoOutput;
 import br.forsign.allo.provedor.model.NotificacaoProvedorInput;
+import br.forsign.allo.provedor.model.NotificacaoProvedorOutput;
 import br.forsign.allo.provedor.service.action.notificacao.NotificaProvedorCreator;
 import br.forsign.allo.provedor.service.action.notificacao.NotificacaoProvedorGetter;
 import br.forsign.allo.provedor.service.action.notificacao.NotificacaoProvedorUpdater;
@@ -57,12 +58,12 @@ public class NotificacaoProvedorService {
         return mapper.toOutput(this.updater.visualizarNotificacao(id));
     }
 
-    public List<NotificacaoOutput> byProvedor() {
+    public List<NotificacaoProvedorOutput> byProvedor() {
         logger.info("Iniciando busca de notificações do provedor");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
-        return this.getter.byUsername(usuario.getUsername()).stream().map(mapper::toOutput).toList();
+        return this.getter.byUsername(usuario.getUsername()).stream().map(mapper::toProvedorOutput).toList();
     }
 }

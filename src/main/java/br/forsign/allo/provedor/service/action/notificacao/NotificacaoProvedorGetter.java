@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.service.action.notificacao;
 
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.entidade.domain.Notificacao;
 import br.forsign.allo.provedor.domain.NotificacaoProvedor;
 import br.forsign.allo.provedor.repository.NotificacaoProvedorRepository;
 import jakarta.annotation.Resource;

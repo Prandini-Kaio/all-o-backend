@@ -3,9 +3,11 @@ package br.forsign.allo.provedor.service.action.notificacao;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.provedor.domain.NotificacaoProvedor;
+import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.NotificacaoProvedorInput;
 import br.forsign.allo.provedor.repository.NotificacaoProvedorRepository;
 import br.forsign.allo.provedor.service.NotificacaoProvedorService;
+import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,9 @@ public class NotificaProvedorCreator {
 
     @Resource
     private NotificacaoProvedorRepository repository;
+
+    @Resource
+    private ProvedorGetter provedorGetter;
 
     private final Logger logger = LoggerFactory.getLogger(NotificacaoProvedorService.class);
 
@@ -42,11 +47,14 @@ public class NotificaProvedorCreator {
         logger.info("Criando notificação de avaliação de serviço");
 
         NotificacaoProvedor notificacao = new NotificacaoProvedor();
+        Provedor provedor = provedorGetter.byId(input.getIdProvedor());
 
         notificacao.setTitulo("Seu serviço foi avaliado!");
+        notificacao.setNomeCliente(input.getNomeCliente());
         notificacao.setMensagem(input.getMensagem());
         notificacao.setVisualizada(false);
         notificacao.setDataCriacao(LocalDate.now());
+        notificacao.setProvedor(provedor);
 
         return repository.save(notificacao);
     }

@@ -3,6 +3,7 @@ package br.forsign.allo.provedor.model;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author kaiooliveira
@@ -10,11 +11,14 @@ import lombok.Data;
  */
 
 @Data
+@NoArgsConstructor
 public class NotificacaoProvedorInput {
 
     private Long id;
 
     private String mensagem;
+
+    private String nomeCliente;
 
     private Long idProvedor;
 

@@ -25,14 +25,14 @@ public class ProvedorValidator {
         validarDocumentoJaCadastrado(input);
     }
 
+    public void validarUpdate(ProvedorInput input) {
+        validarExistente(input);
+        validarDocumentos(input);
+    }
+
     private void validarDocumentos(ProvedorInput input) {
         validarTipoDocumento(input);
         validarDocumentoJaCadastrado(input);
-    }
-
-    public void validarUpdate(ProvedorInput input) {
-        validarExistente(input.getId());
-        validarDocumentos(input);
     }
 
     private void validarTipoDocumento(ProvedorInput input) {
@@ -43,14 +43,14 @@ public class ProvedorValidator {
             throw new BusinessException(ProvedorExceptionMessages.tipoDocumentoInvalido("Jurídica", input.getCpfCnpj()));
     }
 
-    private void validarExistente(Long id){
-        if(!getter.existsById(id))
-            throw new BusinessException(CommonExceptionMessages.naoEncontrado("Provedor", id));
+    private void validarExistente(ProvedorInput input){
+        if(getter.existsByCpfCnpj(input.getCpfCnpj()))
+            throw new BusinessException(CommonExceptionMessages.jaExistente("Provedor", input.getCpfCnpj()));
     }
 
     private void validarDocumentoJaCadastrado(ProvedorInput input){
         if(getter.existsByCpfCnpj(input.getCpfCnpj())){
-            if(getter.byCpfCnpj(input.getCpfCnpj()).getId() != input.getId())
+            if(!getter.byCpfCnpj(input.getCpfCnpj()).getId().equals(input.getId()))
                 throw new BusinessException(CommonExceptionMessages.entidadeJaCadastrada("Provedor", input.getCpfCnpj()));
         }
     }

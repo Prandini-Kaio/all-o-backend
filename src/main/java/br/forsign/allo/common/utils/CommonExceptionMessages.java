@@ -20,7 +20,9 @@ public class CommonExceptionMessages {
 
     private static final String CAMPO_INVALIDO = "O campo \"%s\" com valor \"%s\" inválido.";
 
-    private static final String JA_EXISTENTE = "\"%s\" com valor \"%s\" já cadastrado.";
+    private static final String JA_EXISTENTE_NOME = "\"%s\" com valor \"%s\" já cadastrado.";
+
+    private static final String JA_EXISTENTE = "\"%s\" já cadastrado.";
 
 
     public static String naoEncontrado(String nome){
@@ -44,6 +46,11 @@ public class CommonExceptionMessages {
     }
 
     public static String jaExistente(String campo, String valor){
-        return String.format(JA_EXISTENTE, campo, valor);
+        return String.format(JA_EXISTENTE_NOME, campo, valor);
     }
+
+    public static String jaExistente(String campo){
+        return String.format(JA_EXISTENTE, campo);
+    }
+
 }
