@@ -11,6 +11,7 @@ import jakarta.annotation.Resource;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,11 +25,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
-@Data
-@Getter
-@Setter
-
 @Component
+@CommonsLog
 public class ProvedorGetter {
 
     @Resource
@@ -101,6 +99,8 @@ public class ProvedorGetter {
     }
 
     public List<Provedor> getByHighAvaliacao() {
+        log.info("Consulta profissionais em destaque.");
+
         return repository.findMelhoresAvaliacoes();
     }
 
