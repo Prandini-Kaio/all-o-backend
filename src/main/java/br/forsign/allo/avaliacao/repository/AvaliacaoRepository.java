@@ -14,6 +14,6 @@ import java.util.stream.Stream;
 @Repository
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
 
-    @Query("SELECT a FROM Avaliacao a JOIN Servico s WHERE s.provedor.id = :idProvedor")
+    @Query("SELECT a FROM Avaliacao a JOIN Servico s ON s.avaliacao IS NOT NULL AND s.avaliacao.id = a.id WHERE s.provedor.id = :idProvedor")
     List<Avaliacao> findByProvedor(Long idProvedor);
 }

@@ -66,10 +66,11 @@ public class PerfilProvedorUpdater {
 
         perfilProvedor.setProvedor(provedor);
 
-        perfilProvedor.setServicosConcluidos(0);
+        perfilProvedor.setServicosConcluidos(totalServicos);
         perfilProvedor.setTempoCadastro(LocalDateUtils.toBrazilianDateString(provedor.getDtRegistro()));
 
-        List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.findAll();
+        perfilProvedor.setImagensServicos(input.getServicoImagens());
+        List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(provedor.getId());
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
 
         return perfilProvedor;
@@ -94,7 +95,7 @@ public class PerfilProvedorUpdater {
 
         int totalAvaliacoes = serviceGetter.getTotalAvaliacoes(idProvedor);
 
-        perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacaoGetter.findAll()));
+        perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacaoGetter.byProvedor(idProvedor)));
         perfilProvedor.setTotalAvaliacao(totalAvaliacoes);
         perfilProvedor.setServicosConcluidos(serviceGetter.getTotalAvaliacoes(idProvedor));
 

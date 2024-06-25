@@ -13,7 +13,7 @@ INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Dentis
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Desenvolvedor','code-tags', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Design Gráfico','vector-circle', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Doméstica','broom', TRUE, FALSE);
-INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Economista','attach-money', TRUE, FALSE);
+INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Economista','currency-usd', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Editor de Textos','text-box-outline', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Editor de Vídeo','film', TRUE, FALSE);
 INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Eletricista','lightning-bolt-outline', TRUE, FALSE);

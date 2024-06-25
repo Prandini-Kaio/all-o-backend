@@ -75,7 +75,7 @@ public class ServicoController {
 
     @GetMapping("/filter/provedor")
     @PreAuthorize("hasRole('ROLE_PROVEDOR') OR hasRole('ROLE_CLIENTE')")
-    public Page<ServicoOutput> findByProvedor(@RequestParam Long idProvedor, Pageable pageable){
-        return service.findByProvedor(idProvedor, pageable);
+    public List<ServicoOutput> findByProvedor(@RequestParam Long idProvedor){
+        return service.findByProvedor(idProvedor);
     }
 }
