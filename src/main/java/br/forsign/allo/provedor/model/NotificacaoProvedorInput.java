@@ -14,14 +14,14 @@ public class NotificacaoProvedorInput {
 
     private Long id;
 
-    @NotBlank
-    private String titulo;
-
-    @NotBlank
     private String mensagem;
 
-    @NotNull
     private Long idProvedor;
 
     private boolean visualizada;
+
+    public NotificacaoProvedorInput(String mensagem){
+        this.mensagem = mensagem;
+        this.visualizada = false;
+    }
 }
