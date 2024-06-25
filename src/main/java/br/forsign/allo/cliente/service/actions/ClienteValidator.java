@@ -17,12 +17,10 @@ public class ClienteValidator {
     private ClienteGetter getter;
 
     public void validarCreate(ClienteInput input){
-        validarExistente(input);
         validarDocumentoJaCadastrado(input);
     }
 
     public void validarUpdate(ClienteInput input){
-        validarExistente(input);
         validarDocumentoJaCadastrado(input);
     }
 
