@@ -81,7 +81,7 @@ public class ClienteController {
             description = "Adiciona um provedor a lista de favoritos de um cliente.")
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
     public ResponseEntity<ClienteOuput> favoritar(
-            @RequestParam Long idProvedor
+            @RequestBody Long idProvedor
     ) {
         return ResponseEntity.ok().body(service.favoritar(idProvedor));
     }

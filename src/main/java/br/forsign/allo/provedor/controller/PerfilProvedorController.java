@@ -30,7 +30,6 @@ public class PerfilProvedorController {
     @Operation(
             summary = "Consulta o perfil de um provedor.",
             description = "Consulta o perfil de um provedor previamente cadastrado no sitema e ativo.")
-    @PreAuthorize("hasRole('PROVEDOR') or hasRole('ADMIN')")
     public ResponseEntity<PerfilProvedorOutput> getByProvedorId(@RequestParam Long idProvedor) {
         return ResponseEntity.ok().body(this.service.getByProvedorId(idProvedor));
     }
@@ -49,7 +48,7 @@ public class PerfilProvedorController {
             summary = "Altera a avaliacao em destaque do perfil provedor.",
             description = "Altera a avaliacao em destaque do perfil provedor.")
     @PreAuthorize("hasRole('PROVEDOR') or hasRole('ADMIN')")
-    public ResponseEntity<PerfilProvedorOutput> destacarAvaliacao(@RequestParam Long idAvaliacao){
+    public ResponseEntity<PerfilProvedorOutput> destacarAvaliacao(@RequestBody Long idAvaliacao){
         return ResponseEntity.ok().body(this.service.destacarAvaliacao(idAvaliacao));
     }
 
