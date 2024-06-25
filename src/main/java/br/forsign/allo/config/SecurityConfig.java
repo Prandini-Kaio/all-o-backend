@@ -38,11 +38,11 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/cliente/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/provedor/register").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/cliente/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/provedor/upload").permitAll()
                         .requestMatchers(HttpMethod.POST, "/cliente/upload").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/profissao").permitAll()
+                        .requestMatchers("/profissao/**").permitAll()
                         .requestMatchers("/servico/abertura/**").hasRole("CLIENTE")
                         .requestMatchers("/provedor").hasRole("PROVEDOR")
                         .requestMatchers("/cliente").hasRole("CLIENTE")

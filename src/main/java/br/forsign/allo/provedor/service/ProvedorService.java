@@ -8,6 +8,7 @@ import br.forsign.allo.provedor.converter.ProvedorConverter;
 import br.forsign.allo.provedor.converter.ProvedorMapper;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.ProvedorCadastroInput;
+import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
 import br.forsign.allo.provedor.service.action.ProvedorCreator;
@@ -142,6 +143,10 @@ public class ProvedorService {
 
     public String postImage(MultipartFile file){
         return updater.postImagemProvedor(file);
+    }
+
+    public List<ProvedorDestaquesOutput> getByHighAvaliacao(){
+        return converter.toDestaqueOutput(getter.getByHighAvaliacao());
     }
 
     private ProvedorOutput makeProvedorOutput(Provedor provedor){
