@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.controller;
 
 
+import br.forsign.allo.provedor.domain.TipoUpload;
 import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorListOutput;
@@ -113,14 +114,28 @@ public class ProvedorController {
     @Operation(summary = "Sobe uma imagem",
                description = "Sobe uma imagem para um provedor")
     public String handleFileUpload(@RequestParam("image") MultipartFile file) {
-        return this.service.postImage(file);
+        return this.service.postImage(file, TipoUpload.PERFIL);
+    }
+
+    @PostMapping("/upload/servico")
+    @Operation(summary = "Sobe uma imagem",
+            description = "Sobe uma imagem para um provedor")
+    public String handleFileUploadServico(@RequestParam("image") MultipartFile file) {
+        return this.service.postImage(file, TipoUpload.SERVICO);
     }
 
     @GetMapping("/buscarImagem")
     @Operation(summary = "Busca uma imagem",
                description = "Busca uma imagem pelo Nome.")
     public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
-         return service.getImage(fileName);
+         return service.getImage(fileName, TipoUpload.PERFIL);
+    }
+
+    @GetMapping("/buscarImagem/servico")
+    @Operation(summary = "Busca uma imagem",
+            description = "Busca uma imagem pelo Nome.")
+    public ResponseEntity<org.springframework.core.io.Resource> buscarImagemServicoPorNome(@RequestParam String fileName) {
+        return service.getImage(fileName, TipoUpload.SERVICO);
     }
 
     @GetMapping("/getAvaliacoes")

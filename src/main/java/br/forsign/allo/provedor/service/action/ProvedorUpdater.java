@@ -5,6 +5,7 @@ import br.forsign.allo.entidade.converter.EnderecoMapper;
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.domain.TipoUpload;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.ProvedorValidator;
@@ -38,7 +39,7 @@ public class ProvedorUpdater {
     @Resource
     private EnderecoMapper enderecoMapper;
 
-    public Provedor update(ProvedorInput input){
+    public Provedor update(ProvedorInput input) {
         validator.validarUpdate(input);
 
         Profissao profissao = profissaoGetter.byIdAtivo(input.getIdProfissao());
@@ -59,7 +60,11 @@ public class ProvedorUpdater {
         return repository.save(provedor);
     }
 
-    public String postImagemProvedor(MultipartFile file) {
-        return ImageUtils.saveImageFile(file, "images-provedor");
+    public String postImagemProvedor(MultipartFile file, TipoUpload tipoUpload) {
+        if (tipoUpload == TipoUpload.PERFIL)
+            return ImageUtils.saveImageFile(file, "images-provedor");
+        else
+            return ImageUtils.saveImageFile(file, "images-perfil-provedor");
+
     }
 }

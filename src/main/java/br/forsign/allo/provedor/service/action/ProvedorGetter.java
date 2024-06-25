@@ -73,11 +73,11 @@ public class ProvedorGetter {
         return avaliacoes.size();
     }
 
-    public ResponseEntity<org.springframework.core.io.Resource> getImageByName(String fileName){
+    public ResponseEntity<org.springframework.core.io.Resource> getImageByName(String fileName, String path){
         try {
             // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
 
-            Path filePath = Paths.get("src/main/resources/images-provedor").resolve(fileName).normalize();
+            Path filePath = Paths.get("src/main/resources/" + path).resolve(fileName).normalize();
 
             org.springframework.core.io.Resource resource = new UrlResource(filePath.toUri());
 
