@@ -84,11 +84,12 @@ public class ServicoUpdater {
         notificacaoProvedorInput.setMensagem(mensagem);
 
         servico.setAvaliacao(avaliacaoMapper.fromInput(input.getAvaliacao()));
+
+        notificacaoProvedorService.createAvaliacao(notificacaoProvedorInput);
+
         servico = this.repository.save(servico);
 
         perfilProvedorUpdater.updateStats(servico.getProvedor().getId(), input.getId());
-        notificacaoProvedorService.createAvaliacao(notificacaoProvedorInput);
-
         return servico;
     }
 }
