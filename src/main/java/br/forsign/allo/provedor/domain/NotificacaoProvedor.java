@@ -27,7 +27,7 @@ public class NotificacaoProvedor extends Notificacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToMany(mappedBy = "notificacaoProvedor")
     @JoinColumn(name = "PROVEDOR_ID")
     private Provedor provedor;
 

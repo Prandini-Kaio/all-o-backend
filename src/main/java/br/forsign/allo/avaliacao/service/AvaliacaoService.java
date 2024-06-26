@@ -22,6 +22,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @CommonsLog
 public class AvaliacaoService {
@@ -36,8 +39,8 @@ public class AvaliacaoService {
     private AvaliacaoMapper mapper;
 
 
-    public Page<AvaliacaoOutput> byProvedor(Long id, Pageable pageable) {
-        return this.getter.byProvedor(id,pageable).map(mapper::toOutput);
+    public List<AvaliacaoOutput> byProvedor(Long id) {
+        return this.getter.byProvedor(id).stream().map(mapper::toOutput).collect(Collectors.toList());
     }
 
     public AvaliacaoOutput avaliar(AvaliacaoInput input) {
