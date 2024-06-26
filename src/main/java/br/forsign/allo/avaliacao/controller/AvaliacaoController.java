@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author kaiooliveira
  * created 23/06/2024
@@ -32,7 +34,7 @@ public class AvaliacaoController {
             description = "Consulta avaliações por profissão."
     )
     @PreAuthorize("hasRole('ROLE_PROVEDOR') or hasRole('ROLE_CLIENTE')")
-    public ResponseEntity<Page<AvaliacaoOutput>> byProvedor(@RequestParam Long idProvedor, Pageable pageable) {
-        return ResponseEntity.ok().body(this.service.byProvedor(idProvedor, pageable));
+    public ResponseEntity<List<AvaliacaoOutput>> byProvedor(@RequestParam Long idProvedor) {
+        return ResponseEntity.ok().body(this.service.byProvedor(idProvedor));
     }
 }
