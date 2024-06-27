@@ -4,15 +4,17 @@ package br.forsign.allo.provedor.service;
 import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
-import br.forsign.allo.provedor.converter.PerfilProvedorMapperImpl;
+import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.converter.ProvedorConverter;
 import br.forsign.allo.provedor.converter.ProvedorMapper;
 import br.forsign.allo.provedor.domain.Provedor;
+import br.forsign.allo.provedor.domain.TipoUpload;
+import br.forsign.allo.provedor.model.PerfilProvedorOutput;
 import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
 import br.forsign.allo.provedor.model.ProvedorInput;
+import br.forsign.allo.provedor.model.ProvedorListOutput;
 import br.forsign.allo.provedor.model.ProvedorOutput;
-import br.forsign.allo.provedor.model.*;
 import br.forsign.allo.provedor.service.action.ProvedorCreator;
 import br.forsign.allo.provedor.service.action.ProvedorDeleter;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
@@ -26,7 +28,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -72,7 +73,7 @@ public class ProvedorService {
     private AvaliacaoRepository avaliacaoRepository;
 
     @Resource
-    private PerfilProvedorMapperImpl perfilProvedorMapperImpl;
+    private PerfilProvedorMapper perfilProvedorMapper;
 
     @Resource
     private PerfilProvedorGetter perfilProvedorGetter;
@@ -128,36 +129,33 @@ public class ProvedorService {
     }
 
     @Transactional
-    public ProvedorOutput update(ProvedorInput input){
+    public ProvedorOutput update(ProvedorInput input) {
         log.info("Atualizando provedor no sistema.");
 
         return mapper.toOutput(updater.update(input));
     }
 
     @Transactional
-    public void delete(Long id){
+    public void delete(Long id) {
         log.info("Deletando provedor no sistema.");
 
         deleter.byId(id);
     }
 
     @Transactional
-    public int getTotalAval(Long id){
-//        return avaliacaoRepository.byProvedor(id).size();
-        return 1;
+    public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename, TipoUpload tipo) {
+        if (tipo == TipoUpload.PERFIL)
+            return getter.getImageByName(filename, "images-provedor");
+        else
+            return getter.getImageByName(filename, "images-perfil-provedor");
     }
 
-    public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename){
-        return getter.getImageByName(filename);
-    }
-
-    public String postImage(MultipartFile file){
-        return updater.postImagemProvedor(file);
+    @Transactional
+    public String postImage(MultipartFile file, TipoUpload tipo) {
+        return updater.postImagemProvedor(file, tipo);
     }
 
     public List<ProvedorDestaquesOutput> getByHighAvaliacao(){
-        log.info("Iniciando consulta a profissionais em destaque.");
-
         return converter.toDestaqueOutput(getter.getByHighAvaliacao());
     }
 
@@ -166,7 +164,7 @@ public class ProvedorService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = (Usuario) authentication.getPrincipal();
 
-        if(!usuario.getRole().equals(UsuarioRole.CLIENTE))
+        if (!usuario.getRole().equals(UsuarioRole.CLIENTE))
             return mapper.toOutput(provedor);
 
 
@@ -182,7 +180,7 @@ public class ProvedorService {
         return provedorOutput;
     }
 
-    private ProvedorListOutput makeProvedorListOutput(Provedor provedor){
+    private ProvedorListOutput makeProvedorListOutput(Provedor provedor) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario usuario = (Usuario) authentication.getPrincipal();
@@ -190,7 +188,7 @@ public class ProvedorService {
         Cliente cliente = clienteGetter.byUsername(usuario.getUsername());
         Set<Provedor> provedores = cliente.getProvedoresFavoritados();
 
-        PerfilProvedorOutput perfilProvedorOutput = perfilProvedorMapperImpl.toOutput(perfilProvedorGetter.byProvedorId(provedor.getId()));
+        PerfilProvedorOutput perfilProvedorOutput = perfilProvedorMapper.toOutput(perfilProvedorGetter.byProvedorId(provedor.getId()));
         ProvedorListOutput provedorListOutput = new ProvedorListOutput(perfilProvedorOutput);
 
         if (provedores.contains(provedor))
@@ -199,11 +197,11 @@ public class ProvedorService {
         return provedorListOutput;
     }
 
-    private List<ProvedorListOutput> makeProvedorListOutput(List<Provedor> provedores){
+    private List<ProvedorListOutput> makeProvedorListOutput(List<Provedor> provedores) {
         return provedores.stream().map(this::makeProvedorListOutput).toList();
     }
 
-    private List<ProvedorOutput> makeProvedorOutput(List<Provedor> provedores){
+    private List<ProvedorOutput> makeProvedorOutput(List<Provedor> provedores) {
         return provedores.stream().map(this::makeProvedorOutput).toList();
     }
 

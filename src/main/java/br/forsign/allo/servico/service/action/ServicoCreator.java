@@ -11,6 +11,8 @@ import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.repository.ServicoRepository;
 import jakarta.annotation.Resource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -31,17 +33,14 @@ public class ServicoCreator {
     @Resource
     private ServicoRepository repository;
 
-    @Resource
-    private ProvedorMapper provedorMapper;
-
-    @Resource
-    private ClienteMapper clienteMapper;
-
-    @Resource
-    private AvaliacaoMapper avaliacaoMapper;
+    private final Logger logger = LoggerFactory.getLogger(ServicoCreator.class);
 
     public Servico abrirServico(Long idProvedor) {
+
+        logger.info("Criando serviço para o provedor: {}", idProvedor);
+
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
+
         Provedor provedor = provedorGetter.byId(idProvedor);
 
         Servico servico = new Servico();

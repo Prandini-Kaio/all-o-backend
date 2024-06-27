@@ -24,8 +24,10 @@ public class ProvedorInput extends EntidadeInput {
     private TipoPessoaEnum tipoPessoa;
 
     @NotNull
+    @Schema(title = "ID Profissão", example = "1", description = "ID da profissão do provedor de serviços.")
     private Long idProfissao;
 
+    @Schema(title = "Imagens dos servicos")
     private List<String> servicoImagens;
 
     private PerfilProvedorInput perfilProvedorInput;

@@ -69,6 +69,7 @@ public class PerfilProvedorUpdater {
         perfilProvedor.setServicosConcluidos(totalServicos);
         perfilProvedor.setTempoCadastro(LocalDateUtils.toBrazilianDateString(provedor.getDtRegistro()));
 
+        perfilProvedor.setImagensServicos(input.getServicoImagens());
         List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(provedor.getId());
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));
 

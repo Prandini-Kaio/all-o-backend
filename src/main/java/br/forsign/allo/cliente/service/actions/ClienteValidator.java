@@ -21,18 +21,17 @@ public class ClienteValidator {
     }
 
     public void validarUpdate(ClienteInput input){
-        validarExistente(input.getId());
         validarDocumentoJaCadastrado(input);
     }
 
-    private void validarExistente(Long id){
-        if(!getter.existsById(id))
-            throw new BusinessException(CommonExceptionMessages.naoEncontrado("Cliente", id));
+    private void validarExistente(ClienteInput input){
+        if(getter.existsByCpf(input.getCpfCnpj()))
+            throw new BusinessException(CommonExceptionMessages.naoEncontrado("Cliente", input.getCpfCnpj()));
     }
 
     private void validarDocumentoJaCadastrado(ClienteInput input){
         if(getter.existsByCpf(input.getCpfCnpj())){
-            if(getter.byCpf(input.getCpfCnpj()).getId() != input.getId())
+            if(!getter.byCpf(input.getCpfCnpj()).getId().equals(input.getId()))
                 throw new BusinessException(CommonExceptionMessages.entidadeJaCadastrada("Cliente", input.getCpfCnpj()));
         }
     }
