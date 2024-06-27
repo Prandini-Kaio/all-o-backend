@@ -143,6 +143,11 @@ public class ProvedorService {
     }
 
     @Transactional
+    public int getTotalAval(Long id) {
+//        return avaliacaoRepository.byProvedor(id).size();
+        return 1;
+    }
+
     public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename, TipoUpload tipo) {
         if (tipo == TipoUpload.PERFIL)
             return getter.getImageByName(filename, "images-provedor");
@@ -150,7 +155,6 @@ public class ProvedorService {
             return getter.getImageByName(filename, "images-perfil-provedor");
     }
 
-    @Transactional
     public String postImage(MultipartFile file, TipoUpload tipo) {
         return updater.postImagemProvedor(file, tipo);
     }
