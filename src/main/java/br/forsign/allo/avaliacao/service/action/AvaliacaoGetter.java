@@ -41,10 +41,6 @@ public class AvaliacaoGetter {
         return avaliacoes.stream().filter(a -> a.getNota() >= 4.5).findFirst().orElse(null);
     }
 
-    public Page<Avaliacao> byProvedor(Long id, Pageable pageable) {
-        return repository.findAll(pageable);
-    }
-
     public List<Avaliacao> byProvedor(Long idProvedor) {
         return repository.findByProvedor(idProvedor);
     }

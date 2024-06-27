@@ -4,6 +4,8 @@ import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.avaliacao.model.AvaliacaoOutput;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class PerfilProvedorOutput {
 
@@ -28,4 +30,6 @@ public class PerfilProvedorOutput {
     private String email;
 
     private String descricao;
+
+    private List<String> imagensServicos;
 }
