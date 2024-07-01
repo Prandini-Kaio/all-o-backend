@@ -24,6 +24,10 @@ public class UsuarioService implements UserDetailsService {
     @Resource
     private UsuarioRepository repository;
 
+    public Usuario create(Usuario usuario){
+        return repository.save(usuario);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByLogin(username);

@@ -1,5 +1,6 @@
 package br.forsign.allo.config;
 
+import br.forsign.allo.auth.service.TokenService;
 import br.forsign.allo.usuario.repository.UsuarioRepository;
 import jakarta.annotation.Resource;
 import jakarta.servlet.FilterChain;

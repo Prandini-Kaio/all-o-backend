@@ -5,6 +5,7 @@ package br.forsign.allo.profissao.service;
  * created 5/25/24
  */
 
+import br.forsign.allo.mail.service.EmailService;
 import br.forsign.allo.profissao.converter.ProfissaoMapper;
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.model.ProfissaoInput;
