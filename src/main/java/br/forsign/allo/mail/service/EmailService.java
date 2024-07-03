@@ -34,7 +34,7 @@ public class EmailService {
     }
 
     public SimpleMailMessage generateResetPassEmail(String contextPath, Locale locale, String token, Usuario usuario) {
-        String url = contextPath + "/changePassword?token=" + token;
+        String url = contextPath + "/change-password?token=" + token;
 
         String message = "Uma solicitação foi feita em " + locale + "\n\nClique no link abaixo para redefinir sua senha:\n" + url;
 

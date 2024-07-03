@@ -93,7 +93,7 @@ public class AuthService {
         emailService.send(
                 input.getLogin(),
                 "ALL-O. Seja bem-vindo!",
-                "Allo! Agradecemos pelo cadastro em nossa plataforma. Estamos aqui pra lhe ajudar em qualquer coisa, seja bem-vindo!"
+                "ALLO! Agradecemos pelo cadastro em nossa plataforma.\nEstamos aqui pra lhe ajudar em qualquer coisa.\n\nSeja bem-vindo!"
         );
 
         return this.usuarioService.create(usuario);
