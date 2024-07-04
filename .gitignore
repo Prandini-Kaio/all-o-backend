@@ -33,3 +33,12 @@ build/
 
 ### VS Code ###
 .vscode/
+
+## IMAGENS ##
+/src/main/resources/images-cliente/
+/src/main/resources/imagens-provedor/
+*.png
+*.jpg
+*.jpeg
+
+/src/test/resources/application-dev.properties
