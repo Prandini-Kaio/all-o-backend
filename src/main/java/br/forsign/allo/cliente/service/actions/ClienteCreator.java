@@ -11,6 +11,7 @@ import br.forsign.allo.entidade.service.action.EnderecoCreator;
 import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 
 @Component
+@CommonsLog
 public class ClienteCreator {
 
     @Resource
@@ -36,10 +38,8 @@ public class ClienteCreator {
     @Resource
     private AuthService authService;
 
-    private final Logger logger = LoggerFactory.getLogger(ClienteCreator.class);
-
     public Cliente create(ClienteCadastroInput clienteInput){
-        logger.info("Criando um novo cliente {}.", clienteInput.getCliente().getNome());
+        log.info(String.format("Criando um novo cliente %s.", clienteInput.getCliente().getNome()));
 
         ClienteInput input = clienteInput.getCliente();
 

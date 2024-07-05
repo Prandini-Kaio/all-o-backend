@@ -4,6 +4,7 @@ import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.UrlResource;
@@ -18,9 +19,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@CommonsLog
 public class ClienteGetter {
-
-    private final Logger logger = LoggerFactory.getLogger(ClienteGetter.class);
 
     @Resource
     private ClienteRepository repository;
@@ -30,24 +30,26 @@ public class ClienteGetter {
     }
 
     public Cliente byId(Long id){
-        logger.info("Consultando um cliente no sistema pelo ID {}.", id);
+        log.info(String.format("Consultando um cliente no sistema pelo ID %s.", id));
 
         return repository.findById(id).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", id));
     }
 
     public Cliente byUsername(String username){
-        logger.info("Consultando um cliente no sistema pelo usernam {}.", username);
+        log.info(String.format("Consultando um cliente no sistema pelo usernam %s.", username));
 
         return repository.findByUsername(username).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", username));
     }
 
     public Cliente byCpf(String cpf){
-        logger.info("Consultando um cliente no sistema pelo CPF {}.", cpf);
+        log.info(String.format("Consultando um cliente no sistema pelo CPF \"%s\".", cpf));
 
         return repository.findByCpf(cpf).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", cpf));
     }
 
     public boolean existsByCpf(String cpf){
+        log.info(String.format("Consultando existência de cliente pelo CPF \"%s\".", cpf));
+
         Optional<Cliente> cliente = repository.findByCpf(cpf);
 
         return cliente.isPresent();
@@ -60,7 +62,7 @@ public class ClienteGetter {
     }
 
     public ResponseEntity<org.springframework.core.io.Resource> getImageByName(String fileName){
-        logger.info("Consultando imagem do cliente {}.", fileName);
+        log.info(String.format("Consultando imagem do cliente %s.", fileName));
 
         try {
             // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
@@ -87,6 +89,8 @@ public class ClienteGetter {
     }
 
     public Cliente byUsernameId(String clienteUsername) {
+        log.info(String.format("Consultando cliente pelo usuario %s.", clienteUsername));
+
         return repository.byUsernameId(clienteUsername);
     }
 }

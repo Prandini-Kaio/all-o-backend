@@ -15,6 +15,8 @@ import br.forsign.allo.usuario.domain.UsuarioRole;
 import br.forsign.allo.usuario.repository.UsuarioRepository;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -51,7 +53,7 @@ public class AuthService {
 
         String login = input.getLogin().toLowerCase();
 
-        log.info("Login attempt: " + login);
+        log.info("Tentativa de login: " + login);
 
         var usernamePass = new UsernamePasswordAuthenticationToken(login, input.getSenha());
         Authentication auth = this.authenticationManager.authenticate(usernamePass);
@@ -60,18 +62,22 @@ public class AuthService {
 
         Usuario usuario = (Usuario) auth.getPrincipal();
 
+        log.info("Login bem sucedido: " + login);
+
         return createLoginOutput(token, usuario);
     }
 
     public UserDetails register(AuthInput input) {
 
-        log.info("Register attempt: " + input.getLogin());
+        log.info("Tentativa de cadastro: " + input.getLogin());
 
         if(loadUserByUsername(input.getLogin()) != null)
             throw new BusinessException("Usúario já cadastrado.");
 
         String encodedPassword = new BCryptPasswordEncoder().encode(input.getSenha());
         Usuario usuario = new Usuario(input.getLogin().toLowerCase(), encodedPassword, input.getRole());
+
+        log.info("Cadastro bem sucedido: " + input.getLogin());
 
         return this.usuarioRepository.save(usuario);
     }
