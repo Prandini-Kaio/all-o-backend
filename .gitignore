@@ -6,6 +6,8 @@ target/
 
 !**/src/test/application-dev.properties
 
+!**/logs/
+
 ### STS ###
 .apt_generated
 .classpath
