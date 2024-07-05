@@ -17,13 +17,21 @@ public interface ProfissaoRepository extends JpaRepository<Profissao, Long> {
     @Query("SELECT p FROM Profissao p WHERE p.ativo = true")
     List<Profissao> findAtivos();
 
-    @Query("SELECT p FROM Profissao p WHERE p.ativo = true AND p.id = :id")
+    @Query("SELECT p " +
+            "FROM Profissao p " +
+            "WHERE p.ativo = true " +
+            "AND p.id = :id ")
     Optional<Profissao> findById(Long id);
 
-    @Query("SELECT p FROM Profissao p WHERE p.ativo = true AND p.nome = :nome")
+    @Query("SELECT p " +
+            "FROM Profissao p " +
+            "WHERE p.ativo = true " +
+            "AND p.nome = :nome")
     Optional<Profissao> findByNome(String nome);
 
-    @Query("SELECT p FROM Profissao p WHERE LOWER(p.nome) LIKE %:prof%")
+    @Query("SELECT p " +
+            "FROM Profissao p " +
+            "WHERE LOWER(p.nome) LIKE %:prof%")
     List<Profissao> findByFilter(@Param("prof") String profissao);
 
     @Query("SELECT p.profissao " +

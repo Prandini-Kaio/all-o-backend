@@ -34,10 +34,11 @@ build/
 ### VS Code ###
 .vscode/
 
-
-### IMAGES ###
-/src/main/resources/images-cliente
-/src/main/resources/images-provedor
-/src/main/resources/images-pefil-provedor
+## IMAGENS ##
+/src/main/resources/images-cliente/
+/src/main/resources/imagens-provedor/
 *.png
 *.jpg
+*.jpeg
+
+/src/test/resources/application-dev.properties

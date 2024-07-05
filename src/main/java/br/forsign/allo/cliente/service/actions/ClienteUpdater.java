@@ -9,6 +9,7 @@ import br.forsign.allo.entidade.service.action.EnderecoUpdater;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Component
+@CommonsLog
 public class ClienteUpdater {
 
     @Resource
@@ -36,10 +38,8 @@ public class ClienteUpdater {
     @Resource
     private EnderecoUpdater enderecoUpdater;
 
-    private final Logger logger = LoggerFactory.getLogger(ClienteUpdater.class);
-
     public Cliente update(ClienteInput input){
-        logger.info("Atualizando cliente com ID {}.", input.getId());
+        log.info(String.format("Atualizando cliente com ID %s.", input.getId()));
 
         validator.validarUpdate(input);
 
@@ -58,7 +58,7 @@ public class ClienteUpdater {
     }
 
     public Cliente favoritar(String clienteUsername, Long idProvedor) {
-        logger.info("Favoritando provedor com ID {} para o cliente {}.", idProvedor, clienteUsername);
+        log.info(String.format("Favoritando provedor com ID %s para o cliente %s.", idProvedor, clienteUsername));
 
         Cliente cliente = getter.byUsernameId(clienteUsername);
         Provedor provedor = provedorGetter.byId(idProvedor);
@@ -72,7 +72,7 @@ public class ClienteUpdater {
     }
 
     public String postImagemCliente(MultipartFile file) {
-        logger.info("Salvando imagem do cliente.");
+        log.info("Salvando imagem do cliente.");
 
         return ImageUtils.saveImageFile(file, "images-cliente");
     }

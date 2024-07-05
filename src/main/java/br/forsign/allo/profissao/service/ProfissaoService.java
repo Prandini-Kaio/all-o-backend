@@ -6,18 +6,13 @@ package br.forsign.allo.profissao.service;
  */
 
 import br.forsign.allo.profissao.converter.ProfissaoMapper;
-import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.model.ProfissaoInput;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
 import br.forsign.allo.profissao.service.action.ProfissaoCreator;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import jakarta.annotation.Resource;
-import jakarta.validation.Valid;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -40,8 +35,10 @@ public class ProfissaoService {
         return getter.findAll().stream().map(mapper::toOutput).toList();
     }
 
-    public List<ProfissaoOutput> findByFilter(String profissao) {
-        return getter.findByFilter(profissao).stream().map(mapper::toOutput).toList();
+    public List<ProfissaoOutput> findByProfissao(String profissao) {
+        log.info(String.format("Iniciando de profissao %s", profissao));
+
+        return getter.findByProfissao(profissao).stream().map(mapper::toOutput).toList();
     }
 
     public ProfissaoOutput findById(Long id) {
@@ -51,7 +48,7 @@ public class ProfissaoService {
     }
 
     public ProfissaoOutput create(ProfissaoInput input) {
-        log.info("Iniciando cadastro de uma profissão.");
+        log.info(String.format("Iniciando o cadastro da profissão %s.", input.getNome()));
 
         return mapper.toOutput(creator.create(input));
     }

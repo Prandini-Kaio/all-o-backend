@@ -14,11 +14,13 @@ import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteGetter;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteUpdater;
 import br.forsign.allo.provedor.model.PerfilProvedorOutput;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@CommonsLog
 public class PerfilClienteService {
 
     @Resource
@@ -34,18 +36,26 @@ public class PerfilClienteService {
     private PerfilClienteMapper mapper;
 
     public PerfilClienteOutput getByClienteId(Long idCliente){
+        log.info(String.format("Iniciando consulta ao perfil do cliente %s.", idCliente));
+
         return mapper.toOutput(getter.byClienteId(idCliente));
     }
 
     public Page<PerfilClienteOutput> findAll(Pageable pageable){
+        log.info("Iniciando consulta a todos perfis de clientes");
+
         return getter.findAll(pageable).map(mapper::toOutput);
     }
 
     public PerfilClienteOutput create(ClienteInput input, Cliente cliente){
+        log.info(String.format("Iniciando cadastro de perfil do cliente %s.", cliente.getNome()));
+
         return mapper.toOutput(creator.create(input, cliente));
     }
 
     public PerfilClienteOutput update(ClienteInput input){
+        log.info(String.format("Iniciando atualização de perfil do cliente %s.", input.getNome()));
+
         return mapper.toOutput(perfilClienteUpdater.update(input));
     }
 }
