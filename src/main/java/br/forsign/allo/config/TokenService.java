@@ -27,6 +27,8 @@ public class TokenService {
     private String secret;
 
     public String generateToken(Usuario usuario){
+        log.info("Iniciando geração de token.");
+
         try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
@@ -35,11 +37,15 @@ public class TokenService {
                     .withExpiresAt(generateExpirationDate())
                     .sign(algorithm);
         }catch (JWTCreationException e){
+            log.error(String.format("Erro ao gerar token para o usuario %s.", usuario.getLogin()));
+
             throw new RuntimeException("Erro ao gerar token");
         }
     }
 
     public String validateToken(String token){
+        log.info("Iniciando validação de token.");
+
         try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
 
@@ -50,6 +56,7 @@ public class TokenService {
             return verifier.verify(token).getSubject();
         }catch (JWTVerificationException e){
             log.error("Validação do token falhou, retornando vazio");
+
             return "";
         }
     }
