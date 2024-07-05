@@ -10,16 +10,9 @@ import br.forsign.allo.avaliacao.model.AvaliacaoInput;
 import br.forsign.allo.avaliacao.model.AvaliacaoOutput;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoCreator;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoGetter;
-import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
 import lombok.extern.apachecommons.CommonsLog;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,19 +33,20 @@ public class AvaliacaoService {
 
 
     public List<AvaliacaoOutput> byProvedor(Long id) {
+        log.info("Iniciando pesquisa de avaliação pelo ID do provedor: " + id);
+
         return this.getter.byProvedor(id).stream().map(mapper::toOutput).collect(Collectors.toList());
     }
 
     public AvaliacaoOutput avaliar(AvaliacaoInput input) {
-        log.info("Cadastrando avaliação.");
+        log.info("Iniciando cadastro de avaliação.");
 
         return this.mapper.toOutput(this.creator.avaliar(input));
     }
 
     @Transactional
     public AvaliacaoOutput byProvedorDestaque(Long provedorId) {
-        log.info("Consultando avaliação em destaque");
-        log.debug("Funcionalidade mockada, retornando avaliação randomizada");
+        log.info("Iniciando consulta de avaliação em destaque.");
 
         return this.mapper.toOutput(this.getter.byProvedorDestaque(provedorId));
     }
