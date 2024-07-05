@@ -23,7 +23,7 @@ public class ProfissaoCreator {
     private ProfissaoRepository repository;
 
     public Profissao create(ProfissaoInput input) {
-        log.info("Criando uma nova profissão.");
+        log.info(String.format("Criando uma nova profissão %s.", input.getNome()));
 
         validator.validarCreate(input);
 
@@ -38,6 +38,8 @@ public class ProfissaoCreator {
     }
 
     public Profissao createSugestion(String suggestion){
+        log.info(String.format("Criando uma nova sugestão %s.", suggestion));
+
 
         validator.validaSuggestion(suggestion);
 

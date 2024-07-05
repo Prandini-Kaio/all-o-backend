@@ -9,14 +9,10 @@ import br.forsign.allo.profissao.model.ProfissaoInput;
 import br.forsign.allo.profissao.model.ProfissaoOutput;
 import br.forsign.allo.profissao.model.ProfissaoSugestaoInput;
 import br.forsign.allo.profissao.service.ProfissaoService;
-import br.forsign.allo.provedor.model.ProvedorOutput;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -52,7 +48,7 @@ public class ProfissaoController {
             description = "Retorna todos os prestadores ativos com base em um filtro."
     )
     public ResponseEntity<List<ProfissaoOutput>> getByFilter(@RequestParam String profissao){
-        return ResponseEntity.ok().body(service.findByFilter(profissao));
+        return ResponseEntity.ok().body(service.findByProfissao(profissao));
     }
 
     @GetMapping("/{id}")
