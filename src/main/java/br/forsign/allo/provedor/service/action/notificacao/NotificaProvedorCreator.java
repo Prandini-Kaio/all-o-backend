@@ -9,6 +9,7 @@ import br.forsign.allo.provedor.repository.NotificacaoProvedorRepository;
 import br.forsign.allo.provedor.service.NotificacaoProvedorService;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
  */
 
 @Component
+@CommonsLog
 public class NotificaProvedorCreator {
 
     @Resource
@@ -29,10 +31,8 @@ public class NotificaProvedorCreator {
     @Resource
     private ProvedorGetter provedorGetter;
 
-    private final Logger logger = LoggerFactory.getLogger(NotificacaoProvedorService.class);
-
     public NotificacaoProvedor create(NotificacaoProvedorInput input){
-        logger.info("Criando notificação de avaliação {}", input.getId());
+        log.info(String.format("Criando notificação de avaliação %s", input.getId()));
 
         NotificacaoProvedor notificacao = new NotificacaoProvedor();
 
@@ -44,7 +44,7 @@ public class NotificaProvedorCreator {
     }
 
     public NotificacaoProvedor createAvaliacao(NotificacaoProvedorInput input) {
-        logger.info("Criando notificação de avaliação de serviço");
+        log.info("Criando notificação de avaliação de serviço");
 
         NotificacaoProvedor notificacao = new NotificacaoProvedor();
         Provedor provedor = provedorGetter.byId(input.getIdProvedor());
