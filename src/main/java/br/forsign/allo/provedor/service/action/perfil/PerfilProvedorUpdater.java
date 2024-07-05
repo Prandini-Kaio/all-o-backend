@@ -77,6 +77,8 @@ public class PerfilProvedorUpdater {
     }
 
     public PerfilProvedor destacarAvaliacao(String username, Long idAvaliacao) {
+        log.info(String.format("Destacando avaliação %s para o perfil provedor %s", idAvaliacao, username));
+
         Provedor provedor = provedorGetter.byUsername(username);
 
         Avaliacao avaliacao = avaliacaoGetter.byId(idAvaliacao);
@@ -90,8 +92,9 @@ public class PerfilProvedorUpdater {
     }
 
     public PerfilProvedor updateStats(Long idProvedor, Long idService){
-
         PerfilProvedor perfilProvedor = getter.byProvedorId(idProvedor);
+
+        log.info(String.format("Atualizando perfil %s de provedor %s", idProvedor, perfilProvedor.getProvedor().getRazaoSocial()));
 
         int totalAvaliacoes = serviceGetter.getTotalAvaliacoes(idProvedor);
 

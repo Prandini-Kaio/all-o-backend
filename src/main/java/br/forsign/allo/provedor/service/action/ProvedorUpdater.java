@@ -40,6 +40,8 @@ public class ProvedorUpdater {
     private EnderecoMapper enderecoMapper;
 
     public Provedor update(ProvedorInput input) {
+        log.info(String.format("Atualizando provedor %s", input.getRazaoSocial()));
+
         validator.validarUpdate(input);
 
         Profissao profissao = profissaoGetter.byIdAtivo(input.getIdProfissao());
@@ -61,6 +63,8 @@ public class ProvedorUpdater {
     }
 
     public String postImagemProvedor(MultipartFile file, TipoUpload tipoUpload) {
+        log.info(String.format("Atualizando imagem do provedor, tipo [%s].", tipoUpload));
+
         if (tipoUpload == TipoUpload.PERFIL)
             return ImageUtils.saveImageFile(file, "images-provedor");
         else

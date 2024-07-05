@@ -17,6 +17,7 @@ import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.model.ServicoInput;
 import br.forsign.allo.servico.repository.ServicoRepository;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@CommonsLog
 public class ServicoUpdater {
 
     @Resource
@@ -50,14 +52,9 @@ public class ServicoUpdater {
     @Resource
     private ClienteGetter clienteGetter;
 
-    @Resource
-    private AuthService authService;
-
-    private final Logger logger = LoggerFactory.getLogger(ServicoUpdater.class);
-
     public Servico confirmarServico(Long idServico, Boolean confirmado) {
 
-        logger.info("Confirmando ( {} ) serviço: {}", confirmado, idServico);
+        log.info(String.format("Confirmando ( %s ) serviço: %s", confirmado, idServico));
 
         Provedor provedor = provedorGetter.byUsername(AuthService.getContextUser().getUsername());
 
@@ -75,7 +72,7 @@ public class ServicoUpdater {
         Servico servico = getter.byClienteAndId(cliente.getUsuario().getUsername(), input.getId());
         String mensagem = String.format("O cliente %s avaliou o serviço!", cliente.getNome());
 
-        logger.info("Avaliando serviço: {}", input.getId());
+        log.info(String.format("Avaliando serviço: %s", input.getId()));
 
         NotificacaoProvedorInput notificacaoProvedorInput = new NotificacaoProvedorInput();
 

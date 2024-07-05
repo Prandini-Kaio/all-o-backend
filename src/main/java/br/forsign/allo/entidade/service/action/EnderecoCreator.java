@@ -4,6 +4,7 @@ import br.forsign.allo.entidade.domain.Endereco;
 import br.forsign.allo.entidade.model.EnderecoInput;
 import br.forsign.allo.entidade.repository.EnderecoRepository;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,12 +13,15 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@CommonsLog
 public class EnderecoCreator {
 
     @Resource
     private EnderecoRepository repository;
 
     public Endereco create(EnderecoInput input){
+        log.info("Criando endereço.");
+
         Endereco endereco = new Endereco();
 
         endereco.setCep(input.getCep());

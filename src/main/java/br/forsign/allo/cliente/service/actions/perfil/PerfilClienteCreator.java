@@ -10,15 +10,19 @@ import br.forsign.allo.cliente.domain.PerfilCliente;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.PerfilClienteRepository;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 @Component
+@CommonsLog
 public class PerfilClienteCreator {
 
     @Resource
     private PerfilClienteRepository repository;
 
     public PerfilCliente create(ClienteInput input, Cliente cliente) {
+        log.info(String.format("Cadastrando perfil do cliente %s.", cliente.getNome()));
+
         PerfilCliente perfilCliente = new PerfilCliente();
 
         perfilCliente.setCliente(cliente);

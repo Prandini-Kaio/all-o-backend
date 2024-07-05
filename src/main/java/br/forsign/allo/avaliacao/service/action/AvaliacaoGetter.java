@@ -8,18 +8,15 @@ package br.forsign.allo.avaliacao.service.action;
 import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
-import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.annotation.Resource;
-import org.apache.catalina.mapper.Mapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Component
+@CommonsLog
 public class AvaliacaoGetter {
 
     @Resource
@@ -34,6 +31,8 @@ public class AvaliacaoGetter {
     }
 
     public Avaliacao byProvedorDestaque(Long provedorId) {
+        log.info("Consultando avaliação em destaque de provedor: " + provedorId);
+
         List<Avaliacao> avaliacoes = this.repository.findAll();
 
         avaliacoes = avaliacoes.stream().filter(a -> a.getNota() >= 4.5).collect(Collectors.toList());
@@ -42,6 +41,8 @@ public class AvaliacaoGetter {
     }
 
     public List<Avaliacao> byProvedor(Long idProvedor) {
+        log.info("Consultando avaliação de provedor: " + idProvedor);
+
         return repository.findByProvedor(idProvedor);
     }
 }

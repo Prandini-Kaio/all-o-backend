@@ -32,48 +32,57 @@ public class ProvedorGetter {
     @Resource
     private ProvedorRepository repository;
 
-    @Resource
-    private ProfissaoMapper mapper;
-
     public Page<Provedor> findAll(Pageable pageable) {
+        log.info("Consultando todos os provedores.");
+
         return repository.findAtivos(pageable).orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor"));
     }
 
     public Provedor byId(Long id){
+        log.info(String.format("Consultando provedor com ID %s.", id));
+
         return repository
                 .findById(id)
                 .orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor", id));
     }
 
     public Page<Provedor> findByFilter(String razaoSocial, String profissao, Pageable pageable){
+        log.info(String.format("Consultando provedor pelo nome %s; profissão %s.", razaoSocial, profissao));
+
         return repository.byFilter(razaoSocial, profissao, pageable);
     }
 
     public Provedor byCpfCnpj(String cpfCnpj){
+        log.info(String.format("Consultando provedor pelo CPF/CNPJ %s.", cpfCnpj));
+
         return repository.findByCpfCnpj(cpfCnpj).orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor", cpfCnpj));
     }
 
     public boolean existsByCpfCnpj(String cpfCnpj){
+        log.info(String.format("Consultando a existência de provedor com base no CPF/CNPJ %s", cpfCnpj));
+
         Optional<Provedor> provedor = repository.findByCpfCnpj(cpfCnpj);
 
         return provedor.isPresent();
     }
 
     public boolean existsById(Long id){
+        log.info(String.format("Consultando a existência de provedor com base no ID %s", id));
+
         Optional<Provedor> provedor = repository.findById(id);
 
         return provedor.isPresent();
     }
 
     public List<Provedor> byProfissao(Long idProfissao) {
+        log.info(String.format("Consultando provedor com base no ID da profissão %s", idProfissao));
+
         return repository.findByProfissoesId(idProfissao);
     }
 
-    public int getTotalAvaliacao(List<Avaliacao> avaliacoes){
-        return avaliacoes.size();
-    }
-
     public ResponseEntity<org.springframework.core.io.Resource> getImageByName(String fileName, String path){
+        log.info(String.format("Consultando imagem de provedor com base no nome do arquivo %s", fileName));
+
         try {
             // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
 
@@ -105,6 +114,8 @@ public class ProvedorGetter {
     }
 
     public Provedor byUsername(String username) {
+        log.info(String.format("Consultando provedor com base no username %s", username));
+
         return repository.byUsername(username).orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor", username));
     }
 }

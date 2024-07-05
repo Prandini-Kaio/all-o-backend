@@ -5,6 +5,7 @@ import br.forsign.allo.entidade.model.EnderecoInput;
 import br.forsign.allo.entidade.model.EnderecoOutput;
 import br.forsign.allo.entidade.service.action.EnderecoCreator;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
+@CommonsLog
 public class EnderecoService {
 
     @Resource
@@ -22,6 +24,8 @@ public class EnderecoService {
     private EnderecoMapper mapper;
 
     public EnderecoOutput create(EnderecoInput input){
+        log.info("Iniciando criação de endereço.");
+
         return mapper.toOutput(creator.create(input));
     }
 }
