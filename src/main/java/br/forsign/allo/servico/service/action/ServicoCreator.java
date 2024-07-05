@@ -11,6 +11,7 @@ import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.repository.ServicoRepository;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@CommonsLog
 public class ServicoCreator {
 
 
@@ -33,11 +35,9 @@ public class ServicoCreator {
     @Resource
     private ServicoRepository repository;
 
-    private final Logger logger = LoggerFactory.getLogger(ServicoCreator.class);
-
     public Servico abrirServico(Long idProvedor) {
 
-        logger.info("Criando serviço para o provedor: {}", idProvedor);
+        log.info(String.format("Criando serviço para o provedor %s", idProvedor));
 
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
 

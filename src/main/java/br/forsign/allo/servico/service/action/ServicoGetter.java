@@ -9,6 +9,7 @@ import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.repository.ServicoRepository;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.apache.catalina.mapper.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ import java.util.List;
  */
 
 @Component
+@CommonsLog
 public class ServicoGetter {
 
     @Resource
@@ -36,11 +38,9 @@ public class ServicoGetter {
     @Autowired
     private ClienteGetter clienteGetter;
 
-    private final Logger logger = LoggerFactory.getLogger(ServicoGetter.class);
-
     public Servico byId(Long id){
 
-        logger.info("Buscando serviço pelo id: {}", id);
+        log.info(String.format("Buscando serviço pelo id: %s", id));
 
         return repository.findById(id).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", id));
     }
@@ -48,7 +48,7 @@ public class ServicoGetter {
     public List<Servico> byNaoVistoPeloProvedor() {
         Provedor provedor = provedorGetter.byUsername(AuthService.getContextUser().getUsername());
 
-        logger.info("Buscando serviços não vistos pelo provedor {}", provedor.getRazaoSocial());
+        log.info(String.format("Buscando serviços não vistos pelo provedor %s", provedor.getRazaoSocial()));
 
         return repository.findByNaoVistoPeloProvedor(provedor.getId());
     }
@@ -56,23 +56,27 @@ public class ServicoGetter {
     public List<Servico> byNaoVistoPeloCliente() {
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
 
-        logger.info("Buscando serviços não vistos pelo cliente {}", cliente.getNome());
+        log.info(String.format("Buscando serviços não vistos pelo cliente %s", cliente.getNome()));
 
         return repository.findByNaoVistoPeloCliente(cliente.getId());
     }
 
     public List<Servico> byProvedor(Long idProvedor) {
 
-        logger.info("Buscando serviços pelo provedor {}", idProvedor);
+        log.info(String.format("Buscando serviços pelo provedor %s", idProvedor));
 
         return this.repository.byProvedor(idProvedor);
     }
 
     public Servico byClienteAndId(String cliente, Long idServico) {
+        log.info(String.format("Consultando serviço do cliente %s e ID serviço %s", cliente, idServico));
+
         return repository.findByClienteAndId(cliente, idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", cliente));
     }
 
     public Servico byProvedorAndID(String provedor, Long idServico) {
+        log.info(String.format("Consultando serviço do provedor %s e ID serviço %s", provedor, idServico));
+
         return repository.findByProvedorAndId(provedor, idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", provedor));
     }
 }
