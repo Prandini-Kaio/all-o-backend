@@ -4,9 +4,11 @@ import br.forsign.allo.entidade.domain.Endereco;
 import br.forsign.allo.entidade.model.EnderecoInput;
 import br.forsign.allo.entidade.repository.EnderecoRepository;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 @Component
+@CommonsLog
 public class EnderecoUpdater {
     @Resource
     private EnderecoRepository repository;
@@ -15,6 +17,8 @@ public class EnderecoUpdater {
     private EnderecoGetter getter;
 
     public Endereco update(EnderecoInput input){
+        log.info(String.format("Atualizando endereço com id %s.", input.getId()));
+
         Endereco endereco = getter.byId(input.getId());
 
         endereco.setCep(input.getCep());
