@@ -1,7 +1,6 @@
 package br.forsign.allo.provedor.service;
 
 
-import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
@@ -24,9 +23,6 @@ import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
 import jakarta.transaction.Transactional;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,9 +37,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Data
-@Getter
-@Setter
 @Service
 @CommonsLog
 public class ProvedorService {
@@ -70,9 +63,6 @@ public class ProvedorService {
     private ClienteGetter clienteGetter;
 
     @Resource
-    private AvaliacaoRepository avaliacaoRepository;
-
-    @Resource
     private PerfilProvedorMapper perfilProvedorMapper;
 
     @Resource
@@ -80,13 +70,15 @@ public class ProvedorService {
 
     @Transactional
     public ProvedorOutput findById(Long id) {
-        log.info("Iniciando consulta provedor pelo id.");
+        log.info(String.format("Iniciando consulta provedor pelo ID %s", id));
 
         return makeProvedorOutput(getter.byId(id));
     }
 
     @Transactional
     public List<ProvedorListOutput> findByProfissao(Long idProfissao) {
+        log.info(String.format("Iniciando consulta a provedor pelo ID da profissão %s", idProfissao));
+
         return makeProvedorListOutput(this.getter.byProfissao(idProfissao));
     }
 
@@ -116,14 +108,14 @@ public class ProvedorService {
 
     @Transactional
     public Page<ProvedorOutput> findByFilter(String nome, String profissao, Pageable pageable) {
-        log.info("Iniciando consulta de provedores com filtro.");
+        log.info(String.format("Iniciando consulta de provedores com filtro %s;\n %s.", nome, profissao));
 
         return getter.findByFilter(nome, profissao, pageable).map(this::makeProvedorOutput);
     }
 
     @Transactional
     public ProvedorOutput create(ProvedorCadastroInput input) {
-        log.info("Cadastrando provedor no sistema.");
+        log.info(String.format("Cadastrando provedor %s no sistema.", input.getProvedor().getRazaoSocial()));
 
         return converter.toOutput(creator.create(input));
     }
@@ -137,13 +129,15 @@ public class ProvedorService {
 
     @Transactional
     public void delete(Long id) {
-        log.info("Deletando provedor no sistema.");
+        log.info(String.format("Deletando provedor com ID %s no sistema.", id));
 
         deleter.byId(id);
     }
 
     @Transactional
     public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename, TipoUpload tipo) {
+        log.info(String.format("Iniciando consulta de imagem de provedor [%s]", tipo));
+
         if (tipo == TipoUpload.PERFIL)
             return getter.getImageByName(filename, "images-provedor");
         else
@@ -152,6 +146,8 @@ public class ProvedorService {
 
     @Transactional
     public String postImage(MultipartFile file, TipoUpload tipo) {
+        log.info(String.format("Iniciando cadastro de imagem de provedor [%s]", tipo));
+
         return updater.postImagemProvedor(file, tipo);
     }
 

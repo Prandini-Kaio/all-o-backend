@@ -13,6 +13,7 @@ import br.forsign.allo.provedor.service.PerfilProvedorService;
 import br.forsign.allo.provedor.service.ProvedorValidator;
 import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.annotation.Resource;
+import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
+@CommonsLog
 public class ProvedorCreator {
 
     @Resource
@@ -40,11 +42,9 @@ public class ProvedorCreator {
     @Resource
     private AuthService authService;
 
-    private final Logger logger = LoggerFactory.getLogger(ProvedorCreator.class);
-
     public Provedor create(ProvedorCadastroInput provedorCadastroInput){
 
-        logger.info("Criando provedor com nome {}.", provedorCadastroInput.getProvedor().getRazaoSocial());
+        log.info(String.format("Criando provedor com nome %s.", provedorCadastroInput.getProvedor().getRazaoSocial()));
 
         ProvedorInput input = provedorCadastroInput.getProvedor();
 

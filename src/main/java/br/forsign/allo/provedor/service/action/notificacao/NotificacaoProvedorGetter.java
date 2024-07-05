@@ -1,12 +1,10 @@
 package br.forsign.allo.provedor.service.action.notificacao;
 
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
-import br.forsign.allo.entidade.domain.Notificacao;
 import br.forsign.allo.provedor.domain.NotificacaoProvedor;
 import br.forsign.allo.provedor.repository.NotificacaoProvedorRepository;
 import jakarta.annotation.Resource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,21 +15,20 @@ import java.util.List;
  */
 
 @Component
+@CommonsLog
 public class NotificacaoProvedorGetter {
 
     @Resource
     private NotificacaoProvedorRepository repository;
 
-    private final Logger logger = LoggerFactory.getLogger(NotificacaoProvedorGetter.class);
-
     public NotificacaoProvedor getById(Long id){
-        logger.info("Buscando notificação {}", id);
+        log.info(String.format("Buscando notificação %s", id));
 
         return repository.findById(id).orElseThrow(CommonExceptionSupplier.naoEncontrado("Notificação", id));
     }
 
     public List<NotificacaoProvedor> byUsername(String login) {
-        logger.info("Buscando notificações do provedor {}", login);
+        log.info(String.format("Buscando notificações do provedor %s", login));
 
         return this.repository.findByUsername(login);
     }
