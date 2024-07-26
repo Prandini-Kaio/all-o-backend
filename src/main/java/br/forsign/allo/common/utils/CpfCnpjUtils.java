@@ -1,6 +1,5 @@
 package br.forsign.allo.common.utils;
 
-import liquibase.util.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.InputMismatchException;

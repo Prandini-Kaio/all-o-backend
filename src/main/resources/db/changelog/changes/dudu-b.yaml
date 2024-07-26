@@ -1,0 +1,239 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1719081952101-1
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROFISSAO_PALAVRAS_CHAVE
+            constraintName: FK24LHSHQHB0NYOUQWYDNP1FFRN
+  - changeSet:
+      id: 1719081952101-2
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROVEDOR
+            constraintName: FK3MBWMSVO4QM77ANPTFFB7HF4C
+  - changeSet:
+      id: 1719081952101-3
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROFISSAO_PROVEDOR
+            constraintName: FK514JX2CJF250N8Y5R5JQC8VEC
+  - changeSet:
+      id: 1719081952101-4
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PROFISSAO_PROVEDOR
+            constraintName: FK580QRFSH9P2DCGJ1KN4VB8UEK
+  - changeSet:
+      id: 1719081952101-5
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: CLIENTE
+            constraintName: FK64NR9YT889BY5LUFR1BOO5I4S
+  - changeSet:
+      id: 1719081952101-6
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PERFIL_PROVEDOR
+            constraintName: FK7YYAL9UMG4TPWFRDFRVT5KPJ0
+  - changeSet:
+      id: 1719081952101-7
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: NOTIFICACAO_PROVEDOR
+            constraintName: FKBN9IEFBE0OHU04JGYFOBXMFET
+  - changeSet:
+      id: 1719081952101-8
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: CLIENTE_PROVEDOR_FAVORITO
+            constraintName: FKBY8KH6DPMCJ2GVIHXUH7UL5LC
+  - changeSet:
+      id: 1719081952101-9
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PERFIL_PROVEDOR
+            constraintName: FKE1UPQKEXR8PLBLPKB0E6TEQWC
+  - changeSet:
+      id: 1719081952101-10
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PERFIL_CLIENTE
+            constraintName: FKKFS2LVKESXXBQYQ6YER9U7KA0
+  - changeSet:
+      id: 1719081952101-11
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: CLIENTE_PROVEDOR_FAVORITO
+            constraintName: FKKLTFLPIT07SDQ3K2AH1PUSI5R
+  - changeSet:
+      id: 1719081952101-12
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: PERFIL_PROVEDOR_IMAGENS_SERVICOS
+            constraintName: FKLBGY2XWBJNFNEHHLNGX8R8A8K
+  - changeSet:
+      id: 1719081952101-13
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: AVALIACAO
+            constraintName: FKMIAQUSEKG7E9HRV7OI5LL6VGF
+  - changeSet:
+      id: 1719081952101-14
+      author: dudu (generated)
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: AVALIACAO
+            constraintName: FKPOGWYPJ6DQ5O1P5VU3Q31LIFM
+  - changeSet:
+      id: 1719081952101-15
+      author: dudu (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_3KLYKEB2APWJT2220EJU2LCA7
+            tableName: PERFIL_PROVEDOR
+  - changeSet:
+      id: 1719081952101-16
+      author: dudu (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_7V21UY9DJYL7HH9464KKJSJG0
+            tableName: CLIENTE
+  - changeSet:
+      id: 1719081952101-17
+      author: dudu (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_A5XHPRR653444D1J1H1VN2TQA
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1719081952101-18
+      author: dudu (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_AYEC3HSAMY3TVRS4YROU31B86
+            tableName: PERFIL_CLIENTE
+  - changeSet:
+      id: 1719081952101-19
+      author: dudu (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_DPHC372R9R73N6XQ8YHJI5HKI
+            tableName: CLIENTE_PROVEDOR_FAVORITO
+  - changeSet:
+      id: 1719081952101-20
+      author: dudu (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_G59GKVXWNE3EDDRBCOGX2V6AO
+            tableName: PERFIL_PROVEDOR
+  - changeSet:
+      id: 1719081952101-21
+      author: dudu (generated)
+      changes:
+        - dropUniqueConstraint:
+            constraintName: UK_S0IP5TMTYRCQM604FEO2X8D93
+            tableName: NOTIFICACAO_PROVEDOR
+  - changeSet:
+      id: 1719081952101-22
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: AVALIACAO
+  - changeSet:
+      id: 1719081952101-23
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: CLIENTE
+  - changeSet:
+      id: 1719081952101-24
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: CLIENTE_PROVEDOR_FAVORITO
+  - changeSet:
+      id: 1719081952101-25
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: ENDERECO
+  - changeSet:
+      id: 1719081952101-26
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: NOTIFICACAO_PROVEDOR
+  - changeSet:
+      id: 1719081952101-27
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: PERFIL_CLIENTE
+  - changeSet:
+      id: 1719081952101-28
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: PERFIL_PROVEDOR
+  - changeSet:
+      id: 1719081952101-29
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: PERFIL_PROVEDOR_IMAGENS_SERVICOS
+  - changeSet:
+      id: 1719081952101-30
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: PROFISSAO
+  - changeSet:
+      id: 1719081952101-31
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: PROFISSAO_PALAVRAS_CHAVE
+  - changeSet:
+      id: 1719081952101-32
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: PROFISSAO_PROVEDOR
+  - changeSet:
+      id: 1719081952101-33
+      author: dudu (generated)
+      changes:
+        - dropTable:
+            tableName: PROVEDOR
+  - changeSet:
+      id: 1719081952101-34
+      author: dudu (generated)
+      changes:
+        - dropSequence:
+            sequenceName: SEQ_CLNT
+  - changeSet:
+      id: 1719081952101-35
+      author: dudu (generated)
+      changes:
+        - dropSequence:
+            sequenceName: SEQ_PRFL
+  - changeSet:
+      id: 1719081952101-36
+      author: dudu (generated)
+      changes:
+        - dropSequence:
+            sequenceName: SEQ_PRVDR
+
