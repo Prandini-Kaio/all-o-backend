@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.forsign</groupId>
 	<artifactId>all-o</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-REALEASE</version>
 	<name>all-o</name>
 	<description>ALLO project</description>
 	<properties>
