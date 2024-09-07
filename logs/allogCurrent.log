@@ -1,25 +1,3 @@
-2024-09-01 23:32:43 INFO Could not detect default configuration classes for test class [br.forsign.allo.AllOApplicationTests]: AllOApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2024-09-01 23:32:43 INFO Found @SpringBootConfiguration br.forsign.allo.AllOApplication for test class br.forsign.allo.AllOApplicationTests
-2024-09-01 23:32:43 INFO Restart disabled due to context in which it is running
-2024-09-01 23:32:43 INFO HV000001: Hibernate Validator 8.0.1.Final
-2024-09-01 23:32:43 INFO Starting AllOApplicationTests using Java 17.0.12 with PID 180530 (started by prandini in /home/prandini/Documents/dev/all-o-backend)
-2024-09-01 23:32:43 INFO The following 1 profile is active: "db-local"
-2024-09-01 23:32:44 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-09-01 23:32:44 INFO Finished Spring Data repository scanning in 74 ms. Found 10 JPA repository interfaces.
-2024-09-01 23:32:45 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-09-01 23:32:45 INFO HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-09-01 23:32:45 INFO HHH000026: Second-level cache disabled
-2024-09-01 23:32:45 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-09-01 23:32:45 INFO HikariPool-1 - Starting...
-2024-09-01 23:32:45 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@76db9048
-2024-09-01 23:32:45 INFO HikariPool-1 - Start completed.
-2024-09-01 23:32:45 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-09-01 23:32:47 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-09-01 23:32:47 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-09-01 23:32:48 INFO Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-09-01 23:32:48 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-09-01 23:32:49 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@31a65ddd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ca1a69b, org.springframework.security.web.context.SecurityContextHolderFilter@164c2914, org.springframework.security.web.header.HeaderWriterFilter@1ee47336, org.springframework.web.filter.CorsFilter@33dcbbfa, org.springframework.security.web.authentication.logout.LogoutFilter@1e019687, br.forsign.allo.config.SecurityFilter@4a76c90, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46c33614, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@378e50b9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@57d3c5cd, org.springframework.security.web.session.SessionManagementFilter@72dc0d72, org.springframework.security.web.access.ExceptionTranslationFilter@6d7298be, org.springframework.security.web.access.intercept.AuthorizationFilter@3b76809d]
-2024-09-01 23:32:49 INFO Started AllOApplicationTests in 6.499 seconds (process running for 7.546)
-2024-09-01 23:32:50 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-09-01 23:32:50 INFO HikariPool-1 - Shutdown initiated...
-2024-09-01 23:32:50 INFO HikariPool-1 - Shutdown completed.
+2024-09-07 16:45:34 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-07 16:45:34 INFO HikariPool-1 - Shutdown initiated...
+2024-09-07 16:45:34 INFO HikariPool-1 - Shutdown completed.

@@ -17,5 +17,5 @@ public interface ProvedorRepositoryCustom {
 
     List<Provedor> byFilter(ProvedorFilter filter);
 
-    List<Provedor> mostRelevant(ProvedorFilter filter);
+    List<Provedor> mostRelevant();
 }
