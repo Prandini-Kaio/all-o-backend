@@ -22,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 /**
  * @author kaiooliveira
  * created 23/06/2024
@@ -61,7 +63,9 @@ public class ServicoUpdater {
         Servico servico = getter.byProvedorAndID(provedor.getUsuario().getUsername(), idServico);
 
         servico.setServicoRealizado(confirmado);
+        servico.setDtRealizado(confirmado ? LocalDateTime.now() : null);
         servico.setServicoVisto(true);
+        servico.setDtVisto(LocalDateTime.now());
 
         return this.repository.save(servico);
     }
@@ -81,6 +85,7 @@ public class ServicoUpdater {
         notificacaoProvedorInput.setMensagem(mensagem);
 
         servico.setAvaliacao(avaliacaoMapper.fromInput(input.getAvaliacao()));
+        servico.setDtAvaliado(LocalDateTime.now());
 
         notificacaoProvedorService.createAvaliacao(notificacaoProvedorInput);
 

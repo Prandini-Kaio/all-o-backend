@@ -4,28 +4,24 @@
 
 Clone o projeto para uma pasta limpa. Certifique-se de ter instalado o JDK com a versão 17.0.1 ou superior.
 
-Após isso, abra o projeto em sua IDE de preferência e rode os seguintes comandos:
+Após isso, utilizando o maven, instale as dependencias do projeto e rode o build.
 
 ```
 mvn clean install
 mvn liquibase:update
 ```
 
-Ambos os comandos devem finalizar com **Build Success.**
+**Build Success.** Indica o sucesso das operações.
 
-# End-points
+# Documentação
 
-Todos os end-points estão documentados e especificados em http://localhost:8080/api/allo/swagger-ui/index.html
+Todos os end-points estão documentados e especificados em http://localhost:8080/swagger-ui/index.html
 
-Você pode verificar todos os end-points e seus parâmetros requeridos, assim como testar também. Recomendo para o teste 
-dos end-points sem o frontend, a instalação de um software como **Postman** e **Insomnia**.
+Você pode verificar todos os end-points e seus parâmetros requeridos, assim como testar também. O Swagger por sua vez, em alguma das requisições pode ter parâmetros inválidos, por isso recomendo fortemente o uso de um software como **Postman ou Insomnia**.
 
-# Perfis - EM DESENVOLVIMENTO
+# Perfis
 
-O perfil ativo determina como a aplicação será iniciada. Descrição breve sobre cada perfil:
-
-db-h2 - Banco de dados temporario, ignora validações gerais de banco e não é persistente.
-db-local - Banco de dados local (postgresql), segue validações do liquibase.
+Configurações de banco e de segurança estão configuradas nos perfis. Para rodar o projeto sem um banco de dados local (POSTGRES), utilize o perfil de H2, para usar o banco em memôria.
 
 # Tecnologias Usadas
 
