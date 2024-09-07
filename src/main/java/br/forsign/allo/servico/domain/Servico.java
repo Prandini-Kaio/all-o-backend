@@ -6,6 +6,9 @@ import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * @author kaiooliveira
  * created 22/06/2024
@@ -31,6 +34,12 @@ public class Servico {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Avaliacao avaliacao;
+
+    private LocalDateTime dtRealizado;
+
+    private LocalDateTime dtVisto;
+
+    private LocalDateTime dtAvaliado;
 
     private boolean servicoRealizado;
 
