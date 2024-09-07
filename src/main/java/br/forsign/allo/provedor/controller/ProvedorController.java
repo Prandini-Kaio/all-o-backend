@@ -2,11 +2,7 @@ package br.forsign.allo.provedor.controller;
 
 
 import br.forsign.allo.provedor.domain.TipoUpload;
-import br.forsign.allo.provedor.model.ProvedorCadastroInput;
-import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
-import br.forsign.allo.provedor.model.ProvedorInput;
-import br.forsign.allo.provedor.model.ProvedorListOutput;
-import br.forsign.allo.provedor.model.ProvedorOutput;
+import br.forsign.allo.provedor.model.*;
 import br.forsign.allo.provedor.service.ProvedorService;
 import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,17 +58,6 @@ public class ProvedorController {
         return ResponseEntity.ok().body(service.findByProfissao(idProfissao));
     }
 
-    @GetMapping("/filter")
-    @Operation(
-            summary = "Retorna todos os prestadores com base em um filtro.",
-            description = "Retorna todos os prestadores ativos com base em um filtro."
-    )
-    public ResponseEntity<Page<ProvedorOutput>> getByFilter(
-            @RequestParam(required = false) String nome,
-            @RequestParam(required = false) String profissao,
-            @PageableDefault(size = 15) Pageable pageable){
-        return ResponseEntity.ok().body(service.findByFilter(nome, profissao, pageable));
-    }
 
     @GetMapping("/favoritos")
     @Operation(
@@ -147,4 +132,19 @@ public class ProvedorController {
     public ResponseEntity<List<ProvedorDestaquesOutput>> getByHighAvaliacao(){
         return ResponseEntity.ok().body(service.getByHighAvaliacao());
     }
+
+    @GetMapping("/filter")
+    @Operation(summary = "Retorna os provedores com base em um filtro",
+               description = "Retorna os provedores com base em um filtro")
+    public ResponseEntity<List<ProvedorOutput>> getByFilter(ProvedorFilter filter){
+        return ResponseEntity.ok().body(service.findByFilter(filter));
+    }
+
+    @GetMapping("/maisRelevantes")
+    @Operation(summary = "Retorna os mais relevantes",
+            description = "Retorna os provedores com mais serviço no mes")
+    public ResponseEntity<List<ProvedorOutput>> getByMostRelevant(){
+        return ResponseEntity.ok().body(service.getByMostRelevant());
+    }
+
 }

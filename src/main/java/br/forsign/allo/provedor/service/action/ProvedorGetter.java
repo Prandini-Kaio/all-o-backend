@@ -6,6 +6,7 @@ import br.forsign.allo.profissao.converter.ProfissaoMapper;
 import br.forsign.allo.provedor.converter.ProvedorConverter;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
+import br.forsign.allo.provedor.model.ProvedorFilter;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import jakarta.annotation.Resource;
 import lombok.Data;
@@ -50,6 +51,12 @@ public class ProvedorGetter {
         log.info(String.format("Consultando provedor pelo nome %s; profissão %s.", razaoSocial, profissao));
 
         return repository.byFilter(razaoSocial, profissao, pageable);
+    }
+
+    public List<Provedor> findByFilter(ProvedorFilter filter){
+        log.info(String.format("Consultando provedor pelo nome"));
+
+        return repository.byFilter(filter);
     }
 
     public Provedor byCpfCnpj(String cpfCnpj){
@@ -111,6 +118,12 @@ public class ProvedorGetter {
         log.info("Consulta profissionais em destaque.");
 
         return repository.findMelhoresAvaliacoes();
+    }
+
+    public List<Provedor> mostRelevant(){
+        log.info("Consulta profissionais mais relevantes.");
+
+        return repository.findRelevantes();
     }
 
     public Provedor byUsername(String username) {
