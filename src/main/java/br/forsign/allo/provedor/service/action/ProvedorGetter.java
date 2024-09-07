@@ -123,7 +123,7 @@ public class ProvedorGetter {
     public List<Provedor> mostRelevant(){
         log.info("Consulta profissionais mais relevantes.");
 
-        return repository.findRelevantes();
+        return repository.mostRelevant();
     }
 
     public Provedor byUsername(String username) {

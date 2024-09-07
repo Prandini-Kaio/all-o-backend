@@ -70,7 +70,7 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
     }
 
     @Override
-    public List<Provedor> mostRelevant(ProvedorFilter filter) {
+    public List<Provedor> mostRelevant() {
         Map<String, Object> params = new HashMap<>();
 
         StringBuilder sbQuery = new StringBuilder("SELECT p ");
@@ -82,12 +82,15 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
                 .append(" WHERE 1=1 ");
 
         LocalDate now = LocalDate.now();
-        LocalDate dataInicial = LocalDate.of(now.getYear(), now.getMonth(), 0);
-        LocalDate dataFinal = LocalDate.of(now.getYear(), now.getMonth(), 0);
+        LocalDate dataInicial = LocalDate.of(now.getYear(), now.getMonth(), 1);
+        LocalDate dataFinal = LocalDate.of(now.getYear(), now.plusMonths(1).getMonth(), 0);
 
-        sbFrom.append(" ");
+        sbFrom.append(" AND s.dtRealizado >= :dataInicial ");
+        sbFrom.append(" AND s.dtRealizado <= :dataFinal ");
 
+        sbFrom.append(" ORDER BY COUNT(s.id) DESC ");
         sbQuery.append(sbFrom);
+
         Query query = this.entityManager.createQuery(sbQuery.toString());
         params.forEach(query::setParameter);
 
