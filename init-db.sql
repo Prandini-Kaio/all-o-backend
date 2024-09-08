@@ -1,3 +1,4 @@
+
 -- INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Advogado','book-open-blank-variant', TRUE, FALSE);
 -- INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Arquiteto','pencil', TRUE, FALSE);
 -- INSERT INTO allo.profissao (nome, nome_icone, ativo, suggestion) VALUES ('Artista','palette', TRUE, FALSE);
