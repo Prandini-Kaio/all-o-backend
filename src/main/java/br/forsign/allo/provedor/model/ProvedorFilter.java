@@ -13,4 +13,6 @@ public class ProvedorFilter {
     private String razaoSocial;
 
     private String profissao;
+
+    private boolean ativo = true;
 }
