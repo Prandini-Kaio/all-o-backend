@@ -9,7 +9,7 @@ services:
     image: postgres:latest
     container_name: db
     environment:
-      POSTGRES_DB: allo-db
+      POSTGRES_DB: allo
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     networks:
