@@ -8,12 +8,7 @@ import br.forsign.allo.provedor.converter.ProvedorConverter;
 import br.forsign.allo.provedor.converter.ProvedorMapper;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.domain.TipoUpload;
-import br.forsign.allo.provedor.model.PerfilProvedorOutput;
-import br.forsign.allo.provedor.model.ProvedorCadastroInput;
-import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
-import br.forsign.allo.provedor.model.ProvedorInput;
-import br.forsign.allo.provedor.model.ProvedorListOutput;
-import br.forsign.allo.provedor.model.ProvedorOutput;
+import br.forsign.allo.provedor.model.*;
 import br.forsign.allo.provedor.service.action.ProvedorCreator;
 import br.forsign.allo.provedor.service.action.ProvedorDeleter;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
@@ -114,6 +109,13 @@ public class ProvedorService {
     }
 
     @Transactional
+    public List<ProvedorOutput> findByFilter(ProvedorFilter filter) {
+        log.info(String.format("Iniciando consulta de provedores com filtro "));
+
+        return getter.findByFilter(filter).stream().map(this::makeProvedorOutput).toList();
+    }
+
+    @Transactional
     public ProvedorOutput create(ProvedorCadastroInput input) {
         log.info(String.format("Cadastrando provedor %s no sistema.", input.getProvedor().getRazaoSocial()));
 
@@ -203,4 +205,9 @@ public class ProvedorService {
         return provedores.stream().map(this::makeProvedorOutput).toList();
     }
 
+    public List<ProvedorOutput> getByMostRelevant(){
+        log.info("Iniciando consulta a profissionais mais relevantes.");
+
+        return this.getter.mostRelevant().stream().map(this::makeProvedorOutput).toList();
+    }
 }
