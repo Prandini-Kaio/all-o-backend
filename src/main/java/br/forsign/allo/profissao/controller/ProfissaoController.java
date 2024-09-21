@@ -15,13 +15,7 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -47,7 +41,7 @@ public class ProfissaoController {
             summary = "Retorna todas as profissões com base em um filtro.",
             description = "Retorna todos os prestadores ativos com base em um filtro."
     )
-    public ResponseEntity<List<ProfissaoOutput>> getByFilter(@RequestParam String profissao){
+    public ResponseEntity<List<ProfissaoOutput>> getByProfissao(@RequestParam String profissao){
         return ResponseEntity.ok().body(service.findByProfissao(profissao));
     }
 
