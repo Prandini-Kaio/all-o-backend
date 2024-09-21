@@ -1,0 +1,193 @@
+2024-09-21 14:43:06 INFO HV000001: Hibernate Validator 8.0.1.Final
+2024-09-21 14:43:06 INFO Starting AllOApplication using Java 17.0.12 with PID 27080 (/home/prandini/Documents/dev/all-o-backend/target/classes started by prandini in /home/prandini/Documents/dev/all-o-backend)
+2024-09-21 14:43:06 INFO The following 1 profile is active: "db-local"
+2024-09-21 14:43:06 INFO Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-09-21 14:43:06 INFO For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-09-21 14:43:07 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-21 14:43:07 INFO Finished Spring Data repository scanning in 57 ms. Found 10 JPA repository interfaces.
+2024-09-21 14:43:07 INFO Tomcat initialized with port 8080 (http)
+2024-09-21 14:43:07 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:07 INFO Starting service [Tomcat]
+2024-09-21 14:43:07 INFO Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-09-21 14:43:07 INFO Initializing Spring embedded WebApplicationContext
+2024-09-21 14:43:07 INFO Root WebApplicationContext: initialization completed in 1349 ms
+2024-09-21 14:43:07 INFO HikariPool-1 - Starting...
+2024-09-21 14:43:08 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@227e6475
+2024-09-21 14:43:08 INFO HikariPool-1 - Start completed.
+2024-09-21 14:43:08 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/allo'
+2024-09-21 14:43:08 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-21 14:43:08 INFO HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-09-21 14:43:08 INFO HHH000026: Second-level cache disabled
+2024-09-21 14:43:08 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-21 14:43:08 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-21 14:43:09 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-21 14:43:09 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-21 14:43:09 INFO Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-09-21 14:43:10 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-21 14:43:10 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ee46e0a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@52df218, org.springframework.security.web.context.SecurityContextHolderFilter@6ac1b77d, org.springframework.security.web.header.HeaderWriterFilter@b6755c8, org.springframework.web.filter.CorsFilter@7cdba4c, org.springframework.security.web.authentication.logout.LogoutFilter@6fc60fe0, br.forsign.allo.config.SecurityFilter@390194e2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@352b130c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@71109d2a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@58139260, org.springframework.security.web.session.SessionManagementFilter@5217327c, org.springframework.security.web.access.ExceptionTranslationFilter@3f3e2bcc, org.springframework.security.web.access.intercept.AuthorizationFilter@5f0e24b]
+2024-09-21 14:43:11 INFO LiveReload server is running on port 35729
+2024-09-21 14:43:11 INFO Starting ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:11 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
+2024-09-21 14:43:11 INFO Started AllOApplication in 4.902 seconds (process running for 5.687)
+2024-09-21 14:43:17 INFO Restarting due to 169 class path changes (0 additions, 160 deletions, 9 modifications)
+2024-09-21 14:43:17 INFO Stopping ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:17 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-21 14:43:17 INFO HikariPool-1 - Shutdown initiated...
+2024-09-21 14:43:17 INFO HikariPool-1 - Shutdown completed.
+2024-09-21 14:43:17 INFO Starting AllOApplication using Java 17.0.12 with PID 27080 (/home/prandini/Documents/dev/all-o-backend/target/classes started by prandini in /home/prandini/Documents/dev/all-o-backend)
+2024-09-21 14:43:17 INFO The following 1 profile is active: "db-local"
+2024-09-21 14:43:17 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-21 14:43:17 INFO Finished Spring Data repository scanning in 0 ms. Found 0 JPA repository interfaces.
+2024-09-21 14:43:18 INFO Tomcat initialized with port 8080 (http)
+2024-09-21 14:43:18 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:18 INFO Starting service [Tomcat]
+2024-09-21 14:43:18 INFO Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-09-21 14:43:18 INFO Initializing Spring embedded WebApplicationContext
+2024-09-21 14:43:18 INFO Root WebApplicationContext: initialization completed in 1071 ms
+2024-09-21 14:43:18 INFO HikariPool-1 - Starting...
+2024-09-21 14:43:18 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5e44aff3
+2024-09-21 14:43:18 INFO HikariPool-1 - Start completed.
+2024-09-21 14:43:18 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/allo'
+2024-09-21 14:43:19 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-21 14:43:19 INFO HHH000026: Second-level cache disabled
+2024-09-21 14:43:19 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-21 14:43:19 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-21 14:43:19 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-21 14:43:19 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-21 14:43:19 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-21 14:43:19 WARN 
+
+Using generated security password: 7b0d7520-ea86-4456-bf52-ced6ea45aeed
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-09-21 14:43:19 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@100e359, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f81d15c, org.springframework.security.web.context.SecurityContextHolderFilter@64289a6c, org.springframework.security.web.header.HeaderWriterFilter@656b9d87, org.springframework.web.filter.CorsFilter@40b77f58, org.springframework.security.web.csrf.CsrfFilter@6a8778e5, org.springframework.security.web.authentication.logout.LogoutFilter@109e4459, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@49af6fd8, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@1d1f344f, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@2b177654, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@19d4ad0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@35b9865c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24a102f9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2d8b4244, org.springframework.security.web.access.ExceptionTranslationFilter@3f95d389, org.springframework.security.web.access.intercept.AuthorizationFilter@6fdeb974]
+2024-09-21 14:43:19 INFO LiveReload server is running on port 35729
+2024-09-21 14:43:19 INFO Starting ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:19 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
+2024-09-21 14:43:19 INFO Started AllOApplication in 1.771 seconds (process running for 13.933)
+2024-09-21 14:43:19 INFO Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   SpringBootWebSecurityConfiguration.SecurityFilterChainConfiguration matched:
+      - AllNestedConditions 2 matched 0 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) did not find any beans; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   SpringBootWebSecurityConfiguration.WebSecurityEnablerConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+      - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   UserDetailsServiceAutoConfiguration matched:
+      - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+      - AnyNestedCondition 1 matched 2 did not; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.PasswordConfigured @ConditionalOnProperty (spring.security.user.password) did not find property 'password'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.NameConfigured @ConditionalOnProperty (spring.security.user.name) did not find property 'name'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.MissingAlternative @ConditionalOnMissingClass did not find unwanted classes 'org.springframework.security.oauth2.client.registration.ClientRegistrationRepository', 'org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector', 'org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository' (UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured)
+      - @ConditionalOnBean (types: org.springframework.security.config.annotation.ObjectPostProcessor; SearchStrategy: all) found bean 'objectPostProcessor'; @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.authentication.AuthenticationManagerResolver,org.springframework.security.oauth2.jwt.JwtDecoder; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2024-09-21 14:43:22 INFO Restarting due to 160 class path changes (160 additions, 0 deletions, 0 modifications)
+2024-09-21 14:43:22 INFO Stopping ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:22 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-21 14:43:22 INFO HikariPool-1 - Shutdown initiated...
+2024-09-21 14:43:22 INFO HikariPool-1 - Shutdown completed.
+2024-09-21 14:43:23 INFO Starting AllOApplication using Java 17.0.12 with PID 27080 (/home/prandini/Documents/dev/all-o-backend/target/classes started by prandini in /home/prandini/Documents/dev/all-o-backend)
+2024-09-21 14:43:23 INFO The following 1 profile is active: "db-local"
+2024-09-21 14:43:23 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-09-21 14:43:23 INFO Finished Spring Data repository scanning in 27 ms. Found 10 JPA repository interfaces.
+2024-09-21 14:43:23 INFO Tomcat initialized with port 8080 (http)
+2024-09-21 14:43:23 INFO Initializing ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:23 INFO Starting service [Tomcat]
+2024-09-21 14:43:23 INFO Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-09-21 14:43:23 INFO Initializing Spring embedded WebApplicationContext
+2024-09-21 14:43:23 INFO Root WebApplicationContext: initialization completed in 410 ms
+2024-09-21 14:43:23 INFO HikariPool-1 - Starting...
+2024-09-21 14:43:23 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1e75619e
+2024-09-21 14:43:23 INFO HikariPool-1 - Start completed.
+2024-09-21 14:43:23 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/allo'
+2024-09-21 14:43:23 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-09-21 14:43:23 INFO HHH000026: Second-level cache disabled
+2024-09-21 14:43:23 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-09-21 14:43:23 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-09-21 14:43:23 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-09-21 14:43:23 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-09-21 14:43:24 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-09-21 14:43:24 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@127278f4, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@226298e1, org.springframework.security.web.context.SecurityContextHolderFilter@2849234e, org.springframework.security.web.header.HeaderWriterFilter@18460ceb, org.springframework.web.filter.CorsFilter@307c0c8f, org.springframework.security.web.authentication.logout.LogoutFilter@30701a09, br.forsign.allo.config.SecurityFilter@7d070c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4735c8b9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6f3ca5e0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65579537, org.springframework.security.web.session.SessionManagementFilter@29c2e053, org.springframework.security.web.access.ExceptionTranslationFilter@34bb7513, org.springframework.security.web.access.intercept.AuthorizationFilter@5370d1d6]
+2024-09-21 14:43:24 INFO LiveReload server is running on port 35729
+2024-09-21 14:43:24 INFO Starting ProtocolHandler ["http-nio-8080"]
+2024-09-21 14:43:24 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
+2024-09-21 14:43:24 INFO Started AllOApplication in 1.345 seconds (process running for 18.928)
+2024-09-21 14:43:24 INFO Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+    None
+
+
+Negative matches:
+-----------------
+
+   SpringBootWebSecurityConfiguration.SecurityFilterChainConfiguration:
+      Did not match:
+         - AllNestedConditions 1 matched 1 did not; NestedCondition on DefaultWebSecurityCondition.Beans @ConditionalOnMissingBean (types: org.springframework.security.web.SecurityFilterChain; SearchStrategy: all) found beans of type 'org.springframework.security.web.SecurityFilterChain' filterChain; NestedCondition on DefaultWebSecurityCondition.Classes @ConditionalOnClass found required classes 'org.springframework.security.web.SecurityFilterChain', 'org.springframework.security.config.annotation.web.builders.HttpSecurity' (DefaultWebSecurityCondition)
+
+   SpringBootWebSecurityConfiguration.WebSecurityEnablerConfiguration:
+      Did not match:
+         - @ConditionalOnMissingBean (names: springSecurityFilterChain; SearchStrategy: all) found beans named springSecurityFilterChain (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.config.annotation.web.configuration.EnableWebSecurity' (OnClassCondition)
+
+   UserDetailsServiceAutoConfiguration:
+      Did not match:
+         - @ConditionalOnMissingBean (types: org.springframework.security.authentication.AuthenticationManager,org.springframework.security.authentication.AuthenticationProvider,org.springframework.security.core.userdetails.UserDetailsService,org.springframework.security.authentication.AuthenticationManagerResolver,org.springframework.security.oauth2.jwt.JwtDecoder; SearchStrategy: all) found beans of type 'org.springframework.security.authentication.AuthenticationManager' authenticationManager and found beans of type 'org.springframework.security.core.userdetails.UserDetailsService' usuarioService (OnBeanCondition)
+      Matched:
+         - @ConditionalOnClass found required class 'org.springframework.security.authentication.AuthenticationManager' (OnClassCondition)
+         - AnyNestedCondition 1 matched 2 did not; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.PasswordConfigured @ConditionalOnProperty (spring.security.user.password) did not find property 'password'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.NameConfigured @ConditionalOnProperty (spring.security.user.name) did not find property 'name'; NestedCondition on UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured.MissingAlternative @ConditionalOnMissingClass did not find unwanted classes 'org.springframework.security.oauth2.client.registration.ClientRegistrationRepository', 'org.springframework.security.oauth2.server.resource.introspection.OpaqueTokenIntrospector', 'org.springframework.security.saml2.provider.service.registration.RelyingPartyRegistrationRepository' (UserDetailsServiceAutoConfiguration.MissingAlternativeOrUserPropertiesConfigured)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2024-09-21 14:43:36 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-09-21 14:43:36 INFO HikariPool-1 - Shutdown initiated...
+2024-09-21 14:43:36 INFO HikariPool-1 - Shutdown completed.
