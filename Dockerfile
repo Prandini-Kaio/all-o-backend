@@ -1,12 +1,9 @@
-
-FROM openjdk:17-jdk-slim
-
-ARG JAR_FILE=*.jar
+FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
 
-COPY ${JAR_FILE} allo-app.jar
+COPY target/*.jar /versions/allo-application.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "allo-app.jar"]
+CMD ["java", "-jar", "/app/allo-application.jar"]
