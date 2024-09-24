@@ -2,8 +2,8 @@ FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
 
-COPY *.jar /dev/versions/allo-application.jar
+COPY *.jar /dev/versions/app/allo-application.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/versions/allo-application.jar"]
+CMD ["java", "-jar", "/dev/versions/app/allo-application.jar"]
