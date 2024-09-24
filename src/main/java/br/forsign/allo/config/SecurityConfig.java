@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .requestMatchers("/cliente").hasRole("CLIENTE")
 
                         .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/auth/register").permitAll()
                         .requestMatchers("/profissao/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/provedor/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/cliente/register").permitAll()
