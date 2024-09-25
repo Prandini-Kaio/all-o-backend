@@ -2,7 +2,9 @@ FROM openjdk:17-jdk-alpine
 
 WORKDIR /app
 
-COPY *.jar /dev/versions/app/allo-application.jar
+RUN mkdir -p /dev/versions/app
+
+COPY target/*.jar /dev/versions/app/allo-application.jar
 
 EXPOSE 8080
 
