@@ -1,52 +1,10 @@
-2024-09-24 09:49:34 INFO HV000001: Hibernate Validator 8.0.1.Final
-2024-09-24 09:49:34 INFO Starting AllOApplication using Java 17.0.12 with PID 37098 (/home/prandini/Documents/dev/all-o-backend/target/classes started by prandini in /home/prandini/Documents/dev/all-o-backend)
-2024-09-24 09:49:34 INFO The following 1 profile is active: "db-local"
-2024-09-24 09:49:34 INFO Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2024-09-24 09:49:34 INFO For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2024-09-24 09:49:35 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-09-24 09:49:35 INFO Finished Spring Data repository scanning in 62 ms. Found 10 JPA repository interfaces.
-2024-09-24 09:49:36 INFO Tomcat initialized with port 8080 (http)
-2024-09-24 09:49:36 INFO Initializing ProtocolHandler ["http-nio-8080"]
-2024-09-24 09:49:36 INFO Starting service [Tomcat]
-2024-09-24 09:49:36 INFO Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-09-24 09:49:36 INFO Initializing Spring embedded WebApplicationContext
-2024-09-24 09:49:36 INFO Root WebApplicationContext: initialization completed in 1416 ms
-2024-09-24 09:49:36 INFO HikariPool-1 - Starting...
-2024-09-24 09:49:42 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@260b0312
-2024-09-24 09:49:42 INFO HikariPool-1 - Start completed.
-2024-09-24 09:49:42 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://db-allo.cxkqk60w224s.sa-east-1.rds.amazonaws.com:5432/allo'
-2024-09-24 09:49:42 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-09-24 09:49:42 INFO HHH000412: Hibernate ORM core version 6.4.1.Final
-2024-09-24 09:49:42 INFO HHH000026: Second-level cache disabled
-2024-09-24 09:49:42 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-09-24 09:49:42 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-09-24 09:49:43 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_7v21uy9djyl7hh9464kkjsjg0" of relation "cliente" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_id7jmosqg8hkqiqw4vf50xipm" of relation "cliente" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_dphc372r9r73n6xq8yhji5hki" of relation "cliente_provedor_favorito" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_ayec3hsamy3tvrs4yrou31b86" of relation "perfil_cliente" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_3klykeb2apwjt2220eju2lca7" of relation "perfil_provedor" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_g59gkvxwne3eddrbcogx2v6ao" of relation "perfil_provedor" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_a5xhprr653444d1j1h1vn2tqa" of relation "provedor" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_ihb15qudcvq7hstchnyo6j5x6" of relation "provedor" does not exist, skipping
-2024-09-24 09:49:44 WARN SQL Warning Code: 0, SQLState: 00000
-2024-09-24 09:49:44 WARN constraint "uk_egjbnxq9upurukslsjfakot33" of relation "servico" does not exist, skipping
-2024-09-24 09:49:45 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-09-24 09:49:45 INFO Hibernate is in classpath; If applicable, HQL parser will be used.
-2024-09-24 09:49:46 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-09-24 09:49:46 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@70d16407, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3d5f2412, org.springframework.security.web.context.SecurityContextHolderFilter@2d8e6db1, org.springframework.security.web.header.HeaderWriterFilter@1e292123, org.springframework.web.filter.CorsFilter@4a0f605d, org.springframework.security.web.authentication.logout.LogoutFilter@534d84e6, br.forsign.allo.config.SecurityFilter@598c3c8c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1e3fff3d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ef18793, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d97e3ed, org.springframework.security.web.session.SessionManagementFilter@58a78b98, org.springframework.security.web.access.ExceptionTranslationFilter@677c6c13, org.springframework.security.web.access.intercept.AuthorizationFilter@4c077410]
-2024-09-24 09:49:47 INFO LiveReload server is running on port 35729
-2024-09-24 09:49:47 INFO Starting ProtocolHandler ["http-nio-8080"]
-2024-09-24 09:49:47 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
-2024-09-24 09:49:47 INFO Started AllOApplication in 12.644 seconds (process running for 13.682)
-2024-09-24 09:49:51 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-09-24 09:49:51 INFO HikariPool-1 - Shutdown initiated...
-2024-09-24 09:49:51 INFO HikariPool-1 - Shutdown completed.
+2024-10-06 12:48:01 INFO Tentativa de login: kaio@gmail.com
+2024-10-06 12:48:01 INFO Consultando usuario pelo login kaio@gmail.com
+2024-10-06 12:48:01 ERROR UserDetailsService returned null, which is an interface contract violation
+2024-10-06 12:48:01 WARN Resolved [org.springframework.security.authentication.InternalAuthenticationServiceException: UserDetailsService returned null, which is an interface contract violation]
+2024-10-06 12:48:10 ERROR Cannot invoke "String.matches(String)" because "email" is null
+2024-10-06 12:48:10 WARN Resolved [jakarta.validation.ValidationException: HV000028: Unexpected exception during isValid call.]
+2024-10-06 12:48:24 ERROR Cannot invoke "String.matches(String)" because "email" is null
+2024-10-06 12:48:24 WARN Resolved [jakarta.validation.ValidationException: HV000028: Unexpected exception during isValid call.]
+2024-10-06 12:48:46 ERROR Cannot invoke "String.matches(String)" because "email" is null
+2024-10-06 12:48:46 WARN Resolved [jakarta.validation.ValidationException: HV000028: Unexpected exception during isValid call.]
