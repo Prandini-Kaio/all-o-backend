@@ -1,10 +1,1 @@
-2024-10-06 12:48:01 INFO Tentativa de login: kaio@gmail.com
-2024-10-06 12:48:01 INFO Consultando usuario pelo login kaio@gmail.com
-2024-10-06 12:48:01 ERROR UserDetailsService returned null, which is an interface contract violation
-2024-10-06 12:48:01 WARN Resolved [org.springframework.security.authentication.InternalAuthenticationServiceException: UserDetailsService returned null, which is an interface contract violation]
-2024-10-06 12:48:10 ERROR Cannot invoke "String.matches(String)" because "email" is null
-2024-10-06 12:48:10 WARN Resolved [jakarta.validation.ValidationException: HV000028: Unexpected exception during isValid call.]
-2024-10-06 12:48:24 ERROR Cannot invoke "String.matches(String)" because "email" is null
-2024-10-06 12:48:24 WARN Resolved [jakarta.validation.ValidationException: HV000028: Unexpected exception during isValid call.]
-2024-10-06 12:48:46 ERROR Cannot invoke "String.matches(String)" because "email" is null
-2024-10-06 12:48:46 WARN Resolved [jakarta.validation.ValidationException: HV000028: Unexpected exception during isValid call.]
+2024-10-08 09:20:42 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
