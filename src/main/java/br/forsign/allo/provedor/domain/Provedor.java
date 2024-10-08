@@ -28,6 +28,9 @@ public class Provedor extends Entidade {
     @JoinColumn(name = "PROFISSAO_PROVEDOR")
     private Profissao profissao;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private PerfilProvedor perfilProvedor;
+
     @OneToOne
     @JoinColumn(name = "USUARIO_ID")
     private Usuario usuario;

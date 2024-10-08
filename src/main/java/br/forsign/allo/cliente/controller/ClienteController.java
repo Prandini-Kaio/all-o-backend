@@ -8,23 +8,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.hibernate.id.GUIDGenerator;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/cliente")
@@ -87,17 +77,20 @@ public class ClienteController {
     }
 
     @PostMapping("/upload")
-    @Operation(summary = "Sobe uma imagem",
-               description = "Sobe uma imagem para um cliente.")
-    public String handleFileUpload(@RequestParam("image") MultipartFile file) {
-        return service.postImageCliente(file);
+    @Operation(summary = "Realiza o upload de uma imagem",
+               description = "Realiza o upload de uma imagem para um cliente.")
+    public String upload(
+            @RequestParam("image") MultipartFile file,
+            @RequestParam Long id
+    ) {
+        return service.uploadImage(file, id);
     }
 
     @GetMapping("/buscarImagem")
     @Operation(summary = "Busca uma imagem",
                description = "Busca uma imagem pelo Nome.")
     @PreAuthorize("hasRole('ROLE_CLIENTE')")
-    public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
-        return service.getImage(fileName);
+    public ResponseEntity<InputStreamResource> buscarImagemPorNome(@RequestParam Long id) {
+        return service.findImage(id);
     }
 }

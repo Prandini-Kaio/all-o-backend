@@ -2,18 +2,17 @@ package br.forsign.allo.cliente.service.actions;
 
 import br.forsign.allo.auth.service.AuthService;
 import br.forsign.allo.cliente.domain.Cliente;
+import br.forsign.allo.cliente.domain.PerfilCliente;
 import br.forsign.allo.cliente.model.ClienteCadastroInput;
 import br.forsign.allo.cliente.model.ClienteInput;
 import br.forsign.allo.cliente.repository.ClienteRepository;
-import br.forsign.allo.cliente.service.PerfilClienteService;
+import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteCreator;
 import br.forsign.allo.common.utils.CpfCnpjUtils;
 import br.forsign.allo.entidade.service.action.EnderecoCreator;
 import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -30,7 +29,7 @@ public class ClienteCreator {
     private ClienteValidator validator;
 
     @Resource
-    private PerfilClienteService perfilClienteService;
+    private PerfilClienteCreator perfilClienteCreator;
 
     @Resource
     private EnderecoCreator enderecoCreator;
@@ -60,10 +59,9 @@ public class ClienteCreator {
 
         cliente.setUsuario((Usuario) this.authService.register(clienteInput.getUsuario()));
 
-        this.repository.save(cliente);
+        PerfilCliente perfilCliente = this.perfilClienteCreator.create(input, cliente);
+        cliente.setPerfil(perfilCliente);
 
-        this.perfilClienteService.create(input, cliente);
-
-        return cliente;
+        return this.repository.save(cliente);
     }
 }

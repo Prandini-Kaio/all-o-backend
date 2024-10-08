@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +18,4 @@ public class PerfilProvedorInput {
 
     @Schema(description = "Descricao do perfil", example = "Sou um provedor de serviços")
     private String descricao;
-
-    @Schema(description = "Imagem do perfil", example = "IMAGEM DE TESTE")
-    private String perfilImage;
 }

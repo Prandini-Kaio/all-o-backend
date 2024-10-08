@@ -3,6 +3,9 @@ package br.forsign.allo.provedor.service;
 
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
+import br.forsign.allo.importacao.exception.FileStorageException;
+import br.forsign.allo.importacao.exception.FileStorageExceptionMessages;
+import br.forsign.allo.importacao.service.files.FileService;
 import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.converter.ProvedorConverter;
 import br.forsign.allo.provedor.converter.ProvedorMapper;
@@ -17,15 +20,18 @@ import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorGetter;
 import br.forsign.allo.usuario.domain.Usuario;
 import br.forsign.allo.usuario.domain.UsuarioRole;
 import jakarta.annotation.Resource;
-import jakarta.transaction.Transactional;
 import lombok.extern.apachecommons.CommonsLog;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -62,6 +68,9 @@ public class ProvedorService {
 
     @Resource
     private PerfilProvedorGetter perfilProvedorGetter;
+
+    @Resource
+    private FileService fileService;
 
     @Transactional
     public ProvedorOutput findById(Long id) {
@@ -137,20 +146,38 @@ public class ProvedorService {
     }
 
     @Transactional
-    public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename, TipoUpload tipo) {
-        log.info(String.format("Iniciando consulta de imagem de provedor [%s]", tipo));
+    public ResponseEntity<InputStreamResource> findImage(TipoUpload tipo, Long idProvedor) {
+        log.info(String.format("Iniciando consulta de imagem de provedor [%s]", idProvedor));
 
-        if (tipo == TipoUpload.PERFIL)
-            return getter.getImageByName(filename, "images-provedor");
-        else
-            return getter.getImageByName(filename, "images-perfil-provedor");
+        try{
+            MultipartFile mfile = this.getter.findPerfilImage(idProvedor);
+
+            if(mfile == null || mfile.isEmpty()){
+                throw new FileStorageException(FileStorageExceptionMessages.erroCriandoArquivo("Arquivo inexistente"));
+            }
+
+            InputStreamResource resource = new InputStreamResource(mfile.getInputStream());
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + mfile.getName() + "\"");
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/octet-stream");
+
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentLength(mfile.getSize())
+                    .body(resource);
+
+        }catch (Exception e){
+            log.error(e.getMessage());
+            throw new FileStorageException(FileStorageExceptionMessages.erroCriandoArquivo(e.getMessage()));
+        }
     }
 
-    @Transactional
-    public String postImage(MultipartFile file, TipoUpload tipo) {
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public String uploadImage(MultipartFile file, TipoUpload tipo, Long idProvedor) {
         log.info(String.format("Iniciando cadastro de imagem de provedor [%s]", tipo));
 
-        return updater.postImagemProvedor(file, tipo);
+        return updater.uploadImage(file, tipo, idProvedor);
     }
 
     public List<ProvedorDestaquesOutput> getByHighAvaliacao(){

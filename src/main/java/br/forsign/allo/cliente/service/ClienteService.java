@@ -9,16 +9,18 @@ import br.forsign.allo.cliente.service.actions.ClienteCreator;
 import br.forsign.allo.cliente.service.actions.ClienteDeleter;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.cliente.service.actions.ClienteUpdater;
+import br.forsign.allo.importacao.exception.FileStorageException;
+import br.forsign.allo.importacao.exception.FileStorageExceptionMessages;
 import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -83,15 +85,37 @@ public class ClienteService {
         return this.mapper.toOutput(this.updater.favoritar(usuario.getUsername(), idProvedor));
     }
 
-    public ResponseEntity<org.springframework.core.io.Resource> getImage(String filename){
-        log.info(String.format("Iniciando consulta a imagem %s do cliente.", filename));
+    @Transactional
+    public ResponseEntity<InputStreamResource> findImage(Long id) {
+        log.info(String.format("Iniciando consulta de imagem de provedor [%s]", id));
 
-        return getter.getImageByName(filename);
+        try{
+            MultipartFile mfile = this.getter.findImage(id);
+
+            if(mfile == null || mfile.isEmpty()){
+                throw new FileStorageException(FileStorageExceptionMessages.erroCriandoArquivo("Arquivo inexistente"));
+            }
+
+            InputStreamResource resource = new InputStreamResource(mfile.getInputStream());
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + mfile.getName() + "\"");
+            headers.add(HttpHeaders.CONTENT_TYPE, "application/octet-stream");
+
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentLength(mfile.getSize())
+                    .body(resource);
+
+        }catch (Exception e){
+            log.error(e.getMessage());
+            throw new FileStorageException(FileStorageExceptionMessages.erroCriandoArquivo(e.getMessage()));
+        }
     }
 
-    public String postImageCliente(MultipartFile file){
+    public String uploadImage(MultipartFile file, Long id){
         log.info("Iniciando cadastro de imagem no sistema.");
 
-        return updater.postImagemCliente(file);
+        return updater.uploadImage(file, id);
     }
 }

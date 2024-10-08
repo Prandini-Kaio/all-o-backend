@@ -1,6 +1,7 @@
 package br.forsign.allo.provedor.controller;
 
 
+import br.forsign.allo.importacao.service.StorageService;
 import br.forsign.allo.provedor.domain.TipoUpload;
 import br.forsign.allo.provedor.model.*;
 import br.forsign.allo.provedor.service.ProvedorService;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -99,31 +101,24 @@ public class ProvedorController {
     }
 
     @PostMapping("/upload")
-    @Operation(summary = "Sobe uma imagem",
-               description = "Sobe uma imagem para um provedor")
-    public String handleFileUpload(@RequestParam("image") MultipartFile file) {
-        return this.service.postImage(file, TipoUpload.PERFIL);
-    }
-
-    @PostMapping("/upload/servico")
-    @Operation(summary = "Sobe uma imagem",
-            description = "Sobe uma imagem para um provedor")
-    public String handleFileUploadServico(@RequestParam("image") MultipartFile file) {
-        return this.service.postImage(file, TipoUpload.SERVICO);
+    @Operation(summary = "Realiza o upload de uma imagem",
+               description = "Faz o upload de uma imagem para o perfil de um provedor")
+    public ResponseEntity<String> handleFileUpload(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("tipoUpload") TipoUpload tipoUpload,
+            @RequestParam("idProvedor") Long idProvedor
+    ) {
+        return ResponseEntity.ok().body(this.service.uploadImage(file, TipoUpload.PERFIL, idProvedor));
     }
 
     @GetMapping("/buscarImagem")
     @Operation(summary = "Busca uma imagem",
-               description = "Busca uma imagem pelo Nome.")
-    public ResponseEntity<org.springframework.core.io.Resource> buscarImagemPorNome(@RequestParam String fileName) {
-         return service.getImage(fileName, TipoUpload.PERFIL);
-    }
-
-    @GetMapping("/buscarImagem/servico")
-    @Operation(summary = "Busca uma imagem",
-            description = "Busca uma imagem pelo Nome.")
-    public ResponseEntity<org.springframework.core.io.Resource> buscarImagemServicoPorNome(@RequestParam String fileName) {
-        return service.getImage(fileName, TipoUpload.SERVICO);
+            description = "Busca uma imagem pelo id do provedor.")
+    public ResponseEntity<InputStreamResource> buscarImagemPorNome(
+            @RequestParam Long idProvedor,
+            @RequestParam TipoUpload tipoUpload
+    ) {
+        return this.service.findImage(TipoUpload.PERFIL, idProvedor);
     }
 
     @GetMapping("/melhoresAvaliados")

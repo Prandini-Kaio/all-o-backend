@@ -1,16 +1,18 @@
 package br.forsign.allo.cliente.service.actions;
 
 import br.forsign.allo.cliente.domain.Cliente;
+import br.forsign.allo.cliente.domain.PerfilCliente;
 import br.forsign.allo.cliente.repository.ClienteRepository;
+import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteGetter;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.importacao.service.StorageService;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.net.MalformedURLException;
 import java.nio.file.Path;
@@ -24,6 +26,12 @@ public class ClienteGetter {
 
     @Resource
     private ClienteRepository repository;
+
+    @Resource
+    private PerfilClienteGetter perfilClienteGetter;
+
+    @Resource
+    private StorageService storageService;
 
     public List<Cliente> findAtivos(){
         return repository.findAtivos();
@@ -61,31 +69,11 @@ public class ClienteGetter {
         return cliente.isPresent();
     }
 
-    public ResponseEntity<org.springframework.core.io.Resource> getImageByName(String fileName){
-        log.info(String.format("Consultando imagem do cliente %s.", fileName));
+    public MultipartFile findImage(Long id){
+        log.info(String.format("Bucando imagem de perfil do cliente %s", id));
+        PerfilCliente perfilCliente = perfilClienteGetter.byClienteId(id);
 
-        try {
-            // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
-            Path filePath = Paths.get("src/main/resources/images-cliente").resolve(fileName).normalize();
-            org.springframework.core.io.Resource resource = new UrlResource(filePath.toUri());
-
-            // Verifica se o recurso existe e é acessível
-            if (resource.exists() && resource.isReadable()) {
-
-
-                // Retorna a resposta com o status OK e o recurso da imagem
-                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                                "attachment; filename=\"" + resource.getFilename() + "\"")
-                        .body(resource);
-            } else {
-                // Caso a imagem não seja encontrada, retorna um status de não encontrado (404)
-                return ResponseEntity.notFound().build();
-            }
-        } catch (MalformedURLException e) {
-            // Tratamento de erro se ocorrer uma URL malformada
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
-        }
+        return storageService.download(perfilCliente.getImagemPerfil());
     }
 
     public Cliente byUsernameId(String clienteUsername) {

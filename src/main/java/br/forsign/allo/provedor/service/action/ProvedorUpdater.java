@@ -2,6 +2,7 @@ package br.forsign.allo.provedor.service.action;
 
 import br.forsign.allo.common.utils.ImageUtils;
 import br.forsign.allo.entidade.converter.EnderecoMapper;
+import br.forsign.allo.importacao.service.StorageService;
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
 import br.forsign.allo.provedor.domain.Provedor;
@@ -9,13 +10,15 @@ import br.forsign.allo.provedor.domain.TipoUpload;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.ProvedorValidator;
+import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorGetter;
 import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorUpdater;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
+import java.io.File;
+import java.util.Objects;
 
 @Component
 @CommonsLog
@@ -34,10 +37,16 @@ public class ProvedorUpdater {
     private PerfilProvedorUpdater perfilProvedorUpdater;
 
     @Resource
+    private PerfilProvedorGetter perfilProvedorGetter;
+
+    @Resource
     private ProfissaoGetter profissaoGetter;
 
     @Resource
     private EnderecoMapper enderecoMapper;
+
+    @Resource
+    private StorageService storageService;
 
     public Provedor update(ProvedorInput input) {
         log.info(String.format("Atualizando provedor %s", input.getRazaoSocial()));
@@ -62,13 +71,27 @@ public class ProvedorUpdater {
         return repository.save(provedor);
     }
 
-    public String postImagemProvedor(MultipartFile file, TipoUpload tipoUpload) {
+    public String uploadImage(MultipartFile file, TipoUpload tipoUpload, Long idProvedor) {
         log.info(String.format("Atualizando imagem do provedor, tipo [%s].", tipoUpload));
 
-        if (tipoUpload == TipoUpload.PERFIL)
-            return ImageUtils.saveImageFile(file, "images-provedor");
-        else
-            return ImageUtils.saveImageFile(file, "images-perfil-provedor");
+        String path = "provedor"
+                .concat(File.separator).concat(idProvedor.toString())
+                .concat(File.separator).concat(tipoUpload.equals(TipoUpload.PERFIL) ? "perfil" : "servicos");
 
+        String filename = file.getOriginalFilename();
+
+        if (tipoUpload.equals(TipoUpload.PERFIL)) {
+            String[] splittedFilename = Objects.requireNonNull(file.getOriginalFilename()).split("\\.");
+
+            filename = file.getOriginalFilename().replace(splittedFilename[0], "perfil");
+        }
+
+        String url = this.storageService.upload(file, path, filename);
+
+        Provedor provedor = getter.byId(idProvedor);
+        provedor.getPerfilProvedor().setImagemPerfil(url);
+
+        repository.save(provedor);
+        return url;
     }
 }

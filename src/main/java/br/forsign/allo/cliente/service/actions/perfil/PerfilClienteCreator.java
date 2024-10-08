@@ -26,8 +26,8 @@ public class PerfilClienteCreator {
         PerfilCliente perfilCliente = new PerfilCliente();
 
         perfilCliente.setCliente(cliente);
-        perfilCliente.setImagemPerfil(input.getImagem());
+        perfilCliente.setDescricao(input.getDescricao());
 
-        return repository.save(perfilCliente);
+        return perfilCliente;
     }
 }

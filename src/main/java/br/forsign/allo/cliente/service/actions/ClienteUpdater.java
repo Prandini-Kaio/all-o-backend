@@ -6,14 +6,16 @@ import br.forsign.allo.cliente.repository.ClienteRepository;
 import br.forsign.allo.cliente.service.actions.perfil.PerfilClienteUpdater;
 import br.forsign.allo.common.utils.ImageUtils;
 import br.forsign.allo.entidade.service.action.EnderecoUpdater;
+import br.forsign.allo.importacao.service.StorageService;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.util.Objects;
 
 
 @Component
@@ -37,6 +39,9 @@ public class ClienteUpdater {
 
     @Resource
     private EnderecoUpdater enderecoUpdater;
+
+    @Resource
+    private StorageService storageService;
 
     public Cliente update(ClienteInput input){
         log.info(String.format("Atualizando cliente com ID %s.", input.getId()));
@@ -71,9 +76,23 @@ public class ClienteUpdater {
         return this.repository.save(cliente);
     }
 
-    public String postImagemCliente(MultipartFile file) {
-        log.info("Salvando imagem do cliente.");
+    public String uploadImage(MultipartFile file, Long id) {
+        log.info(String.format("Atualizando imagem do cliente [%s].", id));
 
-        return ImageUtils.saveImageFile(file, "images-cliente");
+
+        String path = "cliente"
+                .concat(File.separator).concat(id.toString())
+                .concat(File.separator).concat("perfil");
+
+        String[] splittedFilename = Objects.requireNonNull(file.getOriginalFilename()).split("\\.");
+        String filename = file.getOriginalFilename().replace(splittedFilename[0], "perfil");
+
+        String url = this.storageService.upload(file, path, filename);
+
+        Cliente cliente = getter.byId(id);
+        cliente.getPerfil().setImagemPerfil(url);
+
+        repository.save(cliente);
+        return url;
     }
 }

@@ -5,12 +5,14 @@ import br.forsign.allo.common.utils.CpfCnpjUtils;
 import br.forsign.allo.entidade.service.action.EnderecoCreator;
 import br.forsign.allo.profissao.domain.Profissao;
 import br.forsign.allo.profissao.service.action.ProfissaoGetter;
+import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.ProvedorCadastroInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
 import br.forsign.allo.provedor.service.PerfilProvedorService;
 import br.forsign.allo.provedor.service.ProvedorValidator;
+import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorCreator;
 import br.forsign.allo.usuario.domain.Usuario;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
@@ -31,7 +33,7 @@ public class ProvedorCreator {
     private ProvedorValidator validator;
 
     @Resource
-    private PerfilProvedorService perfilProvedorService;
+    private PerfilProvedorCreator perfilProvedorCreator;
 
     @Resource
     private ProfissaoGetter profissaoGetter;
@@ -66,8 +68,11 @@ public class ProvedorCreator {
 
         provedor.setUsuario((Usuario) this.authService.register(provedorCadastroInput.getUsuario()));
 
-        repository.save(provedor);
-        perfilProvedorService.create(provedor, input.getPerfilProvedorInput());
+        PerfilProvedor perfil = this.perfilProvedorCreator.create(provedor, input.getPerfilProvedorInput());
+        provedor.setPerfilProvedor(perfil);
+
+        this.repository.save(provedor);
+
         return provedor;
     }
 }

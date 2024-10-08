@@ -23,6 +23,13 @@ public class Cliente extends Entidade {
     @Column(name = "NOME")
     private String nome;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "PERFIL",
+            referencedColumnName = "ID"
+    )
+    private PerfilCliente perfil;
+
     @OneToOne
     @JoinColumn(
             name = "USUARIO_ID",

@@ -18,5 +18,7 @@ public class ClienteInput extends EntidadeInput {
     @Schema(example = "Matheus Frangote", description = "Nome do cliente.")
     private String nome;
 
-    private String imagem;
+    private String descricao;
+
+
 }

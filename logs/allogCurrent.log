@@ -1,1 +1,15 @@
-2024-10-08 09:20:42 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-08 10:01:01 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-08 10:01:01 INFO Initializing Servlet 'dispatcherServlet'
+2024-10-08 10:01:01 INFO Completed initialization in 2 ms
+2024-10-08 10:01:02 INFO Iniciando cadastro de um cliente com nome Matheus Frangote no sistema.
+2024-10-08 10:01:02 INFO Criando um novo cliente Matheus Frangote.
+2024-10-08 10:01:02 INFO Consultando existência de cliente pelo CPF "869.039.770-15".
+2024-10-08 10:01:02 INFO Criando endereço.
+2024-10-08 10:01:02 INFO Tentativa de cadastro: pedro@org.com
+2024-10-08 10:01:02 INFO Cadastro bem sucedido: pedro@org.com
+2024-10-08 10:01:02 INFO Cadastrando perfil do cliente Matheus Frangote.
+2024-10-08 10:01:06 INFO Iniciando cadastro de imagem no sistema.
+2024-10-08 10:01:06 INFO Atualizando imagem do cliente [1].
+2024-10-08 10:01:06 INFO Enviando arquivo cliente/1/perfil para o storage.
+2024-10-08 10:01:15 INFO Arquivo allo/cliente/1/perfil/perfil.jpg enviado para o storage.
+2024-10-08 10:01:15 INFO Consultando um cliente no sistema pelo ID 1.

@@ -4,6 +4,7 @@ import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.avaliacao.repository.AvaliacaoRepository;
 import br.forsign.allo.avaliacao.service.action.AvaliacaoGetter;
 import br.forsign.allo.common.utils.LocalDateUtils;
+import br.forsign.allo.importacao.service.StorageService;
 import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
@@ -50,6 +51,9 @@ public class PerfilProvedorUpdater {
     @Resource
     private AvaliacaoRepository avaliacaoRepository;
 
+    @Resource
+    private StorageService storageService;
+
     public PerfilProvedor update(ProvedorInput input){
 
         log.info(String.format("Atualizando perfil do Provedor com id %s.", input.getId()));
@@ -61,14 +65,10 @@ public class PerfilProvedorUpdater {
         int totalServicos = serviceGetter.getTotalAvaliacoes(provedor.getId());
 
         perfilProvedor.setDescricao(input.getPerfilProvedorInput().getDescricao());
-        perfilProvedor.setImagemPerfil(input.getPerfilProvedorInput().getPerfilImage());
         perfilProvedor.setTotalAvaliacao(totalServicos);
-
         perfilProvedor.setProvedor(provedor);
-
         perfilProvedor.setServicosConcluidos(totalServicos);
         perfilProvedor.setTempoCadastro(LocalDateUtils.toBrazilianDateString(provedor.getDtRegistro()));
-
         perfilProvedor.setImagensServicos(input.getServicoImagens());
         List<Avaliacao> avaliacoesProvedor = avaliacaoGetter.byProvedor(provedor.getId());
         perfilProvedor.setMediaAvaliacao(getMediaAvaliacao(avaliacoesProvedor));

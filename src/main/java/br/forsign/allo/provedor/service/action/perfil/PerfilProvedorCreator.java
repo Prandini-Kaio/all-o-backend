@@ -26,7 +26,6 @@ public class PerfilProvedorCreator {
         perfilProvedor.setServicosConcluidos(0);
         perfilProvedor.setMediaAvaliacao(0);
         perfilProvedor.setTempoCadastro(LocalDateUtils.toBrazilianDateString(provedor.getDtRegistro()));
-        perfilProvedor.setImagemPerfil(input.getPerfilImage());
         perfilProvedor.setDescricao(input.getDescricao());
 
         return repository.save(perfilProvedor);

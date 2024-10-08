@@ -1,17 +1,15 @@
 package br.forsign.allo.provedor.service.action;
 
-import br.forsign.allo.avaliacao.domain.Avaliacao;
+import br.forsign.allo.common.file.exceptions.FileException;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
-import br.forsign.allo.profissao.converter.ProfissaoMapper;
-import br.forsign.allo.provedor.converter.ProvedorConverter;
+import br.forsign.allo.importacao.service.StorageService;
+import br.forsign.allo.importacao.service.files.FileService;
+import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
-import br.forsign.allo.provedor.model.ProvedorDestaquesOutput;
 import br.forsign.allo.provedor.model.ProvedorFilter;
 import br.forsign.allo.provedor.repository.ProvedorRepository;
+import br.forsign.allo.provedor.service.action.perfil.PerfilProvedorGetter;
 import jakarta.annotation.Resource;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
@@ -19,7 +17,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,6 +33,15 @@ public class ProvedorGetter {
 
     @Resource
     private ProvedorRepository repository;
+
+    @Resource
+    private PerfilProvedorGetter perfilProvedorGetter;
+
+    @Resource
+    private StorageService storageService;
+
+    @Resource
+    private FileService fileService;
 
     public Page<Provedor> findAll(Pageable pageable) {
         log.info("Consultando todos os provedores.");
@@ -87,31 +97,11 @@ public class ProvedorGetter {
         return repository.findByProfissoesId(idProfissao);
     }
 
-    public ResponseEntity<org.springframework.core.io.Resource> getImageByName(String fileName, String path){
-        log.info(String.format("Consultando imagem de provedor com base no nome do arquivo %s", fileName));
+    public MultipartFile findPerfilImage(Long idProvedor) throws IOException, FileException {
+        log.info(String.format("Bucando imagem de perfil do provedor %s", idProvedor));
+        PerfilProvedor perfilProvedor = perfilProvedorGetter.byProvedorId(idProvedor);
 
-        try {
-            // Monta o caminho completo da imagem com base no diretório configurado e no nome do arquivo
-
-            Path filePath = Paths.get("src/main/resources/" + path).resolve(fileName).normalize();
-
-            org.springframework.core.io.Resource resource = new UrlResource(filePath.toUri());
-
-            // Verifica se o recurso existe e é acessível
-            if (resource.exists() && resource.isReadable()) {
-                // Retorna a resposta com o status OK e o recurso da imagem
-                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-                                "attachment; filename=\"" + resource.getFilename() + "\"")
-                        .body(resource);
-            } else {
-                // Caso a imagem não seja encontrada, retorna um status de não encontrado (404)
-                return ResponseEntity.notFound().build();
-            }
-        } catch (MalformedURLException e) {
-            // Tratamento de erro se ocorrer uma URL malformada
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
-        }
+        return storageService.download(perfilProvedor.getImagemPerfil());
     }
 
     public List<Provedor> getByHighAvaliacao() {
