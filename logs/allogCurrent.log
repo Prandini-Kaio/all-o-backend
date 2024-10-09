@@ -1,3 +1,26 @@
-2024-10-08 11:11:07 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-08 11:11:07 INFO HikariPool-1 - Shutdown initiated...
-2024-10-08 11:11:07 INFO HikariPool-1 - Shutdown completed.
+2024-10-09 08:43:00 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-09 08:43:00 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@7aed970, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7c9235cf, org.springframework.security.web.context.SecurityContextHolderFilter@3e9fcae4, org.springframework.security.web.header.HeaderWriterFilter@334b7d42, org.springframework.web.filter.CorsFilter@68af6626, org.springframework.security.web.authentication.logout.LogoutFilter@c98b822, br.forsign.allo.config.SecurityFilter@4aa7237f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17ffd1cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@a15477c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@915692c, org.springframework.security.web.session.SessionManagementFilter@2ffc7d71, org.springframework.security.web.access.ExceptionTranslationFilter@1344eaa2, org.springframework.security.web.access.intercept.AuthorizationFilter@1881951e]
+2024-10-09 08:43:01 INFO LiveReload server is running on port 35729
+2024-10-09 08:43:01 INFO Starting ProtocolHandler ["http-nio-8080"]
+2024-10-09 08:43:01 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
+2024-10-09 08:43:01 INFO Started AlloApplicationRunner in 5.43 seconds (process running for 6.262)
+2024-10-09 08:43:30 INFO Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-10-09 08:43:30 INFO Initializing Servlet 'dispatcherServlet'
+2024-10-09 08:43:30 INFO Completed initialization in 1 ms
+2024-10-09 08:43:30 INFO Iniciando o cadastro da profissão Médico.
+2024-10-09 08:43:30 INFO Criando uma nova profissão Médico.
+2024-10-09 08:43:30 INFO Consultando existência de profissão Médico
+2024-10-09 08:43:33 INFO Cadastrando provedor Douglas Mecanico no sistema.
+2024-10-09 08:43:33 INFO Criando provedor com nome Douglas Mecanico.
+2024-10-09 08:43:33 INFO Consultando a existência de provedor com base no CPF/CNPJ 869.039.770-15
+2024-10-09 08:43:33 INFO Consultando a existência de provedor com base no CPF/CNPJ 869.039.770-15
+2024-10-09 08:43:33 INFO Consultando profissão ativa com id 1.
+2024-10-09 08:43:33 INFO Criando endereço.
+2024-10-09 08:43:33 INFO Tentativa de cadastro: kaio@gmail.com
+2024-10-09 08:43:33 INFO Cadastro bem sucedido: kaio@gmail.com
+2024-10-09 08:43:33 INFO Cadastrando perfil de provedor Douglas Mecanico.
+2024-10-09 08:43:37 INFO Iniciando cadastro de imagem de provedor 1 para SERVICO
+2024-10-09 08:43:37 INFO Realizando o upload da imagem do provedor 1 tipo SERVICO.
+2024-10-09 08:43:37 INFO Enviando arquivo provedor/1/servicos para o storage.
+2024-10-09 08:43:43 INFO Arquivo allo/provedor/1/servicos/tst.jpg enviado para o storage.
+2024-10-09 08:43:43 INFO Consultando provedor com ID 1.

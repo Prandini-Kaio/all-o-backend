@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -71,11 +73,11 @@ public class ProvedorUpdater {
         return repository.save(provedor);
     }
 
-    public String uploadImage(MultipartFile file, TipoUpload tipoUpload, Long idProvedor) {
-        log.info(String.format("Atualizando imagem do provedor, tipo [%s].", tipoUpload));
+    public String uploadImage(MultipartFile file, TipoUpload tipoUpload, Long id) {
+        log.info(String.format("Realizando o upload da imagem do provedor %s tipo %s.", id, tipoUpload));
 
         String path = "provedor"
-                .concat(File.separator).concat(idProvedor.toString())
+                .concat(File.separator).concat(id.toString())
                 .concat(File.separator).concat(tipoUpload.equals(TipoUpload.PERFIL) ? "perfil" : "servicos");
 
         String filename = file.getOriginalFilename();
@@ -88,10 +90,27 @@ public class ProvedorUpdater {
 
         String url = this.storageService.upload(file, path, filename);
 
-        Provedor provedor = getter.byId(idProvedor);
-        provedor.getPerfilProvedor().setImagemPerfil(url);
+        Provedor provedor = getter.byId(id);
+
+        if(tipoUpload.equals(TipoUpload.PERFIL)){
+            provedor.getPerfilProvedor().setImagemPerfil(url);
+        }else{
+            provedor.getPerfilProvedor().addImagemServico(url);
+        }
 
         repository.save(provedor);
         return url;
+    }
+
+    public List<String> uploadImage(List<MultipartFile> files, TipoUpload tipo, Long id){
+        log.info(String.format("Realizando o upload das imagens de serviços do provedor %s.", id));
+
+        List<String> urls = new ArrayList<>();
+
+        files.forEach(file -> {
+            urls.add(this.uploadImage(file, tipo, id));
+        });
+
+        return urls;
     }
 }

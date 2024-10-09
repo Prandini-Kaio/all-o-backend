@@ -34,6 +34,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -173,11 +174,18 @@ public class ProvedorService {
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public String uploadImage(MultipartFile file, TipoUpload tipo, Long idProvedor) {
+    @Transactional
+    public String uploadImage(MultipartFile file, TipoUpload tipo, Long id) {
+        log.info(String.format("Iniciando cadastro de imagem de provedor %s para %s", id, tipo));
+
+        return updater.uploadImage(file, tipo, id);
+    }
+
+    @Transactional
+    public List<String> uploadImage(List<MultipartFile> files, TipoUpload tipo, Long id) {
         log.info(String.format("Iniciando cadastro de imagem de provedor [%s]", tipo));
 
-        return updater.uploadImage(file, tipo, idProvedor);
+        return this.updater.uploadImage(files, tipo, id);
     }
 
     public List<ProvedorDestaquesOutput> getByHighAvaliacao(){

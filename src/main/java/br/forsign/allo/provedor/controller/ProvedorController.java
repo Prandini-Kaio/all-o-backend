@@ -1,7 +1,6 @@
 package br.forsign.allo.provedor.controller;
 
 
-import br.forsign.allo.importacao.service.StorageService;
 import br.forsign.allo.provedor.domain.TipoUpload;
 import br.forsign.allo.provedor.model.*;
 import br.forsign.allo.provedor.service.ProvedorService;
@@ -103,12 +102,12 @@ public class ProvedorController {
     @PostMapping("/upload")
     @Operation(summary = "Realiza o upload de uma imagem",
                description = "Faz o upload de uma imagem para o perfil de um provedor")
-    public ResponseEntity<String> handleFileUpload(
+    public ResponseEntity<String> upload(
             @RequestParam("file") MultipartFile file,
             @RequestParam("tipoUpload") TipoUpload tipoUpload,
-            @RequestParam("idProvedor") Long idProvedor
+            @RequestParam("id") Long id
     ) {
-        return ResponseEntity.ok().body(this.service.uploadImage(file, TipoUpload.PERFIL, idProvedor));
+        return ResponseEntity.ok().body(this.service.uploadImage(file, tipoUpload, id));
     }
 
     @GetMapping("/buscarImagem")

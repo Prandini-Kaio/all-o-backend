@@ -43,6 +43,10 @@ import java.util.List;
 
         @Column(name = "TEMPO_CADASTRO")
         private String tempoCadastro;
+
+        public void addImagemServico(String url){
+            this.imagensServicos.add(url);
+        }
     }
 
 
