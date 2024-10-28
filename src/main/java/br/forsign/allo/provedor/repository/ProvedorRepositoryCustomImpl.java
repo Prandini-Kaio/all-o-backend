@@ -70,7 +70,7 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
     }
 
     @Override
-    public List<Provedor> mostRelevant() {
+    public List<Provedor> mostRelevant(Long idProfissao) {
         Map<String, Object> params = new HashMap<>();
 
         StringBuilder sbQuery = new StringBuilder("SELECT p ");
@@ -79,14 +79,17 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
 
         sbFrom.append("FROM Provedor p ")
                 .append(" JOIN Servico s ON s.provedor.id = p.id ")
+                .append(" JOIN p.profissao pr ")
                 .append(" WHERE 1=1 ");
 
         LocalDate now = LocalDate.now();
         LocalDate dataInicial = LocalDate.of(now.getYear(), now.getMonth(), 1);
         LocalDate dataFinal = LocalDate.of(now.getYear(), now.plusMonths(1).getMonth(), 0);
 
-        sbFrom.append(" AND s.dtRealizado >= :dataInicial ");
-        sbFrom.append(" AND s.dtRealizado <= :dataFinal ");
+
+        QueryUtils.safeAddParams(params, "dataInicial", dataInicial, sbFrom, " AND s.dtRealizado >= :dataInicial ");
+        QueryUtils.safeAddParams(params, "dataFinal", dataFinal, sbFrom, " AND s.dtRealizado >= :dataFinal ");
+        QueryUtils.safeAddParams(params, "idProfissao", idProfissao, sbFrom, " AND pr.id = :idProfissao ");
 
         sbFrom.append(" ORDER BY COUNT(s.id) DESC ");
         sbQuery.append(sbFrom);

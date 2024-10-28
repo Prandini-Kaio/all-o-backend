@@ -114,16 +114,16 @@ public class ProvedorGetter {
         }
     }
 
-    public List<Provedor> getByHighAvaliacao() {
+    public List<Provedor> getByHighAvaliacao(Long idProfissao) {
         log.info("Consulta profissionais em destaque.");
 
-        return repository.findMelhoresAvaliacoes();
+        return repository.findMelhoresAvaliacoes(idProfissao);
     }
 
-    public List<Provedor> mostRelevant(){
+    public List<Provedor> mostRelevant(Long idProfissao){
         log.info("Consulta profissionais mais relevantes.");
 
-        return repository.mostRelevant();
+        return repository.mostRelevant(idProfissao);
     }
 
     public Provedor byUsername(String username) {

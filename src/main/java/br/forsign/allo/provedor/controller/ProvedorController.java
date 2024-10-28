@@ -129,8 +129,8 @@ public class ProvedorController {
     @GetMapping("/melhoresAvaliados")
     @Operation(summary = "Retorna os provedores mais bem-avaliados",
                description = "Retorna os provedores mais bem avaliados")
-    public ResponseEntity<List<ProvedorDestaquesOutput>> getByHighAvaliacao(){
-        return ResponseEntity.ok().body(service.getByHighAvaliacao());
+    public ResponseEntity<List<ProvedorDestaquesOutput>> getByHighAvaliacao(@RequestParam Long idProfissao){
+        return ResponseEntity.ok().body(service.getByHighAvaliacao(idProfissao));
     }
 
     @GetMapping("/filter")
@@ -143,8 +143,8 @@ public class ProvedorController {
     @GetMapping("/maisRelevantes")
     @Operation(summary = "Retorna os mais relevantes",
             description = "Retorna os provedores com mais serviço no mes")
-    public ResponseEntity<List<ProvedorOutput>> getByMostRelevant(){
-        return ResponseEntity.ok().body(service.getByMostRelevant());
+    public ResponseEntity<List<ProvedorOutput>> getByMostRelevant(@RequestParam Long idProfissao){
+        return ResponseEntity.ok().body(service.getByMostRelevant(idProfissao));
     }
 
 }

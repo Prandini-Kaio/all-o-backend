@@ -153,10 +153,10 @@ public class ProvedorService {
         return updater.postImagemProvedor(file, tipo);
     }
 
-    public List<ProvedorDestaquesOutput> getByHighAvaliacao(){
+    public List<ProvedorDestaquesOutput> getByHighAvaliacao(Long idProfissao){
         log.info("Iniciando consulta a profissionais em destaque.");
 
-        return converter.toDestaqueOutput(getter.getByHighAvaliacao());
+        return converter.toDestaqueOutput(getter.getByHighAvaliacao(idProfissao));
     }
 
     private ProvedorOutput makeProvedorOutput(Provedor provedor){
@@ -205,9 +205,9 @@ public class ProvedorService {
         return provedores.stream().map(this::makeProvedorOutput).toList();
     }
 
-    public List<ProvedorOutput> getByMostRelevant(){
+    public List<ProvedorOutput> getByMostRelevant(Long idProfissao){
         log.info("Iniciando consulta a profissionais mais relevantes.");
 
-        return this.getter.mostRelevant().stream().map(this::makeProvedorOutput).toList();
+        return this.getter.mostRelevant(idProfissao).stream().map(this::makeProvedorOutput).toList();
     }
 }
