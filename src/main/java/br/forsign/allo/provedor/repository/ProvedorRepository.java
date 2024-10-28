@@ -26,11 +26,13 @@ public interface ProvedorRepository extends JpaRepository<Provedor, Long>, Prove
     @Query("SELECT p " +
             "FROM Provedor p " +
             "JOIN Servico s ON s.provedor.id = p.id " +
+            "JOIN p.profissao pr " +
             "WHERE p.ativo = true " +
+            "AND pr.id = :idProfissao " +
             "GROUP BY p.id " +
             "ORDER BY AVG(s.avaliacao.nota) DESC " +
             "LIMIT 5")
-    List<Provedor> findMelhoresAvaliacoes();
+    List<Provedor> findMelhoresAvaliacoes(Long idProfissao);
 
     @Query("SELECT p FROM Provedor p JOIN p.usuario u WHERE u.login = :username")
     Optional<Provedor> byUsername(String username);
