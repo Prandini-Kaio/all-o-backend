@@ -129,7 +129,14 @@ public class ProvedorController {
     @GetMapping("/melhoresAvaliados")
     @Operation(summary = "Retorna os provedores mais bem-avaliados",
                description = "Retorna os provedores mais bem avaliados")
-    public ResponseEntity<List<ProvedorDestaquesOutput>> getByHighAvaliacao(@RequestParam Long idProfissao){
+    public ResponseEntity<List<ProvedorDestaquesOutput>> getByHighAvaliacao(){
+        return ResponseEntity.ok().body(service.getMelhoresAvaliados());
+    }
+
+    @GetMapping("/melhoresAvaliados/profissao")
+    @Operation(summary = "Retorna os provedores mais bem-avaliados",
+            description = "Retorna os provedores mais bem avaliados")
+    public ResponseEntity<List<ProvedorDestaquesOutput>> getMelhoresAvaliados(@RequestParam Long idProfissao){
         return ResponseEntity.ok().body(service.getByHighAvaliacao(idProfissao));
     }
 

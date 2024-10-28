@@ -159,6 +159,12 @@ public class ProvedorService {
         return converter.toDestaqueOutput(getter.getByHighAvaliacao(idProfissao));
     }
 
+    public List<ProvedorDestaquesOutput> getMelhoresAvaliados(){
+        log.info("Iniciando consulta a profissionais em destaque.");
+
+        return converter.toDestaqueOutput(getter.getByHighAvaliacao());
+    }
+
     private ProvedorOutput makeProvedorOutput(Provedor provedor){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

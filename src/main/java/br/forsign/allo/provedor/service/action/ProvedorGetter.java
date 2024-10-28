@@ -120,6 +120,12 @@ public class ProvedorGetter {
         return repository.findMelhoresAvaliacoes(idProfissao);
     }
 
+    public List<Provedor> getByHighAvaliacao() {
+        log.info("Consulta profissionais em destaque.");
+
+        return repository.findMelhoresAvaliacoes();
+    }
+
     public List<Provedor> mostRelevant(Long idProfissao){
         log.info("Consulta profissionais mais relevantes.");
 
