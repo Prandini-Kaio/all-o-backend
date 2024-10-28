@@ -12,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,9 +84,12 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
                 .append(" JOIN p.profissao pr ")
                 .append(" WHERE 1=1 ");
 
-        LocalDate now = LocalDate.now();
-        LocalDate dataInicial = LocalDate.of(now.getYear(), now.getMonth(), 1);
-        LocalDate dataFinal = LocalDate.of(now.getYear(), now.plusMonths(1).getMonth(), 0);
+        LocalDateTime now = LocalDateTime.now();
+
+        YearMonth ym = YearMonth.from(now);
+
+        LocalDateTime dataInicial = LocalDateTime.of(now.getYear(), now.getMonth(), 1, 0, 0, 0);
+        LocalDateTime dataFinal = LocalDateTime.of(now.getYear(), now.plusMonths(1).getMonth(), ym.atEndOfMonth().getDayOfMonth(), 23, 59, 59);
 
 
         QueryUtils.safeAddParams(params, "dataInicial", dataInicial, sbFrom, " AND s.dtRealizado >= :dataInicial ");
