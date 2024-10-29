@@ -30,24 +30,6 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
     @Resource
     private PagingRepository pagingRepository;
 
-    public Page<Provedor> byFilter(String nome, String profissao, Pageable pageable) {
-
-        Map<String, Object> params = new HashMap<>();
-
-        StringBuilder sbCount = new StringBuilder("SELECT COUNT(p) FROM Provedor p WHERE 1=1 ");
-        StringBuilder sbQuery = new StringBuilder("SELECT p ");
-
-        StringBuilder sbFrom = new StringBuilder();
-
-        sbFrom.append("FROM Provedor p ")
-                .append(" JOIN p.profissao profissao ");
-
-        QueryUtils.safeAddParams(params, "nome", nome, sbFrom, " AND p.razaoSocial LIKE CONCAT('%',:nome,'%') ");
-        QueryUtils.safeAddParams(params, "profissao", profissao, sbFrom, " AND profissao.nome LIKE CONCAT('%',:profissao,'%') ");
-
-        return pagingRepository.getPage(pageable, params, sbQuery, sbCount);
-    }
-
     @Override
     public List<Provedor> byFilter(ProvedorFilter filter) {
         Map<String, Object> params = new HashMap<>();
@@ -58,13 +40,31 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
 
         sbFrom.append("FROM Provedor p ")
                 .append(" JOIN p.profissao profissao ")
+                .append(" LEFT JOIN Servico s ON s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes ")
                 .append(" WHERE 1=1 ");
 
+        QueryUtils.safeAddParams(params, "id", filter.getRazaoSocial(), sbFrom, " AND p.id = :id ");
         QueryUtils.safeAddParams(params, "nome", filter.getRazaoSocial(), sbFrom, " AND p.razaoSocial LIKE CONCAT('%',:nome,'%') ");
-        QueryUtils.safeAddParams(params, "profissao", filter.getProfissao(), sbFrom, " AND profissao.nome LIKE CONCAT('%',:profissao,'%') ");
+        QueryUtils.safeAddParams(params, "idProfissao", filter.getIdProfissao(), sbFrom, " AND profissao.id LIKE CONCAT('%',:idProfissao,'%') ");
         QueryUtils.safeAddParams(params, "ativo", filter.isAtivo(), sbFrom, " AND p.ativo = :ativo ");
 
         sbQuery.append(sbFrom);
+
+        sbQuery.append(" GROUP BY p.id ");
+
+        if(filter.isMaisRelevantes()){
+            sbQuery.append(" ORDER BY COUNT(s.id) DESC ");
+        }
+        else if(filter.isMelhoresAvaliados()){
+            sbQuery.append(" ORDER BY AVG(s.avaliacao.nota) DESC ");
+        }
+        else {
+            sbQuery.append(" ORDER BY AVG(s.avaliacao.nota) DESC, COUNT(s.id) DESC ");
+        }
+
+        LocalDateTime dataUltimoMes = LocalDateTime.now().minusMonths(1);
+        params.put("dataUltimoMes", dataUltimoMes);
+
         Query query = this.entityManager.createQuery(sbQuery.toString());
         params.forEach(query::setParameter);
 

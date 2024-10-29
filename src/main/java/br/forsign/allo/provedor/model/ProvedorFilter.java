@@ -10,9 +10,15 @@ import lombok.Data;
 @Data
 public class ProvedorFilter {
 
+    private Long id;
+
     private String razaoSocial;
 
-    private String profissao;
+    private Long idProfissao;
 
     private boolean ativo = true;
+
+    private boolean melhoresAvaliados = false;
+
+    private boolean maisRelevantes = false;
 }

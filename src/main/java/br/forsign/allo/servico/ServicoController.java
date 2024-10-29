@@ -43,7 +43,7 @@ public class ServicoController {
 
     @PutMapping("/confirmacao")
     @Operation(
-            summary = "Confirmação de Serviço",
+            summary = "Confirmação de Serviço por parte do Provedor",
             description = "Confirmação de Serviço entre Cliente e Provedor"
     )
     @PreAuthorize("hasRole('ROLE_PROVEDOR')")

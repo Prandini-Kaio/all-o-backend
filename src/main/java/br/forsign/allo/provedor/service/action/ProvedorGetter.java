@@ -47,12 +47,6 @@ public class ProvedorGetter {
                 .orElseThrow(CommonExceptionSupplier.naoEncontrado("Provedor", id));
     }
 
-    public Page<Provedor> findByFilter(String razaoSocial, String profissao, Pageable pageable){
-        log.info(String.format("Consultando provedor pelo nome %s; profissão %s.", razaoSocial, profissao));
-
-        return repository.byFilter(razaoSocial, profissao, pageable);
-    }
-
     public List<Provedor> findByFilter(ProvedorFilter filter){
         log.info(String.format("Consultando provedor pelo nome"));
 

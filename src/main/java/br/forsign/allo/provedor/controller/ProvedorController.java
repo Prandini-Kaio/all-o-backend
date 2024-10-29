@@ -13,15 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -39,13 +31,15 @@ public class ProvedorController {
 
     @GetMapping
     @Operation(
-            summary = "Retorna um prestador por id.",
-            description = "Retorna um prestador por id e ativo."
+            summary = "Retorna um prestador por um filtro.",
+            description = "Retorna um prestador por um filtro, tendo sua ordenação com base nos booleanos requeridos. " +
+                    "A principio, se ambos forem verdadeiros, a ordenação sera feita com base nos melhores avaliados e com criterio de desempate nos mais relevantes."
     )
 
-    public ResponseEntity<ProvedorOutput> getById(
-            @RequestParam Long id){
-        return ResponseEntity.ok().body(service.findById(id));
+    public ResponseEntity<List<ProvedorOutput>> getByFilter(
+            @ModelAttribute ProvedorFilter filter
+    ){
+        return ResponseEntity.ok().body(service.findByFilter(filter));
     }
 
     @GetMapping("/filter/profissao")
@@ -64,7 +58,7 @@ public class ProvedorController {
             summary = "Retorna um prestador favorito.",
             description = "Retorna um prestador favorito."
     )
-    public ResponseEntity<Page<ProvedorOutput>> getByFilter(
+    public ResponseEntity<Page<ProvedorOutput>> getFavoritosByFilter(
             @PageableDefault(size = 15) Pageable pageable){
         return ResponseEntity.ok().body(service.findAllComFavoritos(pageable));
     }
@@ -138,13 +132,6 @@ public class ProvedorController {
             description = "Retorna os provedores mais bem avaliados")
     public ResponseEntity<List<ProvedorDestaquesOutput>> getMelhoresAvaliados(@RequestParam Long idProfissao){
         return ResponseEntity.ok().body(service.getByHighAvaliacao(idProfissao));
-    }
-
-    @GetMapping("/filter")
-    @Operation(summary = "Retorna os provedores com base em um filtro",
-               description = "Retorna os provedores com base em um filtro")
-    public ResponseEntity<List<ProvedorOutput>> getByFilter(ProvedorFilter filter){
-        return ResponseEntity.ok().body(service.findByFilter(filter));
     }
 
     @GetMapping("/maisRelevantes")

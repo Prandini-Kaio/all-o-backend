@@ -74,7 +74,8 @@ public class ServicoUpdater {
 
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
         Servico servico = getter.byClienteAndId(cliente.getUsuario().getUsername(), input.getId());
-        String mensagem = String.format("O cliente %s avaliou o serviço!", cliente.getNome());
+
+        String notifyMessage = String.format("O cliente %s avaliou o serviço!", cliente.getNome());
 
         log.info(String.format("Avaliando serviço: %s", input.getId()));
 
@@ -82,7 +83,7 @@ public class ServicoUpdater {
 
         notificacaoProvedorInput.setIdProvedor(servico.getProvedor().getId());
         notificacaoProvedorInput.setNomeCliente(cliente.getNome());
-        notificacaoProvedorInput.setMensagem(mensagem);
+        notificacaoProvedorInput.setMensagem(notifyMessage);
 
         servico.setAvaliacao(avaliacaoMapper.fromInput(input.getAvaliacao()));
         servico.setDtAvaliado(LocalDateTime.now());

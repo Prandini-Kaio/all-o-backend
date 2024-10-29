@@ -13,8 +13,6 @@ import java.util.List;
  */
 public interface ProvedorRepositoryCustom {
 
-    Page<Provedor> byFilter(String razaoSocial, String profissao, Pageable pageable);
-
     List<Provedor> byFilter(ProvedorFilter filter);
 
     List<Provedor> mostRelevant(Long idProfissao);

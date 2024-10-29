@@ -36,7 +36,7 @@ public class ClienteGetter {
     }
 
     public Cliente byUsername(String username){
-        log.info(String.format("Consultando um cliente no sistema pelo usernam %s.", username));
+        log.info(String.format("Consultando um cliente no sistema pelo username %s.", username));
 
         return repository.findByUsername(username).orElseThrow(CommonExceptionSupplier.naoEncontrado("Cliente", username));
     }

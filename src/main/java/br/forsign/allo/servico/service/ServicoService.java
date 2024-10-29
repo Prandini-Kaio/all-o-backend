@@ -7,6 +7,7 @@ import br.forsign.allo.servico.service.action.ServicoUpdater;
 import br.forsign.allo.servico.service.action.ServicoCreator;
 import br.forsign.allo.servico.service.action.ServicoGetter;
 import jakarta.annotation.Resource;
+import jakarta.transaction.Transactional;
 import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +49,7 @@ public class ServicoService {
         return this.mapper.toOutput(this.updater.confirmarServico(idServico, confirmado));
     }
 
+    @Transactional
     public ServicoOutput avaliarServico(ServicoInput input) {
         log.info(String.format("Iniciando avaliação de serviço: %s", input.getId()));
 

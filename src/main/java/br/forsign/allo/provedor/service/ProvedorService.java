@@ -102,13 +102,6 @@ public class ProvedorService {
     }
 
     @Transactional
-    public Page<ProvedorOutput> findByFilter(String nome, String profissao, Pageable pageable) {
-        log.info(String.format("Iniciando consulta de provedores com filtro %s;\n %s.", nome, profissao));
-
-        return getter.findByFilter(nome, profissao, pageable).map(this::makeProvedorOutput);
-    }
-
-    @Transactional
     public List<ProvedorOutput> findByFilter(ProvedorFilter filter) {
         log.info(String.format("Iniciando consulta de provedores com filtro "));
 
