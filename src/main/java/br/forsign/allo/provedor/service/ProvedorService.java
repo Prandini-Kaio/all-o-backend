@@ -102,10 +102,10 @@ public class ProvedorService {
     }
 
     @Transactional
-    public List<ProvedorOutput> findByFilter(ProvedorFilter filter) {
+    public List<ProvedorListOutput> findByFilter(ProvedorFilter filter) {
         log.info(String.format("Iniciando consulta de provedores com filtro "));
 
-        return getter.findByFilter(filter).stream().map(this::makeProvedorOutput).toList();
+        return getter.findByFilter(filter).stream().map(this::makeProvedorListOutput).toList();
     }
 
     @Transactional

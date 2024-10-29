@@ -36,7 +36,7 @@ public class ProvedorController {
                     "A principio, se ambos forem verdadeiros, a ordenação sera feita com base nos melhores avaliados e com criterio de desempate nos mais relevantes."
     )
 
-    public ResponseEntity<List<ProvedorOutput>> getByFilter(
+    public ResponseEntity<List<ProvedorListOutput>> getByFilter(
             @ModelAttribute ProvedorFilter filter
     ){
         return ResponseEntity.ok().body(service.findByFilter(filter));
