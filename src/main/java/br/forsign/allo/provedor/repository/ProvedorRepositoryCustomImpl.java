@@ -34,36 +34,35 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
     public List<Provedor> byFilter(ProvedorFilter filter) {
         Map<String, Object> params = new HashMap<>();
 
-        StringBuilder sbQuery = new StringBuilder("SELECT p ");
+        StringBuilder sbQuery = new StringBuilder("SELECT p, " +
+                " COALESCE((SELECT COUNT(s.id) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) AS totalServicos, " +
+                " COALESCE((SELECT AVG(s.avaliacao.nota) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) AS mediaAvaliacao ");
 
         StringBuilder sbFrom = new StringBuilder();
 
         sbFrom.append("FROM Provedor p ")
-                .append(" JOIN p.profissao profissao ")
-                .append(" LEFT JOIN Servico s ON s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes ")
-                .append(" WHERE 1=1 ");
+                .append("JOIN p.profissao profissao ")
+                .append("LEFT JOIN Servico s ON s.provedor.id = p.id ")
+                .append("WHERE 1=1 ");
 
-        QueryUtils.safeAddParams(params, "id", filter.getRazaoSocial(), sbFrom, " AND p.id = :id ");
-        QueryUtils.safeAddParams(params, "nome", filter.getRazaoSocial(), sbFrom, " AND p.razaoSocial LIKE CONCAT('%',:nome,'%') ");
-        QueryUtils.safeAddParams(params, "idProfissao", filter.getIdProfissao(), sbFrom, " AND profissao.id LIKE CONCAT('%',:idProfissao,'%') ");
+        QueryUtils.safeAddParams(params, "id", filter.getId(), sbFrom, " AND p.id = :id ");
+        QueryUtils.safeAddParams(params, "nome", filter.getRazaoSocial(), sbFrom, " AND UPPER(p.razaoSocial) LIKE CONCAT('%', UPPER(:nome), '%') ");
+        QueryUtils.safeAddParams(params, "idProfissao", filter.getIdProfissao(), sbFrom, " AND profissao.id = :idProfissao ");
         QueryUtils.safeAddParams(params, "ativo", filter.isAtivo(), sbFrom, " AND p.ativo = :ativo ");
-
-        sbQuery.append(sbFrom);
-
-        sbQuery.append(" GROUP BY p.id ");
-
-        if(filter.isMaisRelevantes()){
-            sbQuery.append(" ORDER BY COUNT(s.id) DESC ");
-        }
-        else if(filter.isMelhoresAvaliados()){
-            sbQuery.append(" ORDER BY AVG(s.avaliacao.nota) DESC ");
-        }
-        else {
-            sbQuery.append(" ORDER BY AVG(s.avaliacao.nota) DESC, COUNT(s.id) DESC ");
-        }
 
         LocalDateTime dataUltimoMes = LocalDateTime.now().minusMonths(1);
         params.put("dataUltimoMes", dataUltimoMes);
+
+        sbQuery.append(sbFrom);
+        sbQuery.append("GROUP BY p.id ");
+
+        if (filter.isMaisRelevantes()) {
+            sbQuery.append("ORDER BY totalServicos DESC ");
+        } else if (filter.isMelhoresAvaliados()) {
+            sbQuery.append("ORDER BY mediaAvaliacao DESC ");
+        } else {
+            sbQuery.append("ORDER BY mediaAvaliacao DESC, totalServicos DESC ");
+        }
 
         Query query = this.entityManager.createQuery(sbQuery.toString());
         params.forEach(query::setParameter);
