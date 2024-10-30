@@ -1,98 +1,29 @@
-2024-10-29 19:59:08 INFO Restarting due to 70 class path changes (0 additions, 56 deletions, 14 modifications)
-2024-10-29 19:59:08 INFO Stopping ProtocolHandler ["http-nio-8080"]
-2024-10-29 19:59:08 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-29 19:59:08 INFO HikariPool-1 - Shutdown initiated...
-2024-10-29 19:59:08 INFO HikariPool-1 - Shutdown completed.
-2024-10-29 19:59:08 INFO Starting AlloApplicationRunner using Java 17.0.13 with PID 28007 (/home/prandini/Documents/dev/all-o-backend/target/test-classes started by prandini in /home/prandini/Documents/dev/all-o-backend)
-2024-10-29 19:59:08 INFO The following 1 profile is active: "db-local"
-2024-10-29 19:59:08 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-29 19:59:08 WARN Exception encountered during context initialization - cancelling refresh attempt: java.lang.TypeNotPresentException: Type br.forsign.allo.cliente.domain.Cliente not present
-2024-10-29 19:59:08 INFO 
-
-Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2024-10-29 19:59:08 ERROR Application run failed
-java.lang.TypeNotPresentException: Type br.forsign.allo.cliente.domain.Cliente not present
-	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:117)
-	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
-	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
-	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68)
-	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138)
-	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
-	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117)
-	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95)
-	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1211)
-	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:517)
-	at org.springframework.core.ResolvableType.as(ResolvableType.java:465)
-	at org.springframework.data.util.TypeDiscoverer.getSuperTypeInformation(TypeDiscoverer.java:254)
-	at org.springframework.data.util.ClassTypeInformation.getSuperTypeInformation(ClassTypeInformation.java:36)
-	at org.springframework.data.util.TypeInformation.getRequiredSuperTypeInformation(TypeInformation.java:327)
-	at org.springframework.data.repository.core.support.DefaultRepositoryMetadata.<init>(DefaultRepositoryMetadata.java:55)
-	at org.springframework.data.repository.core.support.AbstractRepositoryMetadata.getMetadata(AbstractRepositoryMetadata.java:77)
-	at org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport.getRepositoryConfigurations(RepositoryConfigurationExtensionSupport.java:91)
-	at org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:164)
-	at org.springframework.data.repository.config.RepositoryBeanDefinitionRegistrarSupport.registerBeanDefinitions(RepositoryBeanDefinitionRegistrarSupport.java:94)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:376)
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:721)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:375)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
-	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:428)
-	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:289)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
-	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
-	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:788)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:606)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
-	at br.forsign.allo.AlloApplicationRunner.main(AlloApplicationRunner.java:12)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
-Caused by: java.lang.ClassNotFoundException: br.forsign.allo.cliente.domain.Cliente
-	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:467)
-	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
-	at java.base/java.lang.Class.forName0(Native Method)
-	at java.base/java.lang.Class.forName(Class.java:467)
-	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:114)
-	... 41 common frames omitted
-2024-10-29 19:59:12 INFO Starting AlloApplicationRunner using Java 17.0.13 with PID 28007 (/home/prandini/Documents/dev/all-o-backend/target/test-classes started by prandini in /home/prandini/Documents/dev/all-o-backend)
-2024-10-29 19:59:12 INFO The following 1 profile is active: "db-local"
-2024-10-29 19:59:12 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-29 19:59:12 INFO Finished Spring Data repository scanning in 45 ms. Found 10 JPA repository interfaces.
-2024-10-29 19:59:12 INFO Tomcat initialized with port 8080 (http)
-2024-10-29 19:59:12 INFO Initializing ProtocolHandler ["http-nio-8080"]
-2024-10-29 19:59:12 INFO Starting service [Tomcat]
-2024-10-29 19:59:12 INFO Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-10-29 19:59:12 INFO Initializing Spring embedded WebApplicationContext
-2024-10-29 19:59:12 INFO Root WebApplicationContext: initialization completed in 784 ms
-2024-10-29 19:59:12 INFO HikariPool-1 - Starting...
-2024-10-29 19:59:12 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@faf5cd6
-2024-10-29 19:59:13 INFO HikariPool-1 - Start completed.
-2024-10-29 19:59:13 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/allo'
-2024-10-29 19:59:13 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-29 19:59:13 INFO HHH000026: Second-level cache disabled
-2024-10-29 19:59:13 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-29 19:59:13 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-29 19:59:13 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-29 19:59:13 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-29 19:59:13 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2024-10-29 19:59:14 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2618058d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3328d07b, org.springframework.security.web.context.SecurityContextHolderFilter@386a8ea4, org.springframework.security.web.header.HeaderWriterFilter@28142e3e, org.springframework.web.filter.CorsFilter@7b750b1c, org.springframework.security.web.authentication.logout.LogoutFilter@2e477c41, br.forsign.allo.config.SecurityFilter@4a220c7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7830cb58, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@715c6fbe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3cb537a7, org.springframework.security.web.session.SessionManagementFilter@35e0d767, org.springframework.security.web.access.ExceptionTranslationFilter@3c1f80b9, org.springframework.security.web.access.intercept.AuthorizationFilter@4260acf1]
-2024-10-29 19:59:14 INFO LiveReload server is running on port 35729
-2024-10-29 19:59:14 INFO Starting ProtocolHandler ["http-nio-8080"]
-2024-10-29 19:59:14 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
-2024-10-29 19:59:14 INFO Started AlloApplicationRunner in 2.102 seconds (process running for 588.963)
-2024-10-29 19:59:14 INFO Condition evaluation unchanged
-2024-10-29 19:59:15 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-29 19:59:15 INFO HikariPool-1 - Shutdown initiated...
-2024-10-29 19:59:15 INFO HikariPool-1 - Shutdown completed.
+2024-10-29 21:39:16 INFO HV000001: Hibernate Validator 8.0.1.Final
+2024-10-29 21:39:16 INFO Starting AlloApplicationRunner using Java 17.0.12 with PID 26281 (/home/nopgueira/Documents/Projects/ALL-O/all-o-backend/target/test-classes started by nopgueira in /home/nopgueira/Documents/Projects/ALL-O/all-o-backend)
+2024-10-29 21:39:16 INFO The following 1 profile is active: "db-local"
+2024-10-29 21:39:16 INFO Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-29 21:39:16 INFO For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-29 21:39:16 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-29 21:39:16 INFO Finished Spring Data repository scanning in 66 ms. Found 10 JPA repository interfaces.
+2024-10-29 21:39:17 INFO Tomcat initialized with port 8080 (http)
+2024-10-29 21:39:17 INFO Root WebApplicationContext: initialization completed in 1465 ms
+2024-10-29 21:39:17 INFO HikariPool-1 - Starting...
+2024-10-29 21:39:17 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@61d62fd4
+2024-10-29 21:39:17 INFO HikariPool-1 - Start completed.
+2024-10-29 21:39:18 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/allo'
+2024-10-29 21:39:18 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-29 21:39:18 INFO HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-10-29 21:39:18 INFO HHH000026: Second-level cache disabled
+2024-10-29 21:39:18 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-29 21:39:18 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-29 21:39:19 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-29 21:39:19 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 21:39:19 INFO Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-29 21:39:20 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-29 21:39:20 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@51ee6a36, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23f6abdd, org.springframework.security.web.context.SecurityContextHolderFilter@af17ab5, org.springframework.security.web.header.HeaderWriterFilter@4c5e7456, org.springframework.web.filter.CorsFilter@2224c766, org.springframework.security.web.authentication.logout.LogoutFilter@19065fe5, br.forsign.allo.config.SecurityFilter@35530c5f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ed19095, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7860f96d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3093ea26, org.springframework.security.web.session.SessionManagementFilter@5e49989, org.springframework.security.web.access.ExceptionTranslationFilter@463579aa, org.springframework.security.web.access.intercept.AuthorizationFilter@670ccbfe]
+2024-10-29 21:39:21 INFO LiveReload server is running on port 35729
+2024-10-29 21:39:21 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
+2024-10-29 21:39:21 INFO Started AlloApplicationRunner in 5.522 seconds (process running for 6.203)
+2024-10-29 21:39:21 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 21:39:21 INFO HikariPool-1 - Shutdown initiated...
+2024-10-29 21:39:21 INFO HikariPool-1 - Shutdown completed.

@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/servico/abertura/**").hasRole("CLIENTE")
                         .requestMatchers("/provedor").hasAnyRole("PROVEDOR", "CLIENTE")
-                        .requestMatchers("/cliente").hasRole("CLIENTE"
+                        .requestMatchers("/cliente").hasRole("CLIENTE")
 
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/register").permitAll()
