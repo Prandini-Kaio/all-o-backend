@@ -36,8 +36,8 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/servico/abertura/**").hasRole("CLIENTE")
-                        .requestMatchers("/provedor").hasRole("PROVEDOR")
-                        .requestMatchers("/cliente").hasRole("CLIENTE")
+                        .requestMatchers("/provedor").hasAnyRole("PROVEDOR", "CLIENTE")
+                        .requestMatchers("/cliente").hasRole("CLIENTE"
 
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/register").permitAll()
