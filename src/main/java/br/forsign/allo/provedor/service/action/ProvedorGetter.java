@@ -67,14 +67,6 @@ public class ProvedorGetter {
         return provedor.isPresent();
     }
 
-    public boolean existsById(Long id){
-        log.info(String.format("Consultando a existência de provedor com base no ID %s", id));
-
-        Optional<Provedor> provedor = repository.findById(id);
-
-        return provedor.isPresent();
-    }
-
     public List<Provedor> byProfissao(Long idProfissao) {
         log.info(String.format("Consultando provedor com base no ID da profissão %s", idProfissao));
 

@@ -45,4 +45,9 @@ public class AvaliacaoGetter {
 
         return repository.findByProvedor(idProvedor);
     }
+
+    public boolean existsByServico(Long idServico){
+        return this.repository.findByServico(idServico).isPresent();
+    }
+
 }

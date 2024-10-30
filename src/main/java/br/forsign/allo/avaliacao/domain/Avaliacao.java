@@ -24,4 +24,10 @@ public class Avaliacao {
 
     @Column(name = "NOTA")
     private double nota;
+
+    @Column(name = "AGILIDADE")
+    private double agilidade;
+
+    @Column(name = "PRECO")
+    private double preco;
 }

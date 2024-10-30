@@ -40,6 +40,9 @@ public class ServicoUpdater {
     private ServicoGetter getter;
 
     @Resource
+    private ServicoValidator validator;
+
+    @Resource
     private PerfilProvedorUpdater perfilProvedorUpdater;
 
     @Resource
@@ -71,6 +74,8 @@ public class ServicoUpdater {
     }
 
     public Servico avaliarServico(ServicoInput input) {
+
+        this.validator.validar(input);
 
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
         Servico servico = getter.byClienteAndId(cliente.getUsuario().getUsername(), input.getId());

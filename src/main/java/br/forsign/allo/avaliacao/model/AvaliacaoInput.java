@@ -17,8 +17,16 @@ public class AvaliacaoInput {
     private Long id;
 
     @NotNull
-    @Schema(example = "5.0", description = "Nota do serviço para o provedor.")
+    @Schema(example = "5.0", description = "Nota pelo serviço prestado.")
     private double nota;
+
+    @NotNull
+    @Schema(example = "5.0", description = "Nota pela agilidade do serviço.")
+    private double agilidade;
+
+    @NotNull
+    @Schema(example = "5.0", description = "Nota pelo valor cobrado do serviço.")
+    private double preco;
 
     @NotBlank
     @Schema(description = "Descrição/comentário da avaliação.")
