@@ -20,7 +20,11 @@ public class AvaliacaoOutput {
 
     private Cliente cliente;
 
-    private double nota;
+    private double qualidade;
+
+    private double agilidade;
+
+    private double preco;
 
     private String titulo;
 

@@ -20,7 +20,7 @@ public class AvaliacaoInput {
 
     @NotNull
     @Schema(example = "5.0", description = "Nota pelo serviço prestado.")
-    private double nota;
+    private double qualidade;
 
     @NotNull
     @Schema(example = "5.0", description = "Nota pela agilidade do serviço.")

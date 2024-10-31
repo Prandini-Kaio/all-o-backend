@@ -25,7 +25,7 @@ public class Avaliacao {
     private String descricao;
 
     @Column(name = "NOTA")
-    private double nota;
+    private double qualidade;
 
     @Column(name = "AGILIDADE")
     private double agilidade;
