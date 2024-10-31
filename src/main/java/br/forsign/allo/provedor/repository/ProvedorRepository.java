@@ -30,7 +30,7 @@ public interface ProvedorRepository extends JpaRepository<Provedor, Long>, Prove
             "WHERE p.ativo = true " +
             "AND pr.id = :idProfissao " +
             "GROUP BY p.id " +
-            "ORDER BY AVG(s.avaliacao.nota) DESC " +
+            "ORDER BY AVG(s.avaliacao.qualidade) DESC " +
             "LIMIT 5")
     List<Provedor> findMelhoresAvaliacoes(Long idProfissao);
 
@@ -39,7 +39,7 @@ public interface ProvedorRepository extends JpaRepository<Provedor, Long>, Prove
             "JOIN Servico s ON s.provedor.id = p.id " +
             "WHERE p.ativo = true " +
             "GROUP BY p.id " +
-            "ORDER BY AVG(s.avaliacao.nota) DESC " +
+            "ORDER BY AVG(s.avaliacao.qualidade) DESC " +
             "LIMIT 5")
     List<Provedor> findMelhoresAvaliacoes();
 

@@ -7,19 +7,14 @@ import br.forsign.allo.common.utils.LocalDateUtils;
 import br.forsign.allo.provedor.converter.PerfilProvedorMapper;
 import br.forsign.allo.provedor.domain.PerfilProvedor;
 import br.forsign.allo.provedor.domain.Provedor;
-import br.forsign.allo.provedor.model.PerfilProvedorInput;
 import br.forsign.allo.provedor.model.ProvedorInput;
 import br.forsign.allo.provedor.repository.PerfilProvedorRepository;
 import br.forsign.allo.provedor.service.action.ProvedorGetter;
-import br.forsign.allo.servico.domain.Servico;
 import br.forsign.allo.servico.service.action.ServiceGetter;
 import jakarta.annotation.Resource;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -113,7 +108,7 @@ public class PerfilProvedorUpdater {
             double notaTotal = 0;
 
             for(Avaliacao a : avaliacoes){
-                notaTotal += a.getNota();
+                notaTotal += a.getQualidade();
             }
 
             mediaAvaliacoes = (notaTotal / avaliacoes.size());
