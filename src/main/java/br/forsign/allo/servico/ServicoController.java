@@ -80,7 +80,7 @@ public class ServicoController {
         return service.findByProvedor(idProvedor);
     }
 
-    @PostMapping("/avaliar/upload")
+    @PostMapping("/upload")
     @Operation(
             summary = "Salva uma imagem para avaliacao",
             description = "Salva uma imagem para a avaliacao referente."
@@ -91,7 +91,7 @@ public class ServicoController {
         return ResponseEntity.ok().body(this.service.upload(file));
     }
 
-    @GetMapping("/avaliar/image")
+    @GetMapping("/searchImage")
     @Operation(
             summary = "Procura pelas imagens da avaliação",
             description = "Procura pelas imagens cadastradas para a avaliação."
