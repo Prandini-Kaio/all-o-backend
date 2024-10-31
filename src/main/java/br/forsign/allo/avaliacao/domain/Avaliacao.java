@@ -10,6 +10,8 @@ import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "AVALIACAO")
@@ -30,4 +32,8 @@ public class Avaliacao {
 
     @Column(name = "PRECO")
     private double preco;
+
+    @Column(name = "URI_LIST")
+    @ElementCollection
+    private List<String> uriImagens;
 }

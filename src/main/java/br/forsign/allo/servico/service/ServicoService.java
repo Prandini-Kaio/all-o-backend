@@ -11,7 +11,9 @@ import jakarta.transaction.Transactional;
 import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -73,5 +75,17 @@ public class ServicoService {
         log.info(String.format("Iniciando busca de serviços pelo provedor %s", idProvedor));
 
         return this.getter.byProvedor(idProvedor).stream().map(mapper::toOutput).toList();
+    }
+
+    public String upload(MultipartFile file) {
+        log.info("Iniciando cadastro de imagem para avaliação.");
+
+        return this.updater.upload(file);
+    }
+
+    public ResponseEntity<org.springframework.core.io.Resource> searchImages(String filename) {
+        log.info(String.format("Iniciando busca de imagens da avaliação %s.", filename));
+
+        return this.getter.imagesByIdAvaliacao(filename);
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -77,5 +78,27 @@ public class ServicoController {
     @PreAuthorize("hasRole('ROLE_PROVEDOR') OR hasRole('ROLE_CLIENTE')")
     public List<ServicoOutput> findByProvedor(@RequestParam Long idProvedor){
         return service.findByProvedor(idProvedor);
+    }
+
+    @PostMapping("/avaliar/upload")
+    @Operation(
+            summary = "Salva uma imagem para avaliacao",
+            description = "Salva uma imagem para a avaliacao referente."
+    )
+    public ResponseEntity<String> upload(
+            @RequestParam MultipartFile file
+    ){
+        return ResponseEntity.ok().body(this.service.upload(file));
+    }
+
+    @GetMapping("/avaliar/image")
+    @Operation(
+            summary = "Procura pelas imagens da avaliação",
+            description = "Procura pelas imagens cadastradas para a avaliação."
+    )
+    public ResponseEntity<org.springframework.core.io.Resource> searchImages(
+            @RequestParam String filename
+    ){
+        return this.service.searchImages(filename);
     }
 }

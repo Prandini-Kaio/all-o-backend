@@ -25,7 +25,7 @@ public class ServicoValidator {
     private ProvedorGetter provedorGetter;
 
     public void validar(ServicoInput input){
-        this.validarAvaliacao(input);
+//        this.validarAvaliacao(input);
     }
 
     private void validarAvaliacao(ServicoInput input) {
