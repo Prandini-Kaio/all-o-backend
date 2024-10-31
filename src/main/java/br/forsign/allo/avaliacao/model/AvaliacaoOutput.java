@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.List;
+
 /*
  * @author prandini
  * created 5/26/24
@@ -29,4 +31,6 @@ public class AvaliacaoOutput {
     private String titulo;
 
     private String descricao;
+
+    private List<String> uriImagens;
 }
