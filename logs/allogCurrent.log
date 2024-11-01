@@ -1,26 +1,39 @@
-2024-10-29 22:39:04 INFO Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
-2024-10-29 22:39:04 INFO Stopping ProtocolHandler ["http-nio-8080"]
-2024-10-29 22:39:04 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
-2024-10-29 22:39:04 INFO HikariPool-1 - Shutdown initiated...
-2024-10-29 22:39:04 INFO HikariPool-1 - Shutdown completed.
-2024-10-29 22:39:04 INFO Starting AlloApplicationRunner using Java 17.0.13 with PID 101628 (/home/prandini/Documents/dev/all-o-backend/target/test-classes started by prandini in /home/prandini/Documents/dev/all-o-backend)
-2024-10-29 22:39:04 INFO The following 1 profile is active: "db-local"
-2024-10-29 22:39:04 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2024-10-29 22:39:04 INFO Finished Spring Data repository scanning in 25 ms. Found 10 JPA repository interfaces.
-2024-10-29 22:39:04 INFO Tomcat initialized with port 8080 (http)
-2024-10-29 22:39:04 INFO Initializing ProtocolHandler ["http-nio-8080"]
-2024-10-29 22:39:04 INFO Starting service [Tomcat]
-2024-10-29 22:39:04 INFO Starting Servlet engine: [Apache Tomcat/10.1.18]
-2024-10-29 22:39:04 INFO Initializing Spring embedded WebApplicationContext
-2024-10-29 22:39:04 INFO Root WebApplicationContext: initialization completed in 365 ms
-2024-10-29 22:39:04 INFO HikariPool-1 - Starting...
-2024-10-29 22:39:04 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7a549ab1
-2024-10-29 22:39:04 INFO HikariPool-1 - Start completed.
-2024-10-29 22:39:04 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/allo'
-2024-10-29 22:39:04 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
-2024-10-29 22:39:04 INFO HHH000026: Second-level cache disabled
-2024-10-29 22:39:04 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
-2024-10-29 22:39:04 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2024-10-29 22:39:04 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2024-10-29 22:39:04 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
-2024-10-29 22:39:05 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+<<<<<<< Updated upstream
+2024-10-29 21:39:16 INFO HV000001: Hibernate Validator 8.0.1.Final
+2024-10-29 21:39:16 INFO Starting AlloApplicationRunner using Java 17.0.12 with PID 26281 (/home/nopgueira/Documents/Projects/ALL-O/all-o-backend/target/test-classes started by nopgueira in /home/nopgueira/Documents/Projects/ALL-O/all-o-backend)
+2024-10-29 21:39:16 INFO The following 1 profile is active: "db-local"
+2024-10-29 21:39:16 INFO Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-10-29 21:39:16 INFO For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-10-29 21:39:16 INFO Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-29 21:39:16 INFO Finished Spring Data repository scanning in 66 ms. Found 10 JPA repository interfaces.
+2024-10-29 21:39:17 INFO Tomcat initialized with port 8080 (http)
+2024-10-29 21:39:17 INFO Root WebApplicationContext: initialization completed in 1465 ms
+2024-10-29 21:39:17 INFO HikariPool-1 - Starting...
+2024-10-29 21:39:17 INFO HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@61d62fd4
+2024-10-29 21:39:17 INFO HikariPool-1 - Start completed.
+2024-10-29 21:39:18 INFO H2 console available at '/h2-console'. Database available at 'jdbc:postgresql://localhost:5432/allo'
+2024-10-29 21:39:18 INFO HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-29 21:39:18 INFO HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-10-29 21:39:18 INFO HHH000026: Second-level cache disabled
+2024-10-29 21:39:18 INFO No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-29 21:39:18 WARN HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-29 21:39:19 INFO HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-29 21:39:19 INFO Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 21:39:19 INFO Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-10-29 21:39:20 WARN spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-29 21:39:20 INFO Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@51ee6a36, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23f6abdd, org.springframework.security.web.context.SecurityContextHolderFilter@af17ab5, org.springframework.security.web.header.HeaderWriterFilter@4c5e7456, org.springframework.web.filter.CorsFilter@2224c766, org.springframework.security.web.authentication.logout.LogoutFilter@19065fe5, br.forsign.allo.config.SecurityFilter@35530c5f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ed19095, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7860f96d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3093ea26, org.springframework.security.web.session.SessionManagementFilter@5e49989, org.springframework.security.web.access.ExceptionTranslationFilter@463579aa, org.springframework.security.web.access.intercept.AuthorizationFilter@670ccbfe]
+2024-10-29 21:39:21 INFO LiveReload server is running on port 35729
+2024-10-29 21:39:21 INFO Tomcat started on port 8080 (http) with context path '/api/allo'
+2024-10-29 21:39:21 INFO Started AlloApplicationRunner in 5.522 seconds (process running for 6.203)
+2024-10-29 21:39:21 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-29 21:39:21 INFO HikariPool-1 - Shutdown initiated...
+2024-10-29 21:39:21 INFO HikariPool-1 - Shutdown completed.
+=======
+2024-11-01 00:17:00 INFO Iniciando validação de token.
+2024-11-01 00:17:00 INFO Usuario cliente@g.com autenticado com acesso [ROLE_CLIENTE]
+2024-11-01 00:17:00 INFO Iniciando busca de imagens da avaliação 5b8cfc5a-5ba6-4119-a9f4-98af392e402a.png.
+2024-11-01 00:17:00 INFO Consultando consulta de imagens de avaliação 5b8cfc5a-5ba6-4119-a9f4-98af392e402a.png
+2024-11-01 00:17:05 INFO Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-01 00:17:05 INFO HikariPool-1 - Shutdown initiated...
+2024-11-01 00:17:05 INFO HikariPool-1 - Shutdown completed.
+>>>>>>> Stashed changes

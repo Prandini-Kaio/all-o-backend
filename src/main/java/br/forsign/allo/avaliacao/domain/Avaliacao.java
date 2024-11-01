@@ -5,6 +5,8 @@ package br.forsign.allo.avaliacao.domain;
  * created 5/26/24
  */
 
+import br.forsign.allo.cliente.domain.Cliente;
+import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,7 +24,7 @@ public class Avaliacao {
     @Column(name = "DESCRICAO")
     private String descricao;
 
-    @Column(name = "NOTA")
+    @Column(name = "QUALIDADE")
     private double qualidade;
 
     @Column(name = "AGILIDADE")
