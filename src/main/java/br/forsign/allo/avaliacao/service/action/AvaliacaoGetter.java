@@ -35,9 +35,9 @@ public class AvaliacaoGetter {
 
         List<Avaliacao> avaliacoes = this.repository.findAll();
 
-        avaliacoes = avaliacoes.stream().filter(a -> a.getNota() >= 4.5).collect(Collectors.toList());
+        avaliacoes = avaliacoes.stream().filter(a -> a.getQualidade() >= 4.5).collect(Collectors.toList());
 
-        return avaliacoes.stream().filter(a -> a.getNota() >= 4.5).findFirst().orElse(null);
+        return avaliacoes.stream().filter(a -> a.getQualidade() >= 4.5).findFirst().orElse(null);
     }
 
     public List<Avaliacao> byProvedor(Long idProvedor) {
@@ -45,4 +45,9 @@ public class AvaliacaoGetter {
 
         return repository.findByProvedor(idProvedor);
     }
+
+    public boolean existsByServico(Long idServico){
+        return this.repository.findByServico(idServico).isPresent();
+    }
+
 }

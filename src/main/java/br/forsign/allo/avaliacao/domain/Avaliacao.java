@@ -5,10 +5,10 @@ package br.forsign.allo.avaliacao.domain;
  * created 5/26/24
  */
 
-import br.forsign.allo.cliente.domain.Cliente;
-import br.forsign.allo.provedor.domain.Provedor;
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -23,5 +23,15 @@ public class Avaliacao {
     private String descricao;
 
     @Column(name = "NOTA")
-    private double nota;
+    private double qualidade;
+
+    @Column(name = "AGILIDADE")
+    private double agilidade;
+
+    @Column(name = "PRECO")
+    private double preco;
+
+    @Column(name = "URI_LIST")
+    @ElementCollection
+    private List<String> uriImagens;
 }

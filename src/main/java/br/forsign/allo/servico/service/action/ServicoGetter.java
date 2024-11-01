@@ -1,6 +1,7 @@
 package br.forsign.allo.servico.service.action;
 
 import br.forsign.allo.auth.service.AuthService;
+import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
@@ -14,10 +15,16 @@ import org.apache.catalina.mapper.Mapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -78,5 +85,26 @@ public class ServicoGetter {
         log.info(String.format("Consultando serviço do provedor %s e ID serviço %s", provedor, idServico));
 
         return repository.findByProvedorAndId(provedor, idServico).orElseThrow(CommonExceptionSupplier.naoEncontrado("Servico", provedor));
+    }
+
+    public ResponseEntity<org.springframework.core.io.Resource> imagesByIdAvaliacao(String filename) {
+        log.info(String.format("Consultando consulta de imagens de avaliação %s", filename));
+
+        try{
+            Path filePath = Paths.get("src/main/resources/images-avaliacao").resolve(filename).normalize();
+
+            org.springframework.core.io.Resource resource = new UrlResource(filePath.toUri());
+
+            if(resource.exists() && resource.isReadable()){
+                return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + resource.getFilename() + "\""
+                ).body(resource);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        }catch (MalformedURLException e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
     }
 }

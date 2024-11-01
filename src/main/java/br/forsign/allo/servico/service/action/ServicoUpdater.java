@@ -6,6 +6,7 @@ import br.forsign.allo.avaliacao.domain.Avaliacao;
 import br.forsign.allo.cliente.domain.Cliente;
 import br.forsign.allo.cliente.service.actions.ClienteGetter;
 import br.forsign.allo.common.utils.CommonExceptionSupplier;
+import br.forsign.allo.common.utils.ImageUtils;
 import br.forsign.allo.provedor.domain.Provedor;
 import br.forsign.allo.provedor.model.NotificacaoProvedorInput;
 import br.forsign.allo.provedor.service.NotificacaoProvedorService;
@@ -21,6 +22,7 @@ import lombok.extern.apachecommons.CommonsLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -38,6 +40,9 @@ public class ServicoUpdater {
 
     @Resource
     private ServicoGetter getter;
+
+    @Resource
+    private ServicoValidator validator;
 
     @Resource
     private PerfilProvedorUpdater perfilProvedorUpdater;
@@ -72,6 +77,8 @@ public class ServicoUpdater {
 
     public Servico avaliarServico(ServicoInput input) {
 
+        this.validator.validar(input);
+
         Cliente cliente = clienteGetter.byUsername(AuthService.getContextUser().getUsername());
         Servico servico = getter.byClienteAndId(cliente.getUsuario().getUsername(), input.getId());
 
@@ -94,5 +101,11 @@ public class ServicoUpdater {
 
         perfilProvedorUpdater.updateStats(servico.getProvedor().getId(), input.getId());
         return servico;
+    }
+
+    public String upload(MultipartFile file) {
+        log.info(String.format("Cadastrando imagem para avaliação %s", file));
+
+        return ImageUtils.saveImageFile(file, "images-avaliacao");
     }
 }

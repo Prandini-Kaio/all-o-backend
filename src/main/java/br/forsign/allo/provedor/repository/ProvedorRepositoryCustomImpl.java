@@ -36,7 +36,13 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
 
         StringBuilder sbQuery = new StringBuilder("SELECT p, " +
                 " COALESCE((SELECT COUNT(s.id) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) AS totalServicos, " +
-                " COALESCE((SELECT AVG(s.avaliacao.nota) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) AS mediaAvaliacao ");
+                " COALESCE((SELECT AVG(s.avaliacao.nota) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) AS mediaNota, " +
+                " COALESCE((SELECT AVG(s.avaliacao.agilidade) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) AS mediaAgilidade, " +
+                " COALESCE((SELECT AVG(s.avaliacao.preco) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) AS mediaPreco, " +
+                " ((COALESCE((SELECT AVG(s.avaliacao.nota) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) + " +
+                " COALESCE((SELECT AVG(s.avaliacao.agilidade) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0) + " +
+                " COALESCE((SELECT AVG(s.avaliacao.preco) FROM Servico s WHERE s.provedor.id = p.id AND s.dtRealizado >= :dataUltimoMes), 0)) / 3) AS mediaGeral ");
+
 
         StringBuilder sbFrom = new StringBuilder();
 
@@ -50,7 +56,9 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
         QueryUtils.safeAddParams(params, "idProfissao", filter.getIdProfissao(), sbFrom, " AND profissao.id = :idProfissao ");
         QueryUtils.safeAddParams(params, "ativo", filter.isAtivo(), sbFrom, " AND p.ativo = :ativo ");
 
-        LocalDateTime dataUltimoMes = LocalDateTime.now().minusMonths(1);
+        LocalDateTime dataUltimoMes = LocalDateTime.now()
+                .minusMonths(1)
+                .withDayOfMonth(1);
         params.put("dataUltimoMes", dataUltimoMes);
 
         sbQuery.append(sbFrom);
@@ -59,9 +67,9 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
         if (filter.isMaisRelevantes()) {
             sbQuery.append("ORDER BY totalServicos DESC ");
         } else if (filter.isMelhoresAvaliados()) {
-            sbQuery.append("ORDER BY mediaAvaliacao DESC ");
+            sbQuery.append("ORDER BY mediaGeral DESC ");
         } else {
-            sbQuery.append("ORDER BY mediaAvaliacao DESC, totalServicos DESC ");
+            sbQuery.append("ORDER BY mediaGeral DESC, totalServicos DESC ");
         }
 
         Query query = this.entityManager.createQuery(sbQuery.toString());
@@ -84,12 +92,12 @@ public class ProvedorRepositoryCustomImpl implements ProvedorRepositoryCustom{
                 .append(" WHERE 1=1 ");
 
         LocalDateTime now = LocalDateTime.now();
+        LocalDateTime dataUltimoMes = LocalDateTime.now()
+                .minusMonths(1)
+                .withDayOfMonth(1);
 
-        YearMonth ym = YearMonth.from(now);
-
-        LocalDateTime dataInicial = LocalDateTime.of(now.getYear(), now.getMonth(), 1, 0, 0, 0);
-        LocalDateTime dataFinal = LocalDateTime.of(now.getYear(), now.plusMonths(1).getMonth(), ym.atEndOfMonth().getDayOfMonth(), 23, 59, 59);
-
+        LocalDateTime dataInicial = dataUltimoMes.withHour(0).withMinute(0).withSecond(0);
+        LocalDateTime dataFinal = now.withHour(23).withMinute(59).withSecond(59);
 
         QueryUtils.safeAddParams(params, "dataInicial", dataInicial, sbFrom, " AND s.dtRealizado >= :dataInicial ");
         QueryUtils.safeAddParams(params, "dataFinal", dataFinal, sbFrom, " AND s.dtRealizado >= :dataFinal ");

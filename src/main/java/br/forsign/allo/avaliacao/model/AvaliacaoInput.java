@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.List;
+
 /*
  * @author prandini
  * created 5/26/24
@@ -17,10 +19,20 @@ public class AvaliacaoInput {
     private Long id;
 
     @NotNull
-    @Schema(example = "5.0", description = "Nota do serviço para o provedor.")
-    private double nota;
+    @Schema(example = "5.0", description = "Nota pelo serviço prestado.")
+    private double qualidade;
+
+    @NotNull
+    @Schema(example = "5.0", description = "Nota pela agilidade do serviço.")
+    private double agilidade;
+
+    @NotNull
+    @Schema(example = "5.0", description = "Nota pelo valor cobrado do serviço.")
+    private double preco;
 
     @NotBlank
     @Schema(description = "Descrição/comentário da avaliação.")
     private String descricao;
+
+    private List<String> uriImagens;
 }

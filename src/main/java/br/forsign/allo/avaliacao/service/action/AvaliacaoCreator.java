@@ -25,7 +25,7 @@ public class AvaliacaoCreator {
         Avaliacao avaliacao = new Avaliacao();
 
         avaliacao.setDescricao(input.getDescricao());
-        avaliacao.setNota(input.getNota());
+        avaliacao.setQualidade(input.getQualidade());
 
         return repository.save(avaliacao);
     }
